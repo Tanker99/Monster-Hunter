@@ -33,11 +33,12 @@ public class Player extends Entity{
     public void getImage(){
 
         try{
-            up =  ImageIO.read(Player.class.getResource("figur.png"));
-            down =  ImageIO.read(Player.class.getResource("figur.png"));
-            left =  ImageIO.read(Player.class.getResource("figur.png"));
-            right =  ImageIO.read(Player.class.getResource("figur.png"));
-            still =  ImageIO.read(Player.class.getResource("figur.png"));
+            up =  ImageIO.read(Player.class.getResource("/player/playerb.png"));
+            down =  ImageIO.read(Player.class.getResource("/player/playerc.png"));
+            left1 =  ImageIO.read(Player.class.getResource("/player/playerl1.png"));
+            left2 =  ImageIO.read(Player.class.getResource("/player/playerl2.png"));
+            right1 =  ImageIO.read(Player.class.getResource("/player/playerr1.png"));
+            right2 =  ImageIO.read(Player.class.getResource("/player/playerr2.png"));
             System.out.println("test");
         }catch (IOException e){
             e.printStackTrace();
@@ -60,6 +61,15 @@ public class Player extends Entity{
             x += speed;
             ImageDirection = "right" ;
         }
+        walk ++;
+        if (walk >10 ){
+            if (walk1 == 1){
+                walk1 = 2;
+            }else if (walk1 == 1) {
+                walk1 = 2;
+            }
+            walk = 0;
+        }
     }
     public void draw(Graphics2D g2){
 
@@ -76,10 +86,19 @@ public class Player extends Entity{
                 image = down;
                 break;
             case "left":
-                image = left;
+                if(walk1 == 1){
+                    image = left2;
+
+                }if(walk1 == 2){
+                    image = left1;
+                }
                 break;
             case "right":
-                image = right;
+                if(walk1 == 1){
+                    image = right2;
+                }if(walk1 == 2){
+                    image = right1;
+                }
                 break;
             case "still":
                 image = still;
