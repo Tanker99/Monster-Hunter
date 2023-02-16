@@ -36,7 +36,7 @@ public class Sound {
 
     }
     public void loop(){
-        clip.loop(10);
+        clip.loop(100);
 
     }
 
