@@ -48,29 +48,36 @@ public class Player extends Entity{
 
     }
     public void update (){
-        if(keyH.up == true){
-            y -= speed;
-            ImageDirection = "up";
-        }else if(keyH.down == true){
-            y += speed;
-            ImageDirection = "down";
-        }else if(keyH.left == true){
-            x -= speed;
-            ImageDirection = "left";
-        }else if(keyH.right == true){
-            x += speed;
-            ImageDirection = "right" ;
-        }
-        walk ++;
-        if (walk >10 ){
-            if (walk1 == 1){
-                walk1 = 2;
-            }else if (walk1 == 1) {
-                walk1 = 2;
+
+        if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
+            if(keyH.up == true){
+                y -= speed;
+                ImageDirection = "up";
+            }else if(keyH.down == true){
+                y += speed;
+                ImageDirection = "down";
+            }else if(keyH.left == true){
+                x -= speed;
+                ImageDirection = "left";
+            }else if(keyH.right == true){
+                x += speed;
+                ImageDirection = "right" ;
             }
-            walk = 0;
+            timer ++;
+            if (timer >10 ){
+                if (animation == 1){
+                    animation = 2;
+                }else if (animation == 2) {
+                    animation = 1;
+                }
+                timer = 0;
+            }
+            System.out.println("Timer: "+ timer + "Animation: " +animation);
         }
     }
+
+
+
     public void draw(Graphics2D g2){
 
        // g2.setColor(Color.blue);
@@ -86,17 +93,17 @@ public class Player extends Entity{
                 image = down;
                 break;
             case "left":
-                if(walk1 == 1){
+                if(animation == 1){
                     image = left2;
 
-                }if(walk1 == 2){
+                }if(animation == 2){
                     image = left1;
                 }
                 break;
             case "right":
-                if(walk1 == 1){
+                if(animation     == 1){
                     image = right2;
-                }if(walk1 == 2){
+                }if(animation == 2){
                     image = right1;
                 }
                 break;

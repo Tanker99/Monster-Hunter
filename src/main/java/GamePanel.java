@@ -18,8 +18,10 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = titleSize * maxWidth;
 
     KeyHandler keyH = new KeyHandler();
+    Sound sound = new Sound();
+    public UI ui = new UI(this);
     Thread gameThread;
-    Player player = new Player(this,keyH);
+    Player player = new Player(this, keyH);
 
     int FPS = 60;
     int playerX = 100;
@@ -32,9 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-
-
-
+        playLoopSound(0);
 
 
     }
@@ -66,9 +66,9 @@ public class GamePanel extends JPanel implements Runnable {
                 update();
                 repaint();
                 delta--;
-                deawcount ++;
+                deawcount++;
             }
-            if(timer >= 1000000000){
+            if (timer >= 1000000000) {
                 System.out.println("FPS" + deawcount);
                 deawcount = 0;
                 timer = 0;
@@ -79,20 +79,31 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 
-        public void update() {
+    public void update() {
         player.update();
-        }
-        public void paintComponent(Graphics g){
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g;
-
-            player.draw(g2);
-
-           g2.dispose();
-        }
-
-
     }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+
+        ui.draw(g2);
+        player.draw(g2);
+
+        g2.dispose();
+    }
+
+
+    public void playLoopSound(int i) {
+        sound.selectSound(i);
+        sound.play();
+        sound.loop();
+    }
+    public void playSound(int i){
+        sound.selectSound(i);
+        sound.play();
+    }
+}
 
 
 
