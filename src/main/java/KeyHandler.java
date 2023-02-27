@@ -69,6 +69,19 @@ public class KeyHandler implements KeyListener {
 
     }
     public void titleMenu(KeyEvent e){
+         int key = e.getKeyCode();
 
+        if(key == KeyEvent.VK_W){
+            gp.ui.titleCount --;
+            gp.play(2);
+        }
+        if(key == KeyEvent.VK_S){
+           gp.ui.titleCount ++;
+           gp.play(2);
+        }
+        if(key == KeyEvent.VK_ENTER){
+            gp.ui.titlesellect = true;
+            gp.play(2);
+            }
     }
 }
