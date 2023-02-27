@@ -6,6 +6,7 @@ import java.io.IOException;
 public class UI{
 
     GamePanel gp;
+    Graphics2D g2;
 
 
     public UI(GamePanel gp) {
