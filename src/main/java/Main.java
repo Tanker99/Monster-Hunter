@@ -11,7 +11,7 @@ public class Main {
 
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false); //kann nicht größeer oder kleiner gezogen werden
+        window.setResizable(true); //kann nicht größeer oder kleiner gezogen werden
         window.setTitle("test");
 
         window.setLocationRelativeTo(null); //Fenster ist in der Mitte

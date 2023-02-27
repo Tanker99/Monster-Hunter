@@ -90,10 +90,10 @@ public class UI{
                g2.drawRoundRect(rX + 10, textY + 120, rWight - 20, 100, 10, 10);
                break;
            case 2:
-               g2.drawRoundRect(rX + 10, textY + 240, rWight - 20, 100, 10, 10);
+               g2.drawRoundRect(rX + 10, textY + 220, rWight - 20, 100, 10, 10);
                break;
            case 3:
-               g2.drawRoundRect(rX + 10, textY + 360, rWight - 20, 100, 10, 10);
+               g2.drawRoundRect(rX + 10, textY + 340, rWight - 20, 100, 10, 10);
                break;
        }
 
