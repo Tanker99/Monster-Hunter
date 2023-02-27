@@ -8,6 +8,8 @@ public class UI{
     GamePanel gp;
     Graphics2D g2;
 
+    public int count;
+
 
     public UI(GamePanel gp) {
 
@@ -32,7 +34,7 @@ public class UI{
         g2.setFont(new Font("Arial", Font.PLAIN, 80));
         String text = "Hunter Game";
         int x = getx(g2, text);
-        int y = gp.titleSize * 3;
+        int y = gp.titleSize * 2;
         //Set Shadow
         setShadow(g2, text, x, y, Color.white);
         //SetTitle
@@ -52,26 +54,49 @@ public class UI{
         titleText(g2);
     }
     public void titleText(Graphics2D g2){
-        int recx = gp.screenWidth/4;
-        int recy = gp.screenHeight/2;
-        int recWight = gp.screenWidth/2;
-        int recHigh = gp.screenHeight/3;
+
+        //Rand
+        int rX = gp.screenWidth/4;
+        int rY = gp.screenHeight/2;
+        int rWight = gp.screenWidth/2;
+        int rHigh = (int) (gp.screenHeight/2.2);
+        g2.drawRoundRect(rX,rY,rWight,rHigh,10,10);
+
+        //Text
+        int textX = rX /2;
+        int textY = rY;
 
         String text;
-        int sektion = 0;
-
-        g2.drawRect(recx,recy,recWight,recHigh);
-
         g2.setColor(Color.white);
-        text = "Start";
-        g2.drawString(text,      getx(g2,text),600 );
-        if( sektion == 0){
-            g2.drawRect(recWight,recHigh,recx,recy);
-        }
+        text = "New Game";
+        g2.drawString(text,getx(g2,text),textY + 100);
+        text = "Play";
+        g2.drawString(text,getx(g2,text),textY + 200);
         text = "Settings";
-        g2.drawString(text,getx(g2,text),700);
+        g2.drawString(text,getx(g2,text),textY+ 300);
         text = "Exit";
-        g2.drawString(text,getx(g2,text),800);
+        g2.drawString(text,getx(g2,text),textY+ 400);
+
+        //Kasten
+
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(2));
+
+       switch (count){
+           case 0:
+               g2.drawRoundRect(rX + 10, textY, rWight - 20, 100, 10, 10);
+               break;
+           case 1:
+               g2.drawRoundRect(rX + 10, textY + 120, rWight - 20, 100, 10, 10);
+               break;
+           case 2:
+               g2.drawRoundRect(rX + 10, textY + 240, rWight - 20, 100, 10, 10);
+               break;
+           case 3:
+               g2.drawRoundRect(rX + 10, textY + 360, rWight - 20, 100, 10, 10);
+               break;
+       }
+
 
 
 

@@ -9,19 +9,23 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     final int size = 16; //pixel größe von obcejten max 16x16
-    final int scale = 3; //vergrößerung
+    final int scale = 5; //vergrößerung
     public final int titleSize = size * scale; // pixel 48x48
-    final int maxWidth = 32;
-    final int maxHeight = 24;
+    final int maxWidth = 16;
+    final int maxHeight = 12;
 
     final int screenHeight = titleSize * maxHeight;
     final int screenWidth = titleSize * maxWidth;
 
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
     public UI ui = new UI(this);
     Thread gameThread;
     Player player = new Player(this, keyH);
+
+    public int menueState = 0;
+    public int playerState = 1;
+    public int gameState = 0;
 
     int FPS = 60;
     int playerX = 100;
@@ -87,8 +91,13 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        ui.draw(g2);
-        player.draw(g2);
+        if(gameState == 0){
+            ui.draw(g2);
+            g2.dispose();
+        }else if(gameState == 1) {
+            player.draw(g2);
+            g2.dispose();
+        }
 
         g2.dispose();
     }

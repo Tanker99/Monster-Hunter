@@ -11,8 +11,8 @@ public class Sound {
     public Sound() {
 
         soundURL[0] = Player.class.getResource("/sound/start.wav");
-
-
+        soundURL[1] = Player.class.getResource("/sound/switch.wav");
+        soundURL[2] = Player.class.getResource("/sound/error.wav");
 
     }
     public void selectSound(int i){
@@ -36,7 +36,7 @@ public class Sound {
 
     }
     public void loop(){
-        clip.loop(100);
+       // clip.loop(100);
 
     }
 
