@@ -8,7 +8,10 @@ public class UI{
     GamePanel gp;
     Graphics2D g2;
 
-    public int count;
+    public int countX;
+    public int countY;
+    public int countYMax;
+    public int countXMax;
 
 
     public UI(GamePanel gp) {
@@ -55,6 +58,9 @@ public class UI{
     }
     public void titleText(Graphics2D g2){
 
+
+
+
         //Rand
         int rX = gp.screenWidth/4;
         int rY = gp.screenHeight/2;
@@ -82,7 +88,7 @@ public class UI{
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(2));
 
-       switch (count){
+       switch (countY){
            case 0:
                g2.drawRoundRect(rX + 10, textY, rWight - 20, 100, 10, 10);
                break;
@@ -96,6 +102,10 @@ public class UI{
                g2.drawRoundRect(rX + 10, textY + 340, rWight - 20, 100, 10, 10);
                break;
        }
+
+       public void menuSettings(Graphics2D g2){
+
+        }
 
 
 

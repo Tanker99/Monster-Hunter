@@ -36,16 +36,16 @@ public class KeyHandler implements KeyListener {
 
     public void menueState(int key) {
         if (key == KeyEvent.VK_W) {
-            if(gp.ui.count >0){
-                gp.ui.count --;
+            if(gp.ui.countY >0){
+                gp.ui.countY --;
                 gp.playSound(1);
             }else {
                 gp.playSound(2);
             }
         }
         if (key == KeyEvent.VK_S) {
-            if(gp.ui.count <3){
-                gp.ui.count ++;
+            if(gp.ui.countY <3){
+                gp.ui.countY ++;
                 gp.playSound(1);
             }else {
                 gp.playSound(2);
@@ -53,7 +53,7 @@ public class KeyHandler implements KeyListener {
 
         }
         if (key == KeyEvent.VK_ENTER) {
-            if(gp.ui.count == 1) {
+            if(gp.ui.countY == 1) {
                 gp.gameState = 1;
                 gp.playSound(2);
             }
