@@ -56,61 +56,57 @@ public class UI{
         //Text
         titleText(g2);
     }
-    public void titleText(Graphics2D g2){
-
-
+    public void titleText(Graphics2D g2) {
 
 
         //Rand
-        int rX = gp.screenWidth/4;
-        int rY = gp.screenHeight/2;
-        int rWight = gp.screenWidth/2;
-        int rHigh = (int) (gp.screenHeight/2.2);
-        g2.drawRoundRect(rX,rY,rWight,rHigh,10,10);
+        int rX = gp.screenWidth / 4;
+        int rY = gp.screenHeight / 2;
+        int rWight = gp.screenWidth / 2;
+        int rHigh = (int) (gp.screenHeight / 2.2);
+        g2.drawRoundRect(rX, rY, rWight, rHigh, 10, 10);
 
         //Text
-        int textX = rX /2;
+        int textX = rX / 2;
         int textY = rY;
 
         String text;
         g2.setColor(Color.white);
         text = "New Game";
-        g2.drawString(text,getx(g2,text),textY + 100);
+        g2.drawString(text, getx(g2, text), textY + 100);
         text = "Play";
-        g2.drawString(text,getx(g2,text),textY + 200);
+        g2.drawString(text, getx(g2, text), textY + 200);
         text = "Settings";
-        g2.drawString(text,getx(g2,text),textY+ 300);
+        g2.drawString(text, getx(g2, text), textY + 300);
         text = "Exit";
-        g2.drawString(text,getx(g2,text),textY+ 400);
+        g2.drawString(text, getx(g2, text), textY + 400);
 
         //Kasten
 
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(2));
 
-       switch (countY){
-           case 0:
-               g2.drawRoundRect(rX + 10, textY, rWight - 20, 100, 10, 10);
-               break;
-           case 1:
-               g2.drawRoundRect(rX + 10, textY + 120, rWight - 20, 100, 10, 10);
-               break;
-           case 2:
-               g2.drawRoundRect(rX + 10, textY + 220, rWight - 20, 100, 10, 10);
-               break;
-           case 3:
-               g2.drawRoundRect(rX + 10, textY + 340, rWight - 20, 100, 10, 10);
-               break;
-       }
+        switch (countY) {
+            case 0:
+                g2.drawRoundRect(rX + 10, textY, rWight - 20, 100, 10, 10);
+                break;
+            case 1:
+                g2.drawRoundRect(rX + 10, textY + 120, rWight - 20, 100, 10, 10);
+                break;
+            case 2:
+                g2.drawRoundRect(rX + 10, textY + 220, rWight - 20, 100, 10, 10);
+                break;
+            case 3:
+                g2.drawRoundRect(rX + 10, textY + 340, rWight - 20, 100, 10, 10);
+                break;
+        }
+    }
 
        public void menuSettings(Graphics2D g2){
 
         }
 
 
-
-
-    }
 
     public void draw(Graphics2D g2){
         titleScreen(g2);

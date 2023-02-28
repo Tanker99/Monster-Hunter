@@ -3,14 +3,15 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Shop extends Window{
+public class Shop {
 
-    private JPanel stack = new JPanel();
-    private JPanel[] item = new JPanel[6];
+    GamePanel gp;
+    Graphics2D g2;
 
 
     public Shop() {
-        this.Window = Window;
+        this.gp = gp;
+    }
 
 
         stack.setBackground(Color.red);
@@ -31,5 +32,11 @@ public class Shop extends Window{
 
 
         super.shop.setVisible(true);
+
+
+    public void draw(Graphics2D g2){
+
+        g2.draw(s);
+
     }
 }

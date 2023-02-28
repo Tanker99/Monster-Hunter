@@ -23,9 +23,12 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     Player player = new Player(this, keyH);
 
+
+    public int gameState = 0;
     public int menueState = 0;
     public int playerState = 1;
-    public int gameState = 0;
+    public int shopState = 2;
+
 
     int FPS = 60;
     int playerX = 100;
@@ -96,6 +99,9 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         }else if(gameState == 1) {
             player.draw(g2);
+            g2.dispose();
+        }else if(gameState == 2){
+            Shop.draw(g2);
             g2.dispose();
         }
 
