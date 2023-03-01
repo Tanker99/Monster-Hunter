@@ -12,13 +12,13 @@ public class Inventory {
     private int inY = 0;
     private int inWight =0;
     private int inHigh =0;
-    private int panelid= 0;
+    private int panelid = 0;
 
     //Panel
-    private int panX = inX + 10;
-    private int panY = (int) (inY + inHigh*0.1);
-    private int panWight= 200;
-    int panHigh = (int) (inHigh /1.3);
+    private int panX =0;
+    private int panY = 0;
+    private int panWight= 0;
+    private int panHigh = 0;
 
 
 
@@ -70,6 +70,11 @@ public class Inventory {
 
     public void panel(Graphics2D g2){
 
+        this.panX = inX + 10;
+        this.panY = (int) (inY + inHigh*0.1);
+        this.panWight= 200;
+        this.panHigh = (int) (inHigh /1.3);
+
         g2.drawRoundRect(panX,panY,panWight,panHigh, 10,10);
 
         if(panelid == 1){
@@ -79,7 +84,7 @@ public class Inventory {
             detailPanel(g2);
 
         }else {
-
+            g2.drawString("Select one Item",panX + panWight/2,panY + panHigh/2);
         }
 
 
