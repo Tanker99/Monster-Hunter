@@ -6,18 +6,97 @@ public class Inventory {
 
     Graphics2D g2;
 
-    int inX = 10;
-    int inY = (int) (gp.screenHeight/4 - 20);
-    int inWight = gp.screenWidth -20;
-    int inHigh = gp.screenHeight/2 - 20;
+
+    //inventar
+    private int inX = 0;
+    private int inY = 0;
+    private int inWight =0;
+    private int inHigh =0;
+    private int panelid= 0;
+
+    //Panel
+    private int panX = inX + 10;
+    private int panY = (int) (inY + inHigh*0.1);
+    private int panWight= 200;
+    int panHigh = (int) (inHigh /1.3);
+
+
 
 
 
     public Inventory(GamePanel gp) {
         this.gp = gp;
+
+        this.inX = 10;
+        this.inY = (int) (gp.screenHeight/4 - 20);
+        this.inWight = gp.screenWidth -20;
+        this.inHigh = gp.screenHeight/2 - 20;
+
     }
 
-    /*
+
+
+
+    public void draw(Graphics2D g2){
+
+        inventory(g2);
+        g2.setFont(new Font("Arial",Font.PLAIN,40));
+        g2.setColor(Color.black);
+        g2.drawString("ee", 50,50);
+
+    }
+
+    public void inventory(Graphics2D g2){
+
+
+
+        g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
+        g2.drawRoundRect(0,0,200,100,10,10);
+        //panel
+        panel(g2);
+        //slots
+        slot(g2);
+        //sonstig
+        sonstig(g2);
+
+    }
+
+    public void slot(Graphics2D g2){
+
+    }
+    public void sonstig(Graphics2D g2){
+
+    }
+
+    public void panel(Graphics2D g2){
+
+        g2.drawRoundRect(panX,panY,panWight,panHigh, 10,10);
+
+        if(panelid == 1){
+            equipPanel(g2);
+
+        }else if (panelid == 2){
+            detailPanel(g2);
+
+        }else {
+
+        }
+
+
+
+
+    }
+
+    public void equipPanel(Graphics2D g2){
+
+    }
+    public void detailPanel(Graphics2D g2){
+
+    }
+}
+
+
+ /*
         stack.setBackground(Color.red);
         stack.setBounds(150, 100, 800, 500);
         stack.setLayout(new GridLayout(2, 3, 10, 10));
@@ -37,43 +116,3 @@ public class Inventory {
 
 
 
-
-
-
-    public void draw(Graphics2D g2){
-
-        inventory(g2);
-        g2.setFont(new Font("Arial",Font.PLAIN,40));
-        g2.setColor(Color.black);
-        g2.drawString("ee", 50,50);
-
-    }
-
-    public void inventory(Graphics2D g2){
-
-
-
-        g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
-        panel(g2);
-
-    }
-
-    public void panel(Graphics2D g2){
-
-        int panX = inX + 10;
-        int panY = (int) (inHigh/4.5);
-        int panHigh = inHigh /2;
-        int panWight= 20;
-
-        g2.drawRoundRect(panX,panY,panHigh,panWight, 10,10);
-
-
-    }
-
-    public void equipPanel(Graphics2D g2){
-
-    }
-    public void detailPanel(Graphics2D g2){
-
-    }
-}
