@@ -58,6 +58,12 @@ public class KeyHandler implements KeyListener {
                 gp.playSound(2);
             }
         }
+        if (key == KeyEvent.VK_ENTER) {
+            if(gp.ui.countY == 3) {
+               System.exit(0);
+                gp.playSound(2);
+            }
+        }
     }
 
     public void playerState(int key) {

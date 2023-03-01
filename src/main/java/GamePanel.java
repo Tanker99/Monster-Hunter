@@ -10,16 +10,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     final int size = 16; //pixel größe von obcejten max 16x16
     final int scale = 5; //vergrößerung
-    public final int titleSize = size * scale; // pixel 48x48
+    public final int titleSize = size * scale; // pixel 80x80
     final int maxWidth = 16;
     final int maxHeight = 12;
 
-    final int screenHeight = titleSize * maxHeight;
-    final int screenWidth = titleSize * maxWidth;
+    final int screenHeight = titleSize * maxHeight; //960
+    final int screenWidth = titleSize * maxWidth; //1280
 
     KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
     public UI ui = new UI(this);
+    public Shop shop = new Shop(this);
     Thread gameThread;
     Player player = new Player(this, keyH);
 
@@ -101,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
             player.draw(g2);
             g2.dispose();
         }else if(gameState == 2){
-            Shop.draw(g2);
+            shop.draw(g2);
             g2.dispose();
         }
 
