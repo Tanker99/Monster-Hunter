@@ -21,14 +21,16 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     public UI ui = new UI(this);
     public Shop shop = new Shop(this);
+   // public Inventory inventory = new Inventory(this);
     Thread gameThread;
     Player player = new Player(this, keyH);
 
 
-    public int gameState = 0;
-    public int menueState = 0;
-    public int playerState = 1;
-    public int shopState = 2;
+    public int gameState = 2;
+    final int menueState = 0;
+    final int playerState = 1;
+    final int shopState = 2;
+    final int inventoryState = 3;
 
 
     int FPS = 60;
@@ -103,6 +105,9 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         }else if(gameState == 2){
             shop.draw(g2);
+            g2.dispose();
+        }else if( gameState == 3){
+            //inventory.draw(g2);
             g2.dispose();
         }
 
