@@ -1,5 +1,7 @@
 import java.awt.*;
 
+import static java.awt.Color.green;
+
 public class Inventory {
 
     GamePanel gp;
@@ -9,6 +11,12 @@ public class Inventory {
 
     int [][]equip = new int[3][];
     private int panelid = 1;
+
+    public boolean sellect = false;
+
+    public int countX ;
+    public int countY;
+    public int sellectcountY = 0;
 
     //inventar
     private int inX = 0;
@@ -49,6 +57,9 @@ public class Inventory {
         this.inWight = gp.screenWidth -20;
         this.inHigh = gp.screenHeight/2 - 20;
 
+        countX = 0;
+        countY =0;
+
     }
 
 
@@ -59,7 +70,9 @@ public class Inventory {
         inventory(g2);
         g2.setFont(new Font("Arial",Font.PLAIN,40));
         g2.setColor(Color.black);
-        g2.drawString("ee", 50,50);
+        g2.drawString("Inventar", gp.screenWidth/2,50);
+
+        g2.drawRoundRect(gp.screenWidth/2,0,200,100,10,10);
 
     }
 
@@ -68,14 +81,34 @@ public class Inventory {
 
 
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
-        g2.drawRoundRect(0,0,200,100,10,10);
         //panel
         panel(g2);
         //slots
         slot(g2);
         //sonstig
         sonstig(g2);
+        //curver
+        move(g2);
 
+    }
+
+    public void move(Graphics2D g2){
+        int e = 0;
+        if(sellect){
+
+            if (sellectcountY ==2 ){
+                e = 30;
+
+            }
+
+            g2.setColor(green);
+            g2.drawRoundRect(sonX  , sonY + sellectcountY * 50 + e, sonWight, sonHigh, 10, 10);
+
+        }else if(!sellect) {
+            g2.setColor(green);
+            g2.setStroke(new BasicStroke(3));
+            g2.drawRoundRect(sloX + countX * 200 +3, sloY + countY * 200 +3 , sloWight -6, sloHigh -6, 30, 30);
+        }
     }
 
     public void slot(Graphics2D g2){
@@ -120,17 +153,21 @@ public class Inventory {
 
         g2.drawRoundRect(panX,panY,panWight,panHigh, 10,10);
 
-        if(panelid == 1){
-            equipPanel(g2);
-
-        }else if (panelid == 2){
+        if(sellect){
             detailPanel(g2);
 
+        }
+        if (!sellect) {
+            equipPanel(g2);
+        }
+        /*
         }else {
             String text = "Select one Item";
             g2.drawString(text,panX + panWight/2 - getx(g2,text),panY + panHigh/2);
 
         }
+
+         */
 
 
 

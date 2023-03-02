@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     Player player = new Player(this, keyH);
 
 
-    public int gameState = 3;
+    public int gameState = 0;
     final int menueState = 0;
     final int playerState = 1;
     final int shopState = 2;
@@ -107,6 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
             shop.draw(g2);
             g2.dispose();
         }else if( gameState == 3){
+            Inventory Inventory = new Inventory(this);
             inventory.draw(g2);
             g2.dispose();
         }
