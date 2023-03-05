@@ -19,9 +19,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
+    Config config = new Config();
     public UI ui = new UI(this);
     public Shop shop = new Shop(this);
-   public Inventory inventory = new Inventory(this);
+   public Inventory inventory = new Inventory(this,keyH);
     Thread gameThread;
     Player player = new Player(this, keyH);
 
@@ -44,8 +45,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        playLoopSound(0);
 
+
+
+
+    }
+
+    public void setup(){
+        playLoopSound(0);
+        gameState = 0;
 
     }
 
@@ -90,7 +98,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
-        player.update();
+
+        if(gameState == playerState) {
+            player.update();
+        }
+        if (gameState == inventoryState) {
+            inventory.update();
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -107,7 +121,6 @@ public class GamePanel extends JPanel implements Runnable {
             shop.draw(g2);
             g2.dispose();
         }else if( gameState == 3){
-            Inventory Inventory = new Inventory(this);
             inventory.draw(g2);
             g2.dispose();
         }

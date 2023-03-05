@@ -8,7 +8,7 @@ public class KeyHandler implements KeyListener {
 
     GamePanel gp;
 
-    public boolean up, down, left, right, ee, esc;
+    public boolean up, down, left, right, ee, esc,enter;
 
 
     public KeyHandler(GamePanel gp) {
@@ -84,6 +84,7 @@ public class KeyHandler implements KeyListener {
             right = true;
         }
         if (key == KeyEvent.VK_E) {
+            gp.inventory.resetCurser();
             gp.gameState = gp.inventoryState;
         }
         if (key == KeyEvent.VK_ESCAPE) {
@@ -93,74 +94,73 @@ public class KeyHandler implements KeyListener {
 
     }
     public void inventarState(int key) {
-        if (key == KeyEvent.VK_W) {
-            if (gp.inventory.sellect == true){
-                if (gp.inventory.sellectcountY > 0) {
-                    gp.inventory.sellectcountY--;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
+            if (key == KeyEvent.VK_W) {
+                if (gp.inventory.sellect == true) {
+                    if (gp.inventory.sellectcountY > 0) {
+                        gp.inventory.sellectcountY--;
+                        gp.playSound(1);
+                    } else {
+                        gp.playSound(2);
+                    }
 
-            }else {
-                if (gp.inventory.countY > 0) {
-                    gp.inventory.countY--;
-                    gp.playSound(1);
                 } else {
-                    gp.playSound(2);
+                    if (gp.inventory.countY > 0) {
+                        gp.inventory.countY--;
+                        gp.playSound(1);
+                    } else {
+                        gp.playSound(2);
+                    }
                 }
             }
-        }
-        if (key == KeyEvent.VK_A) {
+            if (key == KeyEvent.VK_A) {
                 if (gp.inventory.countX > 0) {
                     gp.inventory.countX--;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
-        }
-        if (key == KeyEvent.VK_S) {
-            if (gp.inventory.sellect == true) {
-                if (gp.inventory.sellectcountY < 2) {
-                    gp.inventory.sellectcountY++;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
+            }
+            if (key == KeyEvent.VK_S) {
+                if (gp.inventory.sellect == true) {
+                    if (gp.inventory.sellectcountY < 2) {
+                        gp.inventory.sellectcountY++;
+                        gp.playSound(1);
+                    } else {
+                        gp.playSound(2);
+                    }
 
-                }else{
+                } else {
                     if (gp.inventory.countY < 1) {
                         gp.inventory.countY++;
                         gp.playSound(1);
                     } else {
                         gp.playSound(2);
                     }
-            }
+                }
 
-        }
-        if (key == KeyEvent.VK_D) {
+            }
+            if (key == KeyEvent.VK_D) {
                 if (gp.inventory.countX < 3) {
                     gp.inventory.countX++;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
-        }
-        if (key == KeyEvent.VK_ENTER) {
-            if (!gp.inventory.sellect) {
-                gp.inventory.sellect = true;
-            }else if (gp.inventory.sellect){
-                gp.inventory.sellectcountY =0;
-                gp.inventory.sellect = false;
             }
+            if (key == KeyEvent.VK_ENTER) {
+                if (!gp.inventory.sellect) {
+                    gp.inventory.sellect = true;
+                } else if (gp.inventory.sellect) {
+                    gp.inventory.sellectcountY = 0;
+                    gp.inventory.sellect = false;
+                }
 
-        }
-        if (key == KeyEvent.VK_E) {
-            gp.inventory = null;
-            gp.gameState = gp.playerState;
+            }
+            if (key == KeyEvent.VK_E) {
+                gp.gameState = gp.playerState;
 
+            }
         }
-    }
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -185,6 +185,9 @@ public class KeyHandler implements KeyListener {
         }
         if (key == KeyEvent.VK_ESCAPE) {
             esc = false;
+        }
+        if (key == KeyEvent.VK_ENTER) {
+            enter = false;
         }
 
 

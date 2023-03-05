@@ -1,10 +1,12 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static java.awt.Color.green;
 
 public class Inventory {
 
     GamePanel gp;
+    KeyHandler keyH;
 
     Graphics2D g2;
 
@@ -49,16 +51,14 @@ public class Inventory {
 
 
 
-    public Inventory(GamePanel gp) {
+    public Inventory(GamePanel gp,KeyHandler keyH) {
         this.gp = gp;
+        this.keyH = keyH;
 
         this.inX = 10;
         this.inY = gp.screenHeight/4 - 20;
         this.inWight = gp.screenWidth -20;
         this.inHigh = gp.screenHeight/2 - 20;
-
-        countX = 0;
-        countY =0;
 
     }
 
@@ -66,8 +66,8 @@ public class Inventory {
 
 
     public void draw(Graphics2D g2){
-
-        inventory(g2);
+        this.g2 = g2;
+        inventory();
         g2.setFont(new Font("Arial",Font.PLAIN,40));
         g2.setColor(Color.black);
         g2.drawString("Inventar", gp.screenWidth/2,50);
@@ -76,23 +76,25 @@ public class Inventory {
 
     }
 
-    public void inventory(Graphics2D g2){
-
-
-
+    public void inventory(){
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
+
         //panel
-        panel(g2);
+        panel();
         //slots
-        slot(g2);
+        slot();
         //sonstig
-        sonstig(g2);
-        //curver
-        move(g2);
+        sonstig();
+        //move
+        move();
 
     }
 
-    public void move(Graphics2D g2){
+    public void update() {
+
+    }
+
+    public void move(){
         int e = 0;
         if(sellect){
 
@@ -111,7 +113,7 @@ public class Inventory {
         }
     }
 
-    public void slot(Graphics2D g2){
+    public void slot(){
 
         this.sloX = (int) (inWight*0.2) + inX;
         this.sloY = (int) (inHigh*0.05) + inY;
@@ -124,7 +126,7 @@ public class Inventory {
         }
 
     }
-    public void sonstig(Graphics2D g2){
+    public void sonstig(){
 
         this.sonX = (int) (inWight*0.9) + inX;
         this.sonY = (int) (inHigh*0.6) + inY;
@@ -144,7 +146,7 @@ public class Inventory {
 
     }
 
-    public void panel(Graphics2D g2){
+    public void panel(){
 
         this.panX = inX + 10;
         this.panY = (int) (inY + inHigh*0.1);
@@ -160,14 +162,6 @@ public class Inventory {
         if (!sellect) {
             equipPanel(g2);
         }
-        /*
-        }else {
-            String text = "Select one Item";
-            g2.drawString(text,panX + panWight/2 - getx(g2,text),panY + panHigh/2);
-
-        }
-
-         */
 
 
 
@@ -191,6 +185,12 @@ public class Inventory {
 
 
 
+    }
+    public void resetCurser(){
+        sellect = false;
+        sellectcountY = 0;
+        countX =0;
+        countY = 0;
     }
 
     public int getx(Graphics2D g2,String text){
