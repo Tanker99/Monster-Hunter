@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     Config config = new Config();
     public UI ui = new UI(this);
-    public Shop shop = new Shop(this);
+    public Shop shop = new Shop(this, keyH);
    public Inventory inventory = new Inventory(this,keyH);
     Thread gameThread;
     Player player = new Player(this, keyH);
@@ -104,6 +104,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (gameState == inventoryState) {
             inventory.update();
+        }
+        if (gameState == shopState) {
+            shop.update();
         }
     }
 
