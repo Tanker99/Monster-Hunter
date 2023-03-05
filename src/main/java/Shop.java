@@ -76,13 +76,15 @@ public class Shop {
     public void Shop(Graphics2D g2) {
 
         g2.drawRoundRect(inX, inY, inWight, inHigh, 10, 10);
-        g2.drawRoundRect(0, 0, 200, 100, 10, 10);
+        //g2.drawRoundRect(0, 0, 200, 100, 10, 10);
         //panel
         panel(g2);
         //slots
         slot(g2);
         //sonstig
         sonstig(g2);
+
+        Auswahl();
 
     }
 
@@ -145,16 +147,16 @@ public class Shop {
     }
 
     public void Auswahl() {
-        int e = 0;
+        int f = 0;
+
         if (waehlen) {
 
             if (sellectcountY == 2) {
-                e = 30;
-
+                f = 30;
             }
 
-            g2.setColor(red);
-            g2.drawRoundRect(sonX, sonY + sellectcountY * 50 + e, sonWight, sonHigh, 10, 10);
+                g2.setColor(red);
+                g2.drawRoundRect(sonX, sonY + sellectcountY * 50 + f, sonWight, sonHigh, 10, 10);
 
         } else if (!waehlen) {
             g2.setColor(red);
