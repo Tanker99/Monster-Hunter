@@ -3,6 +3,10 @@
 
 
 
+import DB.Ruestung;
+import DB.Trank;
+import DB.Waffe;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,10 +25,15 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     Config config = new Config();
     public UI ui = new UI(this);
+    public Player player = new Player(this, keyH);
     public Shop shop = new Shop(this, keyH);
-   public Inventory inventory = new Inventory(this,keyH);
+    public Inventory inventory = new Inventory(this,keyH);
+    public Fight fight = new Fight(this, keyH);
+
+    public Waffe waffe = new Waffe();
+    public Trank trank = new Trank();
+    public Ruestung ruestung = new Ruestung();
     Thread gameThread;
-    Player player = new Player(this, keyH);
 
 
     public int gameState = 0;
@@ -32,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int playerState = 1;
     final int shopState = 2;
     final int inventoryState = 3;
+    final int fightState = 4;
 
 
     int FPS = 60;
@@ -117,13 +127,13 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState == 0){
             ui.draw(g2);
             g2.dispose();
-        }else if(gameState == 1) {
+        }else if(gameState == playerState) {
             player.draw(g2);
             g2.dispose();
-        }else if(gameState == 2){
+        }else if(gameState == shopState){
             shop.draw(g2);
             g2.dispose();
-        }else if( gameState == 3){
+        }else if( gameState == inventoryState){
             inventory.draw(g2);
             g2.dispose();
         }

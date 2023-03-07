@@ -9,6 +9,8 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
+    public int item[][][] = new int[7][][];
+    public int equip[][] = new int[3][];
 
 
 

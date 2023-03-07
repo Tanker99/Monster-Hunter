@@ -52,9 +52,9 @@ public class Shop {
     public int sellectcountY = 0;
 
 
-    public Shop(GamePanel gp,KeyHandler KeyH) { //Komplett
+    public Shop(GamePanel gp,KeyHandler keyH) { //Komplett
         this.gp = gp;
-        this.keyH=keyH;
+        this.keyH = keyH;
 
         this.inX = 10;
         this.inY = gp.screenHeight / 4 - 20;

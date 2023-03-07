@@ -10,8 +10,6 @@ public class Inventory {
 
     Graphics2D g2;
 
-
-    int [][]equip = new int[3][];
     private int panelid = 1;
 
     public boolean sellect = false;
@@ -120,6 +118,7 @@ public class Inventory {
         this.sloWight = 200;
         this.sloHigh =200;
         for(int ix = 0; ix<=3;ix++){
+            //g2.drawImage(gp.player.item[1])
             for(int iy = 0;iy<=1;iy++) {
                 g2.drawRoundRect(sloX + ix*200, sloY + iy*200, sloWight, sloHigh, 10, 10);
             }
@@ -199,25 +198,6 @@ public class Inventory {
         return x;
     }
 }
-
-
- /*
-        stack.setBackground(Color.red);
-        stack.setBounds(150, 100, 800, 500);
-        stack.setLayout(new GridLayout(2, 3, 10, 10));
-        super.shop.add(stack);
-        stack.setVisible(true);
-
-        for(int i = 0; i <= 5; ++i) {
-            item[i] = new JPanel();
-            item[i].setBounds(0, 0, 100, 100);
-            item[i].setBackground(Color.green);
-            item[i].setLayout((LayoutManager)null);
-            item[i].setVisible(true);
-            stack.add(item[i]);
-        }
-          super.shop.setVisible(true);
-     */
 
 
 
