@@ -117,12 +117,18 @@ public class Inventory {
         this.sloY = (int) (inHigh*0.05) + inY;
         this.sloWight = 200;
         this.sloHigh =200;
-        for(int ix = 0; ix<=3;ix++){
-            //g2.drawImage(gp.player.item[1])
+        int db;
+        int item;
+        /*for(int ix = 0; ix<=3;ix++){
+            db = gp.player.item[ix][0];
+            item = gp.player.item[ix][1];
+            g2.drawImage(gp.image.waffe[1], 100,100 ,gp.titleSize,gp.titleSize,null);
             for(int iy = 0;iy<=1;iy++) {
                 g2.drawRoundRect(sloX + ix*200, sloY + iy*200, sloWight, sloHigh, 10, 10);
             }
-        }
+            }
+
+         */
 
     }
     public void sonstig(){

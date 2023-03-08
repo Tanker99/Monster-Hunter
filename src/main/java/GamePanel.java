@@ -33,6 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Waffe waffe = new Waffe();
     public Trank trank = new Trank();
     public Ruestung ruestung = new Ruestung();
+
+    public Image image = new Image(this);
     Thread gameThread;
 
 

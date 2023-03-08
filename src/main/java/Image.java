@@ -3,19 +3,33 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Image {
-
     GamePanel gp;
     BufferedImage player[] = new BufferedImage[5]; //
-    BufferedImage waffe[] = new BufferedImage[gp.waffe.Wanzahl]; //
-    BufferedImage ruestung[] = new BufferedImage[gp.ruestung.Ranzahl];
-    BufferedImage trank[] = new BufferedImage[gp.trank.Tanzahl];
+    BufferedImage waffe[];
+   // BufferedImage ruestung[] = new BufferedImage[gp.ruestung.Ranzahl];
+   // BufferedImage trank[] = new BufferedImage[gp.trank.Tanzahl];
+
+
 
     public Image(GamePanel gp) {
         this.gp = gp;
 
+      //  waffe[] = new BufferedImage[gp.waffe.Wanzahl];
+
+       /* try{
+
+        waffe[1] = ImageIO.read(Player.class.getResource("/player/playerb.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("player Image Error");
+        }
+
+        */
+
     }
 
     public void loadImage() throws IOException {
+        /*
 
         try {
             player[0] = ImageIO.read(Player.class.getResource("/player/playerb.png"));
@@ -29,5 +43,8 @@ public class Image {
             System.out.println("player Image Error");
         }
 
+
+
+         */
     }
 }
