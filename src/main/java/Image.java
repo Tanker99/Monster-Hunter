@@ -28,7 +28,15 @@ public class Image {
 
     }
 
-    public void loadImage() throws IOException {
+    public BufferedImage loadImage() throws IOException {
+        int i = 0;
+        BufferedImage test;
+        test = ImageIO.read(Player.class.getResource("player/playerb.png"));
+        switch (i){
+            case 1:
+                return test;
+        }
+
         /*
 
         try {
@@ -46,5 +54,6 @@ public class Image {
 
 
          */
+        return test;
     }
 }

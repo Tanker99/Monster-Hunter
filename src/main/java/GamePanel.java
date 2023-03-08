@@ -7,8 +7,11 @@ import DB.Ruestung;
 import DB.Trank;
 import DB.Waffe;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -51,7 +54,9 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 5;
 
-    public GamePanel() {
+    public GamePanel(){
+
+
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.WHITE);
         this.setDoubleBuffered(true);

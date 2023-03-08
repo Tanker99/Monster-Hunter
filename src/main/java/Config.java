@@ -7,21 +7,22 @@ public class Config {
 
     public Config() {
 
-        save(0,"gold" , 100);
-        save(1,"gold" , 100);
-        save(2,"gold" , 100);
-        save(3,"gold" , 100);
-        save(4,"gold" , 100);
-        save(5,"gold" , 100);
-        save(1,"emer" , 100);
-        save(1,"gold" , 200);
+        save(0, "gold", 100);
+        save(1, "gold", 100);
+        save(2, "gold", 100);
+        save(3, "gold", 100);
+        save(4, "gold", 100);
+        save(5, "gold", 100);
+        save(1, "emer", 100);
+        save(1, "gold", 200);
 
-        System.out.println(load(0,"gold"));
-        System.out.println( load(1,"gold"));
+        System.out.println(load(0, "golddd"));
+        System.out.println(load(1, "gold"));
+        copyFile(0,1);
 
     }
 
-    public void save(int filen ,String variable, Object wert) {
+    public void save(int filen, String variable, Object wert) {
 
         filename = selectFile(filen);
         if (filename == null || variable == null || wert == null) {
@@ -75,10 +76,10 @@ public class Config {
         }
     }
 
-    public String load(int filen,String variable) {
+    public String load(int filen, String variable) {
         filename = selectFile(filen);
         if (filename == null || variable == null) {
-            System.err.println("ilename,variable, wert kann nicht null sein ");
+            System.err.println("filename,variable, wert kann nicht null sein ");
             return null;
         }
 
@@ -107,19 +108,43 @@ public class Config {
 
         return null;
     }
-    public String selectFile(int file){
-        switch (file){
+
+    public String selectFile(int file) {
+        switch (file) {
             case 0:
-                return "src/main/resources/save/save";
+                return "src/main/resources/save/default.config";
             case 1:
-                return "src/main/resources/save/saveGame1.txt";
+                return "src/main/resources/save/saveGame1.config";
             case 2:
-                return "src/main/resources/save/saveGame2.txt";
+                return "src/main/resources/save/saveGame2.config";
             case 3:
-                return "src/main/resources/save/saveGame3.txt";
+                return "src/main/resources/save/saveGame3.config";
             case 4:
-                return  "src/main/resources/save/saveGame4.txt";
+                return "src/main/resources/save/saveGame4.config";
+            default:
+                System.out.println("File nicht definiert");
+                break;
         }
-    return null;
+        return null;
+    }
+
+    public void copyFile(int i, int x){
+        File sourceFile = new File(selectFile(i));
+        File destinationFile = new File(selectFile(x));
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+                writer.newLine();
+            }
+
+            reader.close();
+            writer.close();
+        } catch (Exception e) {
+            throw new RuntimeException("Fehler beim Kopieren der Textdatei", e);
+        }
     }
 }
