@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
-    Config config = new Config();
+    Config config = new Config(this);
     public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
     public Shop shop = new Shop(this, keyH);
@@ -48,6 +48,13 @@ public class GamePanel extends JPanel implements Runnable {
     final int inventoryState = 3;
     final int fightState = 4;
 
+    //TEST ZWECKE
+
+    public int gold = 0;
+    public int starke =100;
+
+
+    //TEST ZWECKE
 
     int FPS = 60;
     int playerX = 100;

@@ -1,11 +1,16 @@
 import java.io.*;
+import java.lang.reflect.Method;
 
 
 public class Config {
 
+    GamePanel gp;
+
     private String filename = null;
 
-    public Config() {
+    public Config(GamePanel gp) {
+        this.gp = gp;
+        saveAll(1);
 
     }
 
@@ -40,7 +45,7 @@ public class Config {
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(" = ");
                     if (parts.length == 2 && parts[0].equals(variable)) {
-                        writer.write(variable + "=" + wert.toString());
+                        writer.write(variable + " = " + wert.toString());
                         writer.newLine();
                         keyFound = true;
                     } else {
@@ -138,5 +143,13 @@ public class Config {
         } catch (Exception e) {
             throw new RuntimeException("Fehler beim Kopieren der Textdatei", e);
         }
+    }
+    public void saveAll(int file) {
+        save(file,"game",gp.gold);
+    }
+
+    public void loadAll(int file){
+        gp.gold = load(file,"gold");
+
     }
 }
