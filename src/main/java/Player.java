@@ -29,7 +29,7 @@ public class Player extends Entity{
 
     }
     public void Values(){
-         x = 100;
+         x = gp.config.load(1,"dsadasd");
          y = 100;
          speed = 4;
 

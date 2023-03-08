@@ -7,19 +7,6 @@ public class Config {
 
     public Config() {
 
-        save(0, "gold", 100);
-        save(1, "gold", 100);
-        save(2, "gold", 100);
-        save(3, "gold", 100);
-        save(4, "gold", 100);
-        save(5, "gold", 100);
-        save(1, "emer", 100);
-        save(1, "gold", 200);
-
-        System.out.println(load(0, "golddd"));
-        System.out.println(load(1, "gold"));
-        copyFile(0,1);
-
     }
 
     public void save(int filen, String variable, Object wert) {
@@ -51,7 +38,7 @@ public class Config {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split("=");
+                    String[] parts = line.split(" = ");
                     if (parts.length == 2 && parts[0].equals(variable)) {
                         writer.write(variable + "=" + wert.toString());
                         writer.newLine();
@@ -63,7 +50,7 @@ public class Config {
                 }
 
                 if (!keyFound) {
-                    writer.write(variable + "=" + wert.toString());
+                    writer.write(variable + " = " + wert.toString());
                     writer.newLine();
                 }
             }
@@ -76,11 +63,11 @@ public class Config {
         }
     }
 
-    public String load(int filen, String variable) {
+    public Integer load(int filen, String variable) {
         filename = selectFile(filen);
         if (filename == null || variable == null) {
             System.err.println("filename,variable, wert kann nicht null sein ");
-            return null;
+            return 0;
         }
 
         File file = new File(filename);
@@ -94,9 +81,9 @@ public class Config {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split("=");
+                    String[] parts = line.split(" = ");
                     if (parts.length == 2 && parts[0].equals(variable)) {
-                        return parts[1];
+                        return Integer.valueOf(parts[1]);
                     }
                 }
             } catch (IOException e) {
@@ -106,7 +93,8 @@ public class Config {
             System.err.println("permission denied: " + e.getMessage());
         }
 
-        return null;
+        System.err.println("Variablen " + "\033[0;34m" + variable + "\033[0m" + " nicht gelesen werden und wurde auf 0 gestellt");
+        return 0;
     }
 
     public String selectFile(int file) {
@@ -121,17 +109,21 @@ public class Config {
                 return "src/main/resources/save/saveGame3.config";
             case 4:
                 return "src/main/resources/save/saveGame4.config";
-            default:
-                System.out.println("File nicht definiert");
-                break;
         }
         return null;
     }
 
     public void copyFile(int i, int x){
-        File sourceFile = new File(selectFile(i));
-        File destinationFile = new File(selectFile(x));
         try {
+            String file1 = selectFile(i);
+            String file2 = selectFile(x);
+
+            if (file1 == null || file2 == null) {
+                System.err.println("copy File are not found");
+                return;
+            }
+            File sourceFile = new File(file1);
+            File destinationFile = new File(file2);
             BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile));
 
