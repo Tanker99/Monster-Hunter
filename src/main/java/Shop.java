@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import static java.awt.Color.red;
 
-import static java.awt.Color.red;
 
 public class Shop {
 
