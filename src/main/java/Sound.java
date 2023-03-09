@@ -10,12 +10,12 @@ public class Sound {
     URL soundURL[] = new URL[3];
     FloatControl fc;
 
-    int volume;
-    int volumeScale;
+    float volume;
+    int volumeScale = 3;
 
     public Sound() {
 
-        soundURL[0] = Player.class.getResource("/sound/start.wav");
+        soundURL[0] = Player.class.getResource("/sound/Titel-melodie.wav");
         soundURL[1] = Player.class.getResource("/sound/switch.wav");
         soundURL[2] = Player.class.getResource("/sound/error.wav");
 
@@ -30,11 +30,11 @@ public class Sound {
         } catch (Exception e) {
             System.out.println("Sound not found");
         }
+        volume();
     }
 
 
     public void play() {
-
         clip.start();
 
     }
@@ -45,26 +45,32 @@ public class Sound {
     }
 
     public void loop() {
+        fc.setValue(6f);
          clip.loop(Clip.LOOP_CONTINUOUSLY);
 
     }
 
     public void volume() {
-        switch (volumeScale){
+        switch (volumeScale) {
             case 0:
+                volume = -80f;
                 break;
             case 1:
+                volume = -40f;
                 break;
             case 2:
+                volume = -20f;
                 break;
             case 3:
+                volume = 1f;
                 break;
             case 4:
+                volume = 6f;
                 break;
             default:
-            fc.setValue(volume);
+        }
+        fc.setValue(volume);
     }
 }
 
 
-}

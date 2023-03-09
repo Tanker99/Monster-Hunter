@@ -9,11 +9,18 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
+    public int item[][] = new int[7][2];
+
+
+
+    public int equip[][] = new int[3][];
 
 
 
 
     public Player(GamePanel gp, KeyHandler keyH){
+        //item[0][0] = 0;
+       // item[0][1] = 1;
 
         this.gp = gp;
         this.keyH = keyH;
@@ -22,7 +29,7 @@ public class Player extends Entity{
 
     }
     public void Values(){
-         x = 100;
+         x = gp.config.load(1,"dsadasd");
          y = 100;
          speed = 4;
 

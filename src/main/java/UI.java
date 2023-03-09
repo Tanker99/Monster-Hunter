@@ -14,36 +14,50 @@ public class UI{
     public int countXMax;
 
 
+    private int menustate;
+    private int playstate;
+    private int newstate;
+    private int settingsstate;
+
+
     public UI(GamePanel gp) {
 
         this.gp = gp;
     }
+    public void draw(Graphics2D g2){
+        this.g2 = g2;
+        if (menustate == 0) {
+            titleScreen();
+        }else if(menustate == playstate){
+            playScreen();
+        }else if(menustate == newstate){
+            newScreen();
+        }else if(menustate == settingsstate){
+            settingsScreen();
+        }
 
+    }
+    public void titleScreen(){
 
-    public void titleScreen(Graphics2D g2) {
-        int sektion = 0;
-        //Background Image
-        //g2.setColor(Color.white);
-        //g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+        int textX;
+        int textY;
+        String text;
+
+        //Hintergrund
         BufferedImage back = null;
         try {
             back = ImageIO.read(Player.class.getResource("/back.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
         } catch (IOException e) {
             System.out.println("Error Loading Background");
         }
+        //Game name Title
+        text = "Hunter Game";
+        textX = getxCenter(text);
+        textY = gp.titleSize;
 
-        g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        //config Title
-        g2.setFont(new Font("Arial", Font.PLAIN, 80));
-        String text = "Hunter Game";
-        int x = getx(g2, text);
-        int y = gp.titleSize * 2;
-        //Set Shadow
-        setShadow(g2, text, x, y, Color.white);
-        //SetTitle
-        g2.setColor(Color.green);
-        g2.drawString("Hunter Game ", x, y);
-        //Charackter
+        g2.drawString(text, textX, textY);
+
         BufferedImage cha = null;
         try {
             cha = ImageIO.read(Player.class.getResource("cha.png"));
@@ -53,13 +67,8 @@ public class UI{
         int xcha = cha.getWidth();
         g2.drawImage(cha, gp.screenWidth / 2 - xcha, 300, 200, 200, null);
 
-        //Text
-        titleText(g2);
-    }
-    public void titleText(Graphics2D g2) {
 
-
-        //Rand
+        //umrandung
         int rX = gp.screenWidth / 4;
         int rY = gp.screenHeight / 2;
         int rWight = gp.screenWidth / 2;
@@ -67,63 +76,93 @@ public class UI{
         g2.drawRoundRect(rX, rY, rWight, rHigh, 10, 10);
 
         //Text
-        int textX = rX / 2;
-        int textY = rY;
-
-        String text;
+        textX = rX / 2;
+        textY = rY;
         g2.setColor(Color.white);
         text = "New Game";
-        g2.drawString(text, getx(g2, text), textY + 100);
+        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
         text = "Play";
-        g2.drawString(text, getx(g2, text), textY + 200);
+        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
         text = "Settings";
-        g2.drawString(text, getx(g2, text), textY + 300);
+        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
         text = "Exit";
-        g2.drawString(text, getx(g2, text), textY + 400);
+        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
 
         //Kasten
 
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(2));
 
-        switch (countY) {
-            case 0:
-                g2.drawRoundRect(rX + 10, textY, rWight - 20, 100, 10, 10);
-                break;
-            case 1:
-                g2.drawRoundRect(rX + 10, textY + 120, rWight - 20, 100, 10, 10);
-                break;
-            case 2:
-                g2.drawRoundRect(rX + 10, textY + 220, rWight - 20, 100, 10, 10);
-                break;
-            case 3:
-                g2.drawRoundRect(rX + 10, textY + 340, rWight - 20, 100, 10, 10);
-                break;
+        int kX;
+        int kY;
+        int kWight;
+        int kHigh;
+
+
+         kWight = (int) (rWight - 2*rWight*0.01);
+         kHigh = (int) (rHigh * 1/4 - 2*rHigh*0.01);
+         kX = (int) (rX + rWight*0.01);
+
+        for( int i = 0; i< 4; i++){
+            kY = (int) (rY + 2*rHigh*0.01 + i*kHigh);
+            g2.setColor(Color.white);
+            g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
         }
+        g2.setColor(Color.green);
+        kY = (int) (rY + 2*rHigh*0.01 + countY*kHigh);
+        g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+
+
+
+
     }
+    public void playScreen(){
+
+    }
+
+    public void newScreen(){
+
+    }
+
+    public void settingsScreen(){
+
+
+
+    }
+
+
+
 
        public void menuSettings(Graphics2D g2){
 
+        int textX;
+        int textY;
+
+        String text;
+        //Title
+           text ="Settings";
+           g2.drawString(text,getxCenter(text),gp.screenHeight/2);
+
         }
 
 
 
-    public void draw(Graphics2D g2){
-        titleScreen(g2);
-        g2.setFont(new Font("Arial",Font.PLAIN,40));
-        g2.setColor(Color.black);
-        g2.drawString("ee", 50,50);
 
-    }
 
-    public void setShadow(Graphics2D g2, String text,int x, int y, Color color){
+
+    public void setShadow( String text,int x, int y, Color color){
         g2.setColor(color);
         g2.drawString(text,x+5,y+5);
     }
 
-    public int getx(Graphics2D g2,String text){
+    public int getxCenter(String text){
         int lenght = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
         int x = gp.screenWidth/2 - lenght/2;
+        return x;
+    }
+    public int getXTxt(String txt){
+        int lenght = (int) g2.getFontMetrics().getStringBounds(txt,g2).getWidth();
+        int x = - lenght/2;
         return x;
     }
 }
