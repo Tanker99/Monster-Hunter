@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class UI{
     private int playstate;
     private int newstate;
     private int settingsstate;
+    private JPanel test[] = new JPanel[4];
+    public Container container;
 
 
     public UI(GamePanel gp) {
@@ -88,6 +91,7 @@ public class UI{
         text = "Exit";
         g2.drawString(text, getxCenter(text), textY + gp.titleSize);
 
+
         //Kasten
 
         g2.setColor(Color.WHITE);
@@ -103,10 +107,21 @@ public class UI{
          kHigh = (int) (rHigh * 1/4 - 2*rHigh*0.01);
          kX = (int) (rX + rWight*0.01);
 
+
+
         for( int i = 0; i< 4; i++){
             kY = (int) (rY + 2*rHigh*0.01 + i*kHigh);
             g2.setColor(Color.white);
             g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+
+            // Panel für mous Listener
+            test[i] = new JPanel();
+            container = test[i].getParent();
+            test[i].setName(String.valueOf(i));
+            test[i].setBounds(kX,kY,kWight,kHigh);
+            gp.add(test[i]);
+            test[i].setVisible(true);
+            test[i].addMouseListener(gp.mous);
         }
         g2.setColor(Color.green);
         kY = (int) (rY + 2*rHigh*0.01 + countY*kHigh);

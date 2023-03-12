@@ -10,6 +10,7 @@ import DB.Waffe;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = titleSize * maxWidth; //1280
 
     KeyHandler keyH = new KeyHandler(this);
+    MouseListener mous = new MouseListener(this);
     Sound sound = new Sound();
     Config config = new Config(this);
     public UI ui = new UI(this);
@@ -138,8 +140,9 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(gameState == 0){
+        if(gameState == 0) {
             ui.draw(g2);
+            //ui.container.setEnabled(true);
             g2.dispose();
         }else if(gameState == playerState) {
             player.draw(g2);
