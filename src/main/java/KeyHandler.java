@@ -63,7 +63,6 @@ public class KeyHandler implements KeyListener {
         if (key == KeyEvent.VK_ENTER) {
             if(gp.ui.countY == 1) {
                 gp.gameState = 1;
-                gp.ui.container.setEnabled(false);
                 gp.playSound(2);
             }
             if(gp.ui.countY == 3) {

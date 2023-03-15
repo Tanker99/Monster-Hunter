@@ -25,11 +25,13 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenHeight = titleSize * maxHeight; //960
     final int screenWidth = titleSize * maxWidth; //1280
 
+
     KeyHandler keyH = new KeyHandler(this);
     MouseListener mous = new MouseListener(this);
     Sound sound = new Sound();
     Config config = new Config(this);
     public UI ui = new UI(this);
+    public JPanel uip = new JPanel();
     public Player player = new Player(this, keyH);
     public Shop shop = new Shop(this, keyH);
     public Inventory inventory = new Inventory(this,keyH);
@@ -65,7 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel(){
 
-
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.WHITE);
         this.setDoubleBuffered(true);
@@ -80,6 +81,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void setup(){
         playLoopSound(0);
         gameState = 0;
+
+        this.add(uip);
+        uip.setBounds(0,0,screenWidth,screenHeight);
+        uip.setOpaque(false);
 
     }
 
@@ -124,7 +129,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
-
         if(gameState == playerState) {
             player.update();
         }
@@ -142,18 +146,24 @@ public class GamePanel extends JPanel implements Runnable {
 
         if(gameState == 0) {
             ui.draw(g2);
-            //ui.container.setEnabled(true);
+
             g2.dispose();
-        }else if(gameState == playerState) {
-            player.draw(g2);
-            g2.dispose();
-        }else if(gameState == shopState){
-            shop.draw(g2);
-            g2.dispose();
-        }else if( gameState == inventoryState){
-            inventory.draw(g2);
-            g2.dispose();
+        }else {
+            uip.setVisible(false);
+        }if(gameState == playerState) {
+                player.draw(g2);
+                g2.dispose();
+            }else {
         }
+        if(gameState == shopState){
+                shop.draw(g2);
+                g2.dispose();
+            }else {
+        }
+        if( gameState == inventoryState){
+                inventory.draw(g2);
+                g2.dispose();
+            }
 
         g2.dispose();
     }

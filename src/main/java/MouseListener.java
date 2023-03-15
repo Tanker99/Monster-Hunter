@@ -13,7 +13,6 @@ public class MouseListener implements java.awt.event.MouseListener {
         System.out.println("mouse clicked");
             if(gp.ui.countY == 1) {
                 gp.gameState = 1;
-                gp.ui.container.setEnabled(false);
                 gp.playSound(2);
             }
             if(gp.ui.countY == 3) {
