@@ -76,7 +76,7 @@ public class UI{
         int xcha = cha.getWidth();
         g2.drawImage(cha, gp.screenWidth / 2 - xcha, 300, 200, 200, null);
 
-
+            //hu
         //umrandung
         int rX = gp.screenWidth / 4;
         int rY = gp.screenHeight / 2;

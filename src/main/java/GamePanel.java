@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     KeyHandler keyH = new KeyHandler(this);
+    //hu
     MouseListener mous = new MouseListener(this);
     Sound sound = new Sound();
     Config config = new Config(this);
