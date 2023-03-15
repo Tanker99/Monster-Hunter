@@ -20,6 +20,7 @@ public class UI{
     private int newstate;
     private int settingsstate;
     private JPanel test[] = new JPanel[4];
+    public Container container;
 
 
     public UI(GamePanel gp) {
@@ -38,7 +39,6 @@ public class UI{
             settingsScreen();
         }
 
-
     }
     public void titleScreen(){
 
@@ -54,18 +54,14 @@ public class UI{
         } catch (IOException e) {
             System.out.println("Error Loading Background");
         }
-        //Game name Title + border
+        //Game name Title
+
         text = "Hunter Game";
         textX = getxCenter(text);
         textY = gp.titleSize;
+        g2.setFont(g2.getFont().deriveFont(70F));
+        g2.setColor(Color.WHITE);
         g2.drawString(text, textX, textY);
-
-        int tRX = gp.screenWidth/120;
-        int tRY = gp.screenHeight /120;
-        int tRWight = (int) (gp.screenWidth/1.1);
-        int tRHigh = (int) (gp.screenHeight /2.2);
-        g2.drawRoundRect(tRX,tRY,tRWight,tRHigh,10,10);
-
 
         BufferedImage cha = null;
         try {
@@ -76,7 +72,6 @@ public class UI{
         int xcha = cha.getWidth();
         g2.drawImage(cha, gp.screenWidth / 2 - xcha, 300, 200, 200, null);
 
-            //hu
         //umrandung
         int rX = gp.screenWidth / 4;
         int rY = gp.screenHeight / 2;
@@ -122,9 +117,10 @@ public class UI{
 
             // Panel für mous Listener
             test[i] = new JPanel();
+            container = test[i].getParent();
             test[i].setName(String.valueOf(i));
             test[i].setBounds(kX,kY,kWight,kHigh);
-            gp.uip.add(test[i]);
+            gp.add(test[i]);
             test[i].setVisible(true);
             test[i].addMouseListener(gp.mous);
         }

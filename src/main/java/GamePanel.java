@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if(gameState == 0) {
             ui.draw(g2);
-
+            uip.setVisible(true);
             g2.dispose();
         }else {
             uip.setVisible(false);
