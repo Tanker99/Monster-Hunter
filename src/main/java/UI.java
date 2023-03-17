@@ -15,10 +15,12 @@ public class UI{
     public int countXMax;
 
 
-    private int menustate;
-    private int playstate;
-    private int newstate;
-    private int settingsstate;
+    public int menustate;
+    private int oldmenustate;
+
+    public boolean newsave = false;
+    public int newandplaystat = 2;
+    public int settingsstate = 3;
     private JPanel test[] = new JPanel[4];
     public Container container;
 
@@ -28,23 +30,8 @@ public class UI{
         this.gp = gp;
     }
     public void draw(Graphics2D g2){
+
         this.g2 = g2;
-        if (menustate == 0) {
-            titleScreen();
-        }else if(menustate == playstate){
-            playScreen();
-        }else if(menustate == newstate){
-            newScreen();
-        }else if(menustate == settingsstate){
-            settingsScreen();
-        }
-
-    }
-    public void titleScreen(){
-
-        int textX;
-        int textY;
-        String text;
 
         //Hintergrund
         BufferedImage back = null;
@@ -54,14 +41,30 @@ public class UI{
         } catch (IOException e) {
             System.out.println("Error Loading Background");
         }
-        //Game name Title
 
-        text = "Hunter Game";
-        textX = getxCenter(text);
-        textY = gp.titleSize;
-        g2.setFont(g2.getFont().deriveFont(70F));
-        g2.setColor(Color.WHITE);
-        g2.drawString(text, textX, textY);
+
+        if(!(menustate == oldmenustate)){
+            gp.removeAll();
+            gp.validate();
+            gp.repaint();
+            oldmenustate = menustate;
+        }
+        if (menustate == 0) {
+            titleScreen();
+        }
+        if(menustate == newandplaystat){
+            ///playScreen();
+            newAndPlayScreen();
+        }else if(menustate == settingsstate){
+           // settingsScreen();
+        }
+
+    }
+    public void titleScreen() {
+
+
+
+        //charakter
 
         BufferedImage cha = null;
         try {
@@ -69,74 +72,132 @@ public class UI{
         } catch (IOException e) {
             System.out.println("Home screen loading error!!");
         }
-        int xcha = cha.getWidth();
-        g2.drawImage(cha, gp.screenWidth / 2 - xcha, 300, 200, 200, null);
+        int chax = (int) (gp.screenWidth * 0.57);
+        int chay = (int) (gp.screenHeight*0.2);
+        int chaWight = (int) (chax * 0.6);
+        int chaHigh = (int) (gp.screenHeight * 0.63);
+
+        g2.drawImage(cha, chax , chay, chaWight, chaHigh, null);
+
+
+        //Game name Title
+        int textX;
+        int textY;
+        String text;
+
+        g2.setFont(g2.getFont().deriveFont(70F));
+        text = "Hunter Game";
+        textX =  gp.screenWidth/2 + getXTxt(text);
+        textY = (int) (gp.screenHeight * 0.15);
+
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, textX, textY);
+
 
         //umrandung
-        int rX = gp.screenWidth / 4;
-        int rY = gp.screenHeight / 2;
-        int rWight = gp.screenWidth / 2;
-        int rHigh = (int) (gp.screenHeight / 2.2);
-        g2.drawRoundRect(rX, rY, rWight, rHigh, 10, 10);
-
-        //Text
-        textX = rX / 2;
-        textY = rY;
-        g2.setColor(Color.white);
-        text = "New Game";
-        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
-        text = "Play";
-        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
-        text = "Settings";
-        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
-        text = "Exit";
-        g2.drawString(text, getxCenter(text), textY + gp.titleSize);
-
+        int textrX = (int) (gp.screenWidth *0.05);
+        int textrY = (int) (gp.screenHeight *0.083);
+        int textrWight = gp.screenWidth - 2*textrX;
+        int textrHigh = (int) (100);
+        g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
 
         //Kasten
 
-        g2.setColor(Color.WHITE);
-        g2.setStroke(new BasicStroke(2));
+        int kX = (int) (gp.screenWidth * 0.05);
+        int kY = (int) (gp.screenHeight * 0.31);
+        int kWight = (int) (gp.screenWidth * 0.4);
+        int kHigh = 100;
+        int ab = (int) ( kHigh + (gp.screenHeight * 0.06));
 
-        int kX;
-        int kY;
-        int kWight;
-        int kHigh;
+        text = "New Game";
+        g2.drawString(text, kWight + getXTxt(text),kY + ab*0 );
+        g2.drawRoundRect(kX,kY + ab*0,kWight,kHigh,10,10);
+
+        text = "Play";
+        g2.drawString(text, kWight + getXTxt(text), kY + ab*1);
+        g2.drawRoundRect(kX,kY + ab*1,kWight,kHigh,10,10);
+
+        text = "Settings";
+        g2.drawString(text, kWight + getXTxt(text), kY + ab*2);
+        g2.drawRoundRect(kX,kY + ab*2 ,kWight,kHigh,10,10);
+
+        text = "Exit";
+        g2.drawString(text, kWight + getXTxt(text), kY + ab*3);
+        g2.drawRoundRect(kX,kY + ab*3 ,kWight,kHigh,10,10);
 
 
-         kWight = (int) (rWight - 2*rWight*0.01);
-         kHigh = (int) (rHigh * 1/4 - 2*rHigh*0.01);
-         kX = (int) (rX + rWight*0.01);
 
 
 
         for( int i = 0; i< 4; i++){
-            kY = (int) (rY + 2*rHigh*0.01 + i*kHigh);
             g2.setColor(Color.white);
             g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
 
             // Panel für mous Listener
             test[i] = new JPanel();
-            container = test[i].getParent();
             test[i].setName(String.valueOf(i));
-            test[i].setBounds(kX,kY,kWight,kHigh);
+            test[i].setBounds(kX,kY + ab*i,kWight,kHigh);
             gp.add(test[i]);
             test[i].setVisible(true);
             test[i].addMouseListener(gp.mous);
         }
         g2.setColor(Color.green);
-        kY = (int) (rY + 2*rHigh*0.01 + countY*kHigh);
-        g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
-
-
-
-
-    }
-    public void playScreen(){
+        g2.drawRoundRect(kX, kY + ab*countY, kWight, kHigh, 10, 10);
 
     }
 
-    public void newScreen(){
+    public void newAndPlayScreen(){
+        int textX;
+        int textY;
+        String text;
+
+        g2.setFont(g2.getFont().deriveFont(70F));
+        if (newsave){
+            text = "New Game";
+        }else {
+            text = "Gespeicherte Spiele";
+        }
+        textX =  gp.screenWidth/2 + getXTxt(text);
+        textY = (int) (gp.screenHeight * 0.15);
+
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, textX, textY);
+
+
+        //umrandung
+        int textrX = (int) (gp.screenWidth *0.05);
+        int textrY = (int) (gp.screenHeight *0.083);
+        int textrWight = gp.screenWidth - 2*textrX;
+        int textrHigh = (int) (100);
+        g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
+
+
+        //kasten
+
+        int kX = 100;
+        int kY = 100;
+        int kWight = 100;
+        int kHigh = 100;
+
+        for( int x = 0; x< 2; x++) {
+            int i = 0;
+            for (int y = 0; y < 2; y++) {
+                g2.setColor(Color.white);
+                g2.drawRoundRect(kX + x *100, kY + y*100, kWight, kHigh, 10, 10);
+
+                // Panel für mous Listener
+                test[i] = new JPanel();
+                test[i].setName(String.valueOf(i));
+                test[i].setBounds(kX + x* 100, kY + y * 100, kWight, kHigh);
+                gp.add(test[i]);
+                test[i].setVisible(true);
+                test[i].addMouseListener(gp.mous);
+                i++;
+            }
+        }
+        g2.setColor(Color.green);
+        g2.drawRoundRect(kX + 100* countX, kY + 100*countY, kWight, kHigh, 10, 10);
+
 
     }
 
@@ -180,5 +241,8 @@ public class UI{
         int lenght = (int) g2.getFontMetrics().getStringBounds(txt,g2).getWidth();
         int x = - lenght/2;
         return x;
+
     }
+
+
 }

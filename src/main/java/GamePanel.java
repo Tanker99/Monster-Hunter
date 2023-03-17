@@ -32,7 +32,6 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     Config config = new Config(this);
     public UI ui = new UI(this);
-    public JPanel uip = new JPanel();
     public Player player = new Player(this, keyH);
     public Shop shop = new Shop(this, keyH);
     public Inventory inventory = new Inventory(this,keyH);
@@ -46,6 +45,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
 
+    public int save = 0;
+    public  int oldGameState;
     public int gameState = 0;
     final int menueState = 0;
     final int playerState = 1;
@@ -76,16 +77,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
-
     }
 
     public void setup(){
         playLoopSound(0);
         gameState = 0;
 
-        this.add(uip);
-        uip.setBounds(0,0,screenWidth,screenHeight);
-        uip.setOpaque(false);
 
     }
 
@@ -130,10 +127,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
+
         if(gameState == playerState) {
             player.update();
         }
         if (gameState == inventoryState) {
+
             inventory.update();
         }
         if (gameState == shopState) {
@@ -145,13 +144,18 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        if(!(gameState == oldGameState)){
+            this.removeAll();
+            this.validate();
+            this.repaint();
+            oldGameState = gameState;
+        }
         if(gameState == 0) {
             ui.draw(g2);
-            uip.setVisible(true);
             g2.dispose();
-        }else {
-            uip.setVisible(false);
-        }if(gameState == playerState) {
+
+        }
+        if(gameState == playerState) {
                 player.draw(g2);
                 g2.dispose();
             }else {

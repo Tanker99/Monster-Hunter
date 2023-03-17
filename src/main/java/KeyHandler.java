@@ -43,31 +43,42 @@ public class KeyHandler implements KeyListener {
     }
 
     public void menueState(int key) {
-        if (key == KeyEvent.VK_W) {
-            if(gp.ui.countY >0){
-                gp.ui.countY --;
-                gp.playSound(1);
-            }else {
-                gp.playSound(2);
+        if(gp.ui.menustate == 0) {
+            if (key == KeyEvent.VK_W) {
+                if (gp.ui.countY > 0) {
+                    gp.ui.countY--;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
             }
-        }
-        if (key == KeyEvent.VK_S) {
-            if(gp.ui.countY <3){
-                gp.ui.countY ++;
-                gp.playSound(1);
-            }else {
-                gp.playSound(2);
-            }
+            if (key == KeyEvent.VK_S) {
+                if (gp.ui.countY < 3) {
+                    gp.ui.countY++;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
 
-        }
-        if (key == KeyEvent.VK_ENTER) {
-            if(gp.ui.countY == 1) {
-                gp.gameState = 1;
-                gp.playSound(2);
             }
-            if(gp.ui.countY == 3) {
-                System.exit(0);
-                gp.playSound(2);
+            if (key == KeyEvent.VK_ENTER) {
+                if (gp.ui.countY == 0) {
+                    gp.ui.menustate = 2;
+                    gp.ui.newsave = true;
+                    gp.playSound(2);
+                }
+                if (gp.ui.countY == 1) {
+                    gp.ui.menustate = 2;
+                    gp.playSound(2);
+                }
+                if (gp.ui.countY == 2) {
+                    gp.ui.menustate = 3;
+                    gp.playSound(2);
+                }
+                if (gp.ui.countY == 3) {
+                    System.exit(0);
+                    gp.playSound(2);
+                }
             }
         }
     }

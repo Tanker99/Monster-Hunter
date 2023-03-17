@@ -25,17 +25,5 @@ public class Main {
         window.setVisible(true);
         gamePanel.setup();
         gamePanel.startThread();
-
-      //  window.remove(gamePanel);
-        JLabel ee = new JLabel();
-        ee.setBackground(Color.cyan);
-        ee.setText("hhihihi");
-        ee.setLayout(null);
-        ee.setBounds(10,10,10,10);
-        window.add(ee);
-        ee.setVisible(true);
-
     }
 }
-
-//dsad
