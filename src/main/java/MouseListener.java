@@ -76,11 +76,11 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
             }
             if (gp.ui.countY == 2) {
-                gp.ui.menustate = 0;
+                gp.ui.menustate = gp.ui.titlestate;
                 gp.playSound(2);
             }
         }else
-            if (gp.ui.menustate == 0) {
+            if (gp.ui.menustate == gp.ui.titlestate) {
             if (gp.ui.countY == 0) {
                 gp.ui.menustate = 2;
                 gp.ui.newsave = true;
@@ -101,13 +101,13 @@ public class MouseListener implements java.awt.event.MouseListener {
             }
         }else
             if(gp.ui.menustate == gp.ui.settingsstate){
-                gp.ui.menustate = 0;
+                gp.ui.menustate = gp.ui.titlestate;
                 gp.playSound(2);
             }
     }
     public void menueStateEntered(MouseEvent e) {
         System.out.println("Panel Name " + e.getComponent().getName());
-        if(gp.ui.menustate == 0) {
+        if(gp.ui.menustate == gp.ui.titlestate) {
             gp.ui.countY = Integer.parseInt(e.getComponent().getName());
             gp.playSound(1);
         }else

@@ -43,7 +43,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void menueState(int key) {
-        if(gp.ui.menustate == 0) {
+        if(gp.ui.menustate == gp.ui.titlestate) {
             if (key == KeyEvent.VK_T) {
                 gp.gameState = gp.testState;
             }

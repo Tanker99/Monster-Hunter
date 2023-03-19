@@ -15,14 +15,16 @@ public class UI{
     public int countXMax;
 
 
-    public int menustate;
+    public int menustate = 0;
     private int oldmenustate;
 
     public boolean newsave = false;
+    public int loadingstate = 0;
+    public int titlestate = 1;
     public int newandplaystat = 2;
     public int settingsstate = 3;
     private JPanel test[] = new JPanel[6];
-    public Container container;
+    private int progress = 0;
 
 
     public UI(GamePanel gp) {
@@ -53,7 +55,11 @@ public class UI{
             countX =0;
             countY = 0;
         }
-        if (menustate == 0) {
+        if (menustate == loadingstate) {
+            loadingScreen();
+
+        }
+        if(menustate == titlestate){
             titleScreen();
         }
         if(menustate == newandplaystat){
@@ -62,6 +68,23 @@ public class UI{
             settingsScreen();
         }
 
+    }
+    public void loadingScreen(){
+        g2.setColor(Color.WHITE);
+        g2.drawString("Loading...", gp.screenWidth/2 - 200, 420);
+        g2.drawRect(gp.screenWidth/2- 200, 450, 200, 20);
+        g2.fillRect(gp.screenWidth/2 - 200, 450, (int) (progress * 0.8), 20);
+
+        progress ++;
+        if(progress >= 250){
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            menustate = titlestate;
+        }
     }
     public void titleScreen() {
 
