@@ -44,6 +44,9 @@ public class KeyHandler implements KeyListener {
 
     public void menueState(int key) {
         if(gp.ui.menustate == 0) {
+            if (key == KeyEvent.VK_T) {
+                gp.gameState = gp.testState;
+            }
             if (key == KeyEvent.VK_W) {
                 if (gp.ui.countY > 0) {
                     gp.ui.countY--;

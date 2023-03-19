@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Shop shop = new Shop(this, keyH);
     public Inventory inventory = new Inventory(this,keyH);
     public Fight fight = new Fight(this, keyH);
+    public Test test = new Test(this,keyH);
 
     public Waffe waffe = new Waffe();
     public Trank trank = new Trank();
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int shopState = 2;
     final int inventoryState = 3;
     final int fightState = 4;
+    final int testState = 10;
 
     //TEST ZWECKE
 
@@ -138,6 +140,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == shopState) {
             shop.update();
         }
+        if (gameState == testState) {
+            test.update();
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -169,6 +174,10 @@ public class GamePanel extends JPanel implements Runnable {
                 inventory.draw(g2);
                 g2.dispose();
             }
+        if( gameState == testState){
+            test.draw(g2);
+            g2.dispose();
+        }
 
         g2.dispose();
     }
