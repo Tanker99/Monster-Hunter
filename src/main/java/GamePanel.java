@@ -22,8 +22,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int maxWidth = 16;
     final int maxHeight = 12;
 
-    final int screenHeight = titleSize * maxHeight; //960
-    final int screenWidth = titleSize * maxWidth; //1280
+     int screenHeight = titleSize * maxHeight; //960
+     int screenWidth = titleSize * maxWidth; //1280
 
 
     //Listerner
@@ -65,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int testState = 10;
 
     //Variable
+    public boolean fullScreen;
     public int save = 0;
     int FPS = 60;
 
@@ -72,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int gold = 0;
     public int starke =100;
+    public int xx = screenWidth;
 
     public GamePanel(){
 
@@ -187,6 +189,24 @@ public class GamePanel extends JPanel implements Runnable {
         sound.selectSound(i);
         sound.play();
     }
+    public void updateScreen(int i){
+            Dimension currentSize = this.getSize();
+            int newWidth = currentSize.width;
+            int newHeight = currentSize.height;
+
+            if (i > 0) {
+                newWidth += 100;
+                newHeight += 100;
+            } else if (i < 0) {
+                newWidth -= 100;
+                newHeight -= 100;
+            }
+
+            Dimension newSize = new Dimension(newWidth, newHeight);
+            screenWidth = newWidth;
+            screenHeight = newHeight;
+            this.setSize(newSize);
+        }
 }
 
 

@@ -6,11 +6,15 @@ import static java.awt.Color.blue;
 import static java.awt.Color.green;
 
 public class Inventory {
-
+    //Standard
     GamePanel gp;
     KeyHandler keyH;
-
     Graphics2D g2;
+
+
+
+
+
 
     private int panelid = 1;
 

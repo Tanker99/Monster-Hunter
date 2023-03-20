@@ -10,7 +10,6 @@ public class Config {
 
     public Config(GamePanel gp) {
         this.gp = gp;
-        saveAll(1);
 
     }
 
@@ -105,15 +104,15 @@ public class Config {
     public String selectFile(int file) {
         switch (file) {
             case 0:
-                return "src/main/resources/save/default.config";
-            case 1:
                 return "src/main/resources/save/saveGame1.config";
-            case 2:
+            case 1:
                 return "src/main/resources/save/saveGame2.config";
-            case 3:
+            case 2:
                 return "src/main/resources/save/saveGame3.config";
-            case 4:
+            case 3:
                 return "src/main/resources/save/saveGame4.config";
+            case 4:
+                return "src/main/resources/save/default.config";
         }
         return null;
     }

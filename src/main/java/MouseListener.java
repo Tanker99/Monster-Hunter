@@ -56,7 +56,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 
 
     public void menueStateClick(MouseEvent e) {
-        System.out.println("Panel " + e.getComponent().getName() + Color.red  + "Clicked");
+        System.out.println("Panel " + e.getComponent().getName() + " Clicked");
 
         if (gp.ui.menuState == gp.ui.titleState) {
             if (gp.ui.sellectValueY == 0) {
@@ -78,10 +78,81 @@ public class MouseListener implements java.awt.event.MouseListener {
                 System.exit(0);
 
             }
-        } else if (gp.uiState == gp.ui.newAndPlayState) {
+        }
+        else if (gp.ui.menuState == gp.ui.newAndPlayState) {
+            if (gp.ui.sellectValueY == 0) {
+                if (gp.ui.sellectValueX == 0) {
+                    gp.save = 0;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
 
-        } else if (gp.uiState == gp.ui.settingsState) {
+                }
+                if (gp.ui.sellectValueX == 1) {
+                    gp.save = 1;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
+                }
+            }
+            if (gp.ui.sellectValueY == 1) {
+                if (gp.ui.sellectValueX == 0) {
+                    gp.save = 2;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
+                }
+                if (gp.ui.sellectValueX == 1) {
+                    gp.save = 3;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
+                }
+            }
+            if (gp.ui.sellectValueY == 2) {
+                gp.ui.menuState = gp.ui.titleState;
+                gp.playSound(3);
+            }
 
+        }
+        else if(gp.ui.menuState == gp.ui.settingsState){
+            if (gp.ui.sellectValueY == 0) {
+                    if(gp.fullScreen) {
+                        gp.fullScreen = false;
+                    }else {
+                        gp.fullScreen = true;
+                    }
+                    gp.playSound(1);
+
+                }
+            if (gp.ui.sellectValueY == 1) {
+                if (gp.ui.sellectValueX == 0) {
+                    if(gp.sound.volumeScale < 1){
+                        gp.playSound(2);
+                    }else {
+                        gp.sound.volumeScale--;
+                        gp.playSound(3);
+                    }
+                    if(gp.sound.volumeScale > 3){
+                        gp.sound.volume();
+                        gp.playSound(2);
+                    }else {
+                        gp.sound.volumeScale++;
+                        gp.sound.volume();
+                        gp.playSound(3);
+                    }
+                }
+                if (gp.ui.sellectValueX == 1) {
+                    gp.save = 4;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
+                }
+                if (gp.ui.sellectValueX == 2) {
+                    gp.save = 4;
+                    gp.gameState = gp.playerState;
+                    gp.playSound(3);
+                }
+            }
+            if (gp.ui.sellectValueY == 2) {
+                gp.ui.menuState = gp.ui.titleState;
+                gp.playSound(3);
+            }
         }
     }
 
@@ -145,7 +216,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 
      */
     public void menueStateEntered(MouseEvent e) {
-        System.out.println("Panel " + e.getComponent().getName()+ Color.red  + "Entered");
+        System.out.println("Panel " + e.getComponent().getName() + " Entered");
         if (gp.ui.menuState == gp.ui.titleState) {
             gp.playSound(1);
             String i = e.getComponent().getName();
@@ -163,12 +234,38 @@ public class MouseListener implements java.awt.event.MouseListener {
                     gp.ui.sellectValueY = 3;
                     break;
             }
-        }else if(gp.uiState == gp.ui.newAndPlayState) {
+        }else if(gp.ui.menuState == gp.ui.newAndPlayState) {
+            gp.playSound(1);
+            String i = e.getComponent().getName();
+            switch (i) {
+                case "Save Screen: 0":
+                    gp.ui.sellectValueX = 0;
+                    gp.ui.sellectValueY = 0;
+
+                    break;
+                case "Save Screen: 1":
+                    gp.ui.sellectValueX = 1;
+                    gp.ui.sellectValueY = 0;
+                    break;
+                case "Save Screen: 2":
+                    gp.ui.sellectValueX = 0;
+                    gp.ui.sellectValueY = 1;
+                    break;
+                case "Save Screen: 3":
+                    gp.ui.sellectValueX = 1;
+                    gp.ui.sellectValueY = 1;
+                    break;
+                case "Save Screen: Back":
+                    gp.ui.sellectValueX = 0;
+                    gp.ui.sellectValueY = 2;
+                    break;
+            }
+
         }else if(gp.ui.menuState == gp.ui.settingsState) {
         }
     }
     public void inventoryStateClick(MouseEvent e){
-        System.out.println("Panel Name " + e.getComponent().getName());
+        System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
         gp.inventory.sllectSlot = gp.inventory.currentSlot;
         if(gp.inventory.sellect){
             gp.inventory.sellect = false;
@@ -177,7 +274,7 @@ public class MouseListener implements java.awt.event.MouseListener {
         }
     }
     public void inventoryStateEntered(MouseEvent e){
-        System.out.println("Panel Name " + e.getComponent().getName());
+        System.out.println("Panel Name " + e.getComponent().getName() + " Entered");
         String i = e.getComponent().getName();
         System.err.println(i);
         switch (i) {

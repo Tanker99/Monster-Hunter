@@ -10,7 +10,7 @@ public class UI{
     Graphics2D g2;
 
     //States
-    public int menuState = 1;
+    public int menuState = 2;
     private int oldMenuState;
 
     final int loadingState = 1;
@@ -32,7 +32,6 @@ public class UI{
         this.gp = gp;
     }
     public void draw(Graphics2D g2){
-        System.out.println("dsad");
         this.g2 = g2;
 
         //System.out.println("countX" + countX + " " +"CountY" +  countY);
@@ -57,7 +56,7 @@ public class UI{
         }else if(menuState == newAndPlayState) {
             drawNewAndPlayState();
         }else if(menuState == settingsState) {
-           // drawSettingsState();
+            drawSettingsState();
         }
     }
     public void drawBackground(){
@@ -211,6 +210,7 @@ public class UI{
         int yab = kHigh + (int) (gp.screenHeight * 0.15);
         int i = 0;
 
+
         for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 2; x++) {
                 //Create Panel for Mouse
@@ -222,6 +222,12 @@ public class UI{
                 slot[i].setVisible(true);
 
                 g2.setColor(Color.white);
+                g2.drawString("Game " + String.valueOf(i + 1), kX + x * xab, kY + y * yab);
+                if(gp.config.load(i,"used") == 0) {
+                    g2.drawString("nicht verwendet", kX + x * xab, kY + y * yab+kHigh/2);
+                }else{
+                    g2.drawString("verwendet", kX + x * xab, kY + y * yab+ kHigh/2);
+                }
                 g2.drawRoundRect(kX + x * xab, kY + y * yab, kWight, kHigh, 10, 10);
                 i++;
             }
@@ -251,41 +257,91 @@ public class UI{
         } else
             g2.drawRoundRect(kX + xab * sellectValueX, kY + yab * sellectValueY, kWight, kHigh, 10, 10);
     }
-    /*
-
-
-
-
-    public void newAndPlayScreen() {
-
-
-
-    public void settingsScreen(){
+    public void drawSettingsState(){
         String text;
-        //back
-        int bX = (int) (gp.screenWidth * 0.25);
-        int bY = (int) (gp.screenHeight * 0.8);
-        int bWight = (int) (gp.screenWidth * 0.38);
-        int bHigh = (int) (gp.screenHeight * 0.11);
+        //Kasten
+        int kX = gp.screenWidth/2;
+        int kY = (int) (gp.screenHeight * 0.1);
+        int kWight = (int) (gp.screenWidth * 0.4);
+        int kHigh = 100;
+        int ab = (int) ( kHigh + (gp.screenHeight * 0.09));
+
+        String[] textt = {"Full Screen","Music" , "Se", "Controll", "Back"};
+        String[] texth = {"+", "-"};
+
+        for( int i = 0; i< 5; i++){
+            //Create Panel for Mouse
+            slot[i] = new JPanel();
+            slot[i].setBounds(kX,kY + ab*i,kWight,kHigh);
+            slot[i].setName("Setting Screen: " + i);
+            slot[i].addMouseListener(gp.mous);
+            gp.add(slot[i]);
+            slot[i].setVisible(true);
+
+
+            g2.setColor(Color.white);
+            g2.drawString(textt[i], kX + getXTxt(textt[i]),kY + ab*i );
+            g2.drawRoundRect(kX,kY + ab*i,kWight,kHigh,10,10);
+
+            g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+
+        }
+
+/*
+        text = "Full Screen";
+        g2.drawString(text, kX + getXTxt(text),kY + ab*0 );
+        g2.drawRoundRect(kX,kY + ab*0,kWight,kHigh,10,10);
+
+        text = "Music";
+        g2.drawString(text, kX  + getXTxt(text), kY + ab*1);
+        g2.drawRoundRect(kX,kY + ab*1,kWight,kHigh,10,10);
+        text = "-";
+        g2.drawString(text, kX- kWight/2 + getXTxt(text), kY + ab*1);
+        text = "+";
+        g2.drawString(text, kX + kWight/2+ getXTxt(text), kY + ab*1);
+
+
+        text = "Se";
+        g2.drawString(text, kX + getXTxt(text), kY + ab*2);
+        g2.drawRoundRect(kX,kY + ab*2 ,kWight,kHigh,10,10);
+        text = "-";
+        g2.drawString(text, kX- kWight/2 + getXTxt(text), kY + ab*2);
+        text = "+";
+        g2.drawString(text, kX + kWight/2+ getXTxt(text), kY + ab*2);
+
+
+        text = "Control";
+        g2.drawString(text, kX + getXTxt(text), kY + ab*3);
+        g2.drawRoundRect(kX,kY + ab*3 ,kWight,kHigh,10,10);
+
         text = "Back";
-        g2.setColor(Color.WHITE);
-        g2.drawString(text, bX ,bY);
-        g2.drawRoundRect(bX, bY, bWight, bHigh, 10, 10);
-        test[4] = new JPanel();
-        test[4].setName(String.valueOf(4));
-        test[4].setBounds(bX, bY, bWight, bHigh);
-        gp.add(test[4]);
-        test[4].setVisible(true);
-        test[4].addMouseListener(gp.mous);
+        g2.drawString(text, kX + getXTxt(text), kY + ab*4);
+        g2.drawRoundRect(kX,kY + ab*4 ,kWight,kHigh,10,10);
 
+
+        //Select Title
+        for( int i = 0; i< 4; i++){
+            //Create Panel for Mouse
+            slot[i] = new JPanel();
+            slot[i].setBounds(kX,kY + ab*i,kWight,kHigh);
+            slot[i].setName("Setting Screen: " + i);
+            slot[i].addMouseListener(gp.mous);
+            gp.add(slot[i]);
+            slot[i].setVisible(true);
+
+            g2.setColor(Color.white);
+            g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+
+        }
+
+        //Draw select Green
         g2.setColor(Color.green);
-            g2.drawRoundRect(bX,bY,bWight,bHigh, 10, 10);
+        g2.drawRoundRect(kX, kY + ab*sellectValueY, kWight, kHigh, 10, 10);
 
-
+ */
 
     }
-
-     */
+    public void drawControllState(){}
 
 
 
