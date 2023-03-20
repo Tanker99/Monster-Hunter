@@ -7,7 +7,7 @@ import java.net.URL;
 public class Sound {
 
     Clip clip;
-    URL soundURL[] = new URL[3];
+    URL soundURL[] = new URL[4];
     FloatControl fc;
 
     float volume;
@@ -16,9 +16,12 @@ public class Sound {
     public Sound() {
 
         soundURL[0] = Player.class.getResource("/sound/Titel-melodie.wav");
+        //Select Sound
         soundURL[1] = Player.class.getResource("/sound/switch.wav");
+        //Not Select Allow Sound
         soundURL[2] = Player.class.getResource("/sound/error.wav");
-
+        //Enter Sound
+        soundURL[3] = Player.class.getResource("/sound/switch.wav");
     }
 
     public void selectSound(int i) {

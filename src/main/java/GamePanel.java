@@ -26,48 +26,52 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = titleSize * maxWidth; //1280
 
 
+    //Listerner
     KeyHandler keyH = new KeyHandler(this);
-    //hu
     MouseListener mous = new MouseListener(this);
-    Sound sound = new Sound();
-    Config config = new Config(this);
-    public UI ui = new UI(this);
-    public Player player = new Player(this, keyH);
-    public Shop shop = new Shop(this, keyH);
-    public Inventory inventory = new Inventory(this,keyH);
-    public Fight fight = new Fight(this, keyH);
-    public Test test = new Test(this,keyH);
 
+    //DB
     public Waffe waffe = new Waffe();
     public Trank trank = new Trank();
     public Ruestung ruestung = new Ruestung();
 
+    //dasd
+    public Sound sound = new Sound();
+    public Config config = new Config(this);
+
     public Image image = new Image(this);
+    public Test test = new Test(this,keyH);
+
+
+    //Classes
+    public UI ui = new UI(this);
+    public Player player = new Player(this, keyH);
+    public Shop shop = new Shop(this, keyH);
+    public Inventory inventory = new Inventory(this,keyH);
+
+    public Fight fight = new Fight(this, keyH);
+
+
     Thread gameThread;
 
-
-    public int save = 0;
-    public  int oldGameState;
+    //STATES
     public int gameState;
-    final int menueState = 0;
-    final int playerState = 1;
-    final int shopState = 2;
-    final int inventoryState = 3;
-    final int fightState = 4;
+    private  int oldGameState;
+    final int uiState = 1;
+    final int playerState = 2;
+    final int shopState = 3;
+    final int inventoryState = 4;
+    final int fightState = 5;
     final int testState = 10;
+
+    //Variable
+    public int save = 0;
+    int FPS = 60;
 
     //TEST ZWECKE
 
     public int gold = 0;
     public int starke =100;
-
-
-    //TEST ZWECKE
-
-    int FPS = 60;
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 5;
 
     public GamePanel(){
 
@@ -83,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setup(){
         playLoopSound(0);
-        gameState = 0;
+        gameState = 1;
 
 
     }
@@ -134,7 +138,6 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
         }
         if (gameState == inventoryState) {
-
             inventory.update();
         }
         if (gameState == shopState) {
@@ -149,36 +152,28 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(!(gameState == oldGameState)){
+        if (!(gameState == oldGameState)) {
             this.removeAll();
             this.validate();
             this.repaint();
             oldGameState = gameState;
         }
-        if(gameState == 0) {
+        if (gameState == uiState) {
             ui.draw(g2);
             g2.dispose();
-
-        }
-        if(gameState == playerState) {
-                player.draw(g2);
-                g2.dispose();
-            }else {
-        }
-        if(gameState == shopState){
-                shop.draw(g2);
-                g2.dispose();
-            }else {
-        }
-        if( gameState == inventoryState){
-                inventory.draw(g2);
-                g2.dispose();
-            }
-        if( gameState == testState){
+        } else if (gameState == playerState) {
+            player.draw(g2);
+            g2.dispose();
+        } else if (gameState == inventoryState) {
+            inventory.draw(g2);
+            g2.dispose();
+        } else if (gameState == shopState) {
+            shop.draw(g2);
+            g2.dispose();
+        } else if (gameState == testState) {
             test.draw(g2);
             g2.dispose();
         }
-
         g2.dispose();
     }
 

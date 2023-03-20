@@ -23,41 +23,43 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         int key = e.getKeyCode();
-        //Menu State
-        if (gp.gameState == gp.menueState) {
+
+        //key accept menuState
+        if (gp.gameState == gp.uiState) {
             menueState(key);
         }
-        //Player State
+        //key accept playerState
         else if (gp.gameState == gp.playerState) {
             playerState(key);
         }
-        //Inventory State
+        //key accept inventoryState
         else if(gp.gameState == gp.inventoryState){
             inventarState(key);
         }
+        //key accept shopState
         else if(gp.gameState == gp.shopState){
             shopState(key);
         }
     }
 
     public void menueState(int key) {
-        if(gp.ui.menustate == gp.ui.titlestate) {
+        if(gp.ui.menuState == gp.ui.titleState){
+            //EXTRA
             if (key == KeyEvent.VK_T) {
                 gp.gameState = gp.testState;
             }
             if (key == KeyEvent.VK_W) {
-                if (gp.ui.countY > 0) {
-                    gp.ui.countY--;
+                if (gp.ui.sellectValueY > 0) {
+                    gp.ui.sellectValueY --;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_S) {
-                if (gp.ui.countY < 3) {
-                    gp.ui.countY++;
+                if (gp.ui.sellectValueY < 3) {
+                    gp.ui.sellectValueY++;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
@@ -65,24 +67,30 @@ public class KeyHandler implements KeyListener {
 
             }
             if (key == KeyEvent.VK_ENTER) {
-                if (gp.ui.countY == 0) {
-                    gp.ui.menustate = 2;
+                if (gp.ui.sellectValueY == 0) {
                     gp.ui.newsave = true;
-                    gp.playSound(2);
+                    gp.ui.menuState = gp.ui.newAndPlayState;
+                    gp.playSound(3);
                 }
-                if (gp.ui.countY == 1) {
-                    gp.ui.menustate = 2;
-                    gp.playSound(2);
+                if (gp.ui.sellectValueY == 1) {
+                    gp.ui.newsave = false;
+                    gp.ui.menuState = gp.ui.newAndPlayState;
+                    gp.playSound(3);
                 }
-                if (gp.ui.countY == 2) {
-                    gp.ui.menustate = 3;
-                    gp.playSound(2);
+                if (gp.ui.sellectValueY == 2) {
+                    gp.ui.menuState = gp.ui.settingsState;
+                    gp.playSound(3);
                 }
-                if (gp.ui.countY == 3) {
+                if (gp.ui.sellectValueY == 3) {
+                    gp.playSound(2);
                     System.exit(0);
-                    gp.playSound(2);
+
                 }
             }
+        }else if(gp.uiState == gp.ui.newAndPlayState){
+
+        }else if(gp.uiState == gp.ui.settingsState){
+
         }
     }
 
@@ -109,7 +117,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.shopState;
         }
         if (key == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.menueState;
+            gp.gameState = gp.uiState;
         }
 
 

@@ -5,38 +5,62 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class UI{
-
+    //Standard
     GamePanel gp;
     Graphics2D g2;
 
-    public int countX;
-    public int countY;
-    public int countYMax;
-    public int countXMax;
+    //States
+    public int menuState = 1;
+    private int oldMenuState;
+
+    final int loadingState = 1;
+    final int titleState = 2;
+    final int newAndPlayState =3;
+    final int settingsState = 4;
+
+    //variable
+    public int sellectValueX;
+    public int sellectValueY;
+    public boolean newsave;
+    private int progress;
 
 
-    public int menustate = 0;
-    private int oldmenustate;
-
-    public boolean newsave = false;
-    public int loadingstate = 0;
-    public int titlestate = 1;
-    public int newandplaystat = 2;
-    public int settingsstate = 3;
-    private JPanel test[] = new JPanel[6];
-    private int progress = 0;
-
+    //JPanel
+    private JPanel slot[] = new JPanel[6];
 
     public UI(GamePanel gp) {
-
         this.gp = gp;
     }
     public void draw(Graphics2D g2){
-        //System.out.println("countX" + countX + " " +"CountY" +  countY);
-
+        System.out.println("dsad");
         this.g2 = g2;
 
-        //Hintergrund
+        //System.out.println("countX" + countX + " " +"CountY" +  countY);
+        g2.setFont(g2.getFont().deriveFont(70F));
+        //Draw Background
+        drawBackground();
+
+        //remove old State Panel
+        if(!(menuState == oldMenuState)){
+            gp.removeAll();
+            gp.validate();
+            gp.repaint();
+            oldMenuState = menuState;
+            sellectValueX = 0;
+            sellectValueY = 0;
+        }
+        //Draw State
+        if(menuState == loadingState) {
+            drawLoadingState();
+        } else if(menuState == titleState) {
+            drawTitleState();
+        }else if(menuState == newAndPlayState) {
+            drawNewAndPlayState();
+        }else if(menuState == settingsState) {
+           // drawSettingsState();
+        }
+    }
+    public void drawBackground(){
         BufferedImage back = null;
         try {
             back = ImageIO.read(Player.class.getResource("/back.png"));
@@ -44,32 +68,8 @@ public class UI{
         } catch (IOException e) {
             System.out.println("Error Loading Background");
         }
-        g2.setFont(g2.getFont().deriveFont(70F));
-
-
-        if(!(menustate == oldmenustate)){
-            gp.removeAll();
-            gp.validate();
-            gp.repaint();
-            oldmenustate = menustate;
-            countX =0;
-            countY = 0;
-        }
-        if (menustate == loadingstate) {
-            loadingScreen();
-
-        }
-        if(menustate == titlestate){
-            titleScreen();
-        }
-        if(menustate == newandplaystat){
-            newAndPlayScreen();
-        }else if(menustate == settingsstate){
-            settingsScreen();
-        }
-
     }
-    public void loadingScreen(){
+    public void drawLoadingState(){
         g2.setColor(Color.WHITE);
         g2.drawString("Loading...", gp.screenWidth/2 - 200, 420);
         g2.drawRect(gp.screenWidth/2- 200, 450, 200, 20);
@@ -82,17 +82,13 @@ public class UI{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
-            menustate = titlestate;
+            progress =0;
+            menuState = titleState;
         }
     }
-    public void titleScreen() {
+    public void drawTitleState(){
 
-
-
-
-        //charakter
-
+        //Character
         BufferedImage cha = null;
         try {
             cha = ImageIO.read(Player.class.getResource("cha.png"));
@@ -107,11 +103,10 @@ public class UI{
         g2.drawImage(cha, chax , chay, chaWight, chaHigh, null);
 
 
-        //Game name Title
+        //Game Name Title
         int textX;
         int textY;
         String text;
-
 
         text = "Hunter Game";
         textX =  gp.screenWidth/2 + getXTxt(text);
@@ -126,10 +121,11 @@ public class UI{
         int textrY = (int) (gp.screenHeight *0.083);
         int textrWight = gp.screenWidth - 2*textrX;
         int textrHigh = (int) (100);
+
         g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
 
-        //Kasten
 
+        //Kasten
         int kX = (int) (gp.screenWidth * 0.05);
         int kY = (int) (gp.screenHeight * 0.31);
         int kWight = (int) (gp.screenWidth * 0.4);
@@ -153,37 +149,44 @@ public class UI{
         g2.drawRoundRect(kX,kY + ab*3 ,kWight,kHigh,10,10);
 
 
-
-
-
+        //Select Title
         for( int i = 0; i< 4; i++){
+            //Create Panel for Mouse
+            slot[i] = new JPanel();
+            slot[i].setBounds(kX,kY + ab*i,kWight,kHigh);
+            slot[i].setName("Tile Screen: " + i);
+            slot[i].addMouseListener(gp.mous);
+            gp.add(slot[i]);
+            slot[i].setVisible(true);
+
             g2.setColor(Color.white);
             g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
 
-            // Panel für mous Listener
-            test[i] = new JPanel();
-            test[i].setName(String.valueOf(i));
-            test[i].setBounds(kX,kY + ab*i,kWight,kHigh);
-            gp.add(test[i]);
-            test[i].setVisible(true);
-            test[i].addMouseListener(gp.mous);
         }
+
+        //Draw select Green
         g2.setColor(Color.green);
-        g2.drawRoundRect(kX, kY + ab*countY, kWight, kHigh, 10, 10);
+        g2.drawRoundRect(kX, kY + ab*sellectValueY, kWight, kHigh, 10, 10);
 
     }
-
-    public void newAndPlayScreen() {
+    public void drawNewAndPlayState() {
+        //Variable for Values
         int textX;
         int textY;
         String text;
 
-        g2.setFont(g2.getFont().deriveFont(70F));
+
+        //check new or play
         if (newsave) {
             text = "New Game";
-        } else {
+        } else if (!(newsave)) {
             text = "Gespeicherte Spiele";
+        } else {
+            System.err.println("ERROR in drawNewAndPlayState");
+            text = "ERROR";
         }
+
+        //Draw Text
         textX = gp.screenWidth / 2 + getXTxt(text);
         textY = (int) (gp.screenHeight * 0.15);
 
@@ -200,7 +203,6 @@ public class UI{
 
 
         //kasten
-
         int kX = (int) (gp.screenWidth * 0.08);
         int kY = (int) (gp.screenHeight * 0.3);
         int kWight = (int) (gp.screenWidth * 0.38);
@@ -208,44 +210,53 @@ public class UI{
         int xab = kWight + (int) (gp.screenWidth * 0.076);
         int yab = kHigh + (int) (gp.screenHeight * 0.15);
         int i = 0;
-        for (int y = 0; y < 2; y++) {
 
+        for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 2; x++) {
+                //Create Panel for Mouse
+                slot[i] = new JPanel();
+                slot[i].setBounds(kX + x * xab, kY + y * yab, kWight, kHigh);
+                slot[i].setName("Save Screen: " + i);
+                slot[i].addMouseListener(gp.mous);
+                gp.add(slot[i]);
+                slot[i].setVisible(true);
+
                 g2.setColor(Color.white);
                 g2.drawRoundRect(kX + x * xab, kY + y * yab, kWight, kHigh, 10, 10);
-
-                // Panel für mous Listener
-                test[i] = new JPanel();
-                test[i].setName(String.valueOf(i));
-                g2.drawString("Game " + String.valueOf(i + 1),kX + x * xab, kY + y * yab);
-                test[i].setBounds(kX + x * xab, kY + y * yab, kWight, kHigh);
-                gp.add(test[i]);
-                test[i].setVisible(true);
-                test[i].addMouseListener(gp.mous);
                 i++;
             }
         }
-        //back
+
+        //Back Button
         int bX = (int) (gp.screenWidth * 0.25);
         int bY = (int) (gp.screenHeight * 0.8);
         int bWight = (int) (gp.screenWidth * 0.38);
         int bHigh = (int) (gp.screenHeight * 0.11);
         text = "Back";
-        g2.drawString(text, bX ,bY);
+        g2.drawString(text, bX, bY);
         g2.drawRoundRect(bX, bY, bWight, bHigh, 10, 10);
-        test[4] = new JPanel();
-        test[4].setName(String.valueOf(4));
-        test[4].setBounds(bX, bY, bWight, bHigh);
-        gp.add(test[4]);
-        test[4].setVisible(true);
-        test[4].addMouseListener(gp.mous);
-
+        //Back Create Panel for Mouse
+        slot[i] = new JPanel();
+        slot[i].setBounds(bX, bY, bWight, bHigh);
+        slot[i].setName("Save Screen: Back");
+        slot[i].addMouseListener(gp.mous);
+        gp.add(slot[i]);
+        slot[i].setVisible(true);
         g2.setColor(Color.green);
-        if (countY == 2) {
-            g2.drawRoundRect(bX,bY,bWight,bHigh, 10, 10);
+
+
+        //Draw Select Green
+        if (sellectValueY == 2) {
+            g2.drawRoundRect(bX, bY, bWight, bHigh, 10, 10);
         } else
-            g2.drawRoundRect(kX + xab * countX, kY + yab * countY, kWight, kHigh, 10, 10);
+            g2.drawRoundRect(kX + xab * sellectValueX, kY + yab * sellectValueY, kWight, kHigh, 10, 10);
     }
+    /*
+
+
+
+
+    public void newAndPlayScreen() {
 
 
 
@@ -273,6 +284,8 @@ public class UI{
 
 
     }
+
+     */
 
 
 
