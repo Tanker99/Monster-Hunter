@@ -1,6 +1,8 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static java.awt.Color.blue;
 import static java.awt.Color.green;
 
 public class Inventory {
@@ -12,7 +14,6 @@ public class Inventory {
 
     private int panelid = 1;
 
-    public boolean sellect = false;
 
     public int countX ;
     public int countY;
@@ -33,6 +34,10 @@ public class Inventory {
 
     //Slot
 
+    private JPanel slot[] = new JPanel[10];
+    public int currentSlot;
+    public int sllectSlot;
+    public boolean sellect = false;
     private int sloX =0;
     private int sloY = 0;
     private int sloWight= 0;
@@ -93,6 +98,22 @@ public class Inventory {
     }
 
     public void move(){
+        if(!(sellect)) {
+            g2.setColor(green);
+            g2.drawRoundRect(sloX + countX * 200 + 3, sloY + countY * 200 + 3, sloWight - 6, sloHigh - 6, 30, 30);
+        }else{
+            g2.setColor(blue);
+            int sx =sllectSlot;
+            int sy = 0;
+            if(sllectSlot > 3){
+                sx =sllectSlot -4;
+                sy = 1 ;
+            }
+            g2.drawRoundRect(sloX + sx * 200 + 3, sloY + sy * 200 + 3, sloWight - 6, sloHigh - 6, 30, 30);
+
+        }
+
+/*
         int e = 0;
         if(sellect){
 
@@ -109,9 +130,30 @@ public class Inventory {
             g2.setStroke(new BasicStroke(3));
             g2.drawRoundRect(sloX + countX * 200 +3, sloY + countY * 200 +3 , sloWight -6, sloHigh -6, 30, 30);
         }
+
+ */
     }
 
     public void slot(){
+
+        this.sloX = (int) (inWight * 0.2) + inX;
+        this.sloY = (int) (inHigh * 0.05) + inY;
+        this.sloWight = 150;
+        this.sloHigh = 150;
+        int i =0;
+        for (int iy = 0; iy <= 1; iy++) {
+            for (int ix = 0; ix <= 3; ix++) {
+                slot[i] = new JPanel();
+                slot[i].setName("Slot: " + i);
+                slot[i].setBounds(sloX + ix * 200,sloY + iy * 200,sloWight,sloHigh);
+                gp.add(slot[i]);
+                slot[i].setVisible(true);
+                slot[i].addMouseListener(gp.mous);
+                g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
+                i++;
+            }
+        }
+        /*
 
         this.sloX = (int) (inWight*0.2) + inX;
         this.sloY = (int) (inHigh*0.05) + inY;

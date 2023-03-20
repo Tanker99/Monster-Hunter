@@ -45,7 +45,9 @@ public class Sound {
     }
 
     public void loop() {
-        fc.setValue(6f);
+        //fc.setValue(6f);
+        volumeScale =0;
+        volume();
          clip.loop(Clip.LOOP_CONTINUOUSLY);
 
     }

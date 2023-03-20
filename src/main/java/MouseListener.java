@@ -15,6 +15,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         if(gp.gameState == gp.menueState){
             menueStateClick(e);
         }
+        if(gp.gameState == gp.inventoryState){
+            inventoryStateClick(e);
+        }
 
 
     }
@@ -35,6 +38,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         System.out.println("mouse entered");
         if(gp.gameState == gp.menueState){
             menueStateEntered(e);
+        }
+        if(gp.gameState == gp.inventoryState){
+            inventoryStateEntered(e);
         }
 
 
@@ -144,6 +150,71 @@ public class MouseListener implements java.awt.event.MouseListener {
 
             }
     }
+    public void inventoryStateClick(MouseEvent e){
+        System.out.println("Panel Name " + e.getComponent().getName());
+        gp.inventory.sllectSlot = gp.inventory.currentSlot;
+        if(gp.inventory.sellect){
+            gp.inventory.sellect = false;
+        }else {
+            gp.inventory.sellect = true;
+        }
+    }
+    public void inventoryStateEntered(MouseEvent e){
+        System.out.println("Panel Name " + e.getComponent().getName());
+        String i = e.getComponent().getName();
+        System.err.println(i);
+        switch (i) {
+            case "Slot: 0":
+                gp.inventory.countY = 0;
+                gp.inventory.countX = 0;
+                gp.inventory.currentSlot = 0;
+                gp.playSound(1);
+                break;
+            case "Slot: 1":
+                gp.inventory.countY = 0;
+                gp.inventory.countX = 1;
+                gp.inventory.currentSlot = 1;
+                gp.playSound(1);
+                break;
+            case "Slot: 2":
+                gp.inventory.countY = 0;
+                gp.inventory.countX = 2;
+                gp.inventory.currentSlot = 2;
+                gp.playSound(1);
+                break;
+            case "Slot: 3":
+                gp.inventory.countY = 0;
+                gp.inventory.countX = 3;
+                gp.inventory.currentSlot = 3;
+                gp.playSound(1);
+                break;
+            case "Slot: 4":
+                gp.inventory.countY = 1;
+                gp.inventory.countX = 0;
+                gp.inventory.currentSlot = 4;
+                gp.playSound(1);
+                break;
+            case "Slot: 5":
+                gp.inventory.countY = 1;
+                gp.inventory.countX = 1;
+                gp.inventory.currentSlot = 5;
+                gp.playSound(1);
+                break;
+            case "Slot: 6":
+                gp.inventory.countY = 1;
+                gp.inventory.countX = 2;
+                gp.inventory.currentSlot = 6;
+                gp.playSound(1);
+                break;
+            case "Slot: 7":
+                gp.inventory.countY = 1;
+                gp.inventory.countX = 3;
+                gp.inventory.currentSlot = 7;
+                gp.playSound(1);
+                break;
+        }
 
 
+    }
 }
+

@@ -32,7 +32,7 @@ public class Shop {
     private int panHigh = 0;
 
     //Slot
-
+    private JPanel slot[] = new JPanel[7];
     private int sloX = 0;
     private int sloY = 0;
     private int sloWight = 0;
@@ -66,7 +66,6 @@ public class Shop {
 
     public void draw(Graphics2D g2) { //Text
 
-        Shop(g2);
         g2.setFont(new Font("Arial", Font.PLAIN, 40));
         g2.setColor(Color.black);
         g2.drawString("Shop", 50, 50);
@@ -95,9 +94,18 @@ public class Shop {
         this.sloWight = 150;
         this.sloHigh = 150;
         for (int ix = 0; ix <= 3; ix++) {
+            int i = 0;
             for (int iy = 0; iy <= 1; iy++) {
+                slot[i] = new JPanel();
+                slot[i].setName(String.valueOf(i));
+                slot[i].setBounds(sloX + ix * 200,sloY + iy * 200,sloWight,sloHigh);
+                gp.add(slot[i]);
+                slot[i].setVisible(true);
+                slot[i].addMouseListener(gp.mous);
                 g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
+                i++;
             }
+            i++;
         }
 
     }
@@ -170,7 +178,9 @@ public class Shop {
         for (int i = 0; i <= 3; i++) {
             int ii = i * 60;
 
+
             g2.drawRoundRect(panX + 10, (int) (panY + panHigh * 0.15) + ii, 50, 50, 10, 10);
+
         }
 
         // equip[]
@@ -199,25 +209,6 @@ public class Shop {
 
     }
 }
-
- /*
-        stack.setBackground(Color.red);
-        stack.setBounds(150, 100, 800, 500);
-        stack.setLayout(new GridLayout(2, 3, 10, 10));
-        super.shop.add(stack);
-        stack.setVisible(true);
-
-        for(int i = 0; i <= 5; ++i) {
-            item[i] = new JPanel();
-            item[i].setBounds(0, 0, 100, 100);
-            item[i].setBackground(Color.green);
-            item[i].setLayout((LayoutManager)null);
-            item[i].setVisible(true);
-            stack.add(item[i]);
-        }
-          super.shop.setVisible(true);
-     */
-
 
 
 
