@@ -216,64 +216,47 @@ public class KeyHandler implements KeyListener {
     }
     public void inventarState(int key) {
             if (key == KeyEvent.VK_W) {
-                if (gp.inventory.sellect == true) {
-                    if (gp.inventory.sellectcountY > 0) {
-                        gp.inventory.sellectcountY--;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
-
+                if (gp.inventory.currentSlotValueY > 0) {
+                    gp.inventory.currentSlotValueY--;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot -4;
+                    gp.playSound(1);
                 } else {
-                    if (gp.inventory.countY > 0) {
-                        gp.inventory.countY--;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
+                    gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_A) {
-                if (gp.inventory.countX > 0) {
-                    gp.inventory.countX--;
+                if (gp.inventory.currentSlotValueX > 0) {
+                    gp.inventory.currentSlotValueX--;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot -1;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_S) {
-                if (gp.inventory.sellect == true) {
-                    if (gp.inventory.sellectcountY < 2) {
-                        gp.inventory.sellectcountY++;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
-
+                if (gp.inventory.currentSlotValueY < 1) {
+                    gp.inventory.currentSlotValueY++;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot +4;
+                    gp.playSound(1);
                 } else {
-                    if (gp.inventory.countY < 1) {
-                        gp.inventory.countY++;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
+                    gp.playSound(2);
                 }
-
             }
             if (key == KeyEvent.VK_D) {
-                if (gp.inventory.countX < 3) {
-                    gp.inventory.countX++;
+                if (gp.inventory.currentSlotValueX < 3) {
+                    gp.inventory.currentSlotValueX++;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot +1;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_ENTER) {
-                if (!gp.inventory.sellect) {
-                    gp.inventory.sellect = true;
-                } else if (gp.inventory.sellect) {
-                    gp.inventory.sellectcountY = 0;
-                    gp.inventory.sellect = false;
+                if (!gp.inventory.select) {
+                    gp.inventory.select = true;
+                    gp.inventory.selectSlot = gp.inventory.currentSlot;
+                } else if (gp.inventory.select) {
+                    gp.inventory.select = false;
                 }
 
             }

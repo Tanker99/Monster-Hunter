@@ -26,7 +26,7 @@ public class UI{
 
 
     //JPanel
-    private JPanel slot[] = new JPanel[6];
+    private JPanel slot[]  = new JPanel[6];
 
     public UI(GamePanel gp) {
         this.gp = gp;
