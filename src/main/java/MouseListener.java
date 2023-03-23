@@ -45,6 +45,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         if(gp.gameState == gp.inventoryState){
             inventoryStateEntered(e);
         }
+        if(gp.gameState == gp.miniGameState){
+            miniGameStateEntered(e);
+        }
 
 
     }
@@ -268,6 +271,68 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
         }
 
+
+    }
+    public void miniGameStateEntered(MouseEvent e){
+        System.out.println("Panel Name " + e.getComponent().getName() + " Entered");
+        String i = e.getComponent().getName();
+        System.err.println(i);
+        switch (i) {
+            case "Slot: 0":
+                gp.miniGame.currentSlotValueY = 0;
+                gp.miniGame.currentSlotValueX = 0;
+                gp.miniGame.currentSlot = 0;
+                gp.playSound(1);
+                break;
+            case "Slot: 1":
+                gp.miniGame.currentSlotValueY = 0;
+                gp.miniGame.currentSlotValueX = 1;
+                gp.miniGame.currentSlot = 1;
+                gp.playSound(1);
+                break;
+            case "Slot: 2":
+                gp.miniGame.currentSlotValueY = 0;
+                gp.miniGame.currentSlotValueX = 2;
+                gp.miniGame.currentSlot = 2;
+                gp.playSound(1);
+                break;
+            case "Slot: 3":
+                gp.miniGame.currentSlotValueY = 1;
+                gp.miniGame.currentSlotValueX = 0;
+                gp.miniGame.currentSlot = 3;
+                gp.playSound(1);
+                break;
+            case "Slot: 4":
+                gp.miniGame.currentSlotValueY = 1;
+                gp.miniGame.currentSlotValueX = 1;
+                gp.miniGame.currentSlot = 4;
+                gp.playSound(1);
+                break;
+            case "Slot: 5":
+                gp.miniGame.currentSlotValueY = 1;
+                gp.miniGame.currentSlotValueX = 2;
+                gp.miniGame.currentSlot = 5;
+                gp.playSound(1);
+                break;
+            case "Slot: 6":
+                gp.miniGame.currentSlotValueY = 2;
+                gp.miniGame.currentSlotValueX = 0;
+                gp.miniGame.currentSlot = 6;
+                gp.playSound(1);
+                break;
+            case "Slot: 7":
+                gp.miniGame.currentSlotValueY = 2;
+                gp.miniGame.currentSlotValueX = 1;
+                gp.miniGame.currentSlot = 7;
+                gp.playSound(1);
+                break;
+            case "Slot: 8":
+                gp.miniGame.currentSlotValueY = 2;
+                gp.miniGame.currentSlotValueX = 2;
+                gp.miniGame.currentSlot = 7;
+                gp.playSound(1);
+                break;
+        }
 
     }
 }

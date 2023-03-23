@@ -1,4 +1,3 @@
-package DB;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,7 +8,7 @@ public class Waffe {
     public String name;
     public int Kraft;
     public int Goldwert;
-    BufferedImage waffe[] new BufferedImage[7];
+    BufferedImage waffe[] =new BufferedImage[7];
 
     public static String[] Waffen = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
     public static int[] WKraft = {2, 5, 4, 6, 3, 5, 6, 4};
@@ -20,10 +19,11 @@ public class Waffe {
         Kraft = Waffe.WKraft[n];
         Goldwert = Waffe.WGoldwert[n];
     }
-
-    public IMage(GamePanel gp){
+/*
+    public void IMage(GamePanel gp){
         this.gp = gp;
-        waffe[] = new BufferedImage[gp.waffe.Wanzahl];
+        BufferedImage[] bufferedImages = new BufferedImage[gp.waffe.Wanzahl];
+        waffe[] = /new BufferedImage[gp.waffe.Wanzahl];
         
         try{
         waffe[1] = ImageIO.read(waffe.class.getResource("main/resources/items/Feuerschwert.png"));
@@ -46,7 +46,7 @@ public class Waffe {
         
         try {
             waffe[0] = ImageIO.read(waffe.class.getResource("main/resources/items/Schwacher Bogen.png"));
-            waffe[1] = ImageIO.read(waffe.class.getResource("main/resources/items/Starker Bogen.png"));
+           waffe[1] = ImageIO.read(waffe.class.getResource("main/resources/items/Starker Bogen.png"));
             waffe[2] = ImageIO.read(waffe.class.getResource("main/resources/items/Streitaxt (Eine KLinge).png"));
             waffe[3] = ImageIO.read(waffe.class.getResource("main/resources/items/Streitaxt (Doppelte Klinge).png"));
             waffe[4] = ImageIO.read(waffe.class.getResource("main/resources/items/Schwert.png"));
@@ -62,4 +62,6 @@ public class Waffe {
          
         return test;
     }
+
+ */
 }

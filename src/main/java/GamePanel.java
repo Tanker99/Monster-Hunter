@@ -3,16 +3,8 @@
 
 
 
-import DB.Ruestung;
-import DB.Trank;
-import DB.Waffe;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -46,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     //Classes
     public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
+    public MiniGame miniGame = new MiniGame(this);
     public Shop shop = new Shop(this, keyH);
     public Inventory inventory = new Inventory(this,keyH);
 
@@ -59,9 +52,10 @@ public class GamePanel extends JPanel implements Runnable {
     private  int oldGameState;
     final int uiState = 1;
     final int playerState = 2;
-    final int shopState = 3;
-    final int inventoryState = 4;
-    final int fightState = 5;
+    final int miniGameState =3;
+    final int shopState = 4;
+    final int inventoryState = 5;
+    final int fightState = 6;
     final int testState = 10;
 
     //Variable
@@ -167,7 +161,10 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == playerState) {
             player.draw(g2);
             g2.dispose();
-        } else if (gameState == inventoryState) {
+        } else if(gameState == miniGameState){
+            miniGame.draw(g2);
+            g2.dispose();
+        }else if (gameState == inventoryState) {
             inventory.draw(g2);
             g2.dispose();
         } else if (gameState == shopState) {

@@ -1,5 +1,3 @@
-package DB;
-
 public class Ruestung {
     public static final int Ranzahl = 0;
     public String name;
