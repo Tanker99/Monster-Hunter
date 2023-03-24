@@ -4,7 +4,7 @@ import java.awt.*;
 import static java.awt.Color.blue;
 import static java.awt.Color.green;
 
-public class MiniGame {
+public class TickTackToe {
     //Standard
     GamePanel gp;
     Graphics2D g2;
@@ -19,9 +19,9 @@ public class MiniGame {
     int fWight;
     int fHigh;
     public  int amZug = 1;
-    private  int warAmZug;
     public  int kiState = 2;
     public  int gewinner;
+    public  boolean end;
 
     public int currentSlotValueY;
     public int currentSlotValueX;
@@ -32,7 +32,7 @@ public class MiniGame {
     private JPanel slot[] = new JPanel[9];
 
 
-    public MiniGame(GamePanel gp){
+    public TickTackToe(GamePanel gp){
         x = 200;
         y = 100;
         maxHight = gp.screenHeight / 2;
@@ -46,21 +46,23 @@ public class MiniGame {
         this.g2 = g2;
         gewinnerCheck();
         if(gewinner == 1|| gewinner == 2){
+            end = true;
+        }
+        if(end){
             drawEnd();
-
-        }else {
-            tickTackToe();
-            drawSlotState();
-            if(amZug == 2){
-                if(kiState == 1){
-                    kiEasy();
-                }else {
-                    kiHard();
-                }
+        }
+        tickTackToe();
+        drawSlotState();
+        drawMove();
+        if(amZug == 2) {
+            if(kiState == 1){
+                kiEasy();
+            }else if(kiState == 2){
+                kiMedium();
             }
-
         }
     }
+
 
     public void tickTackToe() {
 
@@ -90,11 +92,13 @@ public class MiniGame {
                 // g2.drawRoundRect(x + xi * fWight,y + yi* fHigh ,(int) (maxWight * 0.33),  (int) (maxHight * 0.33),0,0);
             }
         }
+
+    }
+    public void drawMove(){
         g2.setColor(green);
-
-        g2.drawRoundRect(x + currentSlotValueX * fWight, y + currentSlotValueY * fHigh, (int) (maxWight * 0.33), (int) (maxHight * 0.33), 0, 0);
-        g2.drawImage(gp.image.imgX, 0, 0, 200, 200, null);
-
+        if(!(end)) {
+            g2.drawRoundRect(x + currentSlotValueX * fWight, y + currentSlotValueY * fHigh, (int) (maxWight * 0.33), (int) (maxHight * 0.33), 0, 0);
+        }
     }
 
     public void drawSlotState() {
@@ -141,6 +145,9 @@ public class MiniGame {
                 gewinner = i;
             }
         }
+        if(!(slotState[0] == 0) && !(slotState[1] == 0) && !(slotState[2] == 0) && !(slotState[3] == 0) && !(slotState[4] == 0) && !(slotState[5] == 0) && !(slotState[6] == 0) && !(slotState[7] == 0) && !(slotState[8] == 0)){
+            end = true;
+        }
     }
     public void drawEnd(){
         String text = null;
@@ -148,8 +155,10 @@ public class MiniGame {
             text = "O";
         }else if(gewinner == 2){
             text = "X";
+        }else {
+            text = "unentschieden";
         }
-        g2.drawString(text + " Hat Gewonnen", maxHight/2,  maxWight/2);
+        g2.drawString(text + " Hat Gewonnen", 900+maxHight/2,  maxWight/2);
     }
     public void kiEasy(){
         int randomNumber = (int) (Math.random() * 9);
@@ -159,40 +168,49 @@ public class MiniGame {
             amZug = 1;
         }
     }
-    public void kiHard() {
-        for(int i= 1; i< 3; i++) {
+    public void kiMedium() {
+        for (int i = 1; i < 3; i++) {
             //Horizontal 1
             if (slotState[0] == 1 && slotState[1] == 1 && slotState[2] == 0) {
                 slotState[2] = 2;
                 amZug = 1;
-            }else  if (slotState[0] == 1 && slotState[1] == 0 && slotState[2] == 1) {
+                break;
+            } else if (slotState[0] == 1 && slotState[1] == 0 && slotState[2] == 1) {
                 slotState[1] = 2;
                 amZug = 1;
-            }else  if (slotState[0] == 0 && slotState[1] == 1 && slotState[2] == 1) {
+                break;
+            } else if (slotState[0] == 0 && slotState[1] == 1 && slotState[2] == 1) {
                 slotState[0] = 2;
                 amZug = 1;
+                break;
             }
             //Horizontal 2
             else if (slotState[3] == 1 && slotState[4] == 1 && slotState[5] == 0) {
                 slotState[5] = 2;
                 amZug = 1;
-            }else  if (slotState[3] == 1 && slotState[4] == 0 && slotState[5] == 1) {
+                break;
+            } else if (slotState[3] == 1 && slotState[4] == 0 && slotState[5] == 1) {
                 slotState[4] = 2;
                 amZug = 1;
-            }else  if (slotState[3] == 0 && slotState[4] == 1 && slotState[5] == 1) {
+                break;
+            } else if (slotState[3] == 0 && slotState[4] == 1 && slotState[5] == 1) {
                 slotState[3] = 2;
                 amZug = 1;
+                break;
             }
             //Horizontal 3
             else if (slotState[6] == 1 && slotState[7] == 1 && slotState[8] == 0) {
                 slotState[8] = 2;
                 amZug = 1;
-            }else  if (slotState[6] == 1 && slotState[7] == 0 && slotState[8] == 1) {
+                break;
+            } else if (slotState[6] == 1 && slotState[7] == 0 && slotState[8] == 1) {
                 slotState[7] = 2;
                 amZug = 1;
-            }else  if (slotState[6] == 0 && slotState[7] == 1 && slotState[8] == 1) {
+                break;
+            } else if (slotState[6] == 0 && slotState[7] == 1 && slotState[8] == 1) {
                 slotState[6] = 2;
                 amZug = 1;
+                break;
             }
 
 
@@ -200,54 +218,89 @@ public class MiniGame {
             else if (slotState[0] == 1 && slotState[3] == 1 && slotState[6] == 0) {
                 slotState[6] = 2;
                 amZug = 1;
-            }else  if (slotState[0] == 1 && slotState[3] == 0 && slotState[6] == 1) {
+                break;
+            } else if (slotState[0] == 1 && slotState[3] == 0 && slotState[6] == 1) {
                 slotState[3] = 2;
                 amZug = 1;
-            }else  if (slotState[0] == 0 && slotState[3] == 1 && slotState[6] == 1) {
+                break;
+            } else if (slotState[0] == 0 && slotState[3] == 1 && slotState[6] == 1) {
                 slotState[0] = 2;
                 amZug = 1;
+                break;
             }
             //Vertikal 2
             else if (slotState[1] == 1 && slotState[4] == 1 && slotState[7] == 0) {
                 slotState[7] = 2;
                 amZug = 1;
-            }else  if (slotState[1] == 1 && slotState[4] == 0 && slotState[7] == 1) {
+                break;
+            } else if (slotState[1] == 1 && slotState[4] == 0 && slotState[7] == 1) {
                 slotState[4] = 2;
                 amZug = 1;
-            }else  if (slotState[1] == 0 && slotState[4] == 1 && slotState[7] == 1) {
+                break;
+            } else if (slotState[1] == 0 && slotState[4] == 1 && slotState[7] == 1) {
                 slotState[1] = 2;
                 amZug = 1;
+                break;
             }
             //Vertikal 3
             else if (slotState[2] == 1 && slotState[5] == 1 && slotState[8] == 0) {
                 slotState[8] = 2;
                 amZug = 1;
-            }else  if (slotState[2] == 1 && slotState[5] == 0 && slotState[8] == 1) {
+                break;
+            } else if (slotState[2] == 1 && slotState[5] == 0 && slotState[8] == 1) {
                 slotState[5] = 2;
                 amZug = 1;
-            }else  if (slotState[2] == 0 && slotState[5] == 1 && slotState[8] == 1) {
+                break;
+            } else if (slotState[2] == 0 && slotState[5] == 1 && slotState[8] == 1) {
                 slotState[2] = 2;
                 amZug = 1;
-            }else {
-                kiEasy();
+                break;
+            }
+            //Links rechts 1
+            else if (slotState[0] == 1 && slotState[4] == 1 && slotState[8] == 0) {
+                slotState[8] = 2;
+                amZug = 1;
+                break;
+            } else if (slotState[0] == 1 && slotState[4] == 0 && slotState[8] == 1) {
+                slotState[4] = 2;
+                amZug = 1;
+                break;
+            } else if (slotState[0] == 0 && slotState[4] == 1 && slotState[8] == 1) {
+                slotState[0] = 2;
+                amZug = 1;
+                break;
+            }
+            //Links rechts 2
+            else if (slotState[2] == 1 && slotState[4] == 1 && slotState[6] == 0) {
+                slotState[6] = 2;
+                amZug = 1;
+                break;
+            } else if (slotState[2] == 1 && slotState[4] == 0 && slotState[6] == 1) {
+                slotState[4] = 2;
+                amZug = 1;
+                break;
+            } else if (slotState[2] == 0 && slotState[4] == 1 && slotState[6] == 1) {
+                slotState[2] = 2;
+                amZug = 1;
+                break;
             }
 
-
-
-            /*
-            //links rechts
-            if (slotState[0] == i && slotState[4] == i && slotState[8] == i) {
-                gewinner = i;
-            } else if (slotState[2] == i && slotState[4] == i && slotState[6] == i) {
-                gewinner = i;
+        }
+        if (amZug == 2) {
+            int randomNumber = (int) (Math.random() * 9);
+            if (slotState[randomNumber] == 0) {
+                slotState[randomNumber] = 2;
+                amZug = 1;
+                System.out.println("eeee");
             }
-
-             */
         }
     }
 
 
+
+
     public void reset(){
+        end = false;
         for (int i = 0; i< 9; i++){
             slotState[i] = 0;
         }

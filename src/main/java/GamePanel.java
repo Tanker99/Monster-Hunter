@@ -3,6 +3,9 @@
 
 
 
+import DB.Trank;
+import DB.Waffe;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -38,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     //Classes
     public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
-    public MiniGame miniGame = new MiniGame(this);
+    public TickTackToe miniGame = new TickTackToe(this);
     public Shop shop = new Shop(this, keyH);
     public Inventory inventory = new Inventory(this,keyH);
 
@@ -84,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setup(){
         playLoopSound(0);
-        gameState = 1;
+        gameState = 3;
 
 
     }

@@ -1,9 +1,9 @@
-import javax.imageio.ImageIO;
+package DB;
+
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Waffe {
-    GamePanel gp;
+
     public static final int Wanzahl = 0;
     public String name;
     public int Kraft;
@@ -30,7 +30,7 @@ public class Waffe {
         } 
         catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Waffe Image Error");
+            System.out.println("DB.Waffe Image Error");
         }
     
     }
@@ -57,7 +57,7 @@ public class Waffe {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Waffe Image Error");
+            System.out.println("DB.Waffe Image Error");
         }
          
         return test;

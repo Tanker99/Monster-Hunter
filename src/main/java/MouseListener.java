@@ -278,9 +278,9 @@ public class MouseListener implements java.awt.event.MouseListener {
     }
     public void miniGameStateClick(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
-        if(gp.miniGame.amZug == 1) {
-            gp.miniGame.slotState[gp.miniGame.currentSlot] = 1;
-            gp.miniGame.amZug = 2;
+        if(gp.miniGame.amZug == 1 && !gp.miniGame.end && gp.miniGame.slotState[gp.miniGame.currentSlot] == 0 ) {
+                gp.miniGame.slotState[gp.miniGame.currentSlot] = 1;
+                gp.miniGame.amZug = 2;
         }
     }
     public void miniGameStateEntered(MouseEvent e){

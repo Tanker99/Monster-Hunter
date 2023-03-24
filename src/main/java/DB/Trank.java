@@ -1,3 +1,5 @@
+package DB;
+
 public class Trank {
     public static final int Tanzahl = 0;
     public String name;
