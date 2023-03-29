@@ -46,7 +46,7 @@ public class Waffe {
         this.gp = gp;
         
         try {
-            wBild[0] = ImageIO.read((Waffe.class.getResource("/items/Schwacher Bogen.png")));
+            wBild[0] = ImageIO.read(Waffe.class.getResource("/items/Schwacher Bogen.png"));
             wBild[1] = ImageIO.read(Waffe.class.getResource("/items/Starker Bogen.png"));
             wBild[2] = ImageIO.read(Waffe.class.getResource("/items/Axt.png"));
             wBild[3] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt.png"));
