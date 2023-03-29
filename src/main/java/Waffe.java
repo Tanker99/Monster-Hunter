@@ -35,11 +35,11 @@ public class Waffe {
     public void getKraft(int n){
         return wKraft[n];
     }
-    public void getWaffedetails(int n) {
-        name = Waffe.wName[n];
-        kraft = Waffe.wKraft[n];
-        goldwert = Waffe.wGoldwert[n];
-        text = Waffe.
+    public void getGoldwert(int n){
+        return wGoldwert[n];
+    }
+    public void getText(int n){
+        return wText[n];
     }
 
     public void getImage(){
