@@ -3,8 +3,6 @@
 
 
 
-import DB.Trank;
-import DB.Waffe;
 
 import javax.swing.*;
 import java.awt.*;
