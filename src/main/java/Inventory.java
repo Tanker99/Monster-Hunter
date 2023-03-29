@@ -125,6 +125,8 @@ public class Inventory {
                 slot[i].setVisible(true);
                 slot[i].addMouseListener(gp.mous);
                 g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
+                String text = "d";
+                g2.drawString(text,100,100);
                 i++;
             }
         }

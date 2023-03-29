@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Waffe {
     //Standart
@@ -38,14 +39,14 @@ public class Waffe {
         this.gp = gp;
         
         try {
-            waffe[0] = ImageIO.read(Waffe.class.getResource("main/resources/items/Schwacher Bogen.png"));
-            waffe[1] = ImageIO.read(Waffe.class.getResource("main/resources/items/Starker Bogen.png"));
-            waffe[2] = ImageIO.read(Waffe.class.getResource("main/resources/items/Streitaxt (Eine KLinge).png"));
-            waffe[3] = ImageIO.read(Waffe.class.getResource("main/resources/items/Streitaxt (Doppelte Klinge).png"));
-            waffe[4] = ImageIO.read(Waffe.class.getResource("main/resources/items/Schwert.png"));
-            waffe[5] = ImageIO.read(Waffe.class.getResource("main/resources/items/Feuerschwert.png"));
-            waffe[6] = ImageIO.read(Waffe.class.getResource("main/resources/items/Morgenstern.png"));
-            waffe[7] = ImageIO.read(Waffe.class.getResource("main/resources/items/Armbrust.png"));
+            waffe[0] = ImageIO.read((Waffe.class.getResource("/items/Schwacher Bogen.png")));
+            waffe[1] = ImageIO.read(Waffe.class.getResource("/items/Starker Bogen.png"));
+            waffe[2] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt (eine Klinge).png"));
+            waffe[3] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt (zwei Klingen).png"));
+          //  waffe[4] = ImageIO.read(Waffe.class.getResource("/items/Schwert.png"));
+          //  waffe[5] = ImageIO.read(Waffe.class.getResource("/items/Feuerschwert.png"));
+            waffe[6] = ImageIO.read(Waffe.class.getResource("/items/Morgenstern.png"));
+           // waffe[7] = ImageIO.read(Waffe.class.getResource("/items/Armbrust.png"));
             
 
         } catch (IOException e) {
