@@ -125,8 +125,15 @@ public class Inventory {
                 slot[i].setVisible(true);
                 slot[i].addMouseListener(gp.mous);
                 g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
-                String text = "d";
+
+
+                gp.waffe.getWaffedetails(2);
+                String text = gp.waffe.name;
                 g2.drawString(text,100,100);
+                gp.waffe.getWaffedetails(0);
+                String textt = gp.waffe.name;
+                g2.drawString(textt,200,100);
+                g2.drawImage(gp.waffe.waffe[0],100,100,null );
                 i++;
             }
         }

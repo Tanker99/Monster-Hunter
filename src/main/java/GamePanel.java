@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -25,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //DB
     public Waffe waffe = new Waffe(this);
-    public Trank trank = new Trank();
+    //public Trank trank = new Trank(this);
     public Ruestung ruestung = new Ruestung();
 
     //dasd
@@ -205,6 +199,17 @@ public class GamePanel extends JPanel implements Runnable {
             screenWidth = newWidth;
             screenHeight = newHeight;
             this.setSize(newSize);
+        }
+        public String getDBId(int i){
+        if(i == 0){
+            return "gp.Waffe";
+        }else if(i == 1){
+            return "gp.Ruestung";
+        }else if(i == 2){
+            return "gp.Trank";
+        }else {
+            return null;
+        }
         }
 }
 

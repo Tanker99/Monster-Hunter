@@ -9,8 +9,8 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
-    public int item[][] = new int[1][2];
-    //[] == slot
+    public int item[][] = new int[8][1];
+    //[8] == slot
     // [][0] == DB
     // [][1] == item
 
