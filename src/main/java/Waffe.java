@@ -15,7 +15,7 @@ public class Waffe {
 
     //Defin Variablen
     public static final int wAnzahl = 8;
-    BufferedImage waffe[] = new BufferedImage[8];
+    BufferedImage wBild[] = new BufferedImage[8];
 
     //Datenbank
     public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
@@ -29,24 +29,31 @@ public class Waffe {
         
     }
 
+    public void getName(int n){
+        return wName[n];
+    }
+    public void getKraft(int n){
+        return wKraft[n];
+    }
     public void getWaffedetails(int n) {
         name = Waffe.wName[n];
         kraft = Waffe.wKraft[n];
         goldwert = Waffe.wGoldwert[n];
+        text = Waffe.
     }
 
     public void getImage(){
         this.gp = gp;
         
         try {
-            waffe[0] = ImageIO.read((Waffe.class.getResource("/items/Schwacher Bogen.png")));
-            waffe[1] = ImageIO.read(Waffe.class.getResource("/items/Starker Bogen.png"));
-            waffe[2] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt (eine Klinge).png"));
-            waffe[3] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt (zwei Klingen).png"));
-          //  waffe[4] = ImageIO.read(Waffe.class.getResource("/items/Schwert.png"));
-          //  waffe[5] = ImageIO.read(Waffe.class.getResource("/items/Feuerschwert.png"));
-            waffe[6] = ImageIO.read(Waffe.class.getResource("/items/Morgenstern.png"));
-           // waffe[7] = ImageIO.read(Waffe.class.getResource("/items/Armbrust.png"));
+            wBild[0] = ImageIO.read((Waffe.class.getResource("/items/Schwacher Bogen.png")));
+            wBild[1] = ImageIO.read(Waffe.class.getResource("/items/Starker Bogen.png"));
+            wBild[2] = ImageIO.read(Waffe.class.getResource("/items/Axt.png"));
+            wBild[3] = ImageIO.read(Waffe.class.getResource("/items/Streitaxt.png"));
+            wBild[4] = ImageIO.read(Waffe.class.getResource("/items/Schwert.png"));
+            wBild[5] = ImageIO.read(Waffe.class.getResource("/items/Feuerschwert.png"));
+            wBild[6] = ImageIO.read(Waffe.class.getResource("/items/Morgenstern.png"));
+            wBild[7] = ImageIO.read(Waffe.class.getResource("/items/Armbrust.png"));
             
 
         } catch (IOException e) {
