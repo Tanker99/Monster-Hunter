@@ -13,8 +13,8 @@ public class Trank {
     public String text;
 
     //Defin Variablen
-    public static final int tAnzahl = 5;
-    BufferedImage tBild[] = new BufferedImage[5];
+    public static final int tAnzahl = 6;
+    BufferedImage tBild[] = new BufferedImage[6];
 
     //Datenbank
     public static String[] tName = {"Einhorn-Pipi","Rote Bete Saft","Pep-sie Gemisch","Ingwer-shot","Met","Wasser"};
