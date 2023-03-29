@@ -32,12 +32,15 @@ public class Waffe {
     public String getName(int n){
         return wName[n];
     }
+
     public int getKraft(int n){
         return wKraft[n];
     }
+
     public int getGoldwert(int n){
         return wGoldwert[n];
     }
+    
     public String getText(int n){
         return wText[n];
     }
