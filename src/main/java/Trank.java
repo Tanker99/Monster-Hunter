@@ -1,6 +1,21 @@
-
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Trank {
+    //Standart
+    GamePanel gp;
+
+    //Get Variablen
+    public String name;
+    public int kraft;
+    public int goldwert;
+    public String text;
+
+    //Defin Variablen
+    public static final int tAnzahl = 8;
+    BufferedImage waffe[] = new BufferedImage[8];
+
     public static final int Tanzahl = 0;
     public String name;
     public int Kraft;
