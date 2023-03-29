@@ -28,10 +28,21 @@ public class Trank {
         
     }
 
-    public void getTrankdatails(int n){
-        Name = Trank.tName[n];
-        Kraft = Trank.tKraft[n];
-        Goldwert = Trank.tGoldwert[n];
+    public void getName(int n){
+        return tName[n];
+    } 
+
+    public void getKraft(int n){
+        return tKraft[n];
+    }
+
+    public void getGoldwert(int n){
+        return tGoldwert[n];
+    }
+    
+    public void getText(int n){
+        return tText[n];
 
     }
+
 }
