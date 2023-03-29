@@ -22,7 +22,13 @@ public class Trank {
     public static int[] tGoldwert = {10,4,2,7,9,6,7,8};
     public static String[] tText = {"",""};
 
-    public void getTrank(int n){
+    public Trank(GamePanel gp){
+        this.gp = gp;
+        getImage();
+        
+    }
+
+    public void getTrankdatails(int n){
         name = Trank.Traenke[n];
         Kraft = Trank.TKraft[n];
         Goldwert = Trank.TGoldwert[n];
