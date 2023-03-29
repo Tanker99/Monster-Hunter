@@ -1,6 +1,7 @@
 
-//d
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Waffe {
     //Standart
@@ -13,17 +14,17 @@ public class Waffe {
     public String text;
 
     //Defin Variablen
-    public static final int Wanzahl = 7;
-    BufferedImage waffe[];
+    public static final int Wanzahl = 8;
+    BufferedImage waffe[] = new BufferedImage[8];
 
     //Datenbank
     public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
     public static int[] wKraft = {2, 5, 4, 6, 3, 5, 6, 4};
     public static int[] wGoldwert = {3, 7, 4, 8, 4, 9, 6, 5};
+    public static String[] wtext ={"",""};
 
     public Waffe(GamePanel gp){
         this.gp = gp;
-        waffe[] = new BufferedImage[Wanzahl];
         getImage();
         
     }

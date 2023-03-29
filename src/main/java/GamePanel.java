@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener mous = new MouseListener(this);
 
     //DB
-    public Waffe waffe = new Waffe();
+    public Waffe waffe = new Waffe(this);
     public Trank trank = new Trank();
     public Ruestung ruestung = new Ruestung();
 

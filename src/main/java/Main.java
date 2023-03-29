@@ -13,7 +13,7 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true); //kann nicht größeer oder kleiner gezogen werden
         window.setTitle("Game");
-        ImageIcon img = new ImageIcon("src/main/resources/player/playerc.png");
+        ImageIcon img = new ImageIcon("src/main/resources/player/playercc.png");
         window.setIconImage(img.getImage());
 
         window.setLocationRelativeTo(null); //Fenster ist in der Mitte
