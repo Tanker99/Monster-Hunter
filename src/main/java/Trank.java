@@ -29,8 +29,9 @@ public class Trank {
     }
 
     public void getTrankdatails(int n){
-        name = Trank.Traenke[n];
-        Kraft = Trank.TKraft[n];
-        Goldwert = Trank.TGoldwert[n];
+        Name = Trank.tName[n];
+        Kraft = Trank.tKraft[n];
+        Goldwert = Trank.tGoldwert[n];
+
     }
 }
