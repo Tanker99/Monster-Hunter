@@ -28,19 +28,19 @@ public class Trank {
         
     }
 
-    public void getName(int n){
+    public String getName(int n){
         return tName[n];
     } 
 
-    public void getKraft(int n){
+    public int getKraft(int n){
         return tKraft[n];
     }
 
-    public void getGoldwert(int n){
+    public int getGoldwert(int n){
         return tGoldwert[n];
     }
     
-    public void getText(int n){
+    public String getText(int n){
         return tText[n];
 
     }

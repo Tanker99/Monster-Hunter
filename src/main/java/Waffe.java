@@ -29,16 +29,16 @@ public class Waffe {
         
     }
 
-    public void getName(int n){
+    public String getName(int n){
         return wName[n];
     }
-    public void getKraft(int n){
+    public int getKraft(int n){
         return wKraft[n];
     }
-    public void getGoldwert(int n){
+    public int getGoldwert(int n){
         return wGoldwert[n];
     }
-    public void getText(int n){
+    public String getText(int n){
         return wText[n];
     }
 
