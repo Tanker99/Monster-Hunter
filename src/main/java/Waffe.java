@@ -17,9 +17,9 @@ public class Waffe {
     BufferedImage waffe[];
 
     //Datenbank
-    public static String[] Waffen = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
-    public static int[] WKraft = {2, 5, 4, 6, 3, 5, 6, 4};
-    public static int[] WGoldwert = {3, 7, 4, 8, 4, 9, 6, 5};
+    public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
+    public static int[] wKraft = {2, 5, 4, 6, 3, 5, 6, 4};
+    public static int[] wGoldwert = {3, 7, 4, 8, 4, 9, 6, 5};
 
     public Waffe(GamePanel gp){
         this.gp = gp;
@@ -29,9 +29,9 @@ public class Waffe {
     }
 
     public void getWaffedetails(int n) {
-        name = Waffe.Wname[n];
-        kraft = Waffe.Wkraft[n];
-        goldwert = Waffe.Wgoldwert[n];
+        name = Waffe.wName[n];
+        kraft = Waffe.wKraft[n];
+        goldwert = Waffe.wGoldwert[n];
     }
 
     public void getImage(){
