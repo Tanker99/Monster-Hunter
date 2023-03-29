@@ -20,7 +20,7 @@ public class Trank {
     public static String[] tName = {"Einhorn-Pipi","Rote Bete Saft","Pep-sie Gemisch","Ingwer-shot","Met","Wasser"};
     public static int[] tKraft = {6,8,4,12,-4,2};
     public static int[] tGoldwert = {10,4,2,7,9,1};
-    public static String[] tText = {"",""};
+    public static String[] tText = {"","","","","",""};
 
     public Trank(GamePanel gp){
         this.gp = gp;
