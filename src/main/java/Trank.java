@@ -20,7 +20,14 @@ public class Trank {
     public static String[] tName = {"Einhorn-Pipi","Rote Bete Saft","Pep-sie Gemisch","Ingwer-shot","Met","Wasser"};
     public static int[] tKraft = {6,8,4,12,-4,2};
     public static int[] tGoldwert = {10,4,2,7,9,1};
-    public static String[] tText = {"","","","","",""};
+    public static String[] tText = {
+        "Tatsächlich kacken Einhörner nicht nur Muffins und Donuts. Sie pieseln sogar Regenbögen.",
+        "Nicht jedem schmeckt es, aber in diesem Fall kann es Dein Leben retten.",
+        "Nachdem ein Zauberer unzählige Pülverchen vermischt hatte entstand dieses gut schmeckende Koffeinhaltige Gesöff.",
+        "Wie der Name schon sagt, ballert dir diese Plörre echt die Geschmacksknospen von der Zunge!",
+        "Schon die Wickinger wussten einen guten Tropfen hiervon wert zu schätzen. Auch wenn es nicht unbedingt der Gesundheit gut tat!",
+        "Aus der unberührten Natur entnommenes Felsquellwasser."
+        };
 
     public Trank(GamePanel gp){
         this.gp = gp;
