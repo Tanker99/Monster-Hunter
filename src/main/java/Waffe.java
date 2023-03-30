@@ -21,7 +21,16 @@ public class Waffe {
     public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
     public static int[] wKraft = {2, 5, 4, 6, 3, 5, 6, 4};
     public static int[] wGoldwert = {3, 7, 4, 8, 4, 9, 6, 5};
-    public static String[] wText = {"","","","","","","",""};
+    public static String[] wText = {
+    "Aus einem weichen Holz gefertig, doch trotzdem tödlich.",
+    "Verstärkte Wurfarme machen den bereits guten Bogen noch BESSER. Höher, Weiter, Tödlicher!",
+    "Einst ein Werkzeug für Bauern. Heute ein Werkzeug des Todes!",
+    "Warum nur auf einer Seite schneiden können? Aus einem Werkzeug wird ein rundrum scharfes Tötungsgerät!",
+    "Nur ein wahrer Ritter wie du ist dazu in der Lage, ein geschliffenes Stück Metall, wie dieses, kunstvoll durch die Körper deine Feinde gleiten zu lassen.",
+    "Nachdem mit diesem Schwert ein Drache erlegt wurde, fing es feuer und hörte seitdem nicht mehr auf alles und jeden zu verbrennen, mit dem es in Berührung kam.",
+    "Es ist ein Wunder, was ein großer Hebel und gespitzter Stahl in Kombination miteinander anrichten können.",
+    "Klein aber fein. Mit diesem Gerät Bolzen Sie wortwörtlich alles aus dem Weg!"
+    };
 
     public Waffe(GamePanel gp){
         this.gp = gp;
