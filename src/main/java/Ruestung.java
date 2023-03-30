@@ -18,11 +18,11 @@ public class Ruestung {
     
     //Datenbank
     public static String[] rName={"Eisenrüstung","Goldrüstung"};
-    public static int[] rKraft={12,20};
-    public static int[] rGoldwert={24,50};
+    public static int[] rKraft={20,12};
+    public static int[] rGoldwert={34,50};
     public static String[] rText = {
     "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
-    "Auch wenn die Weichheit des Materials im Kamf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus."
+    "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus."
     }
     
     public Trank(GamePanel gp){
