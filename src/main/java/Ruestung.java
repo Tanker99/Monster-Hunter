@@ -13,14 +13,17 @@ public class Ruestung {
     public String text;
 
     //Define Variablen
-    public static final int rAnzahl = 6;
-    BufferedImage rBild[] = new BufferedImage[6];
+    public static final int rAnzahl = 2;
+    BufferedImage rBild[] = new BufferedImage[2];
     
     //Datenbank
-    public static String[] rName={"Rüstung1","Rüstung2","Rüstung3","Rüstung4","Rüstung5","Rüstung6","Rüstung7","Rüstung8"};
-    public static int[] rKraft={1,2,3,4,5,6,7,8};
-    public static int[] rGoldwert={1,2,3,4,5,6,7,8};
-    public static String[] rText = {"",""}
+    public static String[] rName={"Eisenrüstung","Goldrüstung"};
+    public static int[] rKraft={12,20};
+    public static int[] rGoldwert={24,50};
+    public static String[] rText = {
+    "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
+    "Auch wenn die Weichheit des Materials im Kamf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus."
+    }
     
     public Trank(GamePanel gp){
         this.gp = gp;
@@ -48,12 +51,8 @@ public class Ruestung {
         this.gp = gp;
      
         try {
-            rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Einhorn-Pipi.png"));
-            rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Rote Bete Saft.png"));
-            rBild[2] = ImageIO.read(Ruestung.class.getResource("/items/Pep-sie Gemisch.png"));
-            rBild[3] = ImageIO.read(Ruestung.class.getResource("/items/Ingwer-Shot.png"));
-            rBild[4] = ImageIO.read(Ruestung.class.getResource("/items/Met.png"));
-            rBild[5] = ImageIO.read(Ruestung.class.getResource("/items/Wasser.png"));
+            rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Eisenrüstung.png"));
+            rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Goldrüstung.png"));
             
 
         } catch (IOException e) {
