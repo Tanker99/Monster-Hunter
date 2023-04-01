@@ -15,27 +15,19 @@ public class Inventory {
 
     //variable
     public boolean select;
+    public boolean twoSelect;
     public int currentSlot;
     public int selectSlot;
+    public int twoSelectSlot;
     public int currentSlotValueX;
     public int currentSlotValueY;
+
+    public boolean equip;
 
     //JPanel
     private JPanel slot[] = new JPanel[8];
     private JPanel button[] = new JPanel[3];
 
-
-
-
-
-
-
-    private int panelid = 1;
-
-
-    public int countX ;
-    public int countY;
-    public int sellectcountY = 0;
 
     //inventar
     private int inX = 0;
@@ -109,6 +101,10 @@ public class Inventory {
         //Move
         drawMove();
 
+        //draw Swap;
+
+        drawSwap();
+
     }
 
     public void drawSlot(){
@@ -128,17 +124,24 @@ public class Inventory {
                 slot[i].addMouseListener(gp.mous);
                 g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
 
+                int db = gp.player.item[i][0];
+                int item = gp.player.item[i][1];
+                if(!(gp.player.item[i][0] == 0)) {
+                    g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200);
+                    g2.drawImage(gp.dba.getItem(db,item).getImagee(),sloX + ix * 200,sloY + iy * 200,null );
+                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " €",sloX + ix * 200,sloY + iy * 200+ 80);
+                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getKraft()) + " Kraft",sloX + ix * 200,sloY + iy * 200 + 100 );
+                }
 
-                g2.drawImage(gp.dba.getItem(1,2).getImagee(),sloX+gp.dba.getItem(1,2).getImagee().getWidth(), sloY+ gp.dba.getItem(1,2).getImagee().getHeight(),null );
-                g2.drawString("Preis " + gp.dba.getItem(1,2).getGoldwert(), sloX + sloWight / 2,sloY + sloHigh);
-                String text = gp.dba.getItem(1,2).getName();
-                g2.drawString(text,100,100);
-                gp.dba.getItem(1,3).getName();
-                String textt = gp.dba.getItem(2,1).getName();
-                g2.drawString(textt,200,100);
+               // g2.drawString("Preis " + gp.dba.getItem(1,2).getGoldwert(), sloX + sloWight / 2,sloY + sloHigh);
+               // String text = gp.dba.getItem(1,2).getName();
+               // g2.drawString(text,100,100);
+               // gp.dba.getItem(1,3).getName();
+               // String textt = gp.dba.getItem(2,1).getName();
+                //g2.drawString(textt,200,100);
 
 
-                 g2.drawImage(gp.dba.getItem(1,2).getImagee(),100,100,null);
+                // g2.drawImage(gp.dba.getItem(1,2).getImagee(),100,100,null);
 
 
             //    g2.drawImage(gp.waffe.getImage(0),100,100,null );
@@ -163,6 +166,18 @@ public class Inventory {
         }
     }
     public void drawDetailPanel(){
+        int db = gp.player.item[selectSlot][0];
+        int item = gp.player.item[selectSlot][1];
+
+        if(!(gp.player.item[selectSlot][0] == 0)) {
+            g2.drawString(gp.dba.getItem(db, item).getName(), panX, panY);
+            g2.drawImage(gp.dba.getItem(db, item).getImagee(), panX, panY + 20, null);
+            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getGoldwert() + " €"), panX, panY + 80);
+            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getKraft()) + " Kraft", panX, panY + 100);
+            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getText()), panX, panY + 150);
+        }else {
+            g2.drawString("Hier liegt kein Item",panX,panY + 150);
+        }
 
 
 
@@ -171,6 +186,11 @@ public class Inventory {
         for(int i = 0; i<=3; i++){
             int ii = i*60 ;
             g2.drawRoundRect(panX + 10, (int) (panY + panHigh*0.15 ) + ii  ,50,50, 10,10);
+
+            if(gp.player.equipb[i]){
+                int slotnr = gp.player.equip[i];
+                g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0],gp.player.item[slotnr][1]).getImagee(), panX, panY + 220 * i, null);
+            }
         }
     }
     public void drawMove(){
@@ -190,6 +210,39 @@ public class Inventory {
 
 
     }
+    public void drawSwap(){
+        int a;
+        int b;
+        if(select){
+            if(twoSelect){
+                for( int i = 0; i < 4; i++){
+                        if(gp.player.equip[i] == twoSelectSlot){
+                           b = i;
+                        }else if(gp.player.equip[i] == selectSlot){
+                           a = i;
+                        }
+                    }
+                }
+
+
+                int sdb = gp.player.item[twoSelectSlot][0];
+                int sitem = gp.player.item[twoSelectSlot][1];
+
+                gp.player.item[twoSelectSlot][0] = gp.player.item[selectSlot][0];
+                gp.player.item[twoSelectSlot][1] = gp.player.item[selectSlot][1];
+
+                gp.player.item[selectSlot][0] = sdb;
+                gp.player.item[selectSlot][1] = sitem;
+
+                select = false;
+                twoSelect = false;
+                selectSlot = 0;
+                twoSelectSlot = 0;
+
+
+
+            }
+        }
     public void drawButton(){
         this.sonX = (int) (inWight*0.9) + inX;
         this.sonY = (int) (inHigh*0.6) + inY;
@@ -201,7 +254,7 @@ public class Inventory {
             g2.drawString(text[1],sonX + 20 ,sonY+ 20+ 1*50);
             g2.drawRoundRect(sonX , sonY + 1 * 50, sonWight, sonHigh, 10, 10);
         }
-        if(select){
+        if(select && !(gp.player.item[selectSlot][0] == 0)){
             g2.drawString(text[0],sonX + 20 ,sonY+ 20+ 0*50);
             g2.drawRoundRect(sonX , sonY + 0 * 50 , sonWight, sonHigh, 10, 10);
         }
@@ -221,9 +274,9 @@ public class Inventory {
         currentSlotValueX = 0;
         currentSlot = 0;
         select = false;
+        twoSelect = false;
         selectSlot = 0;
-        countX =0;
-        countY = 0;
+        twoSelectSlot = 0;
     }
 
     public int getx(Graphics2D g2,String text){

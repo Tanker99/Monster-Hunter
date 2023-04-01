@@ -17,8 +17,6 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
-
     }
 
     @Override
@@ -40,6 +38,12 @@ public class KeyHandler implements KeyListener {
         //key accept shopState
         else if(gp.gameState == gp.shopState){
             shopState(key);
+        }
+        //TEST
+        if(key == KeyEvent.VK_L){
+            gp.config.saveAll(gp.save);
+            gp.config.save(gp.save,"used", 1);
+            System.err.println("Save Game "+gp.save + " wurde Gespeichert");
         }
     }
 
@@ -145,12 +149,24 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.sellectValueY == 0) {
                     if (gp.ui.sellectValueX == 0) {
                         gp.save = 0;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
                         gp.gameState = gp.playerState;
                         gp.playSound(3);
 
                     }
                     if (gp.ui.sellectValueX == 1) {
                         gp.save = 1;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
                         gp.gameState = gp.playerState;
                         gp.playSound(3);
                     }
@@ -158,11 +174,23 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.sellectValueY == 1) {
                     if (gp.ui.sellectValueX == 0) {
                         gp.save = 2;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
                         gp.gameState = gp.playerState;
                         gp.playSound(3);
                     }
                     if (gp.ui.sellectValueX == 1) {
                         gp.save = 3;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
                         gp.gameState = gp.playerState;
                         gp.playSound(3);
                     }
@@ -252,11 +280,12 @@ public class KeyHandler implements KeyListener {
                 }
             }
             if (key == KeyEvent.VK_ENTER) {
-                if (!gp.inventory.select) {
-                    gp.inventory.select = true;
+                if(!(gp.inventory.select)){
                     gp.inventory.selectSlot = gp.inventory.currentSlot;
-                } else if (gp.inventory.select) {
-                    gp.inventory.select = false;
+                    gp.inventory.select = true;
+                }else {
+                    gp.inventory.twoSelectSlot = gp.inventory.currentSlot;
+                    gp.inventory.twoSelect = true;
                 }
 
             }

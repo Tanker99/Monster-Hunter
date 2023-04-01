@@ -89,12 +89,24 @@ public class MouseListener implements java.awt.event.MouseListener {
             if (gp.ui.sellectValueY == 0) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 0;
+                    if(gp.ui.newsave){
+                        gp.config.copyFile(4,gp.save);
+                        gp.config.loadAll(gp.save);
+                    }else {
+                        gp.config.loadAll(gp.save);
+                    }
                     gp.gameState = gp.playerState;
                     gp.playSound(3);
 
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 1;
+                    if(gp.ui.newsave){
+                        gp.config.copyFile(4,gp.save);
+                        gp.config.loadAll(gp.save);
+                    }else {
+                        gp.config.loadAll(gp.save);
+                    }
                     gp.gameState = gp.playerState;
                     gp.playSound(3);
                 }
@@ -102,11 +114,23 @@ public class MouseListener implements java.awt.event.MouseListener {
             if (gp.ui.sellectValueY == 1) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 2;
+                    if(gp.ui.newsave){
+                        gp.config.copyFile(4,gp.save);
+                        gp.config.loadAll(gp.save);
+                    }else {
+                        gp.config.loadAll(gp.save);
+                    }
                     gp.gameState = gp.playerState;
                     gp.playSound(3);
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 3;
+                    if(gp.ui.newsave){
+                        gp.config.copyFile(4,gp.save);
+                        gp.config.loadAll(gp.save);
+                    }else {
+                        gp.config.loadAll(gp.save);
+                    }
                     gp.gameState = gp.playerState;
                     gp.playSound(3);
                 }
@@ -212,12 +236,14 @@ public class MouseListener implements java.awt.event.MouseListener {
     }
     public void inventoryStateClick(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
-        gp.inventory.selectSlot = gp.inventory.currentSlot;
-        if(gp.inventory.select){
-            gp.inventory.select = false;
-        }else {
+        if(!(gp.inventory.select)){
+            gp.inventory.selectSlot = gp.inventory.currentSlot;
             gp.inventory.select = true;
+        }else {
+            gp.inventory.twoSelectSlot = gp.inventory.currentSlot;
+            gp.inventory.twoSelect = true;
         }
+
     }
     public void inventoryStateEntered(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Entered");

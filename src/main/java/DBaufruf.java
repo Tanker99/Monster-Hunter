@@ -18,15 +18,17 @@ public class DBaufruf {
     public Items getItem(int db, int item) {
         switch (db) {
             case 0:
+                return null;
+            case 1:
                 if(!( item > Waffe.wAnzahl)){
                 return Waffe.waffe[item];
             }
-            case 1:
+            case 2:
                 if(!( item > Trank.tAnzahl)){
                     return Trank.trank[item];
                 }
 
-            case 2:
+            case 3:
                 if(!( item > Ruestung.rAnzahl)){
                     return Ruestung.ruestung[item];
                 }        }

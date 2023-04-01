@@ -143,11 +143,20 @@ public class Config {
         }
     }
     public void saveAll(int file) {
-        save(file,"game",gp.gold);
+        for( int i = 0; i < 8; i++){
+            save(file,"itemDB" + i ,gp.player.item[i][0]);
+            save(file,"itemI" + i,gp.player.item[i][1]);
+        }
+        save(file,"gold",gp.gold);
+        save(file,"leben",gp.player.leben);
     }
 
     public void loadAll(int file){
+        for( int i = 0; i < 8; i++){
+            gp.player.item[i][0] = load(file,"itemDB" +i);
+            gp.player.item[i][1] = load(file,"itemI" + i);
+        }
         gp.gold = load(file,"gold");
-
+        gp.player.leben = load(file,"leben");
     }
 }
