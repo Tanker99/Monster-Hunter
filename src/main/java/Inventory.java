@@ -1,3 +1,5 @@
+import Items.Waffe;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -127,13 +129,19 @@ public class Inventory {
                 g2.drawRoundRect(sloX + ix * 200, sloY + iy * 200, sloWight, sloHigh, 10, 10);
 
 
-                gp.waffe.getWaffedetails(2);
-                String text = gp.waffe.name;
+                g2.drawImage(gp.dba.getItem(1,2).getImagee(),sloX+gp.dba.getItem(1,2).getImagee().getWidth(), sloY+ gp.dba.getItem(1,2).getImagee().getHeight(),null );
+                g2.drawString("Preis " + gp.dba.getItem(1,2).getGoldwert(), sloX + sloWight / 2,sloY + sloHigh);
+                String text = gp.dba.getItem(1,2).getName();
                 g2.drawString(text,100,100);
-                gp.waffe.getWaffedetails(0);
-                String textt = gp.waffe.name;
+                gp.dba.getItem(1,3).getName();
+                String textt = gp.dba.getItem(2,1).getName();
                 g2.drawString(textt,200,100);
-                g2.drawImage(gp.waffe.waffe[0],100,100,null );
+
+
+                 g2.drawImage(gp.dba.getItem(1,2).getImagee(),100,100,null);
+
+
+            //    g2.drawImage(gp.waffe.getImage(0),100,100,null );
                 i++;
             }
         }
@@ -155,6 +163,8 @@ public class Inventory {
         }
     }
     public void drawDetailPanel(){
+
+
 
     }
     public void drawEquipPanel(){

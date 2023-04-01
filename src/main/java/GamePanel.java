@@ -1,3 +1,6 @@
+import Items.Ruestung;
+import Items.Trank;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,9 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener mous = new MouseListener(this);
 
     //DB
-    public Waffe waffe = new Waffe(this);
-    //public Trank trank = new Trank(this);
-    public Ruestung ruestung = new Ruestung();
+    public DBaufruf dba = new DBaufruf(this);
 
     //dasd
     public Sound sound = new Sound();
@@ -101,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         while (gameThread != null) {
 
+
             currenTime = System.nanoTime();
             delta += (currenTime - lastTime) / drawInterval;
             timer += (currenTime - lastTime);
@@ -118,7 +120,6 @@ public class GamePanel extends JPanel implements Runnable {
                 deawcount = 0;
                 timer = 0;
             }
-
 
         }
     }
@@ -202,11 +203,11 @@ public class GamePanel extends JPanel implements Runnable {
         }
         public String getDBId(int i){
         if(i == 0){
-            return "gp.Waffe";
+            return "gp.Items.Waffe";
         }else if(i == 1){
-            return "gp.Ruestung";
+            return "gp.Items.Ruestung";
         }else if(i == 2){
-            return "gp.Trank";
+            return "gp.Items.Trank";
         }else {
             return null;
         }

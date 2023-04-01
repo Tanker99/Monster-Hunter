@@ -1,32 +1,38 @@
-public class DBaufruf(){
-    int n;
-    int m;
 
-    public DBaufruf(int n,int m){
-        this.n = n;
-        this.m = m;
+import Items.Items;
+import Items.Waffe;
+import Items.Trank;
+import Items.Ruestung;
+
+public class DBaufruf {
+    GamePanel gp;
+
+    public DBaufruf(GamePanel gp){
+        this.gp = gp;
+
+        Waffe.loadItem();
+        Trank.loadItem();
+        Ruestung.loadItem();
     }
-    switch(n){
-        case 1:
-        Waffe.getName(m);
-        Waffe.getKraft(m);
-        Waffe.getGoldwert(m);
-        Waffe.getText(m);
-        break;
 
-        case 2:
-        Trank.getName(m);
-        Trank.getKraft(m);
-        Trank.getGoldwert(m);
-        Trank.getText(m);
-        break;
+    public Items getItem(int db, int item) {
+        switch (db) {
+            case 0:
+                if(!( item > Waffe.wAnzahl)){
+                return Waffe.waffe[item];
+            }
+            case 1:
+                if(!( item > Trank.tAnzahl)){
+                    return Trank.trank[item];
+                }
 
-        case 3:
-        Ruestung.getName(m);
-        Ruestung.getKraft(m);
-        Ruestung.getGoldwert(m);
-        Ruestung.getText(m);
-        break;   
+            case 2:
+                if(!( item > Ruestung.rAnzahl)){
+                    return Ruestung.ruestung[item];
+                }        }
+
+
+        return null;
     }
 
 }

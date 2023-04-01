@@ -1,11 +1,10 @@
+package Items;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
-public class Waffe {
-    //Standart
-    GamePanel gp;
+public class Waffe extends Items{
 
     //Get Variablen
     public String name;
@@ -15,7 +14,8 @@ public class Waffe {
 
     //Defin Variablen
     public static final int wAnzahl = 8;
-    BufferedImage wBild[] = new BufferedImage[8];
+    static BufferedImage[] wBild = new BufferedImage[8];
+    public static Waffe waffe[];
 
     //Datenbank
     public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
@@ -32,31 +32,21 @@ public class Waffe {
     "Klein aber fein. Mit diesem Gerät Bolzen Sie wortwörtlich alles aus dem Weg!"
     };
 
-    public Waffe(GamePanel gp){
-        this.gp = gp;
-        getImage();
-        
+    public Waffe(String name, int kraft, int goldwert, String itemText, BufferedImage image){
+        super(name, kraft, goldwert, itemText, image);
     }
 
-    public String getName(int n){
-        return wName[n];
+    public static void loadItem(){
+        loadImage();
+        waffe = new Waffe[wAnzahl];
+        for (int i = 0; i < wAnzahl; i++){
+            waffe[i] = new Waffe(wName[i],wKraft[i],wGoldwert[i],wText[i],wBild[i]);
+        }
     }
-
-    public int getKraft(int n){
-        return wKraft[n];
+    public static Waffe getWaffe(int i){
+        return waffe[i];
     }
-
-    public int getGoldwert(int n){
-        return wGoldwert[n];
-    }
-    
-    public String getText(int n){
-        return wText[n];
-    }
-
-    public void getImage(){
-        this.gp = gp;
-        
+    public static void loadImage(){
         try {
             wBild[0] = ImageIO.read(Waffe.class.getResource("/items/Schwacher Bogen.png"));
             wBild[1] = ImageIO.read(Waffe.class.getResource("/items/Starker Bogen.png"));
@@ -66,11 +56,12 @@ public class Waffe {
             wBild[5] = ImageIO.read(Waffe.class.getResource("/items/Feuerschwert.png"));
             wBild[6] = ImageIO.read(Waffe.class.getResource("/items/Morgenstern.png"));
             wBild[7] = ImageIO.read(Waffe.class.getResource("/items/Armbrust.png"));
-            
+
 
         } catch (IOException e) {
+            System.out.println("DB.Items.Waffe Image Error");
             e.printStackTrace();
-            System.out.println("DB.Waffe Image Error");
+
         }
     }
 }

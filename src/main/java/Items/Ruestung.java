@@ -1,10 +1,10 @@
+package Items;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Ruestung {
-    //Standart
-    GamePanel gp;
+public class Ruestung extends Items{
 
     //Get Variablen
     public String name;
@@ -14,7 +14,8 @@ public class Ruestung {
 
     //Define Variablen
     public static final int rAnzahl = 2;
-    BufferedImage rBild[] = new BufferedImage[2];
+    static BufferedImage rBild[] = new BufferedImage[2];
+    public static Ruestung ruestung[];
     
     //Datenbank
     public static String[] rName={"Eisenrüstung","Goldrüstung"};
@@ -23,41 +24,33 @@ public class Ruestung {
     public static String[] rText = {
     "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
     "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus."
+    };
+
+    public Ruestung(String name, int kraft, int goldwert, String itemText, BufferedImage image){
+        super(name, kraft, goldwert, itemText, image);
     }
-    
-    public Trank(GamePanel gp){
-        this.gp = gp;
-        getImage();
-        
+    public static void loadItem(){
+        loadImage();
+        ruestung = new Ruestung[rAnzahl];
+        for (int i = 0; i < rAnzahl; i++){
+            ruestung[i] = new Ruestung(rName[i],rKraft[i],rGoldwert[i],rText[i],rBild[i]);
+        }
+    }
+    public static Ruestung getRuestung(int i){
+        return ruestung[i];
     }
 
-    public String getName(int n){
-        return rName[n];
-    }
+    public static void loadImage(){
 
-    public int getKraft(int n){
-        return rKraft[n];
-    }
-
-    public int getGoldwert(int n){
-        return rGoldwert[n];
-    }
-
-    public String getText(int n){
-        return rText[n];
-    }
-    
-    public void getImage(){
-        this.gp = gp;
-     
         try {
-            rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Eisenrüstung.png"));
-            rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Goldrüstung.png"));
-            
+            rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Eisenruestung.png"));
+            rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Goldruestung.png"));
+
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("DB.Rüstung Image Error");
-     }
+        }
+    }
 }
 
