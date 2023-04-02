@@ -20,18 +20,18 @@ public class DBaufruf {
             case 0:
                 return null;
             case 1:
-                if(!( item > Waffe.wAnzahl)){
-                return Waffe.waffe[item];
-            }
+                if (!(item > Waffe.wAnzahl)) {
+                    return Waffe.waffe[item];
+                }
             case 2:
+                if (!(item > Ruestung.rAnzahl)) {
+                    return Ruestung.ruestung[item];
+                }
+            case 3:
                 if(!( item > Trank.tAnzahl)){
                     return Trank.trank[item];
                 }
-
-            case 3:
-                if(!( item > Ruestung.rAnzahl)){
-                    return Ruestung.ruestung[item];
-                }        }
+        }
 
 
         return null;

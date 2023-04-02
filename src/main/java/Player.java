@@ -16,7 +16,6 @@ public class Player extends Entity{
 
 
     public int equip[] = new int[4];
-    public boolean equipb[] = new boolean[4];
     // [] == slot
 
 
@@ -25,14 +24,10 @@ public class Player extends Entity{
 
     public Player(GamePanel gp, KeyHandler keyH){
 
-        equip[0] = 7;
-        equipb[0] = true;
+        equip[0] = -1;
         equip[1] = -1;
-        equipb[1] = false;
-        equip[2] = 2;
-        equipb[2] = true;
+        equip[2] = -1;
         equip[3] = -1;
-        equipb[3] = false;
         /*
         item[0][0] = 1;
         item[0][1] = 1;

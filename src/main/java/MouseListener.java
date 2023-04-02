@@ -236,13 +236,27 @@ public class MouseListener implements java.awt.event.MouseListener {
     }
     public void inventoryStateClick(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
-        if(!(gp.inventory.select)){
-            gp.inventory.selectSlot = gp.inventory.currentSlot;
-            gp.inventory.select = true;
-        }else {
-            gp.inventory.twoSelectSlot = gp.inventory.currentSlot;
-            gp.inventory.twoSelect = true;
+        switch (gp.inventory.currentSlot){
+            case 0,1,2,3,4,5,6,7:
+                if(!(gp.inventory.select)){
+                    gp.inventory.selectSlot = gp.inventory.currentSlot;
+                    gp.inventory.select = true;
+                }else {
+                    gp.inventory.twoSelectSlot = gp.inventory.currentSlot;
+                    gp.inventory.twoSelect = true;
+                }
+                break;
+            case 8:
+                gp.inventory.tryequip = true;
+                break;
+            case 9:
+                break;
+            case 10:
+                gp.gameState = gp.playerState;
+                break;
         }
+
+
 
     }
     public void inventoryStateEntered(MouseEvent e){
@@ -296,6 +310,18 @@ public class MouseListener implements java.awt.event.MouseListener {
                 gp.inventory.currentSlotValueY = 1;
                 gp.inventory.currentSlotValueX = 3;
                 gp.inventory.currentSlot = 7;
+                gp.playSound(1);
+                break;
+            case "Button: equip":
+                gp.inventory.currentSlot = 8;
+                gp.playSound(1);
+                break;
+            case "Button: sell":
+                gp.inventory.currentSlot = 9;
+                gp.playSound(1);
+                break;
+            case "Button: back":
+                gp.inventory.currentSlot = 10;
                 gp.playSound(1);
                 break;
         }
