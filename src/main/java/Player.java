@@ -9,19 +9,48 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
-    public int item[][] = new int[7][2];
+    public int item[][] = new int[8][2];
+    //[8] == slot
+    // [][0] == DB
+    // [][1] == item
 
 
+    public int equip[] = new int[4];
+    public boolean equipb[] = new boolean[4];
+    // [] == slot
 
-    public int equip[][] = new int[3][];
 
 
 
 
     public Player(GamePanel gp, KeyHandler keyH){
-        //item[0][0] = 0;
-       // item[0][1] = 1;
 
+        equip[0] = 7;
+        equipb[0] = true;
+        equip[1] = -1;
+        equipb[1] = false;
+        equip[2] = 2;
+        equipb[2] = true;
+        equip[3] = -1;
+        equipb[3] = false;
+        /*
+        item[0][0] = 1;
+        item[0][1] = 1;
+
+        item[2][0] = 2;
+        item[2][1] = 4;
+
+        item[4][0] = 3;
+        item[4][1] = 1;
+
+        item[6][0] = 2;
+        item[6][1] = 1;
+
+        item[7][0] = 2;
+        item[7][1] = 4;
+
+
+         */
         this.gp = gp;
         this.keyH = keyH;
         Values();
@@ -41,7 +70,7 @@ public class Player extends Entity{
 
         try{
             up =  ImageIO.read(Player.class.getResource("/player/playerb.png"));
-            down =  ImageIO.read(Player.class.getResource("/player/playerc.png"));
+            down =  ImageIO.read(Player.class.getResource("/player/playercc.png"));
             left1 =  ImageIO.read(Player.class.getResource("/player/playerl1.png"));
             left2 =  ImageIO.read(Player.class.getResource("/player/playerl2.png"));
             right1 =  ImageIO.read(Player.class.getResource("/player/playerr1.png"));

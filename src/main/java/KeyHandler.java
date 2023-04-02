@@ -17,58 +17,200 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         int key = e.getKeyCode();
-        //Menu State
-        if (gp.gameState == gp.menueState) {
+
+        //key accept menuState
+        if (gp.gameState == gp.uiState) {
             menueState(key);
         }
-        //Player State
+        //key accept playerState
         else if (gp.gameState == gp.playerState) {
             playerState(key);
         }
-        //Inventory State
+        //key accept inventoryState
         else if(gp.gameState == gp.inventoryState){
             inventarState(key);
         }
+        //key accept shopState
         else if(gp.gameState == gp.shopState){
             shopState(key);
+        }
+        //TEST
+        if(key == KeyEvent.VK_L){
+            gp.config.saveAll(gp.save);
+            gp.config.save(gp.save,"used", 1);
+            System.err.println("Save Game "+gp.save + " wurde Gespeichert");
         }
     }
 
     public void menueState(int key) {
-        if (key == KeyEvent.VK_W) {
-            if(gp.ui.countY >0){
-                gp.ui.countY --;
-                gp.playSound(1);
-            }else {
-                gp.playSound(2);
+        System.out.println(key);
+        //EXTRA
+        if (key == 109) {
+            gp.updateScreen(-100);
+            //gp.gameState = gp.testState;
+        }
+        if(key == 107){
+            gp.updateScreen(100);
+
+        }
+        if(gp.ui.menuState == gp.ui.titleState){
+            if (key == KeyEvent.VK_W) {
+                if (gp.ui.sellectValueY > 0) {
+                    gp.ui.sellectValueY --;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
+            }
+            if (key == KeyEvent.VK_S) {
+                if (gp.ui.sellectValueY < 3) {
+                    gp.ui.sellectValueY++;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
+
+            }
+            if (key == KeyEvent.VK_ENTER) {
+                if (gp.ui.sellectValueY == 0) {
+                    gp.ui.newsave = true;
+                    gp.ui.menuState = gp.ui.newAndPlayState;
+                    gp.playSound(3);
+                }
+                if (gp.ui.sellectValueY == 1) {
+                    gp.ui.newsave = false;
+                    gp.ui.menuState = gp.ui.newAndPlayState;
+                    gp.playSound(3);
+                }
+                if (gp.ui.sellectValueY == 2) {
+                    gp.ui.menuState = gp.ui.settingsState;
+                    gp.playSound(3);
+                }
+                if (gp.ui.sellectValueY == 3) {
+                    gp.playSound(2);
+                    System.exit(0);
+
+                }
             }
         }
-        if (key == KeyEvent.VK_S) {
-            if(gp.ui.countY <3){
-                gp.ui.countY ++;
-                gp.playSound(1);
-            }else {
-                gp.playSound(2);
+        else if(gp.ui.menuState == gp.ui.newAndPlayState){
+            if(key == KeyEvent.VK_ESCAPE){
+                gp.ui.menuState = gp.ui.titleState;
+                gp.playSound(3);
+            }
+            if (key == KeyEvent.VK_W) {
+                if (gp.ui.sellectValueY > 0) {
+                    gp.ui.sellectValueY --;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
+            }
+            if (key == KeyEvent.VK_S) {
+                if (gp.ui.sellectValueY < 2) {
+                    gp.ui.sellectValueY++;
+                    gp.playSound(1);
+                } else {
+                    gp.playSound(2);
+                }
+
+            }
+            if (key == KeyEvent.VK_A) {
+                if (!(gp.ui.sellectValueY == 2)) {
+                    if (gp.ui.sellectValueX > 0) {
+                        gp.ui.sellectValueX--;
+                        gp.playSound(1);
+                    } else {
+                        gp.playSound(2);
+                    }
+                } else {
+                    gp.playSound(2);
+                }
+            }
+            if (key == KeyEvent.VK_D) {
+                if (!(gp.ui.sellectValueY == 2)) {
+                    if (gp.ui.sellectValueX < 1) {
+                        gp.ui.sellectValueX++;
+                        gp.playSound(1);
+                    } else {
+                        gp.playSound(2);
+                    }
+
+                }else {
+                    gp.playSound(2);
+                }
+            }
+            if (key == KeyEvent.VK_ENTER) {
+                if (gp.ui.sellectValueY == 0) {
+                    if (gp.ui.sellectValueX == 0) {
+                        gp.save = 0;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
+                        gp.gameState = gp.playerState;
+                        gp.playSound(3);
+
+                    }
+                    if (gp.ui.sellectValueX == 1) {
+                        gp.save = 1;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
+                        gp.gameState = gp.playerState;
+                        gp.playSound(3);
+                    }
+                }
+                if (gp.ui.sellectValueY == 1) {
+                    if (gp.ui.sellectValueX == 0) {
+                        gp.save = 2;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
+                        gp.gameState = gp.playerState;
+                        gp.playSound(3);
+                    }
+                    if (gp.ui.sellectValueX == 1) {
+                        gp.save = 3;
+                        if(gp.ui.newsave){
+                            gp.config.copyFile(4,gp.save);
+                            gp.config.loadAll(gp.save);
+                        }else {
+                            gp.config.loadAll(gp.save);
+                        }
+                        gp.gameState = gp.playerState;
+                        gp.playSound(3);
+                    }
+                }
+                if (gp.ui.sellectValueY == 2) {
+                    gp.ui.menuState = gp.ui.titleState;
+                    gp.playSound(3);
+                }else
+                if (gp.ui.newsave) {
+                    gp.config.copyFile(4, gp.save);
+                }
             }
 
         }
-        if (key == KeyEvent.VK_ENTER) {
-            if(gp.ui.countY == 1) {
-                gp.gameState = 1;
-                gp.playSound(2);
+        else if(gp.ui.menuState == gp.ui.settingsState){
+            if(key == KeyEvent.VK_ESCAPE){
+                gp.ui.menuState = gp.ui.titleState;
+                gp.playSound(3);
             }
-            if(gp.ui.countY == 3) {
-                System.exit(0);
-                gp.playSound(2);
-            }
+
         }
     }
 
@@ -95,71 +237,55 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.shopState;
         }
         if (key == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.menueState;
+            gp.gameState = gp.uiState;
         }
 
 
     }
     public void inventarState(int key) {
             if (key == KeyEvent.VK_W) {
-                if (gp.inventory.sellect == true) {
-                    if (gp.inventory.sellectcountY > 0) {
-                        gp.inventory.sellectcountY--;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
-
+                if (gp.inventory.currentSlotValueY > 0) {
+                    gp.inventory.currentSlotValueY--;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot -4;
+                    gp.playSound(1);
                 } else {
-                    if (gp.inventory.countY > 0) {
-                        gp.inventory.countY--;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
+                    gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_A) {
-                if (gp.inventory.countX > 0) {
-                    gp.inventory.countX--;
+                if (gp.inventory.currentSlotValueX > 0) {
+                    gp.inventory.currentSlotValueX--;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot -1;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_S) {
-                if (gp.inventory.sellect == true) {
-                    if (gp.inventory.sellectcountY < 2) {
-                        gp.inventory.sellectcountY++;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
-
+                if (gp.inventory.currentSlotValueY < 1) {
+                    gp.inventory.currentSlotValueY++;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot +4;
+                    gp.playSound(1);
                 } else {
-                    if (gp.inventory.countY < 1) {
-                        gp.inventory.countY++;
-                        gp.playSound(1);
-                    } else {
-                        gp.playSound(2);
-                    }
+                    gp.playSound(2);
                 }
-
             }
             if (key == KeyEvent.VK_D) {
-                if (gp.inventory.countX < 3) {
-                    gp.inventory.countX++;
+                if (gp.inventory.currentSlotValueX < 3) {
+                    gp.inventory.currentSlotValueX++;
+                    gp.inventory.currentSlot = gp.inventory.currentSlot +1;
                     gp.playSound(1);
                 } else {
                     gp.playSound(2);
                 }
             }
             if (key == KeyEvent.VK_ENTER) {
-                if (!gp.inventory.sellect) {
-                    gp.inventory.sellect = true;
-                } else if (gp.inventory.sellect) {
-                    gp.inventory.sellectcountY = 0;
-                    gp.inventory.sellect = false;
+                if(!(gp.inventory.select)){
+                    gp.inventory.selectSlot = gp.inventory.currentSlot;
+                    gp.inventory.select = true;
+                }else {
+                    gp.inventory.twoSelectSlot = gp.inventory.currentSlot;
+                    gp.inventory.twoSelect = true;
                 }
 
             }

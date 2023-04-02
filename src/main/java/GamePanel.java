@@ -1,17 +1,8 @@
+import Items.Ruestung;
+import Items.Trank;
 
-
-
-
-
-import DB.Ruestung;
-import DB.Trank;
-import DB.Waffe;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -21,48 +12,61 @@ public class GamePanel extends JPanel implements Runnable {
     final int maxWidth = 16;
     final int maxHeight = 12;
 
-    final int screenHeight = titleSize * maxHeight; //960
-    final int screenWidth = titleSize * maxWidth; //1280
+     int screenHeight = titleSize * maxHeight; //960
+     int screenWidth = titleSize * maxWidth; //1280
 
+
+    //Listerner
     KeyHandler keyH = new KeyHandler(this);
-    Sound sound = new Sound();
-    Config config = new Config(this);
-    public UI ui = new UI(this);
-    public Player player = new Player(this, keyH);
-    public Shop shop = new Shop(this, keyH);
-    public Inventory inventory = new Inventory(this,keyH);
-    public Fight fight = new Fight(this, keyH);
+    MouseListener mous = new MouseListener(this);
 
-    public Waffe waffe = new Waffe();
-    public Trank trank = new Trank();
-    public Ruestung ruestung = new Ruestung();
+    //DB
+    public DBaufruf dba = new DBaufruf(this);
+
+    //dasd
+    public Sound sound = new Sound();
+    public Config config = new Config(this);
 
     public Image image = new Image(this);
+    public Test test = new Test(this,keyH);
+
+
+    //Classes
+    public UI ui = new UI(this);
+    public Player player = new Player(this, keyH);
+    public TickTackToe miniGame = new TickTackToe(this);
+    public Shop shop = new Shop(this, keyH);
+    public Inventory inventory = new Inventory(this,keyH);
+
+    public Fight fight = new Fight(this, keyH);
+
+
     Thread gameThread;
 
+    //STATES
+    public int gameState;
+    private  int oldGameState;
+    final int uiState = 1;
+    final int playerState = 2;
+    final int miniGameState =3;
+    final int shopState = 4;
+    final int inventoryState = 5;
+    final int fightState = 6;
+    final int testState = 10;
 
-    public int gameState = 0;
-    final int menueState = 0;
-    final int playerState = 1;
-    final int shopState = 2;
-    final int inventoryState = 3;
-    final int fightState = 4;
+    //Variable
+    public boolean shopEntry = false;
+    public boolean fullScreen;
+    public int save = 0;
+    int FPS = 60;
 
     //TEST ZWECKE
 
     public int gold = 0;
     public int starke =100;
-
-
-    //TEST ZWECKE
-
-    int FPS = 60;
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 5;
+    public int xx = screenWidth;
 
     public GamePanel(){
-
 
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.WHITE);
@@ -72,12 +76,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
-
     }
 
     public void setup(){
         playLoopSound(0);
-        gameState = 0;
+        gameState = 1;
+
 
     }
 
@@ -98,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         while (gameThread != null) {
 
+
             currenTime = System.nanoTime();
             delta += (currenTime - lastTime) / drawInterval;
             timer += (currenTime - lastTime);
@@ -116,7 +121,6 @@ public class GamePanel extends JPanel implements Runnable {
                 timer = 0;
             }
 
-
         }
     }
 
@@ -132,26 +136,40 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == shopState) {
             shop.update();
         }
+        if (gameState == testState) {
+            test.update();
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(gameState == 0){
+        if (!(gameState == oldGameState)) {
+            this.removeAll();
+            this.validate();
+            this.repaint();
+            oldGameState = gameState;
+        }
+        if (gameState == uiState) {
             ui.draw(g2);
             g2.dispose();
-        }else if(gameState == playerState) {
+        } else if (gameState == playerState) {
             player.draw(g2);
             g2.dispose();
-        }else if(gameState == shopState){
-            shop.draw(g2);
+        } else if(gameState == miniGameState){
+            miniGame.draw(g2);
             g2.dispose();
-        }else if( gameState == inventoryState){
+        }else if (gameState == inventoryState) {
             inventory.draw(g2);
             g2.dispose();
+        } else if (gameState == shopState) {
+            shop.draw(g2);
+            g2.dispose();
+        } else if (gameState == testState) {
+            test.draw(g2);
+            g2.dispose();
         }
-
         g2.dispose();
     }
 
@@ -165,6 +183,35 @@ public class GamePanel extends JPanel implements Runnable {
         sound.selectSound(i);
         sound.play();
     }
+    public void updateScreen(int i){
+            Dimension currentSize = this.getSize();
+            int newWidth = currentSize.width;
+            int newHeight = currentSize.height;
+
+            if (i > 0) {
+                newWidth += 100;
+                newHeight += 100;
+            } else if (i < 0) {
+                newWidth -= 100;
+                newHeight -= 100;
+            }
+
+            Dimension newSize = new Dimension(newWidth, newHeight);
+            screenWidth = newWidth;
+            screenHeight = newHeight;
+            this.setSize(newSize);
+        }
+        public String getDBId(int i){
+        if(i == 0){
+            return "gp.Items.Waffe";
+        }else if(i == 1){
+            return "gp.Items.Ruestung";
+        }else if(i == 2){
+            return "gp.Items.Trank";
+        }else {
+            return null;
+        }
+        }
 }
 
 

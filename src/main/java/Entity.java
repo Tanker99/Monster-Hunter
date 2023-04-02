@@ -1,9 +1,11 @@
 import java.awt.image.BufferedImage;
 
 public class Entity {
-    
+
+    public int leben;
     public int x,y;
     public int speed;
+
     
     public BufferedImage up,down,left1,left2,right1,right2,still;
     public String ImageDirection;

@@ -4,56 +4,25 @@ import java.io.IOException;
 
 public class Image {
     GamePanel gp;
-    BufferedImage player[] = new BufferedImage[5]; //
-    BufferedImage waffe[];
-   // BufferedImage ruestung[] = new BufferedImage[gp.ruestung.Ranzahl];
-   // BufferedImage trank[] = new BufferedImage[gp.trank.Tanzahl];
 
+    public BufferedImage imgX, imgO;
 
 
     public Image(GamePanel gp) {
         this.gp = gp;
-
-      //  waffe[] = new BufferedImage[gp.waffe.Wanzahl];
-
-       /* try{
-
-        waffe[1] = ImageIO.read(Player.class.getResource("/player/playerb.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("player Image Error");
-        }
-
-        */
+        loadImage();
 
     }
 
-    public BufferedImage loadImage() throws IOException {
-        int i = 0;
-        BufferedImage test;
-        test = ImageIO.read(Player.class.getResource("player/playerb.png"));
-        switch (i){
-            case 1:
-                return test;
-        }
-
-        /*
+    public void loadImage(){
 
         try {
-            player[0] = ImageIO.read(Player.class.getResource("/player/playerb.png"));
-            player[1] = ImageIO.read(Player.class.getResource("/player/playerc.png"));
-            player[2] = ImageIO.read(Player.class.getResource("/player/playerl1.png"));
-            player[3] = ImageIO.read(Player.class.getResource("/player/playerl2.png"));
-            player[4] = ImageIO.read(Player.class.getResource("/player/playerr1.png"));
-            player[5] = ImageIO.read(Player.class.getResource("/player/playerr2.png"));
+            imgX = ImageIO.read(Image.class.getResource("/Kreis.png"));
+            imgO = ImageIO.read(Player.class.getResource("/x.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("player Image Error");
         }
-
-
-
-         */
-        return test;
     }
 }
