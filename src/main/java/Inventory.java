@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static java.awt.Color.blue;
-import static java.awt.Color.green;
+import static java.awt.Color.*;
 
 public class Inventory {
     //Standard
@@ -23,6 +22,7 @@ public class Inventory {
     public int currentSlotValueY;
 
     public boolean tryequip;
+    public boolean trysell;
 
     //JPanel
     private JPanel slot[] = new JPanel[8];
@@ -105,7 +105,9 @@ public class Inventory {
 
         drawSwap();
 
-        euipcheck();
+        tryeuipcheck();
+
+        sell();
 
     }
 
@@ -131,7 +133,7 @@ public class Inventory {
                 if(!(gp.player.item[i][0] == 0)) {
                     g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200);
                     g2.drawImage(gp.dba.getItem(db,item).getImagee(),sloX + ix * 200,sloY + iy * 200,null );
-                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " €",sloX + ix * 200,sloY + iy * 200+ 80);
+                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 80);
                     g2.drawString(String.valueOf(gp.dba.getItem(db,item).getKraft()) + " Kraft",sloX + ix * 200,sloY + iy * 200 + 100 );
                 }
 
@@ -211,7 +213,12 @@ public class Inventory {
             g2.drawRoundRect(sloX + currentSlotValueX * 200, sloY + currentSlotValueY * 200, sloWight, sloHigh, 10, 10);
         } else {
             g2.setColor(green);
-            g2.drawRoundRect(sonX, sonY + (currentSlot - 8) * 100, sonWight, sonHigh, 10, 10);
+            if (currentSlot == 8 && select) {
+                g2.drawRoundRect(sonX, sonY + (currentSlot - 8) * 100, sonWight, sonHigh, 10, 10);
+            }
+            if (currentSlot == 9 && gp.shopEntry) {
+                g2.drawRoundRect(sonX, sonY + (currentSlot - 8) * 100, sonWight, sonHigh, 10, 10);
+            }
         }
 
 
@@ -268,18 +275,15 @@ public class Inventory {
             button[i].setName("Button: " + text[i]);
             button[i].setBounds(sonX , sonY + i * 100 , sonWight, sonHigh);
             gp.add(button[i]);
-            button[i].setVisible(true);
             button[i].addMouseListener(gp.mous);
-            //g2.drawString(text[i],sonX + 20 ,sonY+ 20+ i*100);
-          //  g2.drawRoundRect(sonX , sonY + i * 100 , sonWight, sonHigh, 10, 10);
+            button[i].setVisible(true);
+
         }
-        if(select && !(gp.player.item[selectSlot][0] == 0)){
-            for(int i = 0; i< 4; i++){
-                if(gp.player.equip[i] == selectSlot){
-                    g2.drawString(text[3],sonX + 20 ,sonY+ 20+ 0*100);
-                }else {
-                    g2.drawString(text[0],sonX + 20 ,sonY+ 20+ 0*100);
-                }
+        if(select){
+            if(gp.player.equip[0] == selectSlot || gp.player.equip[1] == selectSlot || gp.player.equip[2] == selectSlot || gp.player.equip[3] == selectSlot) {
+                g2.drawString(text[3],sonX + 20 ,sonY+ 20+ 0*100);
+            }else {
+                g2.drawString(text[0],sonX + 20 ,sonY+ 20+ 0*100);
             }
 
             g2.drawRoundRect(sonX , sonY + 0 * 100 , sonWight, sonHigh, 10, 10);
@@ -292,8 +296,9 @@ public class Inventory {
         g2.drawString(text[2],sonX + 20 ,sonY+ 20+ 2*100);
         g2.drawRoundRect(sonX , sonY + 2 * 100 , sonWight, sonHigh, 10, 10);
 
+
     }
-    public void euipcheck(){
+    public void tryeuipcheck(){
         if(tryequip){
             if(gp.player.item[selectSlot][0] == 1){
                 if(gp.player.equip[0] == selectSlot){
@@ -327,6 +332,20 @@ public class Inventory {
             tryequip = false;
             select = false;
 
+        }
+    }
+    public void sell(){
+        if(trysell && select) {
+            gp.gold = (int) (gp.gold + gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
+            for(int i = 0; i < 3; i++) {
+                if(gp.player.equip[i] == selectSlot){
+                    gp.player.equip[i] = -1;
+                }
+            }
+            gp.player.item[selectSlot][0] = 0;
+            gp.player.item[selectSlot][1] = 0;
+            trysell = false;
+            select = false;
         }
     }
     public void update() {

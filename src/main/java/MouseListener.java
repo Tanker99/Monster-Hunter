@@ -247,9 +247,14 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
                 break;
             case 8:
+                if(gp.inventory.select){
                 gp.inventory.tryequip = true;
+                }
                 break;
             case 9:
+               if(gp.shopEntry){
+                   gp.inventory.trysell = true;
+               }
                 break;
             case 10:
                 gp.gameState = gp.playerState;
