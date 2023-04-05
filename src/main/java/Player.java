@@ -64,12 +64,14 @@ public class Player extends Entity{
     public void getImage(){
 
         try{
-            up =  ImageIO.read(Player.class.getResource("/player/playerb.png"));
-            down =  ImageIO.read(Player.class.getResource("/player/playercc.png"));
-            left1 =  ImageIO.read(Player.class.getResource("/player/playerl1.png"));
-            left2 =  ImageIO.read(Player.class.getResource("/player/playerl2.png"));
-            right1 =  ImageIO.read(Player.class.getResource("/player/playerr1.png"));
-            right2 =  ImageIO.read(Player.class.getResource("/player/playerr2.png"));
+            down1 =  ImageIO.read(Player.class.getResource("/player/playercj1.png"));
+            down2 =  ImageIO.read(Player.class.getResource("/player/playercj2.png"));
+            up1 =  ImageIO.read(Player.class.getResource("/player/playerbj1.png"));
+            up2 =  ImageIO.read(Player.class.getResource("/player/playerbj2.png"));
+            left1 =  ImageIO.read(Player.class.getResource("/player/playerlj1.png"));
+            left2 =  ImageIO.read(Player.class.getResource("/player/playerlj2.png"));
+            right1 =  ImageIO.read(Player.class.getResource("/player/playerrj1.png"));
+            right2 =  ImageIO.read(Player.class.getResource("/player/playerrj2.png"));
             System.out.println("test");
         }catch (IOException e){
             e.printStackTrace();
@@ -114,10 +116,18 @@ public class Player extends Entity{
 
         switch (ImageDirection){
             case "up":
-                image = up;
+                if(animation == 1) {
+                    image = up2;
+                }if(animation == 2) {
+                image = up1;
+            }
                 break;
             case "down":
-                image = down;
+                if(animation == 1) {
+                    image = down2;
+                }if(animation == 2) {
+                image = down1;
+                }
                 break;
             case "left":
                 if(animation == 1){
