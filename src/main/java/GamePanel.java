@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int testState = 10;
 
     //Variable
-    public boolean shopEntry = false;
+    public boolean shopEntry = true;
     public boolean fullScreen;
     public int save = 0;
     int FPS = 60;
