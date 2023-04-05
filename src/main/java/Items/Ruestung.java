@@ -18,9 +18,9 @@ public class Ruestung extends Items{
     public static Ruestung ruestung[];
     
     //Datenbank
-    public static String[] rName={"Eisenrüstung","Goldrüstung"};
+    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Jaderüstung","Leichte rüstung","Die Unsichtbare"};
     public static int[] rKraft={20,12};
-    public static int[] rGoldwert={34,50};
+    public static int[] rGoldwert={34,50,15,345,10,556};
     public static String[] rText = {
     "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
     "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus."
