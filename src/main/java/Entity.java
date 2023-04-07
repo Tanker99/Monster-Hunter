@@ -9,7 +9,7 @@ public class Entity {
     public int speed;
 
     
-    public BufferedImage up,down,left1,left2,right1,right2,still;
+    public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2,still;
     public String ImageDirection;
     public int timer = 0; //1 bis 2
     public int animation = 1; // 1 oder 2
