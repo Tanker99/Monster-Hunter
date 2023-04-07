@@ -23,29 +23,6 @@ public class Player extends Entity{
 
 
     public Player(GamePanel gp, KeyHandler keyH){
-
-        equip[0] = -1;
-        equip[1] = -1;
-        equip[2] = -1;
-        equip[3] = -1;
-        /*
-        item[0][0] = 1;
-        item[0][1] = 1;
-
-        item[2][0] = 2;
-        item[2][1] = 4;
-
-        item[4][0] = 3;
-        item[4][1] = 1;
-
-        item[6][0] = 2;
-        item[6][1] = 1;
-
-        item[7][0] = 2;
-        item[7][1] = 4;
-
-
-         */
         this.gp = gp;
         this.keyH = keyH;
         Values();

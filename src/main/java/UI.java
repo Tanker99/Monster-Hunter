@@ -10,7 +10,7 @@ public class UI{
     Graphics2D g2;
 
     //States
-    public int menuState = 2;
+    public int menuState = 1;
     private int oldMenuState;
 
     final int loadingState = 1;

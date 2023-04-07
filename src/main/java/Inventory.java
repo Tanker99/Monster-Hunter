@@ -336,7 +336,7 @@ public class Inventory {
     }
     public void sell(){
         if(trysell && select) {
-            gp.gold = (int) (gp.gold + gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
+            gp.player.gold = (int) (gp.player.gold + gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
             for(int i = 0; i < 3; i++) {
                 if(gp.player.equip[i] == selectSlot){
                     gp.player.equip[i] = -1;

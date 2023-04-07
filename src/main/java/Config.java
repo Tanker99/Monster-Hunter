@@ -150,8 +150,9 @@ public class Config {
         for( int i = 0; i< 3; i++){
             save(file,"equip" + i,gp.player.equip[i]);
         }
-        save(file,"gold",gp.gold);
+        save(file,"gold",gp.player.gold);
         save(file,"leben",gp.player.leben);
+        save(file,"defense",gp.player.defense);
     }
 
     public void loadAll(int file){
@@ -162,7 +163,8 @@ public class Config {
         for( int i = 0; i< 3; i++){
             gp.player.equip[i] = load(file,"equip" + i);
         }
-        gp.gold = load(file,"gold");
+        gp.player.gold = load(file,"gold");
         gp.player.leben = load(file,"leben");
+        gp.player.defense = load(file,"defense");
     }
 }
