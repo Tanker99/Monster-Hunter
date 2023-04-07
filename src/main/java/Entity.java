@@ -4,6 +4,7 @@ public class Entity {
 
     public int leben;
     public int defense;
+    public int kraft;
     public int gold;
     public int x,y;
     public int speed;

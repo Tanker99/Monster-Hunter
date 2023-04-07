@@ -147,7 +147,7 @@ public class Config {
             save(file,"itemDB" + i ,gp.player.item[i][0]);
             save(file,"itemI" + i,gp.player.item[i][1]);
         }
-        for( int i = 0; i< 3; i++){
+        for( int i = 0; i< 4; i++){
             save(file,"equip" + i,gp.player.equip[i]);
         }
         save(file,"gold",gp.player.gold);
@@ -160,7 +160,7 @@ public class Config {
             gp.player.item[i][0] = load(file,"itemDB" +i);
             gp.player.item[i][1] = load(file,"itemI" + i);
         }
-        for( int i = 0; i< 3; i++){
+        for( int i = 0; i< 4; i++){
             gp.player.equip[i] = load(file,"equip" + i);
         }
         gp.player.gold = load(file,"gold");

@@ -82,6 +82,8 @@ public class UI{
         g2.drawString("Gesundheitswarnung: ",tX,tY - 100);
         g2.setColor(Color.WHITE);
         String text = "Willkommen bei Monster-Hunter! Bevor du startest, möchten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, während jeder Spielstunde des Spielens regelmäßige eine Pause von 15 Minuten einzulegen, um eine Überanstrengung zu vermeiden. Wenn du körperliche Beschwerden wie Müdigkeit oder Schmerzen verspürst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge außerdem dafür, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank für deine Aufmerksamkeit und viel Spaß beim Spielen!";
+        Font font = new Font("Arial", Font.PLAIN, 25);
+        g2.setFont(font);
         gp.text.drawTextBetweenBox(g2,text,tX,tY,twidght);
 
 

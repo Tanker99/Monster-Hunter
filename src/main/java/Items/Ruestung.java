@@ -18,12 +18,13 @@ public class Ruestung extends Items{
     public static Ruestung ruestung[];
     
     //Datenbank
-    public static String[] rName={"EisenrÃ¼stung","GoldrÃ¼stung","LederrÃ¼stung","JaderÃ¼stung","Leichte rÃ¼stung","Die Unsichtbare"};
-    public static int[] rKraft={20,12};
+    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Jaderüstung","Leichte rüstung","Die Unsichtbare"};
+    public static int[] rKraft={20,12,1};
     public static int[] rGoldwert={34,50,15,345,10,556};
     public static String[] rText = {
-    "Damals wie heute bietet eine RÃ¼stung aus hochwertigem Eisen einen guten Schutz, welcher dem TrÃ¤ger im Kampf einen Vorteil verschafft.",
-    "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drÃ¼ckt man durch diese RÃ¼stung Erfolg und Mut aus."
+    "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
+    "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus.",
+            ""
     };
 
     public Ruestung(String name, int kraft, int goldwert, String itemText, BufferedImage image){
@@ -49,7 +50,7 @@ public class Ruestung extends Items{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("DB.RÃ¼stung Image Error");
+            System.out.println("DB.Rüstung Image Error");
         }
     }
 }

@@ -8,6 +8,7 @@ import static java.awt.Color.red;
 
 public class Shop {
 
+
     GamePanel gp;
 
     Graphics2D g2;

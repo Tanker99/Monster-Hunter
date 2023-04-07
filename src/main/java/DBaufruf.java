@@ -23,14 +23,17 @@ public class DBaufruf {
                 if (!(item > Waffe.wAnzahl)) {
                     return Waffe.waffe[item];
                 }
+                break;
             case 2:
                 if (!(item > Ruestung.rAnzahl)) {
                     return Ruestung.ruestung[item];
                 }
+                break;
             case 3:
                 if(!( item > Trank.tAnzahl)){
                     return Trank.trank[item];
                 }
+                break;
         }
 
 

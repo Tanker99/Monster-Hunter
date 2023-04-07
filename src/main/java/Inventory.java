@@ -1,8 +1,11 @@
 import Items.Waffe;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import static java.awt.Color.*;
 
@@ -80,9 +83,9 @@ public class Inventory {
 
     }
     public void drawInventory(){
-       // System.err.println(currentSlot);
         //draw Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
+        g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);
 
         //Draw Slots
         drawSlot();
@@ -107,6 +110,11 @@ public class Inventory {
     }
     public void drawSlot(){
 
+        //int slotx = (int) (gp.screenWidth * 0.18);
+        //int slotwight = (int) (gp.screenWidth * 0.88);
+
+       // g2.drawRoundRect(slotx,slotwight /4,100,100,10,10);
+
         this.sloX = (int) (inWight * 0.2) + inX;
         this.sloY = (int) (inHigh * 0.05) + inY;
         this.sloWight = 150;
@@ -125,24 +133,21 @@ public class Inventory {
                 int db = gp.player.item[i][0];
                 int item = gp.player.item[i][1];
                 if(!(gp.player.item[i][0] == 0)) {
-                    g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200);
-                    g2.drawImage(gp.dba.getItem(db,item).getImagee(),sloX + ix * 200,sloY + iy * 200,null );
-                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 80);
-                    g2.drawString(String.valueOf(gp.dba.getItem(db,item).getKraft()) + " Kraft",sloX + ix * 200,sloY + iy * 200 + 100 );
+                    int x = sloWight /2 - gp.dba.getItem(db,item).getImagee().getWidth() /2;
+                    g2.drawImage(gp.dba.getItem(db,item).getImagee(),sloX + x  +ix *200 ,sloY + iy * 200 + 5,null);
+
+
+                    gp.text.drawTextcentered(g2,gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200 + 100, sloWight);
+                   // g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200 + 100);
+                    gp.text.drawTextcentered(g2,(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 115,sloWight);
+                   // g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 115);
+                    if(db == 3 ){
+                        gp.text.drawTextcentered(g2, "Heilt um :"+ gp.dba.getItem(db, item).getKraft(), sloX + ix * 200, sloY + iy * 200 + 130, sloWight);
+                    }else {
+                        gp.text.drawTextcentered(g2, (gp.dba.getItem(db, item).getKraft()) + " Kraft", sloX + ix * 200, sloY + iy * 200 + 130, sloWight);
+                    }
+                    // g2.drawString(String.valueOf(gp.dba.getItem(db,item).getKraft()) + " Kraft",sloX + ix * 200,sloY + iy * 200 + 130 );
                 }
-
-               // g2.drawString("Preis " + gp.dba.getItem(1,2).getGoldwert(), sloX + sloWight / 2,sloY + sloHigh);
-               // String text = gp.dba.getItem(1,2).getName();
-               // g2.drawString(text,100,100);
-               // gp.dba.getItem(1,3).getName();
-               // String textt = gp.dba.getItem(2,1).getName();
-                //g2.drawString(textt,200,100);
-
-
-                // g2.drawImage(gp.dba.getItem(1,2).getImagee(),100,100,null);
-
-
-            //    g2.drawImage(gp.waffe.getImage(0),100,100,null );
                 i++;
             }
         }
@@ -151,7 +156,7 @@ public class Inventory {
     public void drawItemPanel(){
         this.panX = inX + 10;
         this.panY = (int) (inY + inHigh*0.1);
-        this.panWight= 200;
+        this.panWight= (int) (gp.screenWidth * 0.16);
         this.panHigh = (int) (inHigh /1.3);
 
         g2.drawRoundRect(panX,panY,panWight,panHigh, 10,10);
@@ -168,12 +173,20 @@ public class Inventory {
         int item = gp.player.item[selectSlot][1];
 
         if(!(gp.player.item[selectSlot][0] == 0)) {
-            g2.drawString(gp.dba.getItem(db, item).getName(), panX, panY);
-            g2.drawImage(gp.dba.getItem(db, item).getImagee(), panX, panY + 20, null);
-            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getGoldwert() + " €"), panX, panY + 80);
-            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getKraft()) + " Kraft", panX, panY + 100);
-           // g2.drawString(String.valueOf(gp.dba.getItem(db, item).getText()), panX, panY + 150);
-            drawStringInBox(gp.dba.getItem(db, item).getText(),panX, panY +150 , panWight);
+
+            int x = panWight /2 - gp.dba.getItem(db,item).getImagee().getWidth() /2;
+            g2.drawImage(gp.dba.getItem(db, item).getImagee(), panX + x, panY + 20, null);
+
+
+            gp.text.drawTextcentered(g2,gp.dba.getItem(db, item).getName(), panX, panY + 100, panWight);
+            gp.text.drawTextcentered(g2, (gp.dba.getItem(db, item).getGoldwert()) + " Muenzen", panX, panY + 300, panWight / 2);
+            gp.text.drawTextBetweenBox(g2,gp.dba.getItem(db, item).getText(),panX + 5, panY +150 , panWight);
+            if(db == 3){
+                gp.text.drawTextcentered(g2, "Heilt um: "+gp.dba.getItem(db, item).getKraft() , panX + panWight/2, panY + 300,panWight/2);
+            }else {
+                gp.text.drawTextcentered(g2,(gp.dba.getItem(db, item).getKraft()) + " Kraft", panX + panWight/2, panY + 300,panWight/2);
+            }
+
         }else {
             g2.drawString("Hier liegt kein Item",panX,panY + 150);
         }
@@ -190,6 +203,26 @@ public class Inventory {
                 int slotnr = gp.player.equip[i];
                 g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), panX + 10, (int) (panY + panHigh * 0.15) + ii, null);
             }
+        }
+            gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
+            gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
+        int i = 0;
+        BufferedImage cha = null;
+        try {
+            switch (i) {
+                case 1:
+                    cha = ImageIO.read(Player.class.getResource("/back.png"));
+                break;
+                case 2:
+                    cha = ImageIO.read(Player.class.getResource("/back.png"));
+                    break;
+                case 3:
+                    cha = ImageIO.read(Player.class.getResource("/back.png"));
+                    break;
+            }
+            g2.drawImage(cha, 0, 0, gp.screenWidth, panWight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
         }
     }
     public void drawMove() {
@@ -263,7 +296,7 @@ public class Inventory {
         this.sonY = (int) (inHigh*0.6) + inY;
         this.sonWight = 100;
         this.sonHigh = 50;
-        String[] text = new String[]{"equip", "sell", "back", "unequip"};
+        String[] text = new String[]{"equip", "sell", "back [e]", "unequip"};
 
         for(int i = 0; i < 3; i++) {
             button[i] = new JPanel();
@@ -295,18 +328,23 @@ public class Inventory {
     }
     public void tryeuipcheck(){
         if(tryequip){
+            System.out.println(selectSlot);
             if(gp.player.item[selectSlot][0] == 1){
                 if(gp.player.equip[0] == selectSlot){
                     gp.player.equip[0] = -1;
+                    gp.player.kraft = 0;
                 }else {
                     gp.player.equip[0] = selectSlot;
+                    gp.player.kraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
                 }
             }
             if(gp.player.item[selectSlot][0] == 2){
                 if(gp.player.equip[1] == selectSlot){
                     gp.player.equip[1] = -1;
+                    gp.player.defense = 0;
                 }else {
                     gp.player.equip[1] = selectSlot;
+                    gp.player.defense = gp.dba.getItem(2, gp.player.item[selectSlot][1]).getKraft();
                 }
             }
             if(gp.player.item[selectSlot][0] == 3) {
@@ -335,6 +373,12 @@ public class Inventory {
             for(int i = 0; i < 3; i++) {
                 if(gp.player.equip[i] == selectSlot){
                     gp.player.equip[i] = -1;
+                    if(i == 0){
+                        gp.player.kraft = 0;
+                    }
+                    if( i == 1){
+                        gp.player.defense = 0;
+                    }
                 }
             }
             gp.player.item[selectSlot][0] = 0;

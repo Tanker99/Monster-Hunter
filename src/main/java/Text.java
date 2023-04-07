@@ -11,8 +11,8 @@ public class Text {
 
     public void drawTextBetweenBox(Graphics2D g2,String text, int x, int y, int width) {
         // prüft ob Text zu breit
-        Font font = new Font("Arial", Font.PLAIN, 25);
-        g2.setFont(font);
+        //Font font = new Font("Arial", Font.PLAIN, 25);
+       // g2.setFont(font);
         FontMetrics metrics = g2.getFontMetrics();
         int textWidth = metrics.stringWidth(text);
         if (textWidth > width) {
@@ -33,6 +33,13 @@ public class Text {
             g2.drawString(text, x, y);
         }
     }
+    public void drawTextcentered(Graphics2D g2,String text, int x, int y, int width) {
+        FontMetrics fm = g2.getFontMetrics();
+        int textWidth = fm.stringWidth(text);
+        int xOffset = (width - textWidth) / 2;
+        g2.drawString(text, x + xOffset, y);
+    }
+
     public void drawTextInBox(Graphics2D g2,String text, int x, int y, int width, int height) {
         FontMetrics fm = g2.getFontMetrics();
         int textWidth = fm.stringWidth(text);
