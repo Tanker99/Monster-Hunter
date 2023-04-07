@@ -14,7 +14,7 @@ public class Sound {
     int volumeScale = 3;
 
     public Sound() {
-        /*
+
 
         soundURL[0] = Player.class.getResource("/sound/Titel-melodie.wav");
         //Select Sound
@@ -24,12 +24,7 @@ public class Sound {
         //Enter Sound
         soundURL[3] = Player.class.getResource("/sound/switch.wav");
     }
-
-         */
-    }
-
-        public void selectSound ( int i){
-        /*
+    public void selectSound(int i) {
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
@@ -39,31 +34,20 @@ public class Sound {
             System.out.println("Sound not found");
         }
         volume();
-
-         */
+    }
+    public void play () {
+             clip.start();
         }
-
-
-        public void play () {
-            // clip.start();
-
-        }
-
-        public void stop () {
+    public void stop () {
             clip.stop();
 
         }
-
-        public void loop () {
-            //fc.setValue(6f);
-            volumeScale = 0;
-            // volume();
-          //  clip.loop(Clip.LOOP_CONTINUOUSLY);
+    public void loop () {
+            fc.setValue(6f);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
 
         }
-
-        public void volume () {
-        /*
+    public void volume () {
         switch (volumeScale) {
             case 0:
                 volume = -80f;
@@ -84,7 +68,7 @@ public class Sound {
         }
         fc.setValue(volume);
 
-         */
+
         }
     }
 

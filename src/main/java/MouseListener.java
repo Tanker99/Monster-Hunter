@@ -142,46 +142,40 @@ public class MouseListener implements java.awt.event.MouseListener {
 
         }
         else if(gp.ui.menuState == gp.ui.settingsState){
-            if (gp.ui.sellectValueY == 0) {
-                    if(gp.fullScreen) {
-                        gp.fullScreen = false;
-                    }else {
-                        gp.fullScreen = true;
+            String i = e.getComponent().getName();
+            switch (i) {
+                case "Setting Screen: 0":
+                    break;
+                case "Setting Screen: 1":
+                    if (gp.sound.volumeScale == 0) {
+                        gp.sound.volumeScale = 4;
+                    } else {
+                        gp.sound.volumeScale = 0;
                     }
-                    gp.playSound(1);
+                    break;
+                case "Setting Screen: 2":
+                    gp.ui.sellectValueY = 2;
+                    break;
+                case "Setting Screen: 3":
+                    gp.ui.menuState = gp.ui.controllState;
+                    break;
+                case "Setting Screen: 4":
+                    gp.ui.menuState = gp.ui.titleState;
+                    break;
 
-                }
-            if (gp.ui.sellectValueY == 1) {
-                if (gp.ui.sellectValueX == 0) {
-                    if(gp.sound.volumeScale < 1){
-                        gp.playSound(2);
-                    }else {
-                        gp.sound.volumeScale--;
-                        gp.playSound(3);
-                    }
-                    if(gp.sound.volumeScale > 3){
-                        gp.sound.volume();
-                        gp.playSound(2);
-                    }else {
-                        gp.sound.volumeScale++;
-                        gp.sound.volume();
-                        gp.playSound(3);
-                    }
-                }
-                if (gp.ui.sellectValueX == 1) {
-                    gp.save = 4;
-                    gp.gameState = gp.playerState;
-                    gp.playSound(3);
-                }
-                if (gp.ui.sellectValueX == 2) {
-                    gp.save = 4;
-                    gp.gameState = gp.playerState;
-                    gp.playSound(3);
-                }
-            }
-            if (gp.ui.sellectValueY == 2) {
-                gp.ui.menuState = gp.ui.titleState;
-                gp.playSound(3);
+                case "Musik: +":
+                    break;
+                case "Musik: -":
+                    break;
+
+                case "SE: -":
+                    gp.sound.volumeScale ++;
+                    gp.sound.volume();;
+                    break;
+                case "SE: +":
+                    gp.sound.volumeScale --;
+                    gp.sound.volume();
+                    break;
             }
         }
     }

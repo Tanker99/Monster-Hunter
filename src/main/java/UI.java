@@ -17,6 +17,7 @@ public class UI{
     final int titleState = 2;
     final int newAndPlayState =3;
     final int settingsState = 4;
+    final  int controllState = 5;
 
     //variable
     public int sellectValueX;
@@ -26,7 +27,7 @@ public class UI{
 
 
     //JPanel
-    private JPanel slot[]  = new JPanel[6];
+    private JPanel slot[]  = new JPanel[10];
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -57,6 +58,8 @@ public class UI{
             drawNewAndPlayState();
         }else if(menuState == settingsState) {
             drawSettingsState();
+        }else if(menuState == controllState){
+            drawControllState();
         }
     }
     public void drawBackground(){
@@ -69,13 +72,27 @@ public class UI{
         }
     }
     public void drawLoadingState(){
+
+
+        int tX = (int) (0+ gp.screenWidth*0.2);
+        int tY = (int) (gp.screenHeight /2.8);
+        int twidght = (int) (gp.screenWidth *0.6);
+
+        g2.setColor(Color.RED);
+        g2.drawString("Gesundheitswarnung: ",tX,tY - 100);
         g2.setColor(Color.WHITE);
-        g2.drawString("Loading...", gp.screenWidth/2 - 200, 420);
-        g2.drawRect(gp.screenWidth/2- 200, 450, 200, 20);
-        g2.fillRect(gp.screenWidth/2 - 200, 450, (int) (progress * 0.8), 20);
+        String text = "Willkommen bei Monster-Hunter! Bevor du startest, möchten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, während jeder Spielstunde des Spielens regelmäßige eine Pause von 15 Minuten einzulegen, um eine Überanstrengung zu vermeiden. Wenn du körperliche Beschwerden wie Müdigkeit oder Schmerzen verspürst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge außerdem dafür, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank für deine Aufmerksamkeit und viel Spaß beim Spielen!";
+        gp.text.drawTextBetweenBox(g2,text,tX,tY,twidght);
+
+
+        int x = (int) (gp.screenWidth/1.2);
+        int y = (int) (gp.screenHeight /1.2);
+        g2.drawString("Loading...", x, y);
+        g2.drawRect(x, y + 10, 200, 20);
+        g2.fillRect(x, y+ 10, (int) (progress * 0.4), 20);
 
         progress ++;
-        if(progress >= 250){
+        if(progress >= 500){
             try {
                 Thread.sleep(400);
             } catch (InterruptedException e) {
@@ -86,11 +103,13 @@ public class UI{
         }
     }
     public void drawTitleState(){
+        String text;
+        g2.setColor(Color.WHITE);
 
         //Character
         BufferedImage cha = null;
         try {
-            cha = ImageIO.read(Player.class.getResource("cha.png"));
+            cha = ImageIO.read(UI.class.getResource("player/playercc.png"));
         } catch (IOException e) {
             System.out.println("Home screen loading error!!");
         }
@@ -103,17 +122,6 @@ public class UI{
 
 
         //Game Name Title
-        int textX;
-        int textY;
-        String text;
-
-        text = "Hunter Game";
-        textX =  gp.screenWidth/2 + getXTxt(text);
-        textY = (int) (gp.screenHeight * 0.15);
-
-        g2.setColor(Color.WHITE);
-        g2.drawString(text, textX, textY);
-
 
         //umrandung
         int textrX = (int) (gp.screenWidth *0.05);
@@ -122,6 +130,8 @@ public class UI{
         int textrHigh = (int) (100);
 
         g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
+        text = "Monster - Hunter";
+        gp.text.drawTextInBox(g2,text,textrX,textrY,textrWight,textrHigh);
 
 
         //Kasten
@@ -132,19 +142,19 @@ public class UI{
         int ab = (int) ( kHigh + (gp.screenHeight * 0.06));
 
         text = "New Game";
-        g2.drawString(text, kWight + getXTxt(text),kY + ab*0 );
+        gp.text.drawTextInBox(g2,text,kX,kY + ab*0,kWight,kHigh);
         g2.drawRoundRect(kX,kY + ab*0,kWight,kHigh,10,10);
 
         text = "Play";
-        g2.drawString(text, kWight + getXTxt(text), kY + ab*1);
+        gp.text.drawTextInBox(g2,text,kX,kY + ab*1,kWight,kHigh);
         g2.drawRoundRect(kX,kY + ab*1,kWight,kHigh,10,10);
 
         text = "Settings";
-        g2.drawString(text, kWight + getXTxt(text), kY + ab*2);
+        gp.text.drawTextInBox(g2,text,kX,kY + ab*2,kWight,kHigh);
         g2.drawRoundRect(kX,kY + ab*2 ,kWight,kHigh,10,10);
 
         text = "Exit";
-        g2.drawString(text, kWight + getXTxt(text), kY + ab*3);
+        gp.text.drawTextInBox(g2,text,kX,kY + ab*3,kWight,kHigh);
         g2.drawRoundRect(kX,kY + ab*3 ,kWight,kHigh,10,10);
 
 
@@ -170,28 +180,18 @@ public class UI{
     }
     public void drawNewAndPlayState() {
         //Variable for Values
-        int textX;
-        int textY;
+        g2.setColor(Color.WHITE);
         String text;
 
 
         //check new or play
         if (newsave) {
             text = "New Game";
-        } else if (!(newsave)) {
-            text = "Gespeicherte Spiele";
         } else {
-            System.err.println("ERROR in drawNewAndPlayState");
-            text = "ERROR";
+            text = "Gespeicherte Spiele";
         }
 
         //Draw Text
-        textX = gp.screenWidth / 2 + getXTxt(text);
-        textY = (int) (gp.screenHeight * 0.15);
-
-        g2.setColor(Color.WHITE);
-        g2.drawString(text, textX, textY);
-
 
         //umrandung
         int textrX = (int) (gp.screenWidth * 0.05);
@@ -199,6 +199,8 @@ public class UI{
         int textrWight = gp.screenWidth - 2 * textrX;
         int textrHigh = (int) (100);
         g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
+
+        gp.text.drawTextInBox(g2,text,textrX,textrY,textrWight,textrHigh);
 
 
         //kasten
@@ -210,9 +212,10 @@ public class UI{
         int yab = kHigh + (int) (gp.screenHeight * 0.15);
         int i = 0;
 
-
+        Font oldfront = g2.getFont();
         for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 2; x++) {
+                g2.setFont(oldfront);
                 //Create Panel for Mouse
                 slot[i] = new JPanel();
                 slot[i].setBounds(kX + x * xab, kY + y * yab, kWight, kHigh);
@@ -223,10 +226,12 @@ public class UI{
 
                 g2.setColor(Color.white);
                 g2.drawString("Game " + String.valueOf(i + 1), kX + x * xab, kY + y * yab);
+
+
                 if(gp.config.load(i,"used") == 0) {
                     g2.drawString("nicht verwendet", kX + x * xab, kY + y * yab+kHigh/2);
                 }else{
-                    g2.drawString("verwendet", kX + x * xab, kY + y * yab+ kHigh/2);
+                    gp.text.draw3StringsInBox(g2,"Leben " + gp.config.load(gp.save, "leben") ,"Gold " + gp.config.load(gp.save, "gold"),"",kX + x*xab,kY + y*yab, kWight,kHigh);
                 }
                 g2.drawRoundRect(kX + x * xab, kY + y * yab, kWight, kHigh, 10, 10);
                 i++;
@@ -239,7 +244,7 @@ public class UI{
         int bWight = (int) (gp.screenWidth * 0.38);
         int bHigh = (int) (gp.screenHeight * 0.11);
         text = "Back";
-        g2.drawString(text, bX, bY);
+        gp.text.drawTextInBox(g2,text,bX,bY,bWight,bHigh);
         g2.drawRoundRect(bX, bY, bWight, bHigh, 10, 10);
         //Back Create Panel for Mouse
         slot[i] = new JPanel();
@@ -260,7 +265,7 @@ public class UI{
     public void drawSettingsState(){
         String text;
         //Kasten
-        int kX = gp.screenWidth/2;
+        int kX = (int) (gp.screenWidth/2 - (gp.screenWidth * 0.4)/2);
         int kY = (int) (gp.screenHeight * 0.1);
         int kWight = (int) (gp.screenWidth * 0.4);
         int kHigh = 100;
@@ -269,10 +274,10 @@ public class UI{
         String[] textt = {"Full Screen","Music" , "Se", "Controll", "Back"};
         String[] texth = {"+", "-"};
 
-        for( int i = 0; i< 5; i++){
+        for( int i = 0; i< 5; i++) {
             //Create Panel for Mouse
             slot[i] = new JPanel();
-            slot[i].setBounds(kX,kY + ab*i,kWight,kHigh);
+            slot[i].setBounds(kX, kY + ab * i, kWight, kHigh);
             slot[i].setName("Setting Screen: " + i);
             slot[i].addMouseListener(gp.mous);
             gp.add(slot[i]);
@@ -280,84 +285,102 @@ public class UI{
 
 
             g2.setColor(Color.white);
-            g2.drawString(textt[i], kX + getXTxt(textt[i]),kY + ab*i );
-            g2.drawRoundRect(kX,kY + ab*i,kWight,kHigh,10,10);
+            gp.text.drawTextInBox(g2, textt[i], kX, kY + ab * i, kWight, kHigh);
+            //Kontroll Kästen
+            // g2.drawRoundRect(kX,kY + ab*i,kWight,kHigh,10,10);
 
-            g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+            //g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+        }
+        //+- für MUSIK und SE
+        BufferedImage symbole1 = null;
+        BufferedImage symbole2 = null;
+        try {
+            symbole1 = ImageIO.read(UI.class.getResource("/symbole/-.png"));
+            symbole2 = ImageIO.read(UI.class.getResource("/symbole/+.png"));
 
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
         }
 
-/*
-        text = "Full Screen";
-        g2.drawString(text, kX + getXTxt(text),kY + ab*0 );
-        g2.drawRoundRect(kX,kY + ab*0,kWight,kHigh,10,10);
-
-        text = "Music";
-        g2.drawString(text, kX  + getXTxt(text), kY + ab*1);
-        g2.drawRoundRect(kX,kY + ab*1,kWight,kHigh,10,10);
-        text = "-";
-        g2.drawString(text, kX- kWight/2 + getXTxt(text), kY + ab*1);
-        text = "+";
-        g2.drawString(text, kX + kWight/2+ getXTxt(text), kY + ab*1);
+        //Musik
+        int musikwight = kWight /6;
+        g2.drawRoundRect(kX,kY + ab*1 + kHigh,kWight,kHigh /2,10,10);
+        g2.drawImage(symbole1, kX, kY + ab*1 + kHigh, musikwight,kHigh/2,null);
+        g2.drawImage(symbole2, kX + kWight - musikwight, kY + ab*1 + kHigh, musikwight,kHigh/2,null);
 
 
-        text = "Se";
-        g2.drawString(text, kX + getXTxt(text), kY + ab*2);
-        g2.drawRoundRect(kX,kY + ab*2 ,kWight,kHigh,10,10);
-        text = "-";
-        g2.drawString(text, kX- kWight/2 + getXTxt(text), kY + ab*2);
-        text = "+";
-        g2.drawString(text, kX + kWight/2+ getXTxt(text), kY + ab*2);
+        //SE
+        g2.drawRoundRect(kX,kY + ab*2 + kHigh,kWight,kHigh /2,10,10);
+        g2.drawImage(symbole1, kX, kY + ab*2 + kHigh, musikwight,kHigh/2,null);
+        g2.drawImage(symbole2, kX + kWight - musikwight, kY + ab*2 + kHigh, musikwight,kHigh/2,null);
 
+        //setzte button
 
-        text = "Control";
-        g2.drawString(text, kX + getXTxt(text), kY + ab*3);
-        g2.drawRoundRect(kX,kY + ab*3 ,kWight,kHigh,10,10);
-
-        text = "Back";
-        g2.drawString(text, kX + getXTxt(text), kY + ab*4);
-        g2.drawRoundRect(kX,kY + ab*4 ,kWight,kHigh,10,10);
-
-
-        //Select Title
-        for( int i = 0; i< 4; i++){
-            //Create Panel for Mouse
-            slot[i] = new JPanel();
-            slot[i].setBounds(kX,kY + ab*i,kWight,kHigh);
-            slot[i].setName("Setting Screen: " + i);
+        slot[5] = new JPanel();
+        slot[6] = new JPanel();
+        slot[7] = new JPanel();
+        slot[8] = new JPanel();
+        slot[5].setBounds(kX, kY + ab*1 + kHigh, musikwight,kHigh/2);
+        slot[6].setBounds(kX + kWight - musikwight, kY + ab*1 + kHigh, musikwight,kHigh/2);
+        slot[7].setBounds(kX, kY + ab*2 + kHigh, musikwight,kHigh/2);
+        slot[8].setBounds(kX + kWight - musikwight, kY + ab*2 + kHigh, musikwight,kHigh/2);
+        slot[5].setName("Musik: -");
+        slot[6].setName("Musik: +");
+        slot[7].setName("SE: -");
+        slot[8].setName("SE: +");
+        for (int i = 5; i< 9; i++) {
             slot[i].addMouseListener(gp.mous);
             gp.add(slot[i]);
             slot[i].setVisible(true);
-
-            g2.setColor(Color.white);
-            g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
-
         }
+
 
         //Draw select Green
-        g2.setColor(Color.green);
-        g2.drawRoundRect(kX, kY + ab*sellectValueY, kWight, kHigh, 10, 10);
+            g2.setColor(Color.green);
+            g2.drawRoundRect(kX, kY + ab * sellectValueY, kWight, kHigh, 10, 10);
 
- */
+
 
     }
-    public void drawControllState(){}
+    public void drawControllState(){
+        int kX = (int) (gp.screenWidth/2 - (gp.screenWidth * 0.4)/2);
+        int kY = (int) (gp.screenHeight * 0.1);
+        int kWight = (int) (gp.screenWidth * 0.4);
+        int kHigh = 100;
+        int ab = (int) ( kHigh + (gp.screenHeight * 0.09));
 
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Player.class.getResource("/PCControl.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
+        String text = "Back";
 
+        slot[0] = new JPanel();
+        slot[0].setBounds(kX, kY + ab * 4, kWight, kHigh);
+        slot[0].setName("Controll Screen: " + text);
+        slot[0].addMouseListener(gp.mous);
+        gp.add(slot[0]);
+        slot[0].setVisible(true);
 
-
-
+        g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
+        gp.text.drawTextInBox(g2, text, kX, kY + ab * 4, kWight, kHigh);
+    }
     public void setShadow( String text,int x, int y, Color color){
         g2.setColor(color);
         g2.drawString(text,x+5,y+5);
     }
 
-    public int getxCenter(String text){
-        int lenght = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
-        int x = gp.screenWidth/2 - lenght/2;
-        return x;
+    public int setTextCenter(String text, int x, int width){
+        FontMetrics fm = g2.getFontMetrics();
+        int textWidth = fm.stringWidth(text);
+        int xOffset = (width - textWidth) / 2;
+        return x + xOffset;
     }
-    public int getXTxt(String txt){
+
+    public int getXfromText(String txt){
         int lenght = (int) g2.getFontMetrics().getStringBounds(txt,g2).getWidth();
         int x = - lenght/2;
         return x;

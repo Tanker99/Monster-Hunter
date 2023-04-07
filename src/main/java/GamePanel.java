@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     public DBaufruf dba = new DBaufruf(this);
 
     //dasd
+    public Text text = new Text(this);
     public Sound sound = new Sound();
     public Config config = new Config(this);
 
@@ -62,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //TEST ZWECKE
 
-    public int gold = 0;
+    //public int gold = 0;
     public int starke =100;
     public int xx = screenWidth;
 

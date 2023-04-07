@@ -69,10 +69,6 @@ public class Inventory {
         this.inHigh = gp.screenHeight/2 - 20;
 
     }
-
-
-
-
     public void draw(Graphics2D g2){
         this.g2 = g2;
         drawInventory();
@@ -83,7 +79,6 @@ public class Inventory {
         g2.drawRoundRect(gp.screenWidth/2,0,200,100,10,10);
 
     }
-
     public void drawInventory(){
        // System.err.println(currentSlot);
         //draw Inventory rand
@@ -110,7 +105,6 @@ public class Inventory {
         sell();
 
     }
-
     public void drawSlot(){
 
         this.sloX = (int) (inWight * 0.2) + inX;
@@ -178,7 +172,8 @@ public class Inventory {
             g2.drawImage(gp.dba.getItem(db, item).getImagee(), panX, panY + 20, null);
             g2.drawString(String.valueOf(gp.dba.getItem(db, item).getGoldwert() + " €"), panX, panY + 80);
             g2.drawString(String.valueOf(gp.dba.getItem(db, item).getKraft()) + " Kraft", panX, panY + 100);
-            g2.drawString(String.valueOf(gp.dba.getItem(db, item).getText()), panX, panY + 150);
+           // g2.drawString(String.valueOf(gp.dba.getItem(db, item).getText()), panX, panY + 150);
+            drawStringInBox(gp.dba.getItem(db, item).getText(),panX, panY +150 , panWight);
         }else {
             g2.drawString("Hier liegt kein Item",panX,panY + 150);
         }
@@ -350,9 +345,6 @@ public class Inventory {
     }
     public void update() {
     }
-
-
-
     public void resetCurser(){
         currentSlotValueY = 0;
         currentSlotValueX = 0;
@@ -362,11 +354,32 @@ public class Inventory {
         selectSlot = 0;
         twoSelectSlot = 0;
     }
-
-    public int getx(Graphics2D g2,String text){
+    private int getx(Graphics2D g2,String text){
         int lenght = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
         int x = lenght/2;
         return x;
+    }
+    private void drawStringInBox(String text, int x, int y, int width) {
+        // prüft ob Text zu breit
+        FontMetrics metrics = g2.getFontMetrics();
+        int textWidth = metrics.stringWidth(text);
+        if (textWidth > width) {
+            // Umrechnung von text
+            String[] lines = text.split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String word : lines) {
+                if (metrics.stringWidth(sb.toString() + " " + word) > width) {
+                    g2.drawString(sb.toString(), x, y);
+                    y += metrics.getHeight();
+                    sb.setLength(0);
+                }
+                sb.append(word).append(" ");
+            }
+            g2.drawString(sb.toString(), x, y);
+        } else {
+           // zeichnet wenn doch passst
+            g2.drawString(text, x, y);
+        }
     }
 }
 
