@@ -17,11 +17,12 @@ public class Fight {
     }
 
     public void draw(Graphics2D g2){
+        this.g2 = g2;
+        drawcha();
     }
 
-    public void state(){
+   public void drawcha(){
 
-    }
-
+   }
 
 }

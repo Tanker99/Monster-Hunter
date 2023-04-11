@@ -232,10 +232,6 @@ public class KeyHandler implements KeyListener {
             gp.inventory.resetCurser();
             gp.gameState = gp.inventoryState;
         }
-        if (key == KeyEvent.VK_F) {
-            gp.shop.resetCurser();
-            gp.gameState = gp.shopState;
-        }
         if (key == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.uiState;
         }
@@ -298,72 +294,7 @@ public class KeyHandler implements KeyListener {
 
 
     public void shopState(int key) {
-        if (key == KeyEvent.VK_W) {
-            if (gp.shop.waehlen == true) {
-                if (gp.shop.sellectcountY > 0) {
-                    gp.shop.sellectcountY--;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
 
-            } else {
-                if (gp.shop.countY > 0) {
-                    gp.shop.countY--;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
-            }
-        }
-        if (key == KeyEvent.VK_A) {
-            if (gp.shop.countX > 0) {
-                gp.shop.countX--;
-                gp.playSound(1);
-            } else {
-                gp.playSound(2);
-            }
-        }
-        if (key == KeyEvent.VK_S) {
-            if (gp.shop.waehlen == true) {
-                if (gp.shop.sellectcountY < 2) {
-                    gp.shop.sellectcountY++;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
-
-            } else {
-                if (gp.shop.countY < 1) {
-                    gp.shop.countY++;
-                    gp.playSound(1);
-                } else {
-                    gp.playSound(2);
-                }
-            }
-
-        }
-        if (key == KeyEvent.VK_D) {
-            if (gp.shop.countX < 3) {
-                gp.shop.countX++;
-                gp.playSound(1);
-            } else {
-                gp.playSound(2);
-            }
-        }
-        if (key == KeyEvent.VK_ENTER) {
-            if (!gp.shop.waehlen) {
-                gp.shop.waehlen = true;
-            } else if (gp.shop.waehlen) {
-                gp.shop.sellectcountY = 0;
-                gp.shop.waehlen = false;
-            }
-
-        }
-        if (key == KeyEvent.VK_F) {
-            gp.gameState = gp.playerState;
-
-        }
     }
 
     @Override

@@ -135,7 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
             inventory.update();
         }
         if (gameState == shopState) {
-            shop.update();
+           // shop.update();
         }
         if (gameState == testState) {
             test.update();
@@ -201,17 +201,6 @@ public class GamePanel extends JPanel implements Runnable {
             screenWidth = newWidth;
             screenHeight = newHeight;
             this.setSize(newSize);
-        }
-        public String getDBId(int i){
-        if(i == 0){
-            return "gp.Items.Waffe";
-        }else if(i == 1){
-            return "gp.Items.Ruestung";
-        }else if(i == 2){
-            return "gp.Items.Trank";
-        }else {
-            return null;
-        }
         }
 }
 
