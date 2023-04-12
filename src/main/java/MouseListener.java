@@ -24,6 +24,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         if(gp.gameState == gp.miniGameState){
             miniGameStateClick(e);
         }
+        if(gp.gameState == gp.fightState){
+            fightStateClick(e);
+        }
 
 
     }
@@ -50,6 +53,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         }
         if(gp.gameState == gp.miniGameState){
             miniGameStateEntered(e);
+        }
+        if(gp.gameState==gp.fightState){
+            fightStateEntered(e);
         }
 
 
@@ -394,6 +400,14 @@ public class MouseListener implements java.awt.event.MouseListener {
                     gp.playSound(1);
                     break;
             }
+        }
+        public void fightStateClick(MouseEvent e){
+            String i= e.getComponent().getName();
+            System.out.println(i+ " Click");
+        }
+        public void fightStateEntered(MouseEvent e){
+            String i= e.getComponent().getName();
+            System.out.println(i+ " Enter");
         }
 }
 

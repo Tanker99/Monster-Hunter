@@ -80,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setup(){
-        playLoopSound(0);
+        //playLoopSound(0);
         gameState = 6;
 
 
