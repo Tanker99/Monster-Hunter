@@ -21,6 +21,9 @@ public class Fight {
         this.g2 = g2;
         drawcharakter();
     }
+    public void update(){
+
+    }
 
     public void drawcharakter() {
 

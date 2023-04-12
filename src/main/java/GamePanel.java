@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setup(){
         playLoopSound(0);
-        gameState = 1;
+        gameState = 6;
 
 
     }
@@ -137,6 +137,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == shopState) {
            // shop.update();
         }
+        if (gameState == fightState) {
+             fight.update();
+        }
         if (gameState == testState) {
             test.update();
         }
@@ -166,6 +169,9 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         } else if (gameState == shopState) {
             shop.draw(g2);
+            g2.dispose();
+        } else if (gameState == fightState) {
+            fight.draw(g2);
             g2.dispose();
         } else if (gameState == testState) {
             test.draw(g2);
