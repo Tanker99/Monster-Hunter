@@ -36,6 +36,7 @@ public class Fight {
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
+        drawBackground();
         drawcharakter();
         drawmonster();
         drawButton();
@@ -46,7 +47,7 @@ public class Fight {
     }
 
     public void drawcharakter() {
-        int x= 10;
+        int x= 100;
         int y= 700;
         int width= 100;
         int height= 100;
@@ -69,17 +70,29 @@ public class Fight {
 
     }
     public void drawmonster() {
-        int x= 800;
+        int x= 1000;
         int y= 700;
         int width= 100;
         int height= 100;
         g2.drawRect(x,y,width,height);
+
+        int sX = 1000;
+        int sY = 100;
+        int swight = 100;
+        int sheight = 100;
+
+        g2.drawRect(sX,sY,swight,swight);
+
+        String leben = String.valueOf(gp.monster.getLive(level));
+        String attack = String.valueOf(gp.monster.attack);
+
+        gp.text.draw2StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,sX,sY,swight,sheight);
     }
 
     public void drawButton() {
-        int x = (int) (gp.screenWidth / 2);
-        int y = (int) (gp.screenHeight * 0.3);
-        int width = 100;
+        int x = (int) (gp.screenWidth /2.55  );
+        int y = (int) (gp.screenHeight * 0.5);
+        int width = 200;
         int height = 100;
         int yab = 150;
 
