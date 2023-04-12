@@ -18,6 +18,14 @@ public class Fight {
 
     int level;
 
+    boolean tot=false;
+    boolean monstertot=false;
+
+    int lebenMonster;
+
+    int lebenSpieler;
+
+
 
     private JPanel slot[]=new JPanel[3];
 
@@ -96,8 +104,10 @@ public class Fight {
             }
         }
 
-
-
+    public void setupKampf() {
+        lebenSpieler =gp.player.leben;
+        lebenMonster = gp.monster.getLive(level);
+    }
 
 
     public void kampf() {
@@ -105,28 +115,25 @@ public class Fight {
         if(fight) {
             fight=false;
             System.out.println("Start");
+            for(int i=0;i<=lebenSpieler||i<=lebenMonster;i++){
+                    lebenMonster-=(gp.player.kraft);
+                    lebenSpieler-=(gp.monster.attack);
+                }
+                if(lebenSpieler<=0){
+                    gp.gameState=gp.uiState;
+                }
+                if(lebenMonster<=0){
+                    gp.gameState= gp.playerState;
+                }
+            }
         }
 
-       /* for(int i=0;i<=gp.player.leben||i<=gp.monster.getLive(level);i++){      //leben aus DB???
-            int kraftSpieler=  gp.player.kraft;     //aus DB???
-            int kraftMonster=  gp.monster.attack;
-        if()   {        //keyHandler???
-            lebenMonster-=(kraftSpieler);
-        }else{          //zeit nachdem Monster angreift?? oder nacheinenader???
-            lebenSpieler-=(kraftMonster);
-        }
-        if(lebenSpieler<=0){
-                                //in gp tot???
-        }
-        if(lebenMonster<=0){
 
-        }
-        }
 
-        */
+
 
 }
-}
+
 
 
 

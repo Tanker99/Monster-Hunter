@@ -401,17 +401,18 @@ public class MouseListener implements java.awt.event.MouseListener {
                     break;
             }
         }
-        public void fightStateClick(MouseEvent e){
-            String i= e.getComponent().getName();
-            System.out.println(i+ " Click");
+        public void fightStateClick(MouseEvent e) {
+            String i = e.getComponent().getName();
+            System.out.println(i + " Click");
             switch (i) {
                 case "Fight Button: 0":
-                    gp.fight.fight=true;
+                    gp.fight.fight = true;
                     break;
                 case "Fight Button: 1":
-                    gp.gameState=gp.playerState;
+                    gp.gameState = gp.playerState;
                     break;
 
+            }
         }
         public void fightStateEntered(MouseEvent e){
             String i= e.getComponent().getName();
