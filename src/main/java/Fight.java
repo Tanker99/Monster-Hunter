@@ -37,7 +37,19 @@ public class Fight {
         g2.drawRect(x,y,width,height);
 
         //drawState
-        g2.drawRect();
+
+        int sX = 100;
+        int sY = 100;
+        int swight = 100;
+        int sheight = 100;
+
+        g2.drawRect(sX,sY,swight,swight);
+
+        String leben = String.valueOf(gp.player.leben);
+        String attack = String.valueOf(gp.player.kraft);
+        String defense = String.valueOf(gp.player.defense);
+
+        gp.text.draw3StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,"Defense : " + defense,sX,sY,swight,sheight);
     }
     public void drawmonster() {
         int x= 800;
@@ -99,4 +111,3 @@ public class Fight {
 
 
      */
-}
