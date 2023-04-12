@@ -20,6 +20,7 @@ public class Fight {
     public void draw(Graphics2D g2) {
         this.g2 = g2;
         drawcharakter();
+        drawButton();
     }
     public void update(){
 
@@ -34,8 +35,20 @@ public class Fight {
         int y= (int)(gp.screenHeight*0.3);
         int width= 100;
         int height= 100;
+        int yab=50;
 
-        g2.drawRect(x,y,width,height);
+        for(int i=0;i<2;i++){
+            slot[i]=new JPanel();
+            slot[i].setBounds(x,y+i*yab,width,height);
+            slot[i].setName("Fight Button: "+i);
+            slot[i].addMouseListener(gp.mous);
+            gp.add(slot[i]);
+            slot[i].setVisible(true);
+            g2.drawRect(x,y+i*yab,width,height);
+
+        }
+
+
     }
 
 
