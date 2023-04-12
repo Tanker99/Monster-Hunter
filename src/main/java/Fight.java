@@ -12,6 +12,13 @@ public class Fight {
 
     KeyHandler keyH;
 
+    int MonsterLive;
+
+    boolean fight=false;
+
+    int level;
+
+
     private JPanel slot[]=new JPanel[3];
 
     public Fight(GamePanel gp, KeyHandler keyH) {
@@ -24,6 +31,7 @@ public class Fight {
         drawcharakter();
         drawmonster();
         drawButton();
+        kampf();
     }
     public void update(){
 
@@ -50,6 +58,7 @@ public class Fight {
         String defense = String.valueOf(gp.player.defense);
 
         gp.text.draw3StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,"Defense : " + defense,sX,sY,swight,sheight);
+
     }
     public void drawmonster() {
         int x= 800;
@@ -88,13 +97,19 @@ public class Fight {
         }
 
 
-    }
 
 
-    /*public void kampf() {
-        for(int i=0;i<=lebenSpieler||i<=lebenMonster;i++){      //leben aus DB???
+
+    public void kampf() {
+
+        if(fight) {
+            fight=false;
+            System.out.println("Start");
+        }
+
+       /* for(int i=0;i<=gp.player.leben||i<=gp.monster.getLive(level);i++){      //leben aus DB???
             int kraftSpieler=  gp.player.kraft;     //aus DB???
-            int kraftMonster=
+            int kraftMonster=  gp.monster.attack;
         if()   {        //keyHandler???
             lebenMonster-=(kraftSpieler);
         }else{          //zeit nachdem Monster angreift?? oder nacheinenader???
@@ -107,7 +122,11 @@ public class Fight {
 
         }
         }
-    }
+
+        */
+
+}
+}
 
 
-     */
+
