@@ -48,6 +48,22 @@ public class Text {
         int yOffset = (height - textHeight) / 2 + fm.getAscent();
         g2.drawString(text, x + xOffset, y + yOffset);
     }
+    public void draw2StringsInBox(Graphics2D g2,String text1, String text2, int x, int y, int width, int height) {
+        Font font = new Font("Arial", Font.PLAIN, 12);
+        g2.setFont(font);
+
+        FontMetrics metrics = g2.getFontMetrics();
+        int string1Width = metrics.stringWidth(text1);
+        int string2Width = metrics.stringWidth(text2);
+
+        int string1X = x + (width - string1Width) / 2;
+        int string2X = x + (width - string2Width) / 2;
+
+        int stringY = y + (height - metrics.getHeight() * 2) / 2;
+
+        g2.drawString(text1, string1X, stringY);
+        g2.drawString(text2, string2X, stringY + metrics.getHeight());
+    }
     public void draw3StringsInBox(Graphics2D g2,String text1, String text2, String text3, int x, int y, int width, int height) {
         Font font = new Font("Arial", Font.PLAIN, 12);
         g2.setFont(font);

@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Config config = new Config(this);
 
     public Image image = new Image(this);
+    public Monster monster = new Monster();
     public Test test = new Test(this,keyH);
 
 
