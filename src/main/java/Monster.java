@@ -6,7 +6,7 @@ public class Monster{
 
     //Get Variablen
     public String name;
-    public int live;
+    public int health;
     public int defense;
     public int attack;
 
@@ -17,7 +17,7 @@ public class Monster{
 
     //Datenbank
     public static String[] mName={"wilder Beißer","hungriger Knabberer","aggressiver Schnapper","Ghoul","Untoter Ritter"};
-    public static int[] mLive={100,200,100,100,100};
+    public static int[] mHealth={80,95,104,110,140};
     public static int[] mDefense={5,9,12,16,20};
     public static int[] mAttack={4,7,9,12,17};
 
@@ -26,8 +26,8 @@ public class Monster{
         return mName[n];
     }
 
-    public int getLive(int n){
-        return mLive[n];
+    public int getHealth(int n){
+        return mHealth[n];
     }
     public int getDefense(int n){
         return mDefense[n];
