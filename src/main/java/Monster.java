@@ -11,12 +11,12 @@ public class Monster{
     public int attack;
 
     //Define Variablen
-    public static final int mAnzahl = 5;
-    static BufferedImage mBild[] = new BufferedImage[5];
+    public static final int mAnzahl = 4;
+    static BufferedImage mBild[] = new BufferedImage[4];
     public static Monster monster[];
 
     //Datenbank
-    public static String[] mName={"wilder Beißer","hungriger Knabberer","aggressiver Schnapper","Ghoul","Untoter Ritter"};
+    public static String[] mName={"tollwütiges Schwein","hungriger Ork","Ghoul","Untoter Ritter"};
     public static int[] mHealth={80,95,104,110,140};
     public static int[] mDefense={5,9,12,16,20};
     public static int[] mAttack={4,7,9,12,17};
@@ -50,9 +50,9 @@ public class Monster{
     public static void loadImage(){
 
         try {
-            mBild[0] = ImageIO.read(Monster.class.getResource("/items/Eisenruestung.png"));
-            mBild[1] = ImageIO.read(Monster.class.getResource("/items/Goldruestung.png"));
-
+            mBild[0] = ImageIO.read(Monster.class.getResource("/monster/pig.png"));
+            mBild[1] = ImageIO.read(Monster.class.getResource("/monster/ork.png"));
+            mBild[2] = ImageIO.read(Monster.class.getResource("/monster/ghoul.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
