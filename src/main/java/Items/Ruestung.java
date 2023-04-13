@@ -13,18 +13,18 @@ public class Ruestung extends Items{
     public String text;
 
     //Define Variablen
-    public static final int rAnzahl = 2;
-    static BufferedImage rBild[] = new BufferedImage[2];
+    public static final int rAnzahl = 3;
+    static BufferedImage rBild[] = new BufferedImage[3];
     public static Ruestung ruestung[];
     
     //Datenbank
-    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Jaderüstung","Leichte rüstung","Die Unsichtbare"};
-    public static int[] rKraft={20,12,1};
-    public static int[] rGoldwert={34,50,15,345,10,556};
+    public static String[] rName={"Eisenrï¿½stung","Goldrï¿½stung","Lederrï¿½stung","Jaderï¿½stung","Leichte rï¿½stung","Die Unsichtbare"};
+    public static int[] rKraft={20,12,7};
+    public static int[] rGoldwert={34,50,24,345,10,556};
     public static String[] rText = {
-    "Damals wie heute bietet eine Rüstung aus hochwertigem Eisen einen guten Schutz, welcher dem Träger im Kampf einen Vorteil verschafft.",
-    "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drückt man durch diese Rüstung Erfolg und Mut aus.",
-            ""
+    "Damals wie heute bietet eine Rï¿½stung aus hochwertigem Eisen einen guten Schutz, welcher dem Trï¿½ger im Kampf einen Vorteil verschafft.",
+    "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, drï¿½ckt man durch diese Rï¿½stung Erfolg und Mut aus.",
+    "Weich aber robust. Leder ist in jedem Handwerk gefragt. Auch im Handwerk mit Schwertern!"
     };
 
     public Ruestung(String name, int kraft, int goldwert, String itemText, BufferedImage image){
@@ -46,11 +46,11 @@ public class Ruestung extends Items{
         try {
             rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Eisenruestung.png"));
             rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Goldruestung.png"));
-
+            rBild[2] = ImageIO.read(Ruestung.class.getResource("/items/Lederruestung.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("DB.Rüstung Image Error");
+            System.out.println("DB.Rï¿½stung Image Error");
         }
     }
 }
