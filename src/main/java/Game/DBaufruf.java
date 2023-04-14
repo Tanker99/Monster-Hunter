@@ -1,3 +1,4 @@
+package Game;
 
 import Items.Items;
 import Items.Waffe;
@@ -10,7 +11,7 @@ public class DBaufruf {
     public DBaufruf(GamePanel gp){
         this.gp = gp;
 
-        Waffe.loadItem();
+       Waffe.loadItem();
         Trank.loadItem();
         Ruestung.loadItem();
     }
@@ -23,22 +24,40 @@ public class DBaufruf {
                 if (!(item > Waffe.wAnzahl)) {
                     return Waffe.waffe[item];
                 }
-                break;
+                return null;
             case 2:
                 if (!(item > Ruestung.rAnzahl)) {
                     return Ruestung.ruestung[item];
                 }
-                break;
+                return null;
             case 3:
                 if(!( item > Trank.tAnzahl)){
                     return Trank.trank[item];
                 }
-                break;
+                return null;
         }
 
 
         return null;
     }
+    /*public Integer getcount(int db){
+        switch (db) {
+            case 0:
+                return 0;
+            case 1:
+                return Waffe.wAnzahl;
+            case 2:
+                return Ruestung.rAnzahl;
+            case 3:
+               return Trank.tAnzahl;
+        }
 
+
+        return null;
+
+    }
+
+
+     */
 
 }

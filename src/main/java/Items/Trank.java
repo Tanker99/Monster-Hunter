@@ -58,7 +58,7 @@ public class Trank extends Items{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("DB.Items.Trank Image Error");
+            System.out.println("DB.Items.Trank Game.Image Error");
         }
     }
 }

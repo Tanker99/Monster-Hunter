@@ -1,3 +1,5 @@
+package Game;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +85,7 @@ public class Fight {
 
         g2.drawRect(sX,sY,swight,swight);
 
-        String leben = String.valueOf(gp.monster.getLive(level));
+        String leben = String.valueOf(gp.monster.health);
         String attack = String.valueOf(gp.monster.attack);
 
         gp.text.draw2StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,sX,sY,swight,sheight);
@@ -99,7 +101,7 @@ public class Fight {
         for (int i = 0; i < 2; i++) {
             slot[i] = new JPanel();
             slot[i].setBounds(x, y + i * yab, width, height);
-            slot[i].setName("Fight Button: " + i);
+            slot[i].setName("Game.Fight Button: " + i);
             slot[i].addMouseListener(gp.mous);
             gp.add(slot[i]);
             slot[i].setVisible(true);
@@ -119,7 +121,7 @@ public class Fight {
 
     public void setupKampf() {
         lebenSpieler =gp.player.leben;
-        lebenMonster = gp.monster.getLive(level);
+        lebenMonster = gp.monster.getHealth(level);
     }
 
 

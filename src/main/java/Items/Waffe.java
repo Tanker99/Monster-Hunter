@@ -1,10 +1,12 @@
 package Items;
+import Game.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Waffe extends Items{
+    private static Image imagee = new Image();
 
     //Get Variablen
     public String name;
@@ -37,10 +39,9 @@ public class Waffe extends Items{
     }
 
     public static void loadItem(){
-        loadImage();
         waffe = new Waffe[wAnzahl];
         for (int i = 0; i < wAnzahl; i++){
-            waffe[i] = new Waffe(wName[i],wKraft[i],wGoldwert[i],wText[i],wBild[i]);
+            waffe[i] = new Waffe(wName[i],wKraft[i],wGoldwert[i],wText[i],imagee.wBild[i]);
         }
     }
     public static Waffe getWaffe(int i){
@@ -59,7 +60,7 @@ public class Waffe extends Items{
 
 
         } catch (IOException e) {
-            System.out.println("DB.Items.Waffe Image Error");
+            System.out.println("DB.Items.Waffe Game.Image Error");
             e.printStackTrace();
 
         }

@@ -1,3 +1,5 @@
+package Game;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class Monster{
         loadImage();
         monster = new Monster[mAnzahl];
         for (int i = 0; i < mAnzahl; i++){
-           // monster[i] = new Monster(mName[i],mDefense[i],mAttack[i],rBild[i]);
+           // monster[i] = new Game.Monster(mName[i],mDefense[i],mAttack[i],rBild[i]);
         }
     }
     //public static Monste getMonster(int i){
@@ -56,7 +58,7 @@ public class Monster{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("DB.Monster Image Error");
+            System.out.println("DB.Game.Monster Game.Image Error");
         }
     }
 }

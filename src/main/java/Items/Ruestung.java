@@ -50,7 +50,7 @@ public class Ruestung extends Items{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("DB.R�stung Image Error");
+            System.out.println("DB.R�stung Game.Image Error");
         }
     }
 }

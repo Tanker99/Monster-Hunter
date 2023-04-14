@@ -1,5 +1,5 @@
-import java.awt.*;
-import java.awt.event.KeyEvent;
+package Game;
+
 import java.awt.event.MouseEvent;
 
 public class MouseListener implements java.awt.event.MouseListener {
@@ -405,10 +405,10 @@ public class MouseListener implements java.awt.event.MouseListener {
             String i = e.getComponent().getName();
             System.out.println(i + " Click");
             switch (i) {
-                case "Fight Button: 0":
+                case "Game.Fight Button: 0":
                     gp.fight.fight = true;
                     break;
-                case "Fight Button: 1":
+                case "Game.Fight Button: 1":
                     gp.gameState = gp.playerState;
                     break;
 

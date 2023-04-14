@@ -1,4 +1,4 @@
-
+package Game;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -52,7 +52,7 @@ public class Player extends Entity{
             System.out.println("test");
         }catch (IOException e){
             e.printStackTrace();
-            System.out.println("Image Error");
+            System.out.println("Game.Image Error");
         }
 
 

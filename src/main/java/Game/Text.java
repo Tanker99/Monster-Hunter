@@ -1,3 +1,5 @@
+package Game;
+
 import java.awt.*;
 
 public class Text {
@@ -10,7 +12,7 @@ public class Text {
     }
 
     public void drawTextBetweenBox(Graphics2D g2,String text, int x, int y, int width) {
-        // prüft ob Text zu breit
+        // prüft ob Game.Text zu breit
         //Font font = new Font("Arial", Font.PLAIN, 25);
        // g2.setFont(font);
         FontMetrics metrics = g2.getFontMetrics();

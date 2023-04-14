@@ -1,5 +1,4 @@
-import Items.Ruestung;
-import Items.Trank;
+package Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Sound sound = new Sound();
     public Config config = new Config(this);
 
-    public Image image = new Image(this);
+    public Image image = new Image();
     public Monster monster = new Monster();
     public Test test = new Test(this,keyH);
 
@@ -82,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setup(){
         //playLoopSound(0);
-        gameState = 6;
+        gameState = 1;
 
 
     }

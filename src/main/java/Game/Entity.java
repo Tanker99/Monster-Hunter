@@ -1,3 +1,5 @@
+package Game;
+
 import java.awt.image.BufferedImage;
 
 public class Entity {
