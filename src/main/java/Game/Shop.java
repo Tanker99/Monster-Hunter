@@ -90,6 +90,7 @@ public class Shop {
             item[i][1] = itemnr;
             System.out.println("DB" + db + " " + "Item" + itemnr);
 
+
         }
     }
 }
