@@ -12,14 +12,9 @@ public class Fight {
 
     KeyHandler keyH;
 
-    int MonsterLive;
-
     boolean fight=false;
 
     int level;
-
-    boolean tot=false;
-    boolean monstertot=false;
 
     int lebenMonster;
 
@@ -83,7 +78,7 @@ public class Fight {
 
         g2.drawRect(sX,sY,swight,swight);
 
-        String leben = String.valueOf(gp.monster.getLive(level));
+        String leben = String.valueOf(gp.monster.getHealth(level));
         String attack = String.valueOf(gp.monster.attack);
 
         gp.text.draw2StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,sX,sY,swight,sheight);
@@ -119,7 +114,7 @@ public class Fight {
 
     public void setupKampf() {
         lebenSpieler =gp.player.leben;
-        lebenMonster = gp.monster.getLive(level);
+        lebenMonster = gp.monster.getHealth(level);
     }
 
 
