@@ -14,14 +14,9 @@ public class Fight {
 
     KeyHandler keyH;
 
-    int MonsterLive;
-
     boolean fight=false;
 
     int level;
-
-    boolean tot=false;
-    boolean monstertot=false;
 
     int lebenMonster;
 
@@ -85,7 +80,7 @@ public class Fight {
 
         g2.drawRect(sX,sY,swight,swight);
 
-        String leben = String.valueOf(gp.monster.health);
+        String leben = String.valueOf(gp.monster.getHealth(level));
         String attack = String.valueOf(gp.monster.attack);
 
         gp.text.draw2StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,sX,sY,swight,sheight);
@@ -101,7 +96,7 @@ public class Fight {
         for (int i = 0; i < 2; i++) {
             slot[i] = new JPanel();
             slot[i].setBounds(x, y + i * yab, width, height);
-            slot[i].setName("Game.Fight Button: " + i);
+            slot[i].setName("Fight Button: " + i);
             slot[i].addMouseListener(gp.mous);
             gp.add(slot[i]);
             slot[i].setVisible(true);
