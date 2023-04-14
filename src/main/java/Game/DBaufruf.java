@@ -11,9 +11,9 @@ public class DBaufruf {
     public DBaufruf(GamePanel gp){
         this.gp = gp;
 
-       Waffe.loadItem();
-        Trank.loadItem();
-        Ruestung.loadItem();
+        gp.waffe.loadItem();
+        gp.trank.loadItem();
+        gp.ruestung.loadItem();
     }
 
     public Items getItem(int db, int item) {
@@ -21,18 +21,18 @@ public class DBaufruf {
             case 0:
                 return null;
             case 1:
-                if (!(item > Waffe.wAnzahl)) {
-                    return Waffe.waffe[item];
+                if (!(item > gp.waffe.wAnzahl)) {
+                    return gp.waffe.waffe[item];
                 }
                 return null;
             case 2:
-                if (!(item > Ruestung.rAnzahl)) {
-                    return Ruestung.ruestung[item];
+                if (!(item > gp.ruestung.rAnzahl)) {
+                    return gp.ruestung.ruestung[item];
                 }
                 return null;
             case 3:
-                if(!( item > Trank.tAnzahl)){
-                    return Trank.trank[item];
+                if(!( item > gp.trank.tAnzahl)){
+                    return gp.trank.trank[item];
                 }
                 return null;
         }

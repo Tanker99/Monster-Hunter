@@ -1,5 +1,7 @@
 package Items;
 
+import Game.GamePanel;
+
 import java.awt.image.BufferedImage;
 
 public class Items {
@@ -18,6 +20,8 @@ public class Items {
        this.goldwert = goldwert;
        this.itemText = itemText;
        this.image = image;
+   }
+   public Items(GamePanel gp){
    }
     public String getName() {
         return name;

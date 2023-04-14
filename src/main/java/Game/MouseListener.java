@@ -1,5 +1,7 @@
 package Game;
 
+import Game.GamePanel;
+
 import java.awt.event.MouseEvent;
 
 public class MouseListener implements java.awt.event.MouseListener {

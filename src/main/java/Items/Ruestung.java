@@ -1,12 +1,13 @@
 package Items;
 
-import javax.imageio.ImageIO;
+import Game.GamePanel;
+
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Ruestung extends Items{
 
     //Get Variablen
+    GamePanel gp;
     public String name;
     public int kraft;
     public int goldwert;
@@ -14,7 +15,6 @@ public class Ruestung extends Items{
 
     //Define Variablen
     public static final int rAnzahl = 3;
-    static BufferedImage rBild[] = new BufferedImage[3];
     public static Ruestung ruestung[];
     
     //Datenbank
@@ -30,28 +30,20 @@ public class Ruestung extends Items{
     public Ruestung(String name, int kraft, int goldwert, String itemText, BufferedImage image){
         super(name, kraft, goldwert, itemText, image);
     }
-    public static void loadItem(){
-        loadImage();
+    public Ruestung(GamePanel gp) {
+        super(gp);
+        this.gp = gp;
+    }
+    public void loadItem(){
         ruestung = new Ruestung[rAnzahl];
         for (int i = 0; i < rAnzahl; i++){
-            ruestung[i] = new Ruestung(rName[i],rKraft[i],rGoldwert[i],rText[i],rBild[i]);
+            ruestung[i] = new Ruestung(rName[i],rKraft[i],rGoldwert[i],rText[i],gp.image.rBild[i]);
         }
     }
     public static Ruestung getRuestung(int i){
         return ruestung[i];
     }
 
-    public static void loadImage(){
 
-        try {
-            rBild[0] = ImageIO.read(Ruestung.class.getResource("/items/Eisenruestung.png"));
-            rBild[1] = ImageIO.read(Ruestung.class.getResource("/items/Goldruestung.png"));
-            rBild[2] = ImageIO.read(Ruestung.class.getResource("/items/Lederruestung.png"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("DB.R�stung Game.Image Error");
-        }
-    }
 }
 
