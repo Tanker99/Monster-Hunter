@@ -19,9 +19,9 @@ public class Monster{
 
     //Datenbank
     public static String[] mName={"tollwütiges Schwein","hungriger Ork","Ghoul","Untoter Ritter"};
-    public static int[] mHealth={80,95,104,110,140};
-    public static int[] mDefense={5,9,12,16,20};
-    public static int[] mAttack={4,7,9,12,17};
+    public static int[] mHealth={80,95,104,125};
+    public static int[] mDefense={5,9,12,16,25};
+    public static int[] mAttack={4,7,9,12,18};
 
 
     public String getName(int n){
@@ -55,7 +55,7 @@ public class Monster{
             mBild[0] = ImageIO.read(Monster.class.getResource("/monster/pig.png"));
             mBild[1] = ImageIO.read(Monster.class.getResource("/monster/ork.png"));
             mBild[2] = ImageIO.read(Monster.class.getResource("/monster/ghoul.png"));
-
+            mBild[3] = ImageIO.read(Monster.class.getResource("/monster/rittertot.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("DB.Game.Monster Game.Image Error");
