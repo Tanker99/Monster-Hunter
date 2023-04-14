@@ -55,7 +55,7 @@ public class Monster{
             mBild[0] = ImageIO.read(Monster.class.getResource("/monster/pig.png"));
             mBild[1] = ImageIO.read(Monster.class.getResource("/monster/ork.png"));
             mBild[2] = ImageIO.read(Monster.class.getResource("/monster/ghoul.png"));
-
+            mBild[3] = ImageIO.read(Monster.class.getResource("/monster/rittertot.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("DB.Game.Monster Game.Image Error");
