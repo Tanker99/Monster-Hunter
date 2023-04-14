@@ -1,5 +1,8 @@
+package Game;
+
 import Items.Ruestung;
 import Items.Trank;
+import Items.Waffe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,14 +24,14 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener mous = new MouseListener(this);
 
     //DB
-    public DBaufruf dba = new DBaufruf(this);
+
 
     //dasd
     public Text text = new Text(this);
     public Sound sound = new Sound();
     public Config config = new Config(this);
 
-    public Image image = new Image(this);
+    public Image image = new Image();
     public Monster monster = new Monster();
     public Test test = new Test(this,keyH);
 
@@ -63,7 +66,10 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     //TEST ZWECKE
-
+    public Trank trank = new Trank(this);
+    public Ruestung ruestung = new Ruestung(this);
+    public Waffe waffe = new Waffe(this);
+    public DBaufruf dba = new DBaufruf(this);
     //public int gold = 0;
     public int starke =100;
     public int xx = screenWidth;
@@ -81,8 +87,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setup(){
-        //playLoopSound(0);
-        gameState = 6;
+        playLoopSound(0);
+        gameState = 1;
 
 
     }

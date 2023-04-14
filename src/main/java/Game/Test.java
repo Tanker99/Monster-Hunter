@@ -1,3 +1,4 @@
+package Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class Test{
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-        System.err.println("Test start");
+        System.err.println("Game.Test start");
         volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
         volumeSlider.setBounds(0,0,100,100);
         volumeSlider.setName("asdasdsad");

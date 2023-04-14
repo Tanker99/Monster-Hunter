@@ -1,3 +1,5 @@
+package Game;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -17,11 +19,11 @@ public class Sound {
 
 
         soundURL[0] = Sound.class.getResource("/sound/Titel-melodie.wav");
-        //Select Sound
+        //Select Game.Sound
         soundURL[1] = Sound.class.getResource("/sound/switch.wav");
-        //Not Select Allow Sound
+        //Not Select Allow Game.Sound
         soundURL[2] = Sound.class.getResource("/sound/error.wav");
-        //Enter Sound
+        //Enter Game.Sound
         soundURL[3] = Sound.class.getResource("/sound/switch.wav");
     }
     public void selectSound(int i) {
@@ -31,7 +33,7 @@ public class Sound {
             clip.open(ais);
             fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         } catch (Exception e) {
-            System.out.println("Sound not found");
+            System.out.println("Game.Sound not found");
         }
         volume();
     }

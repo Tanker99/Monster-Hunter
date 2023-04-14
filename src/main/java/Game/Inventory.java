@@ -1,15 +1,14 @@
-import Items.Waffe;
+package Game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import static java.awt.Color.*;
 
-public class Shop {
+public class Inventory {
     //Standard
     GamePanel gp;
     KeyHandler keyH;
@@ -62,14 +61,14 @@ public class Shop {
 
 
 
-    public Shop(GamePanel gp,KeyHandler keyH) {
+    public Inventory(GamePanel gp,KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
 
         this.inX = 10;
         this.inY = gp.screenHeight/4 - 20;
         this.inWight = gp.screenWidth -20;
-        this.inHigh = (int) (gp.screenHeight/1.5 - 20);
+        this.inHigh = gp.screenHeight/2 - 20;
 
     }
     public void draw(Graphics2D g2){
@@ -77,18 +76,18 @@ public class Shop {
         drawInventory();
         g2.setFont(new Font("Arial",Font.PLAIN,40));
         g2.setColor(Color.black);
-        g2.drawString("SHOP", gp.screenWidth/2,50);
+        g2.drawString("Inventar", gp.screenWidth/2,50);
 
         g2.drawRoundRect(gp.screenWidth/2,0,200,100,10,10);
 
     }
     public void drawInventory(){
-        //draw Inventory rand
+        //draw Game.Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
         g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);
 
         //Draw Slots
-       // drawSlot();
+        drawSlot();
 
         //Draw detail/equip Panel
         drawItemPanel();
@@ -99,6 +98,13 @@ public class Shop {
         //Move
         drawMove();
 
+        //draw Swap;
+
+        drawSwap();
+
+        tryeuipcheck();
+
+        sell();
 
     }
     public void drawSlot(){
@@ -106,7 +112,7 @@ public class Shop {
         //int slotx = (int) (gp.screenWidth * 0.18);
         //int slotwight = (int) (gp.screenWidth * 0.88);
 
-        // g2.drawRoundRect(slotx,slotwight /4,100,100,10,10);
+       // g2.drawRoundRect(slotx,slotwight /4,100,100,10,10);
 
         this.sloX = (int) (inWight * 0.2) + inX;
         this.sloY = (int) (inHigh * 0.05) + inY;
@@ -131,9 +137,9 @@ public class Shop {
 
 
                     gp.text.drawTextcentered(g2,gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200 + 100, sloWight);
-                    // g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200 + 100);
+                   // g2.drawString(gp.dba.getItem(gp.player.item[i][0], gp.player.item[i][1]).getName(), sloX + ix * 200, sloY + iy * 200 + 100);
                     gp.text.drawTextcentered(g2,(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 115,sloWight);
-                    // g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 115);
+                   // g2.drawString(String.valueOf(gp.dba.getItem(db,item).getGoldwert()) + " Muenzen",sloX + ix * 200,sloY + iy * 200+ 115);
                     if(db == 3 ){
                         gp.text.drawTextcentered(g2, "Heilt um :"+ gp.dba.getItem(db, item).getKraft(), sloX + ix * 200, sloY + iy * 200 + 130, sloWight);
                     }else {
@@ -192,16 +198,20 @@ public class Shop {
             int ii = i * 60;
             g2.drawRoundRect(panX + 10, (int) (panY + panHigh * 0.15) + ii, 50, 50, 10, 10);
 
-
+            if (!(gp.player.equip[i] == -1)) {
+                int slotnr = gp.player.equip[i];
+                g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), panX + 10, (int) (panY + panHigh * 0.15) + ii, null);
+            }
         }
-
+            gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
+            gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
         int i = 0;
         BufferedImage cha = null;
         try {
             switch (i) {
                 case 1:
                     cha = ImageIO.read(Player.class.getResource("/back.png"));
-                    break;
+                break;
                 case 2:
                     cha = ImageIO.read(Player.class.getResource("/back.png"));
                     break;
@@ -240,7 +250,46 @@ public class Shop {
 
 
     }
+    public void drawSwap() {
+        int a = -1;
+        int b = -1;
+        if (select) {
+            if (twoSelect) {
+                for( int i = 0; i < 4; i++){
+                        if(gp.player.equip[i] == twoSelectSlot){
+                           b = i;
+                        }else if(gp.player.equip[i] == selectSlot){
+                           a = i;
+                        }
+                    }
+                if(!(a == -1)) {
+                    gp.player.equip[a] = twoSelectSlot;
+                }
+                if(!(b == -1)) {
+                    gp.player.equip[b] = selectSlot;
+                }
 
+
+
+
+                int sdb = gp.player.item[twoSelectSlot][0];
+                int sitem = gp.player.item[twoSelectSlot][1];
+
+                gp.player.item[twoSelectSlot][0] = gp.player.item[selectSlot][0];
+                gp.player.item[twoSelectSlot][1] = gp.player.item[selectSlot][1];
+
+                gp.player.item[selectSlot][0] = sdb;
+                gp.player.item[selectSlot][1] = sitem;
+
+                select = false;
+                twoSelect = false;
+                selectSlot = 0;
+                twoSelectSlot = 0;
+
+
+            }
+        }
+    }
     public void drawButton(){
         this.sonX = (int) (inWight*0.9) + inX;
         this.sonY = (int) (inHigh*0.6) + inY;
@@ -276,7 +325,67 @@ public class Shop {
 
 
     }
+    public void tryeuipcheck(){
+        if(tryequip){
+            System.out.println(selectSlot);
+            if(gp.player.item[selectSlot][0] == 1){
+                if(gp.player.equip[0] == selectSlot){
+                    gp.player.equip[0] = -1;
+                    gp.player.kraft = 0;
+                }else {
+                    gp.player.equip[0] = selectSlot;
+                    gp.player.kraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
+                }
+            }
+            if(gp.player.item[selectSlot][0] == 2){
+                if(gp.player.equip[1] == selectSlot){
+                    gp.player.equip[1] = -1;
+                    gp.player.defense = 0;
+                }else {
+                    gp.player.equip[1] = selectSlot;
+                    gp.player.defense = gp.dba.getItem(2, gp.player.item[selectSlot][1]).getKraft();
+                }
+            }
+            if(gp.player.item[selectSlot][0] == 3) {
+                if (gp.player.equip[2] == selectSlot) {
+                    gp.player.equip[2] = -1;
+                } else if (gp.player.equip[3] == selectSlot) {
+                    gp.player.equip[3] = -1;
+                } else if (gp.player.equip[2] == -1) {
+                    gp.player.equip[2] = selectSlot;
+                } else if (gp.player.equip[3] == -1) {
+                    gp.player.equip[3] = selectSlot;
+                } else {
+                    gp.player.equip[2] = selectSlot;
+                }
+            }
 
+
+            tryequip = false;
+            select = false;
+
+        }
+    }
+    public void sell(){
+        if(trysell && select) {
+            gp.player.gold = (int) (gp.player.gold + gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
+            for(int i = 0; i < 3; i++) {
+                if(gp.player.equip[i] == selectSlot){
+                    gp.player.equip[i] = -1;
+                    if(i == 0){
+                        gp.player.kraft = 0;
+                    }
+                    if( i == 1){
+                        gp.player.defense = 0;
+                    }
+                }
+            }
+            gp.player.item[selectSlot][0] = 0;
+            gp.player.item[selectSlot][1] = 0;
+            trysell = false;
+            select = false;
+        }
+    }
     public void update() {
     }
     public void resetCurser(){
@@ -294,7 +403,7 @@ public class Shop {
         return x;
     }
     private void drawStringInBox(String text, int x, int y, int width) {
-        // prüft ob Text zu breit
+        // prüft ob Game.Text zu breit
         FontMetrics metrics = g2.getFontMetrics();
         int textWidth = metrics.stringWidth(text);
         if (textWidth > width) {
@@ -311,7 +420,7 @@ public class Shop {
             }
             g2.drawString(sb.toString(), x, y);
         } else {
-            // zeichnet wenn doch passst
+           // zeichnet wenn doch passst
             g2.drawString(text, x, y);
         }
     }

@@ -1,10 +1,14 @@
 package Items;
 
+import Game.GamePanel;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Trank extends Items{
+
+    GamePanel gp;
 
     //Get Variablen
     public String name;
@@ -13,8 +17,7 @@ public class Trank extends Items{
     public String text;
 
     //Defin Variablen
-    public static final int tAnzahl = 6;
-    static BufferedImage tBild[] = new BufferedImage[6];
+    public static final int tAnzahl = 3;
     public static Trank trank[];
 
     //Datenbank
@@ -33,32 +36,18 @@ public class Trank extends Items{
     public Trank(String name, int kraft, int goldwert, String itemText, BufferedImage image){
         super(name, kraft, goldwert, itemText, image);
     }
-    public static void loadItem(){
-        loadImage();
+    public Trank(GamePanel gp) {
+        super(gp);
+        this.gp = gp;
+    }
+    public void loadItem(){
         trank = new Trank[tAnzahl];
         for (int i = 0; i < tAnzahl; i++){
-            trank[i] = new Trank(tName[i],tKraft[i],tGoldwert[i],tText[i],tBild[i]);
+            trank[i] = new Trank(tName[i],tKraft[i],tGoldwert[i],tText[i],gp.image.tBild[i]);
         }
     }
     public static Trank getTrank(int i){
         return trank[i];
     }
 
-
-    public static void loadImage(){
-
-        try {
-            tBild[0] = ImageIO.read(Trank.class.getResource("/items/Einhorn-Pipi.png"));
-            tBild[1] = ImageIO.read(Trank.class.getResource("/items/Rote Bete Saft.png"));
-            tBild[2] = ImageIO.read(Trank.class.getResource("/items/Pep-sie Gemisch.png"));
-            tBild[3] = ImageIO.read(Trank.class.getResource("/items/Ingwer-Shot.png"));
-            tBild[4] = ImageIO.read(Trank.class.getResource("/items/Met.png"));
-            tBild[5] = ImageIO.read(Trank.class.getResource("/items/Wasser.png"));
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("DB.Items.Trank Image Error");
-        }
-    }
 }

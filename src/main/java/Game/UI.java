@@ -1,3 +1,5 @@
+package Game;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -81,7 +83,7 @@ public class UI{
         g2.setColor(Color.RED);
         g2.drawString("Gesundheitswarnung: ",tX,tY - 100);
         g2.setColor(Color.WHITE);
-        String text = "Willkommen bei Monster-Hunter! Bevor du startest, möchten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, während jeder Spielstunde des Spielens regelmäßige eine Pause von 15 Minuten einzulegen, um eine Überanstrengung zu vermeiden. Wenn du körperliche Beschwerden wie Müdigkeit oder Schmerzen verspürst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge außerdem dafür, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank für deine Aufmerksamkeit und viel Spaß beim Spielen!";
+        String text = "Willkommen bei Game.Monster-Hunter! Bevor du startest, mï¿½chten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, wï¿½hrend jeder Spielstunde des Spielens regelmï¿½ï¿½ige eine Pause von 15 Minuten einzulegen, um eine ï¿½beranstrengung zu vermeiden. Wenn du kï¿½rperliche Beschwerden wie Mï¿½digkeit oder Schmerzen verspï¿½rst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge auï¿½erdem dafï¿½r, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank fï¿½r deine Aufmerksamkeit und viel Spaï¿½ beim Spielen!";
         Font font = new Font("Arial", Font.PLAIN, 25);
         g2.setFont(font);
         gp.text.drawTextBetweenBox(g2,text,tX,tY,twidght);
@@ -111,7 +113,7 @@ public class UI{
         //Character
         BufferedImage cha = null;
         try {
-            cha = ImageIO.read(UI.class.getResource("player/playercc.png"));
+            cha = ImageIO.read(UI.class.getResource("/player/playercc.png"));//player/playercc.png
         } catch (IOException e) {
             System.out.println("Home screen loading error!!");
         }
@@ -132,7 +134,7 @@ public class UI{
         int textrHigh = (int) (100);
 
         g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
-        text = "Monster - Hunter";
+        text = "Game.Monster - Hunter";
         gp.text.drawTextInBox(g2,text,textrX,textrY,textrWight,textrHigh);
 
 
@@ -193,7 +195,7 @@ public class UI{
             text = "Gespeicherte Spiele";
         }
 
-        //Draw Text
+        //Draw Game.Text
 
         //umrandung
         int textrX = (int) (gp.screenWidth * 0.05);
@@ -288,12 +290,12 @@ public class UI{
 
             g2.setColor(Color.white);
             gp.text.drawTextInBox(g2, textt[i], kX, kY + ab * i, kWight, kHigh);
-            //Kontroll Kästen
+            //Kontroll Kï¿½sten
             // g2.drawRoundRect(kX,kY + ab*i,kWight,kHigh,10,10);
 
             //g2.drawRoundRect(kX, kY, kWight, kHigh, 10, 10);
         }
-        //+- für MUSIK und SE
+        //+- fï¿½r MUSIK und SE
         BufferedImage symbole1 = null;
         BufferedImage symbole2 = null;
         try {
