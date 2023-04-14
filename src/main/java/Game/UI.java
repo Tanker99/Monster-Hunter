@@ -12,7 +12,7 @@ public class UI{
     Graphics2D g2;
 
     //States
-    public int menuState = 1;
+    public int menuState = 2;
     private int oldMenuState;
 
     final int loadingState = 1;
@@ -83,7 +83,7 @@ public class UI{
         g2.setColor(Color.RED);
         g2.drawString("Gesundheitswarnung: ",tX,tY - 100);
         g2.setColor(Color.WHITE);
-        String text = "Willkommen bei Game.Monster-Hunter! Bevor du startest, m�chten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, w�hrend jeder Spielstunde des Spielens regelm��ige eine Pause von 15 Minuten einzulegen, um eine �beranstrengung zu vermeiden. Wenn du k�rperliche Beschwerden wie M�digkeit oder Schmerzen versp�rst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge au�erdem daf�r, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank f�r deine Aufmerksamkeit und viel Spa� beim Spielen!";
+        String text = "Willkommen bei Monster-Hunter! Bevor du startest, m�chten wir dich darauf hinweisen, dass es wichtig ist, auf deine Gesundheit zu achten. Wir empfehlen, w�hrend jeder Spielstunde des Spielens regelm��ige eine Pause von 15 Minuten einzulegen, um eine �beranstrengung zu vermeiden. Wenn du k�rperliche Beschwerden wie M�digkeit oder Schmerzen versp�rst, solltest du das Spiel unterbrechen und dich ausruhen. Bitte sorge au�erdem daf�r, dass du in einer angenehmen Sitzposition sitzt und ausreichend beleuchtet bist, um deine Augen zu schonen. Vielen Dank f�r deine Aufmerksamkeit und viel Spa� beim Spielen!";
         Font font = new Font("Arial", Font.PLAIN, 25);
         g2.setFont(font);
         gp.text.drawTextBetweenBox(g2,text,tX,tY,twidght);
@@ -134,7 +134,7 @@ public class UI{
         int textrHigh = (int) (100);
 
         g2.drawRoundRect(textrX, textrY, textrWight, textrHigh, 10, 10);
-        text = "Game.Monster - Hunter";
+        text = "Monster - Hunter";
         gp.text.drawTextInBox(g2,text,textrX,textrY,textrWight,textrHigh);
 
 

@@ -46,7 +46,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("mouse entered");
+        System.out.println("mouse entered" + e.getComponent().getName());
         if (gp.gameState == gp.uiState) {
             menueStateEntered(e);
         }

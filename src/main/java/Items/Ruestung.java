@@ -18,7 +18,7 @@ public class Ruestung extends Items{
     public static Ruestung ruestung[];
     
     //Datenbank
-    public static String[] rName={"Eisenr�stung","Goldr�stung","Lederr�stung","Jader�stung","Leichte r�stung","Die Unsichtbare"};
+    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Jaderüstung","Leichte rüstung","Die Unsichtbare"};
     public static int[] rKraft={20,12,7};
     public static int[] rGoldwert={34,50,24,345,10,556};
     public static String[] rText = {

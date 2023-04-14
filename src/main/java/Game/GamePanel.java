@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
     public TickTackToe miniGame = new TickTackToe(this);
-    public Shop shop = new Shop(this, keyH);
+    public Shop shop = new Shop(this);
     public Inventory inventory = new Inventory(this,keyH);
 
     public Fight fight = new Fight(this, keyH);

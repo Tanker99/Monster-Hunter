@@ -40,16 +40,16 @@ public class DBaufruf {
 
         return null;
     }
-    /*public Integer getcount(int db){
+    public Integer getcount(int db){
         switch (db) {
             case 0:
                 return 0;
             case 1:
-                return Waffe.wAnzahl;
+                return gp.waffe.wAnzahl;
             case 2:
-                return Ruestung.rAnzahl;
+                return gp.ruestung.rAnzahl;
             case 3:
-               return Trank.tAnzahl;
+               return gp.trank.tAnzahl;
         }
 
 
@@ -58,6 +58,6 @@ public class DBaufruf {
     }
 
 
-     */
+
 
 }
