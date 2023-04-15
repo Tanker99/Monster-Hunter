@@ -14,18 +14,20 @@ public class Ruestung extends Items{
     public String text;
 
     //Define Variablen
-    public static final int rAnzahl = 5;
+    public static final int rAnzahl = 6;
     public static Ruestung ruestung[];
     
     //Datenbank
-    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Diamantrüstung","Die Unsichtbare"};
-    public static int[] rKraft={20,12,7,28};
-    public static int[] rGoldwert={34,50,24,200,556};
+    public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Diamantrüstung","Jaderüstung","Die Unsichtbare"};
+    public static int[] rKraft={20,12,7,28,22,40};
+    public static int[] rGoldwert={34,50,24,200,125,400};
     public static String[] rText = {
     "Damals wie heute bietet eine R�stung aus hochwertigem Eisen einen guten Schutz, welcher dem Tr�ger im Kampf einen Vorteil verschafft.",
     "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, dr�ckt man durch diese R�stung Erfolg und Mut aus.",
     "Weich aber robust. Leder ist in jedem Handwerk gefragt. Auch im Handwerk mit Schwertern!",
-    "Dank seiner unfassbaren Robustheit bietet der Diamant auch im Kampf einen Schutz, der nahezu unzerstörbar ist!"
+    "Dank seiner unfassbaren Robustheit bietet der Diamant auch im Kampf einen Schutz, der nahezu unzerstörbar ist!",
+    "Sein grünes Schimmern könnte den Gegner blenden. Zu deinem Vorteil.",
+    "Aus Asteroiden-Material geschmiedet macht diese Rüstung seinen Träger fast vollstädig unsichtbar."
     };
 
     public Ruestung(String name, int kraft, int goldwert, String itemText, BufferedImage image){
