@@ -24,7 +24,7 @@ public class Ruestung extends Items{
     public static String[] rText = {
     "Damals wie heute bietet eine R�stung aus hochwertigem Eisen einen guten Schutz, welcher dem Tr�ger im Kampf einen Vorteil verschafft.",
     "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, dr�ckt man durch diese R�stung Erfolg und Mut aus.",
-    "Weich aber robust. Leder ist in jedem Handwerk gefragt. Auch im Handwerk mit Schwertern!"
+    "Weich aber robust. Leder ist in jedem Handwerk gefragt. Auch im Handwerk mit Schwertern!",
     "Dank seiner unfassbaren Robustheit bietet der Diamant auch im Kampf einen Schutz, der nahezu unzerstörbar ist!"
     };
 
