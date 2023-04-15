@@ -15,7 +15,7 @@ public class Ruestung extends Items{
 
     //Define Variablen
     public static final int rAnzahl = 5;
-    public static Ruestung ruestung[5];
+    public static Ruestung ruestung[];
     
     //Datenbank
     public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Diamantrüstung","Die Unsichtbare"};
