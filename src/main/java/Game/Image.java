@@ -15,7 +15,8 @@ public class Image {
     BufferedImage defaultImage;
     //Waffe
     public BufferedImage[] wBild;
-    public String[] waffe = {"/items/Schwacher Bogen.png"
+    public String[] waffe = {
+            "/items/Schwacher Bogen.png"
             ,"/items/Starker Bogen.png"
             ,"/items/Axt.png"
             ,"/items/Streitaxt.png"
@@ -26,18 +27,20 @@ public class Image {
 
     //Ruestung
     public BufferedImage[] rBild;
-    public String[] ruestung = {"/items/Eisenruestung.png",
-            "/items/Goldruestung.png",
-            "/items/Lederruestung.png"};
-
+    public String[] ruestung = {
+            "/items/Eisenruestung.png"
+            ,"/items/Goldruestung.png"
+            ,"/items/Lederruestung.png"
+            ,"/items/Diamantruestung.png";}
     //Trank
     public BufferedImage[] tBild;
-    public String[] trank = {"/items/Einhorn-Pipi.png",
-            "/items/Rote Bete Saft.png",
-            "/items/Pep-sie Gemisch.png",
-            "/items/Ingwer-Shot.png",
-            "/items/Met.png",
-            "/items/Wasser.png"};
+    public String[] trank = {
+            "/items/Einhorn-Pipi.png"
+            ,"/items/Rote Bete Saft.png"
+            ,"/items/Pep-sie Gemisch.png"
+            ,"/items/Ingwer-Shot.png"
+            ,"/items/Met.png"
+            ,"/items/Wasser.png"};
 
     //Sonstige images
     public BufferedImage imgX, imgO;
