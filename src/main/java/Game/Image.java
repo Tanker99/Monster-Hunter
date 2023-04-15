@@ -23,7 +23,8 @@ public class Image {
             ,"/items/Schwert.png"
             ,"/items/Feuerschwert.png"
             ,"/items/Morgenstern.png"
-            ,"/items/Armbrust.png"};
+            ,"/items/Armbrust.png"
+            };
 
     //Ruestung
     public BufferedImage[] rBild;
@@ -31,7 +32,10 @@ public class Image {
             "/items/Eisenruestung.png"
             ,"/items/Goldruestung.png"
             ,"/items/Lederruestung.png"
-            ,"/items/Diamantruestung.png";}
+            ,"/items/Diamantruestung.png"
+            ,"/items/Jaderuestung.png"
+            ,"/items/unsichtbareruestung.png"
+            };
     //Trank
     public BufferedImage[] tBild;
     public String[] trank = {
@@ -40,7 +44,8 @@ public class Image {
             ,"/items/Pep-sie Gemisch.png"
             ,"/items/Ingwer-Shot.png"
             ,"/items/Met.png"
-            ,"/items/Wasser.png"};
+            ,"/items/Wasser.png"
+            };
 
     //Sonstige images
     public BufferedImage imgX, imgO;
