@@ -113,7 +113,7 @@ public class UI{
         //Character
         BufferedImage cha = null;
         try {
-            cha = ImageIO.read(UI.class.getResource("/player/playercc.png"));//player/playercc.png
+            cha = ImageIO.read(UI.class.getResource("/player/playerc2.png"));//player/playercc.png
         } catch (IOException e) {
             System.out.println("Home screen loading error!!");
         }

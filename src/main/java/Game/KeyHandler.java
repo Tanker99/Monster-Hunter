@@ -46,9 +46,9 @@ public class KeyHandler implements KeyListener {
             gp.config.save(gp.save,"used", 1);
             System.err.println("Save Game "+gp.save + " wurde Gespeichert");
         }
-        if(key == KeyEvent.VK_S){
-            gp.gameState = gp.shopState;
-        }
+       // if(key == KeyEvent.VK_S){
+       //     gp.gameState = gp.shopState;
+       // }
     }
 
     public void menueState(int key) {

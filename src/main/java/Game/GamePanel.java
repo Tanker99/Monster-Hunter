@@ -11,20 +11,27 @@ public class GamePanel extends JPanel implements Runnable {
 
     final int size = 16; //pixel größe von obcejten max 16x16
     final int scale = 5; //vergrößerung
-    public final int titleSize = size * scale; // pixel 80x80
-    final int maxWidth = 16;
-    final int maxHeight = 12;
+    public final int tileSize = size * scale; // pixel 80x80
+    public final int maxWidth = 16;
+    public final int maxHeight = 12;
 
-     int screenHeight = titleSize * maxHeight; //960
-     int screenWidth = titleSize * maxWidth; //1280
+    public int screenHeight = tileSize * maxHeight; //960
+    public int screenWidth = tileSize * maxWidth; //1280
 
+    //Welteneinstellungen
+    public final int maxWelttilescol = 44;
+    public final int maxWelttilesrow = 44;
+
+    public final int maxWeltbreite = tileSize * maxWelttilescol;
+    public final int maxWeltHoehe = tileSize * maxWelttilesrow;
 
     //Listerner
     KeyHandler keyH = new KeyHandler(this);
     MouseListener mous = new MouseListener(this);
 
-    //DB
-
+    //Tiles
+    Tilemanager tileT = new Tilemanager(this);
+    //public Collision CCheck= new Collision(this);
 
     //dasd
     public Text text = new Text(this);
@@ -166,6 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         } else if (gameState == playerState) {
+            tileT.draw(g2);
             player.draw(g2);
             g2.dispose();
         } else if(gameState == miniGameState){

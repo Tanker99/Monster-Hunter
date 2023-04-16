@@ -9,6 +9,9 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
+
+    public final int screenx;
+    public final int screeny;
     public int item[][] = new int[8][2];
     //[8] == slot
     // [][0] == DB
@@ -25,13 +28,16 @@ public class Player extends Entity{
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
         this.keyH = keyH;
+        screenx = gp.screenWidth/2 - (gp.tileSize/2);
+        screeny = gp.screenHeight/2- (gp.tileSize/2);
+
         Values();
         getImage();
 
     }
     public void Values(){
-         x = gp.config.load(1,"dsadasd");
-         y = 100;
+         worldx = gp.tileSize*15;
+         worldy = gp.tileSize*15;
          speed = 4;
 
         ImageDirection = "still";
@@ -61,18 +67,28 @@ public class Player extends Entity{
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
-                y -= speed;
+                worldy -= speed;
                 ImageDirection = "up";
             }else if(keyH.down == true){
-                y += speed;
+                worldy += speed;
                 ImageDirection = "down";
             }else if(keyH.left == true){
-                x -= speed;
+                worldx -= speed;
                 ImageDirection = "left";
             }else if(keyH.right == true){
-                x += speed;
+                worldx += speed;
                 ImageDirection = "right" ;
             }
+            /*
+            collition = false;
+            gp.CCheck.checker(this);
+            if(collitionan == false){
+                switch (ImageDirection){
+                    case "up":
+                        break;
+                    case "down":
+                        break;
+             */
             timer ++;
             if (timer >10 ){
                 if (animation == 1){
@@ -128,6 +144,6 @@ public class Player extends Entity{
         }
 
 
-       g2.drawImage(image, x,y ,gp.titleSize,gp.titleSize,null);
+       g2.drawImage(image, screenx, screeny,gp.tileSize,gp.tileSize,null);
     }
 }

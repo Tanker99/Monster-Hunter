@@ -1,0 +1,20 @@
+0 = Graß
+1 = Blumengraß
+2 = Baumstamm
+3 = Baumblätter
+4 = Stein
+5 = HauswandHolz
+6 = HaustürHolz
+7 = HausdachRechtsHolz
+8 = HausdachMitteHolz
+9 = HausdachLingsHolz
+10 = SchlossStein1
+11 = SchlossStein2
+12 = SchlossdachLings
+13 = SchlossdachRechts
+14 = Schlossfenster
+15 = SchlossfensterFackel
+16 = weg----
+17 = Graßloch/Höle----
+18 = Steinloch/Höle----
+
