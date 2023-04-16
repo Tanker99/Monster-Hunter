@@ -23,6 +23,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         if(gp.gameState == gp.inventoryState){
             inventoryStateClick(e);
         }
+        if(gp.gameState == gp.shopState){
+            shopStateClick(e);
+        }
         if(gp.gameState == gp.miniGameState){
             miniGameStateClick(e);
         }
@@ -52,6 +55,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         }
         if(gp.gameState == gp.inventoryState){
             inventoryStateEntered(e);
+        }
+        if(gp.gameState == gp.shopState){
+            shopStateEntered(e);
         }
         if(gp.gameState == gp.miniGameState){
             miniGameStateEntered(e);
@@ -259,7 +265,11 @@ public class MouseListener implements java.awt.event.MouseListener {
                }
                 break;
             case 10:
-                gp.gameState = gp.playerState;
+                if(gp.shopEntry){
+                    gp.gameState = gp.shopState;
+                }else {
+                    gp.gameState = gp.playerState;
+                }
                 break;
         }
 
@@ -334,6 +344,60 @@ public class MouseListener implements java.awt.event.MouseListener {
         }
 
 
+    }
+    public void shopStateClick(MouseEvent e) {
+        String i = e.getComponent().getName();
+        System.out.println(i + " Click");
+        if (!(gp.shop.selectItem == gp.shop.currentItem)) {
+            switch (i) {
+                case "Item: 0":
+                    gp.shop.selectItem = 0;
+                    gp.shop.select = true;
+                    break;
+                case "Item: 1":
+                    gp.shop.selectItem = 1;
+                    gp.shop.select = true;
+                    break;
+                case "Item: 2":
+                    gp.shop.selectItem = 2;
+                    gp.shop.select = true;
+                    break;
+                case "Item: 3":
+                    gp.shop.selectItem = 3;
+                    gp.shop.select = true;
+                    break;
+                case "Button: 0":
+                    gp.shop.resetCurser();
+                    gp.gameState = gp.playerState;
+                    break;
+                case "Button: 1":
+                    gp.shop.resetCurser();
+                    gp.shopEntry = true;
+                    gp.gameState = gp.inventoryState;
+                    break;
+            }
+        } else {
+            gp.shop.selectItem = -1;
+            gp.shop.select = false;
+        }
+    }
+    public void shopStateEntered(MouseEvent e){
+        String i = e.getComponent().getName();
+        System.out.println(i + " Entered");
+        switch (i){
+            case "Item: 0":
+                gp.shop.currentItem = 0;
+                break;
+            case "Item: 1":
+                gp.shop.currentItem = 1;
+                break;
+            case "Item: 2":
+                gp.shop.currentItem = 2;
+                break;
+            case "Item: 3":
+                gp.shop.currentItem = 3;
+                break;
+        }
     }
     public void miniGameStateClick(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");

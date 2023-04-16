@@ -389,6 +389,7 @@ public class Inventory {
     public void update() {
     }
     public void resetCurser(){
+        gp.shopEntry = false;
         currentSlotValueY = 0;
         currentSlotValueX = 0;
         currentSlot = 0;

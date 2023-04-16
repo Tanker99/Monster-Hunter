@@ -290,7 +290,11 @@ public class KeyHandler implements KeyListener {
 
             }
             if (key == KeyEvent.VK_E) {
-                gp.gameState = gp.playerState;
+                if(gp.shopEntry){
+                    gp.gameState = gp.shopState;
+                }else {
+                    gp.gameState = gp.playerState;
+                }
 
             }
         }
