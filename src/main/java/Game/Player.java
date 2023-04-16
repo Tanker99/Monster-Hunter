@@ -64,10 +64,26 @@ public class Player extends Entity{
 
     }
     public void update (){
-        if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*14 && worldx <= gp.tileSize*16){
-                System.out.println("Spieler erkennung");
+       // if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*14 && worldx <= gp.tileSize*16){
+         //       System.out.println("Spieler erkennung");
 
+       // }
+        if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*15 ){
+            System.out.println("test");
         }
+        //SHOP
+        if(worldx <= gp.tileSize*13 && worldy >= gp.tileSize*15){
+            System.out.println("Shop enter");
+            gp.shopEntry = true;
+            gp.gameState = gp.shopState;
+        }
+
+        //BOSS
+        if(worldy == gp.tileSize*17 && worldx == gp.tileSize*20 ){
+            System.out.println("Boss enter");
+        }
+
+
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
                 ImageDirection = "up";
@@ -161,5 +177,14 @@ public class Player extends Entity{
 
 
        g2.drawImage(image, screenx, screeny,gp.tileSize,gp.tileSize,null);
+    }
+    public boolean goldcheck(int trygold){
+        int temp = gold - trygold;
+        if(temp >= 0){
+            gold = gold- trygold;
+            return true;
+        }else {
+            return false;
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Monster{
     public int attack;
 
     //Define Variablen
-    public static final int mAnzahl = 6;
+    public static final int mAnzahl = 4;
     static BufferedImage mBild[] = new BufferedImage[6];
     public static Monster monster[];
 
@@ -22,6 +22,13 @@ public class Monster{
     public static int[] mHealth={80,95,104,125};
     public static int[] mDefense={5,9,12,16,25};
     public static int[] mAttack={4,7,9,12,18};
+
+    public Monster(String name,int health,int defense,int attack, BufferedImage bild){
+
+    }
+    public Monster(){
+        loadItem();
+    }
 
 
     public String getName(int n){
@@ -38,11 +45,14 @@ public class Monster{
     public int getAttack(int n){
         return mAttack[n];
     }
+    public BufferedImage getBild(int n){
+        return mBild[n];
+    }
     public static void loadItem(){
         loadImage();
         monster = new Monster[mAnzahl];
         for (int i = 0; i < mAnzahl; i++){
-           // monster[i] = new Game.Monster(mName[i],mDefense[i],mAttack[i],rBild[i]);
+            monster[i] = new Monster(mName[i],mHealth[i],mDefense[i],mAttack[i],mBild[i]);
         }
     }
     //public static Monste getMonster(int i){

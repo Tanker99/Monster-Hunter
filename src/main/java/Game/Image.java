@@ -46,6 +46,18 @@ public class Image {
             ,"/items/Met.png"
             ,"/items/Wasser.png"
             };
+    //INV Rüstung
+    public  BufferedImage[] iRBild;
+    public String[] iRString = {
+            "/player/iron/playerci1.png"
+            , "/player/gold/playercg1.png"
+            , "/player/leather/playercl1.png"
+            , "/player/dia/playercd1.png"
+            , "/player/jade/playercj1.png"
+            , "/player/invisible/playerci1.png"
+    };
+    public  BufferedImage iRDefault;
+    public String iRDefaultString = "/player/playerc1.png";
 
     //Sonstige images
     public BufferedImage imgX, imgO;
@@ -57,6 +69,8 @@ public class Image {
         //load db image
         loadDBImage();
 
+        //Load Inventory Image
+        loadInvBilder();
 
 
         loadImageee();
@@ -86,6 +100,13 @@ public class Image {
 
             tBild[i] = loadImage(trank[i],defaultImage);
         }
+    }
+    public void loadInvBilder(){
+        iRBild = new BufferedImage[Ruestung.rAnzahl];
+        for (int i =0; i<= iRBild.length -1; i++){
+            iRBild[i] = loadImage(iRString[i],defaultImage);
+        }
+        iRDefault = loadImage(iRDefaultString,defaultImage);
     }
 
     public BufferedImage loadImage(String filePath,BufferedImage defaultImage) {

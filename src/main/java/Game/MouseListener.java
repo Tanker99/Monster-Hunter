@@ -348,7 +348,6 @@ public class MouseListener implements java.awt.event.MouseListener {
     public void shopStateClick(MouseEvent e) {
         String i = e.getComponent().getName();
         System.out.println(i + " Click");
-        if (!(gp.shop.selectItem == gp.shop.currentItem)) {
             switch (i) {
                 case "Item: 0":
                     gp.shop.selectItem = 0;
@@ -375,11 +374,34 @@ public class MouseListener implements java.awt.event.MouseListener {
                     gp.shopEntry = true;
                     gp.gameState = gp.inventoryState;
                     break;
+                case "Button: 2":
+                    int freeslot = -1;
+                    for (int ii = 0; ii < 8; ii++) {
+                        if (gp.player.item[ii][0] == 0) {
+                            freeslot = ii;
+                            break;
+                        }
+                    }
+                    if (freeslot >= 0) {
+                        if (gp.player.goldcheck(gp.dba.getItem(gp.shop.item[gp.shop.selectItem][0], gp.shop.item[gp.shop.selectItem][1]).getGoldwert())) {
+                            gp.player.item[freeslot][0] = gp.shop.item[gp.shop.selectItem][0];
+                            gp.player.item[freeslot][1] = gp.shop.item[gp.shop.selectItem][1];
+                            gp.shop.console = "Letze Aktion : " + gp.dba.getItem(gp.shop.item[gp.shop.selectItem][0],gp.shop.item[gp.shop.selectItem][1]).getName() + " - " + gp.dba.getItem(gp.shop.item[gp.shop.selectItem][0],gp.shop.item[gp.shop.selectItem][1]).getGoldwert() + "€";
+                            gp.shop.item[gp.shop.selectItem][0] = 0;
+                        } else {
+                            gp.shop.console = "Du hast nicht genug Geld";
+                        }
+                    } else {
+                        gp.shop.console = "Du hast keinen Freien Slot";
+                    }
+                    break;
+                case "Button: 3":
+                    if(gp.player.goldcheck(20)){
+                        gp.shop.console = "Letzter Aktion: Randome -20";
+                        gp.shop.test = true;
+                    }
+                    break;
             }
-        } else {
-            gp.shop.selectItem = -1;
-            gp.shop.select = false;
-        }
     }
     public void shopStateEntered(MouseEvent e){
         String i = e.getComponent().getName();
@@ -471,10 +493,10 @@ public class MouseListener implements java.awt.event.MouseListener {
             String i = e.getComponent().getName();
             System.out.println(i + " Click");
             switch (i) {
-                case "Game.Fight Button: 0":
+                case "Fight Button: 0":
                     gp.fight.fight = true;
                     break;
-                case "Game.Fight Button: 1":
+                case "Fight Button: 1":
                     gp.gameState = gp.playerState;
                     break;
 

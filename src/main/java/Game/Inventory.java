@@ -203,26 +203,23 @@ public class Inventory {
                 g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), panX + 10, (int) (panY + panHigh * 0.15) + ii, null);
             }
         }
-            gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
-            gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
-        int i = 0;
-        BufferedImage cha = null;
-        try {
-            switch (i) {
-                case 1:
-                    cha = ImageIO.read(Player.class.getResource("/back.png"));
-                break;
-                case 2:
-                    cha = ImageIO.read(Player.class.getResource("/back.png"));
-                    break;
-                case 3:
-                    cha = ImageIO.read(Player.class.getResource("/back.png"));
-                    break;
-            }
-            g2.drawImage(cha, 0, 0, gp.screenWidth, panWight, null);
-        } catch (IOException e) {
-            System.out.println("Error Loading Background");
+
+        gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
+        gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
+
+        //Draw Picture
+        int pcX = (int) (panX + gp.screenWidth * 0.06);
+        int pcY = (int) (panY + gp.screenHeight * 0.08);
+        int pcWight = (int) (gp.screenWidth * 0.09);
+        int pcHigh = (int) (inHigh /2.6);
+        g2.drawRoundRect(pcX,pcY,pcWight,pcHigh,10,10);
+        if(gp.player.equip[1] != -1){
+            g2.drawImage(gp.image.iRBild[gp.player.equip[1]],pcX,pcY,pcWight,pcHigh,null);
+        }else {
+            g2.drawImage(gp.image.iRDefault,pcX,pcY,pcWight,pcHigh,null);
         }
+
+
     }
     public void drawMove() {
         if (select) {

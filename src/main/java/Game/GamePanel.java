@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Shop shop = new Shop(this);
     public Inventory inventory = new Inventory(this,keyH);
 
-    public Fight fight = new Fight(this, keyH);
+    public Fight fight = new Fight(this);
 
 
     Thread gameThread;
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setup(){
         playLoopSound(0);
-        gameState = 1;
+        gameState = 6;
 
 
     }
@@ -149,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable {
             inventory.update();
         }
         if (gameState == shopState) {
-           // shop.update();
+            shop.update();
         }
         if (gameState == fightState) {
              fight.update();
