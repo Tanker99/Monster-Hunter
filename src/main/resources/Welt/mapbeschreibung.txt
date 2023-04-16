@@ -22,8 +22,8 @@
 21 = Weg-Mitte nach oben
 22 = Weg-Rechts nach oben voll
 23 = Weg-Mitte nach oben rechts voll
-25 =
+24 = Schlosstürlinks
+25 = Schlosstürrechts
 26 =
-27 =
 
 

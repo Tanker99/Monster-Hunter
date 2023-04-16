@@ -25,7 +25,7 @@ public class Tilemanager {
             tile[0].image = ImageIO.read(UI.class.getResource("/world/grass1.png"));
 
             tile[1] =new Tile();
-            tile[1].image = ImageIO.read(UI.class.getResource("/world/grassflowers1.png"));
+            tile[1].image = ImageIO.read(UI.class.getResource("/world/tiles/grassflowers2.png"));
 
             tile[2] =new Tile();
             tile[2].image = ImageIO.read(UI.class.getResource("/world/treewood1.png"));
@@ -106,8 +106,26 @@ public class Tilemanager {
 
             tile[23] =new Tile();
             tile[23].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
-            //tile[18].collision = true;
 
+            tile[24] =new Tile();
+            tile[24].image = ImageIO.read(UI.class.getResource("/world/tiles/castledoorleft.png"));
+            tile[24].collision = true;
+
+            tile[25] =new Tile();
+            tile[25].image = ImageIO.read(UI.class.getResource("/world/tiles/castledoorright.png"));
+            tile[25].collision = true;
+
+            tile[26] =new Tile();
+            tile[26].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+            tile[26].collision = true;
+
+            tile[27] =new Tile();
+            tile[27].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+            tile[27].collision = true;
+
+            tile[28] =new Tile();
+            tile[28].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+            tile[28].collision = true;
 
         }catch(IOException e){
             e.printStackTrace();
