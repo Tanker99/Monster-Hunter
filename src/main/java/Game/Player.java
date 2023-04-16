@@ -36,8 +36,8 @@ public class Player extends Entity{
 
     }
     public void Values(){
-         worldx = gp.tileSize*15;
-         worldy = gp.tileSize*15;
+         worldx = gp.tileSize*18;
+         worldy = gp.tileSize*16;
          speed = 4;
 
         ImageDirection = "still";
@@ -64,19 +64,21 @@ public class Player extends Entity{
 
     }
     public void update (){
+        if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*14 && worldx <= gp.tileSize*16){
+                System.out.println("Spieler erkennung");
 
+        }
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
-
                 ImageDirection = "up";
+
             }else if(keyH.down == true){
-
                 ImageDirection = "down";
+
             }else if(keyH.left == true){
-
                 ImageDirection = "left";
-            }else if(keyH.right == true){
 
+            }else if(keyH.right == true){
                 ImageDirection = "right" ;
             }
 
@@ -88,12 +90,15 @@ public class Player extends Entity{
                     case "up":
                         worldy -= speed;
                         break;
+
                     case "down":
                         worldy += speed;
                         break;
+
                     case "left":
                         worldx -= speed;
                         break;
+
                     case "right":
                         worldx += speed;
                         break;
@@ -108,7 +113,8 @@ public class Player extends Entity{
                 }
                 timer = 0;
             }
-            System.out.println("Timer: "+ timer + "Animation: " +animation);
+            System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize);
+            //System.out.println("Timer: "+ timer + "Animation: " +animation);
         }
     }
 
