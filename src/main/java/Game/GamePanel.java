@@ -30,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener mous = new MouseListener(this);
 
     //Tiles
-    Tilemanager tileT = new Tilemanager(this);
-    //public Collision CCheck= new Collision(this);
+    public Tilemanager tileT = new Tilemanager(this);
+    public Collision CCheck= new Collision(this);
 
     //dasd
     public Text text = new Text(this);

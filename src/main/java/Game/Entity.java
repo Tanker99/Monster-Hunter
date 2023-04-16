@@ -12,8 +12,8 @@ public class Entity {
     public int x,y;
     public int speed;
     public int worldx, worldy;
-    //public Rectangle hitbox;
-    //public boolean collitionan = false;
+    public Rectangle hitbox;
+    public boolean collisionan = false;
 
     
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2,still;

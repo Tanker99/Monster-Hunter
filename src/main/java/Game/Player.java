@@ -30,7 +30,7 @@ public class Player extends Entity{
         this.keyH = keyH;
         screenx = gp.screenWidth/2 - (gp.tileSize/2);
         screeny = gp.screenHeight/2- (gp.tileSize/2);
-
+        hitbox = new Rectangle(24,44,32,32);
         Values();
         getImage();
 
@@ -67,28 +67,38 @@ public class Player extends Entity{
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
-                worldy -= speed;
+
                 ImageDirection = "up";
             }else if(keyH.down == true){
-                worldy += speed;
+
                 ImageDirection = "down";
             }else if(keyH.left == true){
-                worldx -= speed;
+
                 ImageDirection = "left";
             }else if(keyH.right == true){
-                worldx += speed;
+
                 ImageDirection = "right" ;
             }
-            /*
-            collition = false;
+
+            collisionan = false;
             gp.CCheck.checker(this);
-            if(collitionan == false){
+
+            if(collisionan == false){
                 switch (ImageDirection){
                     case "up":
+                        worldy -= speed;
                         break;
                     case "down":
+                        worldy += speed;
                         break;
-             */
+                    case "left":
+                        worldx -= speed;
+                        break;
+                    case "right":
+                        worldx += speed;
+                        break;
+                }
+            }
             timer ++;
             if (timer >10 ){
                 if (animation == 1){
