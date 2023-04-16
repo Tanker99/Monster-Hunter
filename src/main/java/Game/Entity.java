@@ -9,7 +9,6 @@ public class Entity {
     public int defense;
     public int kraft;
     public int gold;
-    public int x,y;
     public int speed;
     public int worldx, worldy;
     public Rectangle hitbox;

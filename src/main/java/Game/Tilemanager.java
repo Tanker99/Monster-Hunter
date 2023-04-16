@@ -81,17 +81,31 @@ public class Tilemanager {
 
             tile[15] =new Tile();
             tile[15].image = ImageIO.read(UI.class.getResource("/world/castlewindowtorch.png"));
-            tile[14].collision = true;
+            tile[15].collision = true;
 
             tile[16] =new Tile();
-            tile[16].image = ImageIO.read(UI.class.getResource("/world/tiles/Weg.png"));
+            tile[16].image = ImageIO.read(UI.class.getResource("/world/tiles/wayhorizontal.png"));
 
             tile[17] =new Tile();
-            tile[17].image = ImageIO.read(UI.class.getResource("/world/tiles/Gras.png"));
-            //tile[17].collision = true;
+            tile[17].image = ImageIO.read(UI.class.getResource("/world/tiles/wayvertikal.png"));
 
             tile[18] =new Tile();
-            tile[18].image = ImageIO.read(UI.class.getResource("/world/tiles/Stein.png"));
+            tile[18].image = ImageIO.read(UI.class.getResource("/world/tiles/wayleftupcorner.png"));
+
+            tile[19] =new Tile();
+            tile[19].image = ImageIO.read(UI.class.getResource("/world/tiles/wayrightupcorner.png"));
+
+            tile[20] =new Tile();
+            tile[20].image = ImageIO.read(UI.class.getResource("/world/tiles/wayleftdowncorner.png"));
+
+            tile[21] =new Tile();
+            tile[21].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddlup.png"));
+
+            tile[22] =new Tile();
+            tile[22].image = ImageIO.read(UI.class.getResource("/world/tiles/wayrightupfull.png"));
+
+            tile[23] =new Tile();
+            tile[23].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
             //tile[18].collision = true;
 
 

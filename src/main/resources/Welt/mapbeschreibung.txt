@@ -14,7 +14,16 @@
 13 = SchlossdachRechts
 14 = Schlossfenster
 15 = SchlossfensterFackel
-16 = weg----
-17 = Graßloch/Höle----
-18 = Steinloch/Höle----
+16 = Weg-Horizontal
+17 = Weg-Vertikal
+18 = Weg-Links nach oben
+19 = Weg-Rechts nach oben
+20 = Weg-Links nach unten
+21 = Weg-Mitte nach oben
+22 = Weg-Rechts nach oben voll
+23 = Weg-Mitte nach oben rechts voll
+25 =
+26 =
+27 =
+
 
