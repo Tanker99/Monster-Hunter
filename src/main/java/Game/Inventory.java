@@ -75,13 +75,27 @@ public class Inventory {
         this.g2 = g2;
         drawInventory();
         g2.setFont(new Font("Arial",Font.PLAIN,40));
-        g2.setColor(Color.black);
+        g2.setColor(white);
         g2.drawString("Inventar", gp.screenWidth/2,50);
 
         g2.drawRoundRect(gp.screenWidth/2,0,200,100,10,10);
 
     }
     public void drawInventory(){
+
+
+
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Shop.class.getResource("/Hintergründe/inventar.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
+
+
+
+
         //draw Game.Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
         g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);

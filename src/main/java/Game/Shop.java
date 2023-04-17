@@ -67,7 +67,7 @@ public class Shop {
 
         BufferedImage back = null;
         try {
-            back = ImageIO.read(Shop.class.getResource("/Shop.png"));
+            back = ImageIO.read(Shop.class.getResource("/Hintergründe/Shop.png"));
             g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
         } catch (IOException e) {
             System.out.println("Error Loading Background");

@@ -22,22 +22,17 @@ public class Fight {
 
     //Fight
     int playerX;
-    int MonsterX;
+    int monsterX;
     boolean fight = false;
     int walkPlayer;
     int walkPlayerback;
     int walkMonster;
+    int walkMonsterback;
     boolean playerAllow;
     boolean monsterAllow;
-    int playerPos;
-    boolean first;
+    boolean mosnterAbzug;
+    boolean playerAbzug;
 
-
-    int level;
-
-    int lebenMonster;
-
-    int lebenSpieler;
 
 
     private JPanel slot[] = new JPanel[3];
@@ -64,11 +59,13 @@ public class Fight {
         //DrawButton
         if (!(fight)) {
             drawButton();
+            drawItems();
         }
+
 
         //Kampf
         if (fight) {
-            playerAllow = true;
+
             kampf();
         }
     }
@@ -78,7 +75,11 @@ public class Fight {
     }
 
     public void loadFigh() {
+        playerAllow = true;
+        playerAbzug = true;
+        mosnterAbzug = true;
         playerX = (int) (gp.screenWidth * 0.05);
+        monsterX = (int) (gp.screenWidth * 0.8);
 
 
         monster = (int) (Math.random() * gp.monster.mAnzahl);
@@ -88,6 +89,17 @@ public class Fight {
     }
 
     public void drawcharakter() {
+
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Shop.class.getResource("/Hintergründe/Kampfhaus.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
+
+
+
         // int pX= (int) (gp.screenWidth*0.05);
         int pY = (int) (gp.screenHeight * 0.55);
         int pWidth = (int) (gp.screenWidth * 0.15);
@@ -119,14 +131,14 @@ public class Fight {
     }
 
     public void drawmonster() {
-        int mX = (int) (gp.screenWidth * 0.8);
+        //int mX = (int) (gp.screenWidth * 0.8);
         int mY = (int) (gp.screenHeight * 0.55);
         int mWidth = (int) (gp.screenWidth * 0.15);
         int mHight = (int) (gp.screenHeight * 0.22);
 
         // g2.drawRect(mX,mY,mWidth,mHight);
 
-        g2.drawImage(gp.monster.getBild(monster), mX, mY, mWidth, mHight, null);
+        g2.drawImage(gp.monster.getBild(monster), monsterX, mY, mWidth, mHight, null);
 
         int sX = (int) (gp.screenWidth * 0.8);
         int sY = (int) (gp.screenHeight * 0.4);
@@ -143,7 +155,7 @@ public class Fight {
 
     public void drawButton() {
         int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
-        int bY = (int) (gp.screenHeight * 0.6);
+        int bY = (int) (gp.screenHeight * 0.4);
         int bWight = (int) ((gp.screenWidth * 0.08) * 2);
         int bHigh = (int) (gp.screenHeight * 0.08);
         int yab = (int) (bHigh + gp.screenHeight * 0.02);
@@ -160,6 +172,26 @@ public class Fight {
             gp.text.drawTextInBox(g2, btext[i], bX, bY + i * yab, bWight, bHigh);
             g2.drawRect(bX, bY + i * yab, bWight, bHigh);
 
+        }
+    }
+    public void drawItems(){
+        int iX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.07);
+        int iY = (int) (gp.screenHeight * 0.65);
+        int iWight = (int) ((gp.screenWidth * 0.068));
+        int iHigh = (int) (gp.screenHeight * 0.08);
+
+        for( int i = 0; i <2; i++) {
+            slot[i] = new JPanel();
+            slot[i].setBounds(iX + i* iWight, iY, iWight, iHigh);
+            slot[i].setName("Fight Button: " + i);
+            slot[i].addMouseListener(gp.mous);
+            gp.add(slot[i]);
+            slot[i].setVisible(true);
+            if (!(gp.player.equip[2+i] == -1)) {
+                int slotnr = gp.player.equip[2+i];
+                g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), iX + i* iWight, iY, iWight, iHigh, null);
+            }
+            g2.drawRoundRect(iX + i* iWight, iY, iWight, iHigh, 10, 10);
         }
     }
 
@@ -180,35 +212,49 @@ public class Fight {
 
         if (playerAllow) {
             if (walkPlayer <= 90) {
-                playerX = (int) (playerX + walkPlayer * 0.2);
                 walkPlayer++;
-            }
+                playerX = (int) (playerX + walkPlayer * 0.2);
+
+            }else
             if(walkPlayer >= 90 && walkPlayerback <=85){
                 walkPlayerback ++;
                 playerX = (int) (playerX - walkPlayerback * 0.2);
 
-            }else {
+
+            }else if(walkPlayer >= 90 && walkPlayerback >= 85){
+                if(mosnterAbzug) {
+                    System.out.println("SDADASD");
+                    monsterlive = monsterlive - gp.player.kraft;
+                    mosnterAbzug = false;
+                }
+                playerX = (int) (gp.screenWidth * 0.05);
                 monsterAllow = true;
                 playerAllow = false;
             }
         }
         if (monsterAllow) {
-            if (walkPlayer <= 90) {
-                playerX = (int) (playerX + walkPlayer * 0.2);
-                walkPlayer++;
-            }
-            if(walkPlayer >= 90 && walkPlayerback <=85){
-                walkPlayerback ++;
-                playerX = (int) (playerX - walkPlayerback * 0.2);
-                if(walkPlayerback <= 0) {
+            if (walkMonster <= 90) {
+                monsterX = (int) (monsterX - walkMonster * 0.2);
+                walkMonster++;
+            }else
+            if(walkMonster >= 90 && walkMonsterback <=90){
+                walkMonsterback ++;
+                monsterX = (int) (monsterX + walkMonsterback * 0.2);
+
+            }else if(walkMonster >= 90 && walkMonsterback >= 85){
+                if(playerAbzug) {
+                    int temp = gp.player.defense;
+                    gp.player.leben = gp.player.leben - (temp - monsterattack);
+                    playerAbzug = false;
+                }
+                    monsterX = (int) (gp.screenWidth * 0.8);
                     fight = false;
-                    monsterAllow = false;
                 }
 
             }
         }
     }
-}
+
 
 
 

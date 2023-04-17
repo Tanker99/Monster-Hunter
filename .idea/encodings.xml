@@ -2,9 +2,11 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/Config.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/main/java/Items/Ruestung.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/main/java/UI.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Game/Config.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Game/Config.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Game/UI.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Game/UI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Ruestung.java" charset="ISO-8859-1" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
