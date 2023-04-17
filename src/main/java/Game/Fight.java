@@ -95,6 +95,20 @@ public class Fight {
     }
 
     public void drawcharakter() {
+//<<<<<<< HEAD
+
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Shop.class.getResource("/Hintergruende/Kampfhaus.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
+
+
+
+//=======
+//>>>>>>> origin/master
         // int pX= (int) (gp.screenWidth*0.05);
         int pY = (int) (gp.screenHeight * 0.55);
         int pWidth = (int) (gp.screenWidth * 0.15);
