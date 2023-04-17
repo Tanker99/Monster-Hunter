@@ -45,7 +45,7 @@ public class Shop {
             randomeItem();
         }
 
-
+        drawBackgrund();
         drawShop();
 
         drawItems();
@@ -57,14 +57,15 @@ public class Shop {
         drawanzeige();
     }
 
-    public void drawShop(){
+    public void drawShop() {
         this.sX = (int) (gp.screenWidth * 0.01);
-        this.sY = gp.screenHeight/4 ;
+        this.sY = gp.screenHeight / 4;
         this.sWight = gp.screenWidth - 2 * sX;
-        this.sHigh = gp.screenHeight /2 ;
+        this.sHigh = gp.screenHeight / 2;
 
-        g2.drawRoundRect(sX,sY,sWight,sHigh,10,10);
-
+        g2.drawRoundRect(sX, sY, sWight, sHigh, 10, 10);
+    }
+    public void drawBackgrund(){
         BufferedImage back = null;
         try {
             back = ImageIO.read(Shop.class.getResource("/Hintergründe/Shop.png"));
@@ -73,6 +74,7 @@ public class Shop {
             System.out.println("Error Loading Background");
         }
     }
+
     public void drawItems(){
 
         int iX = (int) (gp.screenWidth* 0.07);
