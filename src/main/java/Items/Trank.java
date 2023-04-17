@@ -17,7 +17,7 @@ public class Trank extends Items{
     public String text;
 
     //Defin Variablen
-    public static final int tAnzahl = 3;
+    public static final int tAnzahl = 6;
     public static Trank trank[];
 
     //Datenbank

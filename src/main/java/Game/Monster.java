@@ -13,15 +13,15 @@ public class Monster{
     public int attack;
 
     //Define Variablen
-    public static final int mAnzahl = 4;
+    public static final int mAnzahl = 6;
     static BufferedImage mBild[] = new BufferedImage[6];
     public static Monster monster[];
 
     //Datenbank
     public static String[] mName={"tollwütiges Schwein","Saurons Auge","hungriger Ork","Ghoul","fliegender Dämon","Untoter Ritter"};
-    public static int[] mHealth={80,95,104,125};
-    public static int[] mDefense={5,9,12,16,25};
-    public static int[] mAttack={4,7,9,12,18};
+    public static int[] mHealth={80,120,87,105,99,125};
+    public static int[] mDefense={5,12,9,16,25,40};
+    public static int[] mAttack={4,9,7,12,15,20};
 
     public Monster(String name,int health,int defense,int attack, BufferedImage bild){
 
