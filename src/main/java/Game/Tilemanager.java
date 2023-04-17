@@ -14,7 +14,7 @@ public class Tilemanager {
 
     public Tilemanager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[30];
+        tile = new Tile[40];
         mapTileNum = new int [gp.maxWelttilescol][gp.maxWelttilesrow];
         getTileImage();
         loadMap("/Welt/worldmap.txt");
@@ -116,16 +116,46 @@ public class Tilemanager {
             tile[25].collision = true;
 
             tile[26] =new Tile();
-            tile[26].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+            tile[26].image = ImageIO.read(UI.class.getResource("/world/tiles/shopdoor.png"));
             tile[26].collision = true;
 
             tile[27] =new Tile();
-            tile[27].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
-            tile[27].collision = true;
+            tile[27].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswayhorizontal.png"));
 
             tile[28] =new Tile();
-            tile[28].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
-            tile[28].collision = true;
+            tile[28].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswayvertical.png"));
+
+            tile[29] =new Tile();
+            tile[29].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswayupfromright.png"));
+
+            tile[30] =new Tile();
+            tile[30].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswayupfromleft.png"));
+
+            tile[31] =new Tile();
+            tile[31].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswaydownfromright.png"));
+
+            tile[32] =new Tile();
+            tile[32].image = ImageIO.read(UI.class.getResource("/world/tiles/grasswaydownfromleft.png"));
+
+            tile[33] =new Tile();
+            tile[33].image = ImageIO.read(UI.class.getResource("/world/tiles/housewoodright.png"));
+            tile[33].collision = true;
+
+            tile[34] =new Tile();
+            tile[34].image = ImageIO.read(UI.class.getResource("/world/tiles/housewoodleft.png"));
+            tile[34].collision = true;
+
+            tile[35] =new Tile();
+            tile[35].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+
+            tile[36] =new Tile();
+            tile[36].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+
+            tile[37] =new Tile();
+            tile[37].image = ImageIO.read(UI.class.getResource("/world/tiles/waymiddluprightfull.png"));
+
+
+
 
         }catch(IOException e){
             e.printStackTrace();

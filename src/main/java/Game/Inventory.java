@@ -87,7 +87,7 @@ public class Inventory {
 
         BufferedImage back = null;
         try {
-            back = ImageIO.read(Shop.class.getResource("/Hintergründe/inventar.png"));
+            back = ImageIO.read(Shop.class.getResource("/Hintergruende/inventar.png"));
             g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
         } catch (IOException e) {
             System.out.println("Error Loading Background");

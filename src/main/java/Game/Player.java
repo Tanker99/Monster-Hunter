@@ -64,25 +64,39 @@ public class Player extends Entity{
 
     }
     public void update (){
-       // if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*14 && worldx <= gp.tileSize*16){
-         //       System.out.println("Spieler erkennung");
-
-       // }
-        if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*15 ){
-            System.out.println("test");
-        }
         //SHOP
-        if(worldx <= gp.tileSize*13 && worldy >= gp.tileSize*15){
+        if( worldy >= 1232 && worldy <= 1280 && worldx == 1016 ){
             System.out.println("Shop enter");
+            worldy = 1260;
+            worldx = gp.tileSize * 14;
             gp.shopEntry = true;
             gp.gameState = gp.shopState;
         }
 
-        //BOSS
-        if(worldy == gp.tileSize*17 && worldx == gp.tileSize*20 ){
-            System.out.println("Boss enter");
+        //Haus Fight
+        if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
+            System.out.println("Haus1");
         }
 
+        //Erde Fight
+        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ){
+            System.out.println("");
+        }
+
+        //Stein Fight
+        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ){
+            System.out.println("");
+        }
+
+        //Baum Fight
+        if(worldy == 2356 && worldx >= 1012 && worldx <= 1080){
+            System.out.println("Baum");
+        }
+
+        //END BOSS Fight
+        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ) {
+            System.out.println("Schloss");
+        }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
@@ -129,7 +143,7 @@ public class Player extends Entity{
                 }
                 timer = 0;
             }
-            System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize);
+            System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize+ "    |      X-Achsereal: "+ worldx + "    Y-Achsereal: " +worldy);
             //System.out.println("Timer: "+ timer + "Animation: " +animation);
         }
     }
