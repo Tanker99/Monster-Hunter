@@ -24,13 +24,13 @@ public class Fight {
     int playerX;
     int MonsterX;
     boolean fight = false;
-
-
-
-
-
-
-
+    int walkPlayer;
+    int walkPlayerback;
+    int walkMonster;
+    boolean playerAllow;
+    boolean monsterAllow;
+    int playerPos;
+    boolean first;
 
 
     int level;
@@ -40,8 +40,7 @@ public class Fight {
     int lebenSpieler;
 
 
-
-    private JPanel slot[]=new JPanel[3];
+    private JPanel slot[] = new JPanel[3];
 
     public Fight(GamePanel gp) {
         this.gp = gp;
@@ -49,7 +48,7 @@ public class Fight {
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        if(setup) {
+        if (setup) {
             loadFigh();
         }
 
@@ -63,20 +62,23 @@ public class Fight {
         drawmonster();
 
         //DrawButton
-        if(!(fight)) {
+        if (!(fight)) {
             drawButton();
         }
 
         //Kampf
-        if(fight) {
+        if (fight) {
+            playerAllow = true;
             kampf();
         }
     }
-    public void update(){
+
+    public void update() {
 
     }
-    public void loadFigh(){
-        playerX = (int) (gp.screenWidth*0.05);
+
+    public void loadFigh() {
+        playerX = (int) (gp.screenWidth * 0.05);
 
 
         monster = (int) (Math.random() * gp.monster.mAnzahl);
@@ -86,66 +88,67 @@ public class Fight {
     }
 
     public void drawcharakter() {
-       // int pX= (int) (gp.screenWidth*0.05);
-        int pY= (int) (gp.screenHeight * 0.55);
-        int pWidth= (int) (gp.screenWidth * 0.15);
+        // int pX= (int) (gp.screenWidth*0.05);
+        int pY = (int) (gp.screenHeight * 0.55);
+        int pWidth = (int) (gp.screenWidth * 0.15);
         int pHight = (int) (gp.screenHeight * 0.22);
 
-        g2.drawRect(playerX,pY,pWidth,pHight);
+        g2.drawRect(playerX, pY, pWidth, pHight);
 
-        if(gp.player.equip[1] != -1){
-            g2.drawImage(gp.image.iRBild[gp.player.equip[1]],playerX,pY,pWidth,pHight,null);
-        }else {
-            g2.drawImage(gp.image.iRDefault,playerX,pY,pWidth,pHight,null);
+        if (gp.player.equip[1] != -1) {
+            g2.drawImage(gp.image.iRBild[gp.player.equip[1]], playerX, pY, pWidth, pHight, null);
+        } else {
+            g2.drawImage(gp.image.iRDefault, playerX, pY, pWidth, pHight, null);
         }
 
         //drawState
 
-        int sX = (int) (gp.screenWidth*0.05);
+        int sX = (int) (gp.screenWidth * 0.05);
         int sY = (int) (gp.screenHeight * 0.4);
         int swight = (int) (gp.screenWidth * 0.15);
         int shight = (int) (gp.screenHeight * 0.1);
 
-       // g2.drawRect(sX,sY,swight,shight);
+        // g2.drawRect(sX,sY,swight,shight);
 
         String leben = String.valueOf(gp.player.leben);
         String attack = String.valueOf(gp.player.kraft);
         String defense = String.valueOf(gp.player.defense);
 
-        gp.text.draw3StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,"Defense : " + defense,sX,sY,swight,shight);
+        gp.text.draw3StringsInBox(g2, "Leben :" + leben, "Angriff : " + attack, "Defense : " + defense, sX, sY, swight, shight);
 
     }
+
     public void drawmonster() {
-        int mX= (int) (gp.screenWidth*0.8);
-        int mY= (int) (gp.screenHeight * 0.55);
-        int mWidth= (int) (gp.screenWidth * 0.15);
+        int mX = (int) (gp.screenWidth * 0.8);
+        int mY = (int) (gp.screenHeight * 0.55);
+        int mWidth = (int) (gp.screenWidth * 0.15);
         int mHight = (int) (gp.screenHeight * 0.22);
 
-       // g2.drawRect(mX,mY,mWidth,mHight);
+        // g2.drawRect(mX,mY,mWidth,mHight);
 
-        g2.drawImage(gp.monster.getBild(monster),mX,mY,mWidth,mHight,null);
+        g2.drawImage(gp.monster.getBild(monster), mX, mY, mWidth, mHight, null);
 
-        int sX = (int) (gp.screenWidth*0.8);
+        int sX = (int) (gp.screenWidth * 0.8);
         int sY = (int) (gp.screenHeight * 0.4);
         int swight = (int) (gp.screenWidth * 0.15);
-        int shight =(int) (gp.screenHeight * 0.1);
+        int shight = (int) (gp.screenHeight * 0.1);
 
-       // g2.drawRect(sX,sY,swight,shight);
+        // g2.drawRect(sX,sY,swight,shight);
 
         String leben = String.valueOf(monsterlive);
         String attack = String.valueOf(monsterattack);
 
-        gp.text.draw2StringsInBox(g2,"Leben :" + leben, "Angriff : " + attack,sX,sY,swight,shight);
+        gp.text.draw2StringsInBox(g2, "Leben :" + leben, "Angriff : " + attack, sX, sY, swight, shight);
     }
 
     public void drawButton() {
-        int bX = (int) (gp.screenWidth/2 - gp.screenWidth*0.08);
+        int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
         int bY = (int) (gp.screenHeight * 0.6);
-        int bWight = (int) (( gp.screenWidth*0.08)*2);
+        int bWight = (int) ((gp.screenWidth * 0.08) * 2);
         int bHigh = (int) (gp.screenHeight * 0.08);
         int yab = (int) (bHigh + gp.screenHeight * 0.02);
 
-        String[] btext = {"Fight" , "Back"};
+        String[] btext = {"Fight", "Back"};
 
         for (int i = 0; i < 2; i++) {
             slot[i] = new JPanel();
@@ -154,12 +157,13 @@ public class Fight {
             slot[i].addMouseListener(gp.mous);
             gp.add(slot[i]);
             slot[i].setVisible(true);
-            gp.text.drawTextInBox(g2,btext[i],bX, bY + i * yab, bWight, bHigh);
-            g2.drawRect(bX,  bY+ i * yab, bWight, bHigh);
+            gp.text.drawTextInBox(g2, btext[i], bX, bY + i * yab, bWight, bHigh);
+            g2.drawRect(bX, bY + i * yab, bWight, bHigh);
 
         }
     }
-    public void drawBackground(){
+
+    public void drawBackground() {
         BufferedImage back = null;
         try {
             back = ImageIO.read(Fight.class.getResource("/back.png"));
@@ -172,10 +176,39 @@ public class Fight {
     public void kampf() {
         System.out.println("Fight Beginn");
 
-        for(int i = 10; i > 0; i--){
-            playerX = playerX + 5;
+
+
+        if (playerAllow) {
+            if (walkPlayer <= 90) {
+                playerX = (int) (playerX + walkPlayer * 0.2);
+                walkPlayer++;
+            }
+            if(walkPlayer >= 90 && walkPlayerback <=85){
+                walkPlayerback ++;
+                playerX = (int) (playerX - walkPlayerback * 0.2);
+
+            }else {
+                monsterAllow = true;
+                playerAllow = false;
+            }
         }
-        fight = false;
+        if (monsterAllow) {
+            if (walkPlayer <= 90) {
+                playerX = (int) (playerX + walkPlayer * 0.2);
+                walkPlayer++;
+            }
+            if(walkPlayer >= 90 && walkPlayerback <=85){
+                walkPlayerback ++;
+                playerX = (int) (playerX - walkPlayerback * 0.2);
+                if(walkPlayerback <= 0) {
+                    fight = false;
+                    monsterAllow = false;
+                }
+
+            }
+        }
+    }
+}
 
 
 
@@ -199,9 +232,6 @@ public class Fight {
             }
 
              */
-        }
-    }
-
 
 
 

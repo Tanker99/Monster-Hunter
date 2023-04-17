@@ -1,7 +1,10 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Shop {
     //Standart
@@ -35,6 +38,7 @@ public class Shop {
     }
     public void draw (Graphics2D g2){
         this.g2 = g2;
+        g2.setColor(Color.white);
 
         if(test){
             test = false;
@@ -60,6 +64,14 @@ public class Shop {
         this.sHigh = gp.screenHeight /2 ;
 
         g2.drawRoundRect(sX,sY,sWight,sHigh,10,10);
+
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Shop.class.getResource("/Shop.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
     }
     public void drawItems(){
 
