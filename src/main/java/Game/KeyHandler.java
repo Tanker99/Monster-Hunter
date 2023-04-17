@@ -40,13 +40,16 @@ public class KeyHandler implements KeyListener {
         else if(gp.gameState == gp.shopState){
             shopState(key);
         }
-        //TEST
+        else if(gp.gameState == gp.settingsState){
+            settingState(key);
+        }
         if(key == KeyEvent.VK_L){
             gp.config.saveAll(gp.save);
             gp.config.save(gp.save,"used", 1);
             System.err.println("Save Game "+gp.save + " wurde Gespeichert");
         }
         if(key == KeyEvent.VK_O){
+            gp.fight.setup = true;
            gp.gameState = gp.fightState;
         }
     }
@@ -92,7 +95,7 @@ public class KeyHandler implements KeyListener {
                     gp.playSound(3);
                 }
                 if (gp.ui.sellectValueY == 2) {
-                    gp.ui.menuState = gp.ui.settingsState;
+                    gp.gameState = gp.settingsState;
                     gp.playSound(3);
                 }
                 if (gp.ui.sellectValueY == 3) {
@@ -209,16 +212,13 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-        else if(gp.ui.menuState == gp.ui.settingsState){
-            if(key == KeyEvent.VK_ESCAPE){
-                gp.ui.menuState = gp.ui.titleState;
-                gp.playSound(3);
-            }
 
-        }
     }
 
     public void playerState(int key) {
+        if(key == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.settingsState;
+        }
         if (key == KeyEvent.VK_W) {
             System.out.println("w pressed");
             up = true;
@@ -236,13 +236,13 @@ public class KeyHandler implements KeyListener {
             gp.inventory.resetCurser();
             gp.gameState = gp.inventoryState;
         }
-        if (key == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.uiState;
-        }
 
 
     }
     public void inventarState(int key) {
+        if(key == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.settingsState;
+        }
             if (key == KeyEvent.VK_W) {
                 if (gp.inventory.currentSlotValueY > 0) {
                     gp.inventory.currentSlotValueY--;
@@ -298,10 +298,19 @@ public class KeyHandler implements KeyListener {
 
             }
         }
-
-
-
     public void shopState(int key) {
+        if(key == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.settingsState;
+        }
+        if(key == KeyEvent.VK_E){
+            gp.gameState = gp.playerState;
+        }
+    }
+    public void settingState(int key) {
+        if (key == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.settingOldState;
+        }
+
 
     }
 

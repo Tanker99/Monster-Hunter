@@ -20,6 +20,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         if (gp.gameState == gp.uiState) {
             menueStateClick(e);
         }
+        if (gp.gameState == gp.settingsState){
+            settingStateClick(e);
+        }
         if(gp.gameState == gp.inventoryState){
             inventoryStateClick(e);
         }
@@ -52,6 +55,9 @@ public class MouseListener implements java.awt.event.MouseListener {
         System.out.println("mouse entered" + e.getComponent().getName());
         if (gp.gameState == gp.uiState) {
             menueStateEntered(e);
+        }
+        if (gp.gameState == gp.settingsState){
+            settingStateEntered(e);
         }
         if(gp.gameState == gp.inventoryState){
             inventoryStateEntered(e);
@@ -90,7 +96,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 gp.playSound(3);
             }
             if (gp.ui.sellectValueY == 2) {
-                gp.ui.menuState = gp.ui.settingsState;
+                gp.gameState = gp.settingsState;
                 gp.playSound(3);
             }
             if (gp.ui.sellectValueY == 3) {
@@ -98,15 +104,14 @@ public class MouseListener implements java.awt.event.MouseListener {
                 System.exit(0);
 
             }
-        }
-        else if (gp.ui.menuState == gp.ui.newAndPlayState) {
+        } else if (gp.ui.menuState == gp.ui.newAndPlayState) {
             if (gp.ui.sellectValueY == 0) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 0;
-                    if(gp.ui.newsave){
-                        gp.config.copyFile(4,gp.save);
+                    if (gp.ui.newsave) {
+                        gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
-                    }else {
+                    } else {
                         gp.config.loadAll(gp.save);
                     }
                     gp.gameState = gp.playerState;
@@ -115,10 +120,10 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 1;
-                    if(gp.ui.newsave){
-                        gp.config.copyFile(4,gp.save);
+                    if (gp.ui.newsave) {
+                        gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
-                    }else {
+                    } else {
                         gp.config.loadAll(gp.save);
                     }
                     gp.gameState = gp.playerState;
@@ -128,10 +133,10 @@ public class MouseListener implements java.awt.event.MouseListener {
             if (gp.ui.sellectValueY == 1) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 2;
-                    if(gp.ui.newsave){
-                        gp.config.copyFile(4,gp.save);
+                    if (gp.ui.newsave) {
+                        gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
-                    }else {
+                    } else {
                         gp.config.loadAll(gp.save);
                     }
                     gp.gameState = gp.playerState;
@@ -139,10 +144,10 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 3;
-                    if(gp.ui.newsave){
-                        gp.config.copyFile(4,gp.save);
+                    if (gp.ui.newsave) {
+                        gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
-                    }else {
+                    } else {
                         gp.config.loadAll(gp.save);
                     }
                     gp.gameState = gp.playerState;
@@ -155,44 +160,9 @@ public class MouseListener implements java.awt.event.MouseListener {
             }
 
         }
-        else if(gp.ui.menuState == gp.ui.settingsState){
-            String i = e.getComponent().getName();
-            switch (i) {
-                case "Setting Screen: 0":
-                    break;
-                case "Setting Screen: 1":
-                    if (gp.sound.volumeScale == 0) {
-                        gp.sound.volumeScale = 4;
-                    } else {
-                        gp.sound.volumeScale = 0;
-                    }
-                    break;
-                case "Setting Screen: 2":
-                    gp.ui.sellectValueY = 2;
-                    break;
-                case "Setting Screen: 3":
-                    gp.ui.menuState = gp.ui.controllState;
-                    break;
-                case "Setting Screen: 4":
-                    gp.ui.menuState = gp.ui.titleState;
-                    break;
-
-                case "Musik: +":
-                    break;
-                case "Musik: -":
-                    break;
-
-                case "SE: -":
-                    gp.sound.volumeScale ++;
-                    gp.sound.volume();;
-                    break;
-                case "SE: +":
-                    gp.sound.volumeScale --;
-                    gp.sound.volume();
-                    break;
-            }
-        }
     }
+
+
     public void menueStateEntered(MouseEvent e) {
         System.out.println("Panel " + e.getComponent().getName() + " Entered");
         if (gp.ui.menuState == gp.ui.titleState) {
@@ -239,8 +209,53 @@ public class MouseListener implements java.awt.event.MouseListener {
                     break;
             }
 
-        }else if(gp.ui.menuState == gp.ui.settingsState) {
         }
+    }
+    public void settingStateClick(MouseEvent e){
+        String i = e.getComponent().getName();
+        System.out.println(i);
+        switch (i) {
+            case "Setting Screen: 0":
+                break;
+            case "Setting Screen: 1":
+                if (gp.sound.volumeScale == 0) {
+                    gp.sound.volumeScale = 4;
+                } else {
+                    gp.sound.volumeScale = 0;
+                }
+                break;
+            case "Setting Screen: 2":
+                gp.ui.sellectValueY = 2;
+                break;
+            case "Setting Screen: 3":
+               // gp.ui.menuState = gp.ui.controllState;
+                break;
+            case "Setting Screen: Back":
+                gp.gameState = gp.uiState;
+                break;
+            case "Setting Screen: Save & Quit":
+                gp.config.saveAll(gp.save);
+                gp.gameState = gp.uiState;
+                gp.ui.menuState = gp.ui.titleState;
+                break;
+
+            case "Musik: +":
+                break;
+            case "Musik: -":
+                break;
+
+            case "SE: -":
+                gp.sound.volumeScale ++;
+                gp.sound.volume();;
+                break;
+            case "SE: +":
+                gp.sound.volumeScale --;
+                gp.sound.volume();
+                break;
+        }
+    }
+    public void settingStateEntered(MouseEvent e){
+
     }
     public void inventoryStateClick(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
@@ -398,7 +413,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 case "Button: 3":
                     if(gp.player.goldcheck(20)){
                         gp.shop.console = "Letzter Aktion: Randome -20";
-                        gp.shop.test = true;
+                        gp.shop.newShop = true;
                     }
                     break;
             }
@@ -499,6 +514,14 @@ public class MouseListener implements java.awt.event.MouseListener {
                 case "Fight Button: 1":
                     gp.gameState = gp.playerState;
                     break;
+                case "Item: 0":
+                    gp.fight.useItem(2);
+                    break;
+                case "Item: 1":
+                    gp.fight.useItem(3);
+                    break;
+
+
 
             }
         }

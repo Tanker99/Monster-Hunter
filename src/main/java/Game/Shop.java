@@ -16,7 +16,7 @@ public class Shop {
     int sY ;
     int sWight ;
     int sHigh;
-    boolean test = true;
+    boolean newShop = true;
 
     //select
     public boolean select = false;
@@ -40,8 +40,10 @@ public class Shop {
         this.g2 = g2;
         g2.setColor(Color.white);
 
-        if(test){
-            test = false;
+
+
+        if(newShop){
+            newShop = false;
             randomeItem();
         }
 
@@ -58,6 +60,18 @@ public class Shop {
     }
 
     public void drawShop() {
+        int iX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
+        int iY = (int) (gp.screenHeight * 0.09);
+        int iWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int iHigh = (int) (gp.screenHeight * 0.08);
+
+
+
+        g2.drawRoundRect(iX,iY,iWight,iHigh,10,10);
+        gp.text.drawTextInBox(g2,"SHOP",iX,iY,iWight,iHigh);
+
+
+
         this.sX = (int) (gp.screenWidth * 0.01);
         this.sY = gp.screenHeight / 4;
         this.sWight = gp.screenWidth - 2 * sX;
@@ -68,7 +82,7 @@ public class Shop {
     public void drawBackgrund(){
         BufferedImage back = null;
         try {
-            back = ImageIO.read(Shop.class.getResource("/Hintergründe/Shop.png"));
+            back = ImageIO.read(Shop.class.getResource("/Background/Shop.png"));
             g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
         } catch (IOException e) {
             System.out.println("Error Loading Background");

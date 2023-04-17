@@ -145,6 +145,7 @@ public class Config {
         }
     }
     public void saveAll(int file) {
+        System.err.println("Alles Wurde gespeichert " + gp.save);
         for( int i = 0; i < 8; i++){
             save(file,"itemDB" + i ,gp.player.item[i][0]);
             save(file,"itemI" + i,gp.player.item[i][1]);
@@ -156,6 +157,9 @@ public class Config {
         save(file,"leben",gp.player.leben);
         save(file,"defense",gp.player.defense);
         save(file,"kraft",gp.player.kraft);
+        for (int i =0; i< 6; i++){
+            save(file,"monster" + i,gp.monsterDB.mtot[i]);
+        }
     }
 
     public void loadAll(int file){
@@ -170,5 +174,8 @@ public class Config {
         gp.player.leben = load(file,"leben");
         gp.player.defense = load(file,"defense");
         gp.player.kraft = load(file,"kraft");
+        for (int i =0; i< 6; i++){
+            gp.monsterDB.mtot[i] = load(file,"monster" + i);
+        }
     }
 }

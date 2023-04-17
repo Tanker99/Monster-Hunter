@@ -56,6 +56,7 @@ public class Inventory {
     private int sonY = 0;
     private int sonWight= 0;
     private int sonHigh = 0;
+    String console = "";
 
 
 
@@ -76,27 +77,30 @@ public class Inventory {
         drawInventory();
         g2.setFont(new Font("Arial",Font.PLAIN,40));
         g2.setColor(white);
-        g2.drawString("Inventar", gp.screenWidth/2,50);
 
-        g2.drawRoundRect(gp.screenWidth/2,0,200,100,10,10);
+        int iX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
+        int iY = (int) (gp.screenHeight * 0.1);
+        int iWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int iHigh = (int) (gp.screenHeight * 0.08);
+
+
+
+        g2.drawRoundRect(iX,iY,iWight,iHigh,10,10);
+        gp.text.drawTextInBox(g2,"Inventar",iX,iY,iWight,iHigh);
 
     }
     public void drawInventory(){
 
+        g2.setColor(white);
+
+        //drawBackground
+        drawBackground();
+
+        //draw Console
+        drawConsole();
 
 
-        BufferedImage back = null;
-        try {
-            back = ImageIO.read(Shop.class.getResource("/Hintergründe/inventar.png"));
-            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        } catch (IOException e) {
-            System.out.println("Error Loading Background");
-        }
-
-
-
-
-        //draw Game.Inventory rand
+        //draw Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
         g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);
 
@@ -119,6 +123,25 @@ public class Inventory {
         tryeuipcheck();
 
         sell();
+
+    }
+    public void drawBackground(){
+        BufferedImage back = null;
+        try {
+            back = ImageIO.read(Shop.class.getResource("/Background/inventar.png"));
+            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        } catch (IOException e) {
+            System.out.println("Error Loading Background");
+        }
+    }
+    public void drawConsole(){
+       int cX = inX + 10;
+       int cY = (int) (gp.screenHeight * 0.66);
+       int cWight= (int) (gp.screenWidth * 0.18);
+       int cHigh = (int) (gp.screenHeight * 0.025);
+
+        //g2.drawRoundRect(cX,cY,cWight,cHigh, 10,10);
+        gp.text.drawTextInBox(g2, console, cX, cY, cWight, cHigh);
 
     }
     public void drawSlot(){
@@ -257,6 +280,9 @@ public class Inventory {
             if (currentSlot == 9 && gp.shopEntry) {
                 g2.drawRoundRect(sonX, sonY + (currentSlot - 8) * 100, sonWight, sonHigh, 10, 10);
             }
+            if (currentSlot == 10) {
+                g2.drawRoundRect(sonX, sonY + 2 * 100, sonWight, sonHigh, 10, 10);
+            }
         }
 
 
@@ -306,7 +332,7 @@ public class Inventory {
         this.sonY = (int) (inHigh*0.6) + inY;
         this.sonWight = 100;
         this.sonHigh = 50;
-        String[] text = new String[]{"equip", "sell", "back [e]", "unequip"};
+        String[] text = new String[]{"equip", "sell", "back", "unequip"};
 
         for(int i = 0; i < 3; i++) {
             button[i] = new JPanel();
@@ -326,7 +352,7 @@ public class Inventory {
 
             g2.drawRoundRect(sonX , sonY + 0 * 100 , sonWight, sonHigh, 10, 10);
         }
-        if(gp.shopEntry){
+        if(gp.shopEntry && select){
             g2.drawString(text[1],sonX + 20 ,sonY+ 20+ 1*100);
             g2.drawRoundRect(sonX , sonY + 1 * 100 , sonWight, sonHigh, 10, 10);
         }
@@ -337,11 +363,14 @@ public class Inventory {
 
     }
     public void tryeuipcheck(){
+        String[] equip = {"Aüsgerüstet", "Entrüstet"};
+        int i = 0;
         if(tryequip){
             System.out.println(selectSlot);
             if(gp.player.item[selectSlot][0] == 1){
                 if(gp.player.equip[0] == selectSlot){
                     gp.player.equip[0] = -1;
+                    i = 1;
                     gp.player.kraft = 0;
                 }else {
                     gp.player.equip[0] = selectSlot;
@@ -352,6 +381,7 @@ public class Inventory {
                 if(gp.player.equip[1] == selectSlot){
                     gp.player.equip[1] = -1;
                     gp.player.defense = 0;
+                    i = 1;
                 }else {
                     gp.player.equip[1] = selectSlot;
                     gp.player.defense = gp.dba.getItem(2, gp.player.item[selectSlot][1]).getKraft();
@@ -360,8 +390,10 @@ public class Inventory {
             if(gp.player.item[selectSlot][0] == 3) {
                 if (gp.player.equip[2] == selectSlot) {
                     gp.player.equip[2] = -1;
+                    i = 1;
                 } else if (gp.player.equip[3] == selectSlot) {
                     gp.player.equip[3] = -1;
+                    i = 1;
                 } else if (gp.player.equip[2] == -1) {
                     gp.player.equip[2] = selectSlot;
                 } else if (gp.player.equip[3] == -1) {
@@ -374,12 +406,17 @@ public class Inventory {
 
             tryequip = false;
             select = false;
-
+            //Console
+            String iName = gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getName();
+            console = "Du hast " + iName + " " + equip[i];
         }
     }
     public void sell(){
         if(trysell && select) {
-            gp.player.gold = (int) (gp.player.gold + gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
+            String iName = gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getName();
+            int iWert = (int) (gp.dba.getItem(gp.player.item[selectSlot][0],gp.player.item[selectSlot][1]).getGoldwert() * 0.8);
+            gp.player.gold =  gp.player.gold + iWert;
+            console = "Du hast " + iName + " für " + iWert + "€ Verkauft";
             for(int i = 0; i < 3; i++) {
                 if(gp.player.equip[i] == selectSlot){
                     gp.player.equip[i] = -1;
@@ -400,6 +437,7 @@ public class Inventory {
     public void update() {
     }
     public void resetCurser(){
+        console = "";
         gp.shopEntry = false;
         currentSlotValueY = 0;
         currentSlotValueX = 0;
