@@ -24,14 +24,15 @@ public class Fight {
     int playerX;
     int monsterX;
     boolean fight = false;
-    int walkPlayer;
-    int walkPlayerback;
-    int walkMonster;
-    int walkMonsterback;
+    int playerWalk;
+    int playerWalkBack;
+    int monsterWalk;
+    int monsterWalkBack;
     boolean playerAllow;
     boolean monsterAllow;
     boolean mosnterAbzug;
     boolean playerAbzug;
+    int winner;
 
 
 
@@ -43,23 +44,31 @@ public class Fight {
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        if (setup) {
-            loadFigh();
-        }
-
         //Draw Background
         //drawBackground();
 
-        //Draw Player
-        drawcharakter();
+        if (setup) {
+            loadFigh();
+        }
+        if(winner > 0){
+            if( winner == 1){
+                g2.drawString("1",100,100);
+            }else if(winner == 2){
 
-        //drawMonster
-        drawmonster();
+            }
+        }else {
+            //Draw Player
+            drawcharakter();
 
-        //DrawButton
-        if (!(fight)) {
-            drawButton();
-            drawItems();
+            //drawMonster
+            drawmonster();
+
+            //DrawButton
+            if (!(fight)) {
+                resetFightAnimation();
+                drawButton();
+                drawItems();
+            }
         }
 
 
@@ -75,9 +84,6 @@ public class Fight {
     }
 
     public void loadFigh() {
-        playerAllow = true;
-        playerAbzug = true;
-        mosnterAbzug = true;
         playerX = (int) (gp.screenWidth * 0.05);
         monsterX = (int) (gp.screenWidth * 0.8);
 
@@ -89,17 +95,6 @@ public class Fight {
     }
 
     public void drawcharakter() {
-
-        BufferedImage back = null;
-        try {
-            back = ImageIO.read(Shop.class.getResource("/Hintergruende/Kampfhaus.png"));
-            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        } catch (IOException e) {
-            System.out.println("Error Loading Background");
-        }
-
-
-
         // int pX= (int) (gp.screenWidth*0.05);
         int pY = (int) (gp.screenHeight * 0.55);
         int pWidth = (int) (gp.screenWidth * 0.15);
@@ -198,86 +193,74 @@ public class Fight {
     public void drawBackground() {
         BufferedImage back = null;
         try {
-            back = ImageIO.read(Fight.class.getResource("/back.png"));
+            back = ImageIO.read(Shop.class.getResource("/Hintergründe/Kampfhaus.png"));
             g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
         } catch (IOException e) {
             System.out.println("Error Loading Background");
         }
     }
 
-    public void kampf() {
-        System.out.println("Fight Beginn");
 
 
-
+        public void kampf() {
         if (playerAllow) {
-            if (walkPlayer <= 90) {
-                walkPlayer++;
-                playerX = (int) (playerX + walkPlayer * 0.2);
+            if (playerWalk <= 90) {
+                playerWalk++;
+                playerX = (int) (playerX + playerWalk * 0.2);
 
-            }else
-            if(walkPlayer >= 90 && walkPlayerback <=85){
-                walkPlayerback ++;
-                playerX = (int) (playerX - walkPlayerback * 0.2);
+            }else if(playerWalk >= 90 && playerWalkBack <=85){
+                playerWalkBack ++;
+                playerX = (int) (playerX - playerWalkBack * 0.2);
 
 
-            }else if(walkPlayer >= 90 && walkPlayerback >= 85){
+            }else if(playerWalk >= 90 && playerWalkBack >= 85){
                 if(mosnterAbzug) {
-                    System.out.println("SDADASD");
                     monsterlive = monsterlive - gp.player.kraft;
                     mosnterAbzug = false;
+                    if(monsterlive <= 0){
+                        winner = 1;
+                    }
                 }
                 playerX = (int) (gp.screenWidth * 0.05);
                 monsterAllow = true;
                 playerAllow = false;
             }
-        }
+        }else
         if (monsterAllow) {
-            if (walkMonster <= 90) {
-                monsterX = (int) (monsterX - walkMonster * 0.2);
-                walkMonster++;
+            if (monsterWalk <= 90) {
+                monsterX = (int) (monsterX - monsterWalk * 0.2);
+                monsterWalk++;
             }else
-            if(walkMonster >= 90 && walkMonsterback <=90){
-                walkMonsterback ++;
-                monsterX = (int) (monsterX + walkMonsterback * 0.2);
+            if(monsterWalk >= 90 && monsterWalkBack <=90){
+                monsterWalkBack ++;
+                monsterX = (int) (monsterX + monsterWalkBack * 0.2);
 
-            }else if(walkMonster >= 90 && walkMonsterback >= 85){
+            }else if(monsterWalk >= 90 && monsterWalkBack >= 85){
                 if(playerAbzug) {
-                    int temp = gp.player.defense;
-                    gp.player.leben = gp.player.leben - (temp - monsterattack);
+                    int temp = gp.player.defense - monsterattack;
+                    if (temp  < 0) {
+                        gp.player.leben = gp.player.leben + temp;
+                    }
                     playerAbzug = false;
                 }
+                if(gp.player.leben <= 0){
+                    winner = 2;
+                }
                     monsterX = (int) (gp.screenWidth * 0.8);
+                monsterAllow = false;
                     fight = false;
                 }
 
             }
         }
+        public void resetFightAnimation(){
+            playerAllow = true;
+            playerAbzug = true;
+            playerWalk = 0;
+            playerWalkBack = 0;
+            mosnterAbzug = true;
+            monsterWalk = 0;
+            monsterWalkBack = 0;
+        }
     }
-
-
-
-
-
-
-
-
-
-
-            /*
-            for(int i=0;i<=lebenSpieler||i<=lebenMonster;i++){
-                lebenMonster-=(gp.player.kraft);
-                lebenSpieler-=(gp.monster.attack);
-            }
-            if(lebenSpieler<=0){
-                gp.gameState=gp.uiState;
-            }
-            if(lebenMonster<=0){
-                gp.gameState= gp.playerState;
-
-            }
-
-             */
-
-
 
