@@ -318,7 +318,7 @@ public class Player extends Entity{
             }
         }
         if(popUPB) {
-            if(popWait < 250) {
+            if(popWait < 400) {
                 popWait ++;
                 drawPopupB(g2);
             }else {
