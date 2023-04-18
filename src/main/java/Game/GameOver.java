@@ -1,7 +1,10 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GameOver {
 
@@ -38,7 +41,7 @@ public class GameOver {
         gp.text.drawTextInBox(g2,"BACK",bX,bY,bWight,bHigh);
 
         int tX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
-        int tY = (int) (gp.screenHeight * 0.45);
+        int tY = (int) (gp.screenHeight * 0.48);
         int tWight = (int) ((gp.screenWidth * 0.08) * 2);
         int tHigh = (int) (gp.screenHeight * 0.08);
 
@@ -47,6 +50,19 @@ public class GameOver {
         g2.setFont(g2.getFont().deriveFont(40F));
         gp.text.drawTextInBox(g2,"DU HAST VERLOHREN",tX,tY,tWight,tHigh);
 
+
+        int pX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
+        int pY = (int) (gp.screenHeight * 0.25);
+        int pWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int pHigh = (int) (gp.screenHeight * 0.2);
+        BufferedImage cha = null;
+        try {
+            cha = ImageIO.read(GameOver.class.getResource("/Background/playertot.png"));
+            System.out.println("Home screen loading error!!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        g2.drawImage(cha,pX,pY,pWight,pHigh,null);
 
 
     }
