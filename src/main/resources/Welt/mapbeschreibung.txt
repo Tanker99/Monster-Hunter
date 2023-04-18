@@ -42,8 +42,8 @@
 41 = Strand rechts
 42 = Strand rechts unten
 43 = Strand rechts unten voll
-44 =
-45 =
+44 = Leuchtendes Graß
+45 = Shop Schild
 46 =
 47 =
 48 =

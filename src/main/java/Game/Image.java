@@ -156,9 +156,9 @@ public class Image {
     public String[] hFString = {
             "/Background/fight/KampfHaus.png"
             ,"/Background/fight/Kampfhoele.png"
-            ,"/Background/fight/Kampfgrass.png"
+            ,"/Background/fight/erdinnen.png"
             ,"/Background/fight/castleinnen.png"
-            ,"/Background/fight/Baum.png"
+            ,"/Background/fight/bauminnen.png"
     };
 
     //Sonstige images

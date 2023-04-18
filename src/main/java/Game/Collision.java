@@ -23,7 +23,7 @@ public class Collision {
                 tileNum1 = gp.tileT.mapTileNum[playerleftcol][playertoprow];
                 tileNum2 = gp.tileT.mapTileNum[playerrightcol][playertoprow];
                 if(gp.tileT.tile[tileNum1].collision == true || gp.tileT.tile[tileNum2].collision == true){
-                    entity.collisionan = true;
+                    entity.collisionan = false;
                 }
                 break;
             case "down":
@@ -31,7 +31,7 @@ public class Collision {
                 tileNum1 = gp.tileT.mapTileNum[playerleftcol][playerbottomrow];
                 tileNum2 = gp.tileT.mapTileNum[playerrightcol][playerbottomrow];
                 if(gp.tileT.tile[tileNum1].collision == true || gp.tileT.tile[tileNum2].collision == true){
-                    entity.collisionan = true;
+                    entity.collisionan = false;
                 }
                 break;
             case "left":
@@ -39,7 +39,7 @@ public class Collision {
                 tileNum1 = gp.tileT.mapTileNum[playerleftcol][playertoprow];
                 tileNum2 = gp.tileT.mapTileNum[playerleftcol][playerbottomrow];
                 if(gp.tileT.tile[tileNum1].collision == true || gp.tileT.tile[tileNum2].collision == true){
-                    entity.collisionan = true;
+                    entity.collisionan = false;
                 }
                 break;
             case "right":
@@ -47,7 +47,7 @@ public class Collision {
                 tileNum1 = gp.tileT.mapTileNum[playerrightcol][playertoprow];
                 tileNum2 = gp.tileT.mapTileNum[playerrightcol][playerbottomrow];
                 if(gp.tileT.tile[tileNum1].collision == true || gp.tileT.tile[tileNum2].collision == true){
-                    entity.collisionan = true;
+                    entity.collisionan = false;
                 }
                 break;
         }
