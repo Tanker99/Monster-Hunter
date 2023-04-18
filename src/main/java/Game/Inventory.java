@@ -251,7 +251,7 @@ public class Inventory {
         int pcHigh = (int) (inHigh /2.6);
         g2.drawRoundRect(pcX,pcY,pcWight,pcHigh,10,10);
         if(gp.player.equip[1] != -1){
-            g2.drawImage(gp.image.iRBild[gp.player.equip[1]],pcX,pcY,pcWight,pcHigh,null);
+            g2.drawImage(gp.image.iRBild[gp.player.item[gp.player.equip[1]][1]],pcX,pcY,pcWight,pcHigh,null);
         }else {
             g2.drawImage(gp.image.iRDefault,pcX,pcY,pcWight,pcHigh,null);
         }
