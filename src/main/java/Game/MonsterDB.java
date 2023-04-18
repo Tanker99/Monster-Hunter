@@ -22,7 +22,7 @@ public class MonsterDB {
     public static Integer[] mtot = {0,0,0,0,0,0};
     public static int[] mHealth={20,80,100,105,115,145};
     public static int[] mDefense={7,12,9,16,25,40};
-    public static int[] mAttack={6,12,9,12,15,20};
+    public static int[] mAttack={6,12,9,12,25,30};
 
     public MonsterDB(String name, int health, int defense, int attack, BufferedImage bild, int tot){
 
