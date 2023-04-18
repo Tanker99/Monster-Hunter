@@ -26,6 +26,7 @@ public class Player extends Entity{
 
 
     public Player(GamePanel gp, KeyHandler keyH){
+        //equip[1]= -1;
         this.gp = gp;
         this.keyH = keyH;
         screenx = gp.screenWidth/2 - (gp.tileSize/2);
@@ -33,6 +34,7 @@ public class Player extends Entity{
         hitbox = new Rectangle(24,44,32,32);
         Values();
         getImage();
+
 
     }
     public void Values(){
@@ -45,21 +47,63 @@ public class Player extends Entity{
     }
 
     public void getImage(){
+        int slotnr = equip[1];
+
+        BufferedImage[] walkImage = null;
+        switch (slotnr){
+            case -1:
+                walkImage = gp.image.wdBild;
+                break;
+            case 0:
+                walkImage = gp.image.wiBild;
+                break;
+            case 1:
+                walkImage = gp.image.wgBild;
+                break;
+            case 2:
+                walkImage = gp.image.wlBild;
+                break;
+            case 3:
+                walkImage = gp.image.wdiBild;
+                break;
+            case 4:
+                walkImage = gp.image.wjBild;
+                break;
+            case 5:
+                walkImage = gp.image.wuBild;
+                break;
+
+
+        }
+            down1 =  walkImage[0];
+            down2 =  walkImage[1];
+            up1 =  walkImage[2];
+            up2 =  walkImage[3];
+            left1 =  walkImage[4];
+            left2 =  walkImage[5];
+            right1 =  walkImage[6];
+            right2 =  walkImage[7];
+            System.out.println("test");
+
+
+
+        /*
 
         try{
-            down1 =  ImageIO.read(Player.class.getResource("/player/playerc1.png"));
-            down2 =  ImageIO.read(Player.class.getResource("/player/playerc2.png"));
-            up1 =  ImageIO.read(Player.class.getResource("/player/playerb1.png"));
-            up2 =  ImageIO.read(Player.class.getResource("/player/playerb2.png"));
-            left1 =  ImageIO.read(Player.class.getResource("/player/playerl1.png"));
-            left2 =  ImageIO.read(Player.class.getResource("/player/playerl2.png"));
-            right1 =  ImageIO.read(Player.class.getResource("/player/playerr1.png"));
-            right2 =  ImageIO.read(Player.class.getResource("/player/playerr2.png"));
+            down1 =  ImageIO.read(Player.class.getResource("/player/default/playerc1.png"));
+            down2 =  ImageIO.read(Player.class.getResource("/player/default/playerc2.png"));
+            up1 =  ImageIO.read(Player.class.getResource("/player/default/playerb1.png"));
+            up2 =  ImageIO.read(Player.class.getResource("/player/default/playerb2.png"));
+            left1 =  ImageIO.read(Player.class.getResource("/player/default/playerl1.png"));
+            left2 =  ImageIO.read(Player.class.getResource("/player/default/playerl2.png"));
+            right1 =  ImageIO.read(Player.class.getResource("/player/default/playerr1.png"));
+            right2 =  ImageIO.read(Player.class.getResource("/player/default/playerr2.png"));
             System.out.println("test");
         }catch (IOException e){
             e.printStackTrace();
             System.out.println("Game.Image Error");
         }
+        */
 
 
     }

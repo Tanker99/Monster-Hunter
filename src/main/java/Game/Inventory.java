@@ -236,8 +236,8 @@ public class Inventory {
             g2.drawRoundRect(panX + 10, (int) (panY + panHigh * 0.15) + ii, 50, 50, 10, 10);
 
             if (!(gp.player.equip[i] == -1)) {
-                int slotnr = gp.player.equip[i];
-                g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), panX + 10, (int) (panY + panHigh * 0.15) + ii, null);
+                int slotnrr = gp.player.equip[i];
+                g2.drawImage(gp.dba.getItem(gp.player.item[slotnrr][0], gp.player.item[slotnrr][1]).getImagee(), panX + 10, (int) (panY + panHigh * 0.15) + ii, null);
             }
         }
 
@@ -382,9 +382,11 @@ public class Inventory {
                     gp.player.equip[1] = -1;
                     gp.player.defense = 0;
                     i = 1;
+                    gp.player.getImage();
                 }else {
                     gp.player.equip[1] = selectSlot;
                     gp.player.defense = gp.dba.getItem(2, gp.player.item[selectSlot][1]).getKraft();
+                    gp.player.getImage();
                 }
             }
             if(gp.player.item[selectSlot][0] == 3) {
