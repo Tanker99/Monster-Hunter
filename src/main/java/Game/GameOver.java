@@ -48,7 +48,7 @@ public class GameOver {
         //g2.drawRoundRect(tX,tY,tWight,tHigh,10,10);
         g2.setColor(Color.RED);
         g2.setFont(g2.getFont().deriveFont(40F));
-        gp.text.drawTextInBox(g2,"DU HAST VERLOHREN",tX,tY,tWight,tHigh);
+        gp.text.drawTextInBox(g2,"DU HAST VERLOREN",tX,tY,tWight,tHigh);
 
 
         int pX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);

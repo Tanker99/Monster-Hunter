@@ -287,8 +287,8 @@ public class Image {
     public void loadImageee(){
 
         try {
-            imgX = ImageIO.read(Image.class.getResource("/Kreis.png"));
-            imgO = ImageIO.read(Player.class.getResource("/x.png"));
+            imgX = ImageIO.read(Image.class.getResource("/X.png"));
+            imgO = ImageIO.read(Player.class.getResource("/O.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

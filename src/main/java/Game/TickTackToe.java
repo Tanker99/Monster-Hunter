@@ -32,11 +32,12 @@ public class TickTackToe {
 
     //JPanel
     private JPanel slot[] = new JPanel[9];
+    private JPanel button[] = new JPanel[2];
 
 
     public TickTackToe(GamePanel gp){
         x = 200;
-        y = 100;
+        y = (int) (gp.screenHeight * 0.25);
         maxHight = gp.screenHeight / 2;
         maxWight = gp.screenWidth / 2;
         fWight = (int) (maxWight * 0.33);
@@ -53,6 +54,8 @@ public class TickTackToe {
         if(end){
             drawEnd();
         }
+        drawBack();
+        drawLabel();
         tickTackToe();
         drawSlotState();
         drawMove();
@@ -65,7 +68,55 @@ public class TickTackToe {
         }
     }
 
+    public void drawname() {
+        int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
+        int bY = (int) (gp.screenHeight * 0.4);
+        int bWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int bHigh = (int) (gp.screenHeight * 0.08);
+        int yab = (int) (bHigh + gp.screenHeight * 0.02);
+    }
+    public void drawLabel() {
+        int lX = (int) (gp.screenWidth * 0.8);
+        int lY = (int) (gp.screenHeight * 0.26);
+        int lWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int lHigh = (int) (gp.screenHeight * 0.08);
+        int lab = (int) (lHigh + gp.screenHeight * 0.02);
 
+        String[] text = {"Du bist X", "Spiel: Leicht","Spiel: Mittel","Spiel: Schwer"};
+
+        g2.setFont(g2.getFont().deriveFont(18F));
+        gp.text.drawTextInBox(g2, text[0], lX, lY + 0*lab, lWight, lHigh);
+
+        button[1] = new JPanel();
+        button[1].setBounds(lX, lY + 1*lab, lWight, lHigh);
+        button[1].setName("difficult");
+        button[1].addMouseListener(gp.mous);
+        gp.add(button[1]);
+        button[1].setVisible(true);
+        g2.setFont(g2.getFont().deriveFont(18F));
+        gp.text.drawTextInBox(g2, text[1], lX, lY + 1*lab, lWight, lHigh);
+        g2.drawRect(lX, lY + 1*lab, lWight, lHigh);
+
+
+    }
+
+public void drawBack(){
+    int bX = (int) (gp.screenWidth * 0.8);
+    int bY = (int) (gp.screenHeight * 0.8);
+    int bWight = (int) ((gp.screenWidth * 0.08) * 2);
+    int bHigh = (int) (gp.screenHeight * 0.08);
+
+
+    button[0] = new JPanel();
+    button[0].setBounds(bX, bY , bWight, bHigh);
+    button[0].setName("Back");
+    button[0].addMouseListener(gp.mous);
+    gp.add(button[0]);
+    button[0].setVisible(true);
+    g2.setFont(g2.getFont().deriveFont(18F));
+    gp.text.drawTextInBox(g2, "Back", bX, bY , bWight, bHigh);
+    g2.drawRect(bX, bY , bWight, bHigh);
+}
     public void tickTackToe() {
 
         g2.drawRoundRect(x, y, fWight * 3, fHigh * 3, 0, 0);

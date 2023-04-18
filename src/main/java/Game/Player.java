@@ -301,6 +301,7 @@ public class Player extends Entity{
                     animation = 1;
                 }
                 timer = 0;
+                gp.playSound(5);
             }
             System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize+ "    |      X-Achsereal: "+ worldx + "    Y-Achsereal: " +worldy);
             //System.out.println("Timer: "+ timer + "Animation: " +animation);
