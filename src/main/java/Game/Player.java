@@ -47,34 +47,35 @@ public class Player extends Entity{
     }
 
     public void getImage(){
-        int slotnr = equip[1];
+        int slotnr = item[equip[1]][1];
 
         BufferedImage[] walkImage = null;
         switch (slotnr){
-            case -1:
+            case -1,0:
                 walkImage = gp.image.wdBild;
                 break;
-            case 0:
+            case 1:
                 walkImage = gp.image.wiBild;
                 break;
-            case 1:
+            case 2:
                 walkImage = gp.image.wgBild;
                 break;
-            case 2:
+            case 3:
                 walkImage = gp.image.wlBild;
                 break;
-            case 3:
+            case 4:
                 walkImage = gp.image.wdiBild;
                 break;
-            case 4:
+            case 5:
                 walkImage = gp.image.wjBild;
                 break;
-            case 5:
+            case 6:
                 walkImage = gp.image.wuBild;
                 break;
 
 
         }
+        System.err.println(slotnr);
             down1 =  walkImage[0];
             down2 =  walkImage[1];
             up1 =  walkImage[2];
