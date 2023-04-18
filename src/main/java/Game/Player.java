@@ -56,25 +56,25 @@ public class Player extends Entity{
 
         BufferedImage[] walkImage = null;
         switch (slotnr){
-            case -1,0:
+            case -1:
                 walkImage = gp.image.wdBild;
                 break;
-            case 1:
+            case 0:
                 walkImage = gp.image.wiBild;
                 break;
-            case 2:
+            case 1:
                 walkImage = gp.image.wgBild;
                 break;
-            case 3:
+            case 2:
                 walkImage = gp.image.wlBild;
                 break;
-            case 4:
+            case 3:
                 walkImage = gp.image.wdiBild;
                 break;
-            case 5:
+            case 4:
                 walkImage = gp.image.wjBild;
                 break;
-            case 6:
+            case 5:
                 walkImage = gp.image.wuBild;
                 break;
 
