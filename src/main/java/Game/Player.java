@@ -79,18 +79,24 @@ public class Player extends Entity{
         }
 
         //Erde Fight
-        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ){
-            System.out.println("");
+        if(worldy >= 2436 && worldy <= 2480&& worldx >= 1710 && worldx <= 1780){
+            System.out.println("Erde Loch");
+            //worldx = 1604; //Spawns nach dem fight
+            //worldy = 2392; //Spawns nach dem fight
         }
 
         //Stein Fight
-        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ){
-            System.out.println("");
+        if(worldy >= 2276 && worldy <= 2336&& worldx >= 2456 && worldx <= 2500){
+            System.out.println("Stein Loch");
+            //worldx = 2400; //Spawns nach dem fight
+            //worldy = 2376; //Spawns nach dem fight
         }
 
         //Baum Fight
         if(worldy == 2356 && worldx >= 1012 && worldx <= 1080){
             System.out.println("Baum");
+            //worldx = 1196; //Spawns nach dem fight
+            //worldy = 2388; //Spawns nach dem fight
         }
 
         //END BOSS Fight

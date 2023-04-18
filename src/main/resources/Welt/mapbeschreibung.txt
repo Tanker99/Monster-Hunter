@@ -33,9 +33,9 @@
 32 = Graßweg runter von links
 33 = Hausholz rechts
 34 = Hausholz links
-35 =
-36 =
-37 =
+35 = Steinhöleneingang
+36 = Graßhöleneingang
+37 = Dreck
 38 =
 39
 40

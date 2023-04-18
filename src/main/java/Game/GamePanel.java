@@ -212,13 +212,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void playLoopSound(int i) {
-        sound.selectSound(i);
-        sound.play();
-        sound.loop();
+       //// sound.selectSound(i);
+       // sound.play();
+       // sound.loop();
     }
     public void playSound(int i){
-        sound.selectSound(i);
-        sound.play();
+       // sound.selectSound(i);
+       // sound.play();
     }
     public void updateScreen(int i){
             Dimension currentSize = this.getSize();
