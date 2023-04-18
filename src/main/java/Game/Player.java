@@ -132,6 +132,8 @@ public class Player extends Entity{
                 gp.fight.loadFigh(0,0);
                 gp.gameState = gp.fightState;
             }
+            worldx = 1280; //Spawns nach dem fight
+            worldy = 1260; //Spawns nach dem fight
         }
 
         //Erde Fight

@@ -217,7 +217,7 @@ public class Shop {
 
         int rHigh = (int) (gp.screenHeight * 0.08);
         g2.drawRoundRect(rX, rY, rWight, rHigh, 10, 10);
-        gp.text.drawTextInBox(g2, "Randomize: 10 Gold", rX, rY, rWight, rHigh);
+        gp.text.drawTextInBox(g2, "Randomize: 20 Gold", rX, rY, rWight, rHigh);
 
         button[3] = new JPanel();
         button[3].setName("Button: 3");
