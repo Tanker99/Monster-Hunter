@@ -159,7 +159,10 @@ public class Player extends Entity{
         //GeschichteHaus
         if(worldy == 996 && worldx >= 940 && worldx <= 996){
             System.out.println("GeschichtenHaus");
-            popuPt = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+            popuPt = 
+            "Nachdem Du nach einem Deiner typischen Kneipengänge auf dem Weg nach Hause bist, fällt Dir plötzlich auf, dass du verfolgt wirst. 
+             Du zögerst nicht und beginnst durch strategischen Zick-Zack Lauf deinen Verfolger abzuschütteln... aber leider ohne Erfolg.
+            ";
             popUPB = true;
 
             worldx = 964; //Spawns
