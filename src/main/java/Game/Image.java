@@ -108,14 +108,14 @@ public class Image {
     //dia
     public  BufferedImage[] wdiBild;
     public String[] wdiString = {
-            "/player/dia/playerbl1.png"
-            , "/player/dia/playerbl2.png"
-            , "/player/dia/playercl1.png"
-            , "/player/dia/playercl2.png"
-            , "/player/dia/playerll1.png"
-            , "/player/dia/playerll2.png"
-            , "/player/dia/playerrl1.png"
-            , "/player/dia/playerrl2.png"
+            "/player/dia/playerbd1.png"
+            , "/player/dia/playerbd2.png"
+            , "/player/dia/playercd1.png"
+            , "/player/dia/playercd2.png"
+            , "/player/dia/playerld1.png"
+            , "/player/dia/playerld2.png"
+            , "/player/dia/playerrd1.png"
+            , "/player/dia/playerrd2.png"
     };
     //jade
     public  BufferedImage[] wjBild;
