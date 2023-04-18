@@ -282,16 +282,19 @@ public class Fight {
                 int slotnr = gp.player.equip[2+i];
                 g2.drawImage(gp.dba.getItem(gp.player.item[slotnr][0], gp.player.item[slotnr][1]).getImagee(), iX + i* iWight, iY, iWight, iHigh, null);
             }
-            g2.drawRoundRect(iX + i* iWight, iY, iWight, iHigh, 10, 10);
+           // g2.drawRoundRect(iX + i* iWight, iY, iWight, iHigh, 10, 10);
         }
     }
     public void drawConsole(){
-        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.09);
+        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.1);
         int cY = (int) (gp.screenHeight * 0.76);
-        int cWight = (int) ((gp.screenWidth * 0.09) * 2);
-        int cHigh = (int) (gp.screenHeight * 0.08);
+        int cWight = (int) ((gp.screenWidth * 0.1) * 2);
+        int cHigh = (int) (gp.screenHeight * 0.05);
 
-        // g2.drawRoundRect(cX,cY,cWight,cHigh,10,10);
+        g2.drawRect(cX, cY, cWight, cHigh);
+        g2.setColor(Color.white);
+        g2.fillRect(cX, cY, cWight, cHigh);
+        g2.setColor(Color.black);
         gp.text.drawTextInBox(g2, console, cX, cY, cWight, cHigh);
 
 
