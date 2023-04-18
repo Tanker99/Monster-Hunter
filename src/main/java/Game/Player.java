@@ -55,7 +55,7 @@ public class Player extends Entity{
     }
     public void getImage(){
         int slotnr;
-        if (equip[1] == -1) {
+        if (gp.config.load(gp.save,"equip1") == -1) {
             slotnr = -1;
         }else {
              slotnr = item[equip[1]][1];
@@ -64,6 +64,7 @@ public class Player extends Entity{
         BufferedImage[] walkImage = null;
         switch (slotnr){
             case -1:
+                System.out.println("dasdasdasdasd");
                 walkImage = gp.image.wdBild;
                 break;
             case 0:
@@ -143,7 +144,7 @@ public class Player extends Entity{
         g2.drawRoundRect(x,y,wight,high,10,10);
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(20F));
-        gp.text.drawTextBetweenBox(g2,popuPt, (int) (x + gp.screenWidth * 0.02), (int) (y + gp.screenHeight * 0.02), (int) (wight - gp.screenWidth * 0.02));
+        gp.text.drawTextBetweenBox(g2,popuPt, (int) (x + gp.screenWidth * 0.02), (int) (y + gp.screenHeight * 0.04), (int) (wight - gp.screenWidth * 0.02));
     }
     public void update (){
         //SHOP
@@ -160,8 +161,8 @@ public class Player extends Entity{
             popuPt = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
             popUPB = true;
 
-            worldx = 1108; //Spawns
-            worldy = 1024; //Spawns
+            worldx = 964; //Spawns
+            worldy = 1036; //Spawns
         }
 
         //Haus Fight1
@@ -189,15 +190,22 @@ public class Player extends Entity{
                 gp.fight.loadFigh(0,3);
                 gp.gameState = gp.fightState;
             }
-            worldx = 1280; //Spawns nach dem fight
-            worldy = 1260; //Spawns nach dem fight
+            worldx = 2564; //Spawns nach dem fight
+            worldy = 1836; //Spawns nach dem fight
         }
 
         //Erde Fight
         if(worldy >= 2436 && worldy <= 2480&& worldx >= 1710 && worldx <= 1780){
             System.out.println("Erde Loch");
-            //worldx = 1604; //Spawns nach dem fight
-            //worldy = 2392; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(1) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(2,1);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1604; //Spawns nach dem fight
+            worldy = 2392; //Spawns nach dem fight
         }
 
         //Stein Fight
@@ -211,15 +219,22 @@ public class Player extends Entity{
                 gp.gameState = gp.fightState;
             }
 
-            worldx = 2400; //Spawns nach dem fight
-            worldy = 2376; //Spawns nach dem fight
+            worldx = 1768; //Spawns nach dem fight
+            worldy = 2552; //Spawns nach dem fight
         }
 
         //Baum Fight
         if(worldy == 2356 && worldx >= 1012 && worldx <= 1080){
             System.out.println("Baum");
-            //worldx = 1196; //Spawns nach dem fight
-            //worldy = 2388; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(2) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(4,2);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1040; //Spawns nach dem fight
+            worldy = 2388; //Spawns nach dem fight
         }
 
         //END BOSS Fight

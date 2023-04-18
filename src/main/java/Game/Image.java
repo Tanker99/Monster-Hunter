@@ -158,6 +158,7 @@ public class Image {
             ,"/Background/fight/Kampfhoele.png"
             ,"/Background/fight/Kampfgrass.png"
             ,"/Background/fight/castleinnen.png"
+            ,"/Background/fight/Baum.png"
     };
 
     //Sonstige images
