@@ -98,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setup(){
-        //playLoopSound(0);
+        playLoopSound(0);
         gameState = 1;
 
 
@@ -175,6 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         } else if (gameState == playerState) {
+            player.getImage();
             settingOldState = playerState;
             tileT.draw(g2);
             player.draw(g2);

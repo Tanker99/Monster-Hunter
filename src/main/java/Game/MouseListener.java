@@ -448,13 +448,76 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
         }
     }
-    public void miniGameStateClick(MouseEvent e){
+    public void miniGameStateClick(MouseEvent e) {
+        String i = e.getComponent().getName();
         System.out.println("Panel Name " + e.getComponent().getName() + " Clicked");
-        if(gp.miniGame.amZug == 1 && !gp.miniGame.end && gp.miniGame.slotState[gp.miniGame.currentSlot] == 0 ) {
-                gp.miniGame.slotState[gp.miniGame.currentSlot] = 1;
-                gp.miniGame.amZug = 2;
+        if (gp.miniGame.amZug == 1 && !gp.miniGame.end && gp.miniGame.slotState[gp.miniGame.currentSlot] == 0) {
+            switch (i) {
+                case "Slot: 0":
+                    gp.miniGame.slotState[0] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 1":
+                    gp.miniGame.slotState[1] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 2":
+                    gp.miniGame.slotState[2] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 3":
+                    gp.miniGame.slotState[3] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 4":
+                    gp.miniGame.slotState[4] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 5":
+                    gp.miniGame.slotState[5] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 6":
+                    gp.miniGame.slotState[6] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 7":
+                    gp.miniGame.slotState[7] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+                case "Slot: 8":
+                    gp.miniGame.slotState[8] = 1;
+                    gp.miniGame.amZug = 2;
+                    gp.playSound(1);
+                    break;
+            }
         }
-    }
+        switch (i) {
+            case "difficult":
+                gp.miniGame.difficult++;
+                if (gp.miniGame.difficult == 3) {
+                    gp.miniGame.difficult = 0;
+                }
+                gp.playSound(1);
+                break;
+            case "restart":
+                gp.miniGame.reset();
+                gp.playSound(1);
+                break;
+            case "Back":
+                gp.gameState = gp.playerState;
+                break;
+        }
+
+        }
     public void miniGameStateEntered(MouseEvent e){
         System.out.println("Panel Name " + e.getComponent().getName() + " Entered");
         String i = e.getComponent().getName();
