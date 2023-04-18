@@ -227,9 +227,11 @@ public class UI{
 
 
                 if(gp.config.load(i,"used") == 0) {
-                    g2.drawString("nicht verwendet", kX + x * xab, kY + y * yab+kHigh/2);
+                    //g2.drawString("nicht verwendet", kX + x * xab, kY + y * yab+kHigh/2);
+                    g2.setFont(g2.getFont().deriveFont(40F));
+                    gp.text.drawTextInBox(g2,"nicht verwendet", kX + x*xab,kY + y*yab, kWight,kHigh);
                 }else{
-                    gp.text.draw3StringsInBox(g2,"Leben " + gp.config.load(gp.save, "leben") ,"Gold " + gp.config.load(gp.save, "gold"),"",kX + x*xab,kY + y*yab, kWight,kHigh);
+                    gp.text.draw3StringsInBox(g2,"Leben " + gp.config.load(gp.save, "leben") ,"Gold " + gp.config.load(gp.save, "gold"),"attack " + gp.config.load(gp.save, "attack"),kX + x*xab,kY + y*yab, kWight,kHigh);
                 }
                 g2.drawRoundRect(kX + x * xab, kY + y * yab, kWight, kHigh, 10, 10);
                 i++;
@@ -237,9 +239,10 @@ public class UI{
         }
 
         //Back Button
-        int bX = (int) (gp.screenWidth * 0.25);
+
+        int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.2);
         int bY = (int) (gp.screenHeight * 0.8);
-        int bWight = (int) (gp.screenWidth * 0.38);
+        int bWight = (int) ((gp.screenWidth * 0.2) * 2);
         int bHigh = (int) (gp.screenHeight * 0.11);
         text = "Back";
         gp.text.drawTextInBox(g2,text,bX,bY,bWight,bHigh);
