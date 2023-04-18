@@ -13,6 +13,8 @@ public class TickTackToe {
 
 
     //variable
+    int difficult = 0;
+    boolean start = false;
     public int slotState[] = new int[9];
     int maxWight;
     int maxHight;
@@ -21,7 +23,6 @@ public class TickTackToe {
     int fWight;
     int fHigh;
     public  int amZug = 1;
-    public  int kiState = 2;
     public  int gewinner;
     public  boolean end;
 
@@ -32,11 +33,11 @@ public class TickTackToe {
 
     //JPanel
     private JPanel slot[] = new JPanel[9];
-    private JPanel button[] = new JPanel[2];
+    private JPanel button[] = new JPanel[4];
 
 
     public TickTackToe(GamePanel gp){
-        x = 200;
+        x = (int) (gp.screenWidth * 0.25);
         y = (int) (gp.screenHeight * 0.25);
         maxHight = gp.screenHeight / 2;
         maxWight = gp.screenWidth / 2;
@@ -53,27 +54,39 @@ public class TickTackToe {
         }
         if(end){
             drawEnd();
+            drawButton();
         }
+
+        drawname();
         drawBack();
         drawLabel();
+
         tickTackToe();
         drawSlotState();
         drawMove();
         if(amZug == 2) {
-            if(kiState == 1){
+            if (difficult == 0) {
                 kiEasy();
-            }else if(kiState == 2){
+            } else if (difficult == 1) {
+                kiMedium();
+            } else {
                 kiMedium();
             }
         }
+
     }
 
     public void drawname() {
-        int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
-        int bY = (int) (gp.screenHeight * 0.4);
-        int bWight = (int) ((gp.screenWidth * 0.08) * 2);
-        int bHigh = (int) (gp.screenHeight * 0.08);
-        int yab = (int) (bHigh + gp.screenHeight * 0.02);
+        int nX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
+        int nY = (int) (gp.screenHeight * 0.1);
+        int nWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int nHigh = (int) (gp.screenHeight * 0.08);
+
+        g2.setFont(g2.getFont().deriveFont(30F));
+        gp.text.drawTextInBox(g2, "TIKTAKTOE", nX, nY, nWight, nHigh);
+        g2.drawRect(nX, nY, nWight, nHigh);
+
+
     }
     public void drawLabel() {
         int lX = (int) (gp.screenWidth * 0.8);
@@ -86,6 +99,7 @@ public class TickTackToe {
 
         g2.setFont(g2.getFont().deriveFont(18F));
         gp.text.drawTextInBox(g2, text[0], lX, lY + 0*lab, lWight, lHigh);
+        g2.drawRect(lX, lY + 0*lab, lWight, lHigh);
 
         button[1] = new JPanel();
         button[1].setBounds(lX, lY + 1*lab, lWight, lHigh);
@@ -94,10 +108,27 @@ public class TickTackToe {
         gp.add(button[1]);
         button[1].setVisible(true);
         g2.setFont(g2.getFont().deriveFont(18F));
-        gp.text.drawTextInBox(g2, text[1], lX, lY + 1*lab, lWight, lHigh);
+        gp.text.drawTextInBox(g2, text[1 + difficult], lX, lY + 1*lab, lWight, lHigh);
         g2.drawRect(lX, lY + 1*lab, lWight, lHigh);
 
 
+    }
+    public void drawButton(){
+        int lX = (int) (gp.screenWidth * 0.8);
+        int lY = (int) (gp.screenHeight * 0.26);
+        int lWight = (int) ((gp.screenWidth * 0.08) * 2);
+        int lHigh = (int) (gp.screenHeight * 0.08);
+        int lab = (int) (lHigh + gp.screenHeight * 0.02);
+
+        button[2] = new JPanel();
+        button[2].setBounds(lX, lY + 2*lab, lWight, lHigh);
+        button[2].setName("restart");
+        button[2].addMouseListener(gp.mous);
+        gp.add(button[2]);
+        button[2].setVisible(true);
+        g2.setFont(g2.getFont().deriveFont(18F));
+        gp.text.drawTextInBox(g2, "restart", lX, lY + 2*lab, lWight, lHigh);
+        g2.drawRect(lX, lY + 2*lab, lWight, lHigh);
     }
 
 public void drawBack(){
@@ -114,6 +145,7 @@ public void drawBack(){
     gp.add(button[0]);
     button[0].setVisible(true);
     g2.setFont(g2.getFont().deriveFont(18F));
+
     gp.text.drawTextInBox(g2, "Back", bX, bY , bWight, bHigh);
     g2.drawRect(bX, bY , bWight, bHigh);
 }
@@ -205,13 +237,17 @@ public void drawBack(){
     public void drawEnd(){
         String text = null;
         if(gewinner == 1){
-            text = "O";
-        }else if(gewinner == 2){
+            gp.player.gold = gp.player.gold + 10;
             text = "X";
+        }else if(gewinner == 2){
+            text = "O";
         }else {
-            text = "unentschieden";
+            text = "Niemand";
         }
-        g2.drawString(text + " Hat Gewonnen", 900+maxHight/2,  maxWight/2);
+        int x = (int) (gp.screenWidth * 0.83);
+        int y = (int) (gp.screenHeight * 0.65);
+        g2.setFont(g2.getFont().deriveFont(18F));
+        g2.drawString(text + " hat Gewonnen", x,  y);
     }
     public void kiEasy(){
         int randomNumber = (int) (Math.random() * 9);
@@ -354,6 +390,8 @@ public void drawBack(){
 
     public void reset(){
         end = false;
+        gewinner = 0;
+
         for (int i = 0; i< 9; i++){
             slotState[i] = 0;
         }
