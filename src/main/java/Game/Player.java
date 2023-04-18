@@ -168,7 +168,7 @@ public class Player extends Entity{
              Er berichtet von wildgewordenen Schweinen, Ghoulen und Monstern von denen sogar Legenden handeln wie zum Beispiel dem Auge Saurons und Dämonen. 
              Jedoch berichtete er zudem von einem recht angst bereitenden Monster. Seiner Erzählung nach handelt es sich bei besagtem Monster um einen benachbarten König,
              der eines Tages von einem neuartigen Virus befallen wurde und seitdem inkontrollierbar und gewalttätig ist.
-             Nun liegt es an Dir, tollkühner Held, die Menschen dieser Welt vor diesen Monstern zu schützen, so dass diese nie wieder irgendjemandem Schaden können! 
+             Nun liegt es an Dir, tollkühner Held, die Menschen dieser Welt vor diesen Monstern zu schützen, so, dass diese nie wieder irgendjemandem Schaden können! 
             ";
             popUPB = true;
 
