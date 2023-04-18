@@ -24,6 +24,7 @@ public class Player extends Entity{
 
     //console
     boolean popUP = false;
+    boolean popUPB = false;
     String popuPt ="";
     int popWait = 0;
 
@@ -131,6 +132,19 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             gp.text.drawTextInBox(g2,popuPt,x,y,wight,high);
     }
+    public void drawPopupB(Graphics2D g2){
+
+        int x = (int) (gp.screenWidth/2 - gp.screenWidth*0.35);
+        int y = (int) (gp.screenHeight * 0.15);
+        int wight = (int) (( gp.screenWidth*0.35)*2);
+        int high = (int) (gp.screenHeight * 0.23);
+        g2.setColor(Color.black);
+        g2.fillRect(x,y,wight,high);
+        g2.drawRoundRect(x,y,wight,high,10,10);
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(20F));
+        gp.text.drawTextBetweenBox(g2,popuPt, (int) (x + gp.screenWidth * 0.02), (int) (y + gp.screenHeight * 0.02), (int) (wight - gp.screenWidth * 0.02));
+    }
     public void update (){
         //SHOP
         if( worldy >= 1232 && worldy <= 1280 && worldx == 1016 ){
@@ -143,8 +157,11 @@ public class Player extends Entity{
         //GeschichteHaus
         if(worldy == 996 && worldx >= 940 && worldx <= 996){
             System.out.println("GeschichtenHaus");
-            //worldx = 1108; //Spawns
-            //worldy = 1024; //Spawns
+            popuPt = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+            popUPB = true;
+
+            worldx = 1108; //Spawns
+            worldy = 1024; //Spawns
         }
 
         //Haus Fight1
@@ -280,6 +297,15 @@ public class Player extends Entity{
             if(popWait < 250) {
                 popWait ++;
                 drawPopup(g2);
+            }else {
+                popWait = 0;
+                popUP = false;
+            }
+        }
+        if(popUPB) {
+            if(popWait < 250) {
+                popWait ++;
+                drawPopupB(g2);
             }else {
                 popWait = 0;
                 popUP = false;
