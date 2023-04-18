@@ -30,6 +30,7 @@ public class Fight {
     String direction = "";
 
     //Fight
+    boolean back = false;
     int playerX;
     int monsterX;
     boolean fight = false;
@@ -73,6 +74,7 @@ public class Fight {
             }
 
         }else {
+            back = false;
             //Draw Player
             drawcharakter();
 
@@ -245,6 +247,7 @@ public class Fight {
 
     }
     public void drawBackButton(){
+        back = true;
         int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
         int bY = (int) (gp.screenHeight * 0.4);
         int bWight = (int) ((gp.screenWidth * 0.08) * 2);

@@ -235,6 +235,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
             case "Setting Screen: Save & Quit":
                 gp.config.saveAll(gp.save);
+                gp.config.save(gp.save,"used", 1);
                 gp.gameState = gp.uiState;
                 gp.ui.menuState = gp.ui.titleState;
                 break;
@@ -588,6 +589,11 @@ public class MouseListener implements java.awt.event.MouseListener {
                     break;
                 case "Fight Button: 1":
                     if(!(gp.fight.first)) {
+                        gp.stopLoopSound();
+                        gp.playLoopSound(0);
+                        gp.gameState = gp.playerState;
+                    }
+                    if(gp.fight.back){
                         gp.stopLoopSound();
                         gp.playLoopSound(0);
                         gp.gameState = gp.playerState;
