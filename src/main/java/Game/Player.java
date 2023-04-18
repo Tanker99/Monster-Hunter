@@ -55,7 +55,7 @@ public class Player extends Entity{
     }
     public void getImage(){
         int slotnr;
-        if (gp.config.load(gp.save,"equip1") == -1) {
+        if (equip[1] == -1) {
             slotnr = -1;
         }else {
              slotnr = item[equip[1]][1];
