@@ -111,7 +111,7 @@ public class Fight {
         }else {
             monster = tmonster;
         }
-        background = gp.image.hFBild[0];
+        background = gp.image.hFBild[tbackground];
 
 
 
