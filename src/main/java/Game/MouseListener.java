@@ -593,6 +593,11 @@ public class MouseListener implements java.awt.event.MouseListener {
                         gp.playLoopSound(0);
                         gp.gameState = gp.playerState;
                     }
+                    if(gp.fight.back){
+                        gp.stopLoopSound();
+                        gp.playLoopSound(0);
+                        gp.gameState = gp.playerState;
+                    }
                     break;
                 case "Item: 0":
                     gp.fight.useItem(2);
