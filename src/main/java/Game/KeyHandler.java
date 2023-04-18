@@ -156,7 +156,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.sellectValueY == 0) {
                     if (gp.ui.sellectValueX == 0) {
                         gp.save = 0;
-                        if(gp.ui.newsave){
+                        if(gp.ui.newsave|| gp.config.load(gp.save, "used") ==0){
                             gp.config.copyFile(4,gp.save);
                             gp.config.loadAll(gp.save);
                         }else {
@@ -168,7 +168,7 @@ public class KeyHandler implements KeyListener {
                     }
                     if (gp.ui.sellectValueX == 1) {
                         gp.save = 1;
-                        if(gp.ui.newsave){
+                        if(gp.ui.newsave|| gp.config.load(gp.save, "used") ==0){
                             gp.config.copyFile(4,gp.save);
                             gp.config.loadAll(gp.save);
                         }else {
@@ -181,7 +181,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.sellectValueY == 1) {
                     if (gp.ui.sellectValueX == 0) {
                         gp.save = 2;
-                        if(gp.ui.newsave){
+                        if(gp.ui.newsave|| gp.config.load(gp.save, "used") ==0){
                             gp.config.copyFile(4,gp.save);
                             gp.config.loadAll(gp.save);
                         }else {
@@ -192,7 +192,7 @@ public class KeyHandler implements KeyListener {
                     }
                     if (gp.ui.sellectValueX == 1) {
                         gp.save = 3;
-                        if(gp.ui.newsave){
+                        if(gp.ui.newsave|| gp.config.load(gp.save, "used") ==0){
                             gp.config.copyFile(4,gp.save);
                             gp.config.loadAll(gp.save);
                         }else {
