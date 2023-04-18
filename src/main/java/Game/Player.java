@@ -160,8 +160,12 @@ public class Player extends Entity{
         //END BOSS Fight
         if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ) {
             System.out.println("Schloss");
-            //if()
-            gp.gameState = gp.fightState;
+            if(gp.monsterDB.getTot(5) == 1){
+
+            }else {
+                gp.fight.loadFigh(3,5);
+                gp.gameState = gp.fightState;
+            }
         }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){

@@ -132,6 +132,15 @@ public class Image {
     //invisible
     public  BufferedImage[] wuBild;
     public String[] wuString = {
+            "/player/invisible/playerbinv.png"
+            ,"/player/invisible/playerbinv.png"
+            ,"/player/invisible/playercinv.png"
+            ,"/player/invisible/playercinv.png"
+            ,"/player/invisible/playerlinv.png"
+            ,"/player/invisible/playerlinv.png"
+            ,"/player/invisible/playerrinv.png"
+            ,"/player/invisible/playerrinv.png"
+            /*
             "/player/invisible/playerbl1.png"
             , "/player/invisible/playerbl2.png"
             , "/player/invisible/playercl1.png"
@@ -140,6 +149,7 @@ public class Image {
             , "/player/invisible/playerll2.png"
             , "/player/invisible/playerrl1.png"
             , "/player/invisible/playerrl2.png"
+    */
     };
     //Hintergrund Fight
     public  BufferedImage[] hFBild;
