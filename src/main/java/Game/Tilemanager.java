@@ -14,7 +14,7 @@ public class Tilemanager {
 
     public Tilemanager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[40];
+        tile = new Tile[50];
         mapTileNum = new int [gp.maxWelttilescol][gp.maxWelttilesrow];
         getTileImage();
         loadMap("/Welt/worldmap.txt");
@@ -154,6 +154,9 @@ public class Tilemanager {
             tile[37] =new Tile();
             tile[37].image = ImageIO.read(UI.class.getResource("/world/dirt.png"));
 
+            tile[38] =new Tile();
+            tile[38].image = ImageIO.read(UI.class.getResource("/world/tiles/water.png"));
+            tile[38].collision = true;
 
 
 
