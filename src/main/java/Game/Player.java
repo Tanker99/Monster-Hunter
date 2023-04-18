@@ -169,6 +169,7 @@ public class Player extends Entity{
         //Tic Tac Toe
         if(worldx >= 3554 && worldy >= 1156 && worldy <= 1200) {
             System.out.println("Tic Tac Toe2");
+            gp.gameState = gp.miniGameState;
             worldx = 3364; //Spawns
             worldy = 1192; //Spawns
         }
