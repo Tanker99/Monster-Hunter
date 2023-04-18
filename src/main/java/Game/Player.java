@@ -55,6 +55,7 @@ public class Player extends Entity{
     }
     public void getImage(){
         int slotnr;
+        System.err.println("sdasd" + equip[1]);
         if (equip[1] == -1) {
             slotnr = -1;
         }else {
@@ -204,8 +205,8 @@ public class Player extends Entity{
                 gp.fight.loadFigh(2,1);
                 gp.gameState = gp.fightState;
             }
-            worldx = 1604; //Spawns nach dem fight
-            worldy = 2392; //Spawns nach dem fight
+            worldx = 1768; //Spawns nach dem fight
+            worldy = 2552; //Spawns nach dem fight
         }
 
         //Stein Fight
@@ -219,8 +220,8 @@ public class Player extends Entity{
                 gp.gameState = gp.fightState;
             }
 
-            worldx = 1768; //Spawns nach dem fight
-            worldy = 2552; //Spawns nach dem fight
+            worldx = 2484; //Spawns nach dem fight
+            worldy = 2380; //Spawns nach dem fight
         }
 
         //Baum Fight

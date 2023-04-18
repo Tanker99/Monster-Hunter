@@ -68,7 +68,7 @@ public class Fight {
                 gp.monsterDB.mtot[monster] = 1;
                 drawBackButton();
             }else if(winner == 2){
-                drawLose();
+                gp.gameState = gp.gameOverState;
                 console = "Du hast Verloren";
             }
 

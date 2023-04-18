@@ -261,7 +261,7 @@ public class Image {
     }
     public void loadBackground() {
 
-        hFBild = new BufferedImage[4];
+        hFBild = new BufferedImage[5];
         for (int i = 0; i <= hFBild.length -1; i++){
 
             hFBild[i] = loadImage(hFString[i],defaultImage);
