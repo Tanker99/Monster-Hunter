@@ -307,18 +307,18 @@ public class Fight {
     }
     public void kampf() {
         if (playerAllow) {
-            if (playerWalk <= 90) {
+            if (playerWalk <= 50) {
                 playerWalk++;
                 playerWalkAnimation("vor");
-                playerX = (int) (playerX + playerWalk * 0.2);
+                playerX = (int) (playerX + playerWalk * 0.6);
 
-            }else if(playerWalk >= 90 && playerWalkBack <=85){
+            }else if(playerWalk >= 50 && playerWalkBack <=85){
                 playerWalkBack ++;
                 playerWalkAnimation("back");
                 playerX = (int) (playerX - playerWalkBack * 0.2);
 
 
-            }else if(playerWalk >= 90 && playerWalkBack >= 85){
+            }else if(playerWalk >= 50 && playerWalkBack >= 85){
                 if(mosnterAbzug) {
                     gp.playSound(4);
                     monsterlive = monsterlive - gp.player.attack;
@@ -333,15 +333,15 @@ public class Fight {
             }
         }else
         if (monsterAllow) {
-            if (monsterWalk <= 90) {
-                monsterX = (int) (monsterX - monsterWalk * 0.2);
+            if (monsterWalk <= 50) {
+                monsterX = (int) (monsterX - monsterWalk * 0.6);
                 monsterWalk++;
             }else
-            if(monsterWalk >= 90 && monsterWalkBack <=90){
+            if(monsterWalk >= 50 && monsterWalkBack <=90){
                 monsterWalkBack ++;
                 monsterX = (int) (monsterX + monsterWalkBack * 0.2);
 
-            }else if(monsterWalk >= 90 && monsterWalkBack >= 85){
+            }else if(monsterWalk >= 50 && monsterWalkBack >= 85){
                 if(playerAbzug) {
                     gp.playSound(4);
                     int temp = gp.player.defense - monsterattack;

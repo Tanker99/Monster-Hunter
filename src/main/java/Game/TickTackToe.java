@@ -45,7 +45,6 @@ public class TickTackToe {
         fHigh = (int) (maxHight * 0.33);
         this.gp = gp;
     }
-
     public void draw(Graphics2D g2) {
         this.g2 = g2;
         gewinnerCheck();
@@ -75,7 +74,6 @@ public class TickTackToe {
         }
 
     }
-
     public void drawname() {
         int nX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
         int nY = (int) (gp.screenHeight * 0.1);
@@ -130,8 +128,7 @@ public class TickTackToe {
         gp.text.drawTextInBox(g2, "restart", lX, lY + 2*lab, lWight, lHigh);
         g2.drawRect(lX, lY + 2*lab, lWight, lHigh);
     }
-
-public void drawBack(){
+    public void drawBack(){
     int bX = (int) (gp.screenWidth * 0.8);
     int bY = (int) (gp.screenHeight * 0.8);
     int bWight = (int) ((gp.screenWidth * 0.08) * 2);
@@ -185,7 +182,6 @@ public void drawBack(){
             g2.drawRoundRect(x + currentSlotValueX * fWight, y + currentSlotValueY * fHigh, (int) (maxWight * 0.33), (int) (maxHight * 0.33), 0, 0);
         }
     }
-
     public void drawSlotState() {
         int i = 0;
         for (int yi = 0; yi < 3; yi++) {
@@ -237,7 +233,7 @@ public void drawBack(){
     public void drawEnd(){
         String text = null;
         if(gewinner == 1){
-            gp.player.gold = gp.player.gold + 10;
+            gp.player.gold = gp.player.gold + 5 + difficult * 5;
             text = "X";
         }else if(gewinner == 2){
             text = "O";
