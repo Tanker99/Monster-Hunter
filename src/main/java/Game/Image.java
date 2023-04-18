@@ -47,7 +47,8 @@ public class Image {
     //INV Rüstung
     public  BufferedImage[] iRBild;
     public String[] iRString = {
-              "/player/iron/playerci1.png"
+            "/player/default/playerc1.png"
+              ,"/player/iron/playerci1.png"
             , "/player/gold/playercg1.png"
             , "/player/leather/playercl1.png"
             , "/player/dia/playercd1.png"
