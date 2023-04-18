@@ -9,7 +9,7 @@ import java.net.URL;
 public class Sound {
     private Clip clip;
     private Clip loopClip;
-    private URL[] soundURL = new URL[4];
+    private URL[] soundURL = new URL[6];
     private URL[] loopURL = new URL[4];
     private FloatControl fc;
     private FloatControl loopFc;
@@ -29,6 +29,8 @@ public class Sound {
         soundURL[2] = Sound.class.getResource("/sound/error.wav");
         //Enter Game.Sound
         soundURL[3] = Sound.class.getResource("/sound/switch.wav");
+        soundURL[4] = Sound.class.getResource("/sound/hitmarker.wav");
+        soundURL[5] = Sound.class.getResource("/sound/switch.mp3");
     }
 
     public void playSound(int i) {
@@ -50,6 +52,7 @@ public class Sound {
             loopClip = AudioSystem.getClip();
             loopClip.open(ais);
             loopFc = (FloatControl) loopClip.getControl(FloatControl.Type.MASTER_GAIN);
+            loopFc.setValue(loopVolume);
             loopClip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (Exception e) {
             System.out.println("Error playing sound: " + e.getMessage());

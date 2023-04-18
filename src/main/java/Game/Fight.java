@@ -184,13 +184,16 @@ public class Fight {
         int swight = (int) (gp.screenWidth * 0.15);
         int shight = (int) (gp.screenHeight * 0.1);
 
-        // g2.drawRect(sX,sY,swight,shight);
+         g2.drawRect(sX,sY,swight,shight);
+        g2.setColor(Color.white);
+         g2.fillRect(sX,sY,swight,shight);
+        g2.setColor(Color.black);
 
         String leben = String.valueOf(gp.player.leben);
         String attack = String.valueOf(gp.player.attack);
         String defense = String.valueOf(gp.player.defense);
 
-        gp.text.draw3StringsInBox(g2, "Leben :" + leben, "Angriff : " + attack, "Defense : " + defense, sX, sY, swight, shight);
+        gp.text.draw3StringsInBox(g2, "Leben : " + leben, "Angriff : " + attack, "Defense : " + defense, sX, sY, swight, shight);
 
     }
     public void drawmonster() {
@@ -208,7 +211,10 @@ public class Fight {
         int swight = (int) (gp.screenWidth * 0.15);
         int shight = (int) (gp.screenHeight * 0.1);
 
-        // g2.drawRect(sX,sY,swight,shight);
+         g2.drawRect(sX,sY,swight,shight);
+         g2.setColor(Color.white);
+        g2.fillRect(sX,sY,swight,shight);
+        g2.setColor(Color.black);
 
         String leben = String.valueOf(monsterlive);
         String attack = String.valueOf(monsterattack);
@@ -308,6 +314,7 @@ public class Fight {
 
             }else if(playerWalk >= 90 && playerWalkBack >= 85){
                 if(mosnterAbzug) {
+                    gp.playSound(4);
                     monsterlive = monsterlive - gp.player.attack;
                     console = "Du hast dem Monster " + gp.player.attack + " schaden angerichtet";
                     mosnterAbzug = false;
@@ -330,6 +337,7 @@ public class Fight {
 
             }else if(monsterWalk >= 90 && monsterWalkBack >= 85){
                 if(playerAbzug) {
+                    gp.playSound(4);
                     int temp = gp.player.defense - monsterattack;
                     if (temp  < 0) {
                         gp.player.leben = gp.player.leben + temp;

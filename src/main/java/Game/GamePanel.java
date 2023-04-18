@@ -40,7 +40,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Image image = new Image();
     public MonsterDB monsterDB = new MonsterDB();
-    public Test test = new Test(this,keyH);
 
 
     //Classes
@@ -69,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int fightState = 6;
     final int gameOverState = 7;
     final int settingsState = 10;
-    final int testState = 11;
+
 
     //Variable
     public boolean shopEntry;
@@ -99,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setup(){
-        playLoopSound(0);
+        //playLoopSound(0);
         gameState = 1;
 
 
@@ -159,9 +158,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == fightState) {
              fight.update();
         }
-        if (gameState == testState) {
-            test.update();
-        }
     }
 
     public void paintComponent(Graphics g) {
@@ -206,9 +202,6 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         } else if (gameState == gameOverState) {
             gameOver.draw(g2);
-            g2.dispose();
-        } else if (gameState == testState) {
-            test.draw(g2);
             g2.dispose();
         }
         g2.dispose();
