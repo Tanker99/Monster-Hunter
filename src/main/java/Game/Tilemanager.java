@@ -185,6 +185,8 @@ public class Tilemanager {
             tile[45].image = ImageIO.read(UI.class.getResource("/world/housewoodshop.png"));
             tile[45].collision = true;
 
+            tile[46] =new Tile();
+            tile[46].image = ImageIO.read(UI.class.getResource("/world/tiles/hallo.png"));
 
 
         }catch(IOException e){

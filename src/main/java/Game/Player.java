@@ -167,10 +167,10 @@ public class Player extends Entity{
             worldy = 1036; //Spawns
         }
         //Tic Tac Toe
-        if(worldx == 3554 && worldy >= 1156 && worldy <= 1200) {
-
-            worldx = 964; //Spawns
-            worldy = 1036; //Spawns
+        if(worldx >= 3554 && worldy >= 1156 && worldy <= 1200) {
+            System.out.println("Tic Tac Toe2");
+            worldx = 3364; //Spawns
+            worldy = 1192; //Spawns
         }
 
         //Haus Fight1
@@ -212,8 +212,8 @@ public class Player extends Entity{
                 gp.fight.loadFigh(2,1);
                 gp.gameState = gp.fightState;
             }
-            worldx = 1768; //Spawns nach dem fight
-            worldy = 2552; //Spawns nach dem fight
+            worldx = 1600; //Spawns nach dem fight
+            worldy = 2388; //Spawns nach dem fight
         }
 
         //Stein Fight
