@@ -14,6 +14,7 @@ public class Fight {
 
     //setup
     boolean setup = true;
+    BufferedImage background;
 
     //Level detail
     String console = "";
@@ -58,9 +59,6 @@ public class Fight {
         drawConsole();
         loadPlayerImage();
 
-        if (setup) {
-            loadFigh();
-        }
         if(winner > 0){
             if( winner == 1){
                 console = "Du hast Gewonnen der Shop wurde für dich erneuert";
@@ -100,7 +98,7 @@ public class Fight {
 
     }
 
-    public void loadFigh() {
+    public void loadFigh(int tbackground,int tmonster) {
         resetFightAnimation();
         fight = false;
         winner = 0;
@@ -108,8 +106,15 @@ public class Fight {
         monsterX = (int) (gp.screenWidth * 0.8);
 
         console = "";
+        if(tmonster == -1){
+            monster = (int) (Math.random() * gp.monsterDB.mAnzahl);
+        }else {
+            monster = tmonster;
+        }
+        background = gp.image.hFBild[0];
 
-        monster = (int) (Math.random() * gp.monsterDB.mAnzahl);
+
+
         monsterlive = gp.monsterDB.getHealth(monster);
         monsterattack = gp.monsterDB.getAttack(monster);
         setup = false;
@@ -263,13 +268,7 @@ public class Fight {
 
     }
     public void drawBackground() {
-        BufferedImage back = null;
-        try {
-            back = ImageIO.read(Shop.class.getResource("/Background/Kampfhaus.png"));
-            g2.drawImage(back, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        } catch (IOException e) {
-            System.out.println("Error Loading Background");
-        }
+        g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, null);
     }
     public void kampf() {
         if (playerAllow) {

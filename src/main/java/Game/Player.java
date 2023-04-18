@@ -126,6 +126,12 @@ public class Player extends Entity{
         //Haus Fight
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
             System.out.println("Haus1");
+            if(gp.monsterDB.getTot(0) == 1){
+
+            }else {
+                gp.fight.loadFigh(0,0);
+                gp.gameState = gp.fightState;
+            }
         }
 
         //Erde Fight
@@ -152,6 +158,8 @@ public class Player extends Entity{
         //END BOSS Fight
         if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ) {
             System.out.println("Schloss");
+            //if()
+            gp.gameState = gp.fightState;
         }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
