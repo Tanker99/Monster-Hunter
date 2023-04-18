@@ -166,6 +166,12 @@ public class Player extends Entity{
             worldx = 964; //Spawns
             worldy = 1036; //Spawns
         }
+        //Tic Tac Toe
+        if(worldx == 3554 && worldy >= 1156 && worldy <= 1200) {
+
+            worldx = 964; //Spawns
+            worldy = 1036; //Spawns
+        }
 
         //Haus Fight1
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
