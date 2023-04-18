@@ -65,6 +65,7 @@ public class Fight {
             if( winner == 1){
                 console = "Du hast Gewonnen der Shop wurde für dich erneuert";
                 gp.shop.newShop = true;
+                //gp.player.gold += (int)Math.round(20*Math.random()+10);
                 gp.monsterDB.mtot[monster] = 1;
                 drawBackButton();
             }else if(winner == 2){
@@ -359,9 +360,6 @@ public class Fight {
         }
         if(gp.player.leben <= 0)
             winner = 2;
-    }
-    public void drawLose(){
-
     }
     public void useItem(int i) {
         int slotnr = gp.player.equip[i];
