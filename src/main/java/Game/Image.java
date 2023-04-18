@@ -16,7 +16,7 @@ public class Image {
     //Waffe
     public BufferedImage[] wBild;
     public String[] waffe = {
-            "/items/Schwacher Bogen.png"
+             "/items/Schwacher Bogen.png"
             ,"/items/Starker Bogen.png"
             ,"/items/Axt.png"
             ,"/items/Streitaxt.png"
@@ -29,7 +29,7 @@ public class Image {
     //Ruestung
     public BufferedImage[] rBild;
     public String[] ruestung = {
-            "/items/Eisenruestung.png"
+             "/items/Eisenruestung.png"
             ,"/items/Goldruestung.png"
             ,"/items/Lederruestung.png"
             ,"/items/Diamantruestung.png"
@@ -39,7 +39,7 @@ public class Image {
     //Trank
     public BufferedImage[] tBild;
     public String[] trank = {
-            "/items/Einhorn-Pipi.png"
+             "/items/Einhorn-Pipi.png"
             ,"/items/Rote Bete Saft.png"
             ,"/items/Pep-sie Gemisch.png"
             ,"/items/Ingwer-Shot.png"
@@ -49,12 +49,12 @@ public class Image {
     //INV Rüstung
     public  BufferedImage[] iRBild;
     public String[] iRString = {
-            "/player/iron/playerci1.png"
+              "/player/iron/playerci1.png"
             , "/player/gold/playercg1.png"
             , "/player/leather/playercl1.png"
             , "/player/dia/playercd1.png"
             , "/player/jade/playercj1.png"
-            , "/player/invisible/playerci1.png"
+            , "/player/invisible/playercinv.png"
     };
     public  BufferedImage iRDefault;
     public String iRDefaultString = "/player/playerc1.png";
