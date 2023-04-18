@@ -81,10 +81,10 @@ public class Player extends Entity{
 
         }
         System.err.println(slotnr);
-            down1 =  walkImage[0];
-            down2 =  walkImage[1];
-            up1 =  walkImage[2];
-            up2 =  walkImage[3];
+            up1 =  walkImage[0];
+            up2 =  walkImage[1];
+            down1 =  walkImage[2];
+            down2 =  walkImage[3];
             left1 =  walkImage[4];
             left2 =  walkImage[5];
             right1 =  walkImage[6];

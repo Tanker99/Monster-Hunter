@@ -116,7 +116,7 @@ public class Fight {
         g2.drawRect(playerX, pY, pWidth, pHight);
 
         if (gp.player.equip[1] != -1) {
-            g2.drawImage(gp.image.iRBild[gp.player.equip[1]], playerX, pY, pWidth, pHight, null);
+            g2.drawImage(gp.image.iRBild[gp.player.item[gp.player.equip[1]][1]], playerX, pY, pWidth, pHight, null);
         } else {
             g2.drawImage(gp.image.iRDefault, playerX, pY, pWidth, pHight, null);
         }
