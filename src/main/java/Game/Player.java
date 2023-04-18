@@ -140,6 +140,12 @@ public class Player extends Entity{
             gp.shopEntry = true;
             gp.gameState = gp.shopState;
         }
+        //GeschichteHaus
+        if(worldy == 996 && worldx >= 940 && worldx <= 996){
+            System.out.println("Erde Loch");
+            //worldx = 1604; //Spawns nach dem fight
+            //worldy = 2392; //Spawns nach dem fight
+        }
 
         //Haus Fight1
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
