@@ -11,6 +11,9 @@ public class Settings {
     GamePanel gp;
     Graphics2D g2;
 
+    public int volumeL = 3;
+    public int volumeS = 3;
+
     //JPanel
     private JPanel slot[]  = new JPanel[10];
 
@@ -117,8 +120,10 @@ public class Settings {
         slot[7] = new JPanel();
         slot[8] = new JPanel();
         slot[5].setBounds(kX, kY + ab*1 + kHigh, musikwight,kHigh/2);
+        g2.fillRect(kX  + musikwight, kY + ab*1 + kHigh, musikwight * volumeL,kHigh/2);
         slot[6].setBounds(kX + kWight - musikwight, kY + ab*1 + kHigh, musikwight,kHigh/2);
         slot[7].setBounds(kX, kY + ab*2 + kHigh, musikwight,kHigh/2);
+        g2.fillRect(kX + musikwight, kY + ab*2 + kHigh, musikwight * volumeS,kHigh/2);
         slot[8].setBounds(kX + kWight - musikwight, kY + ab*2 + kHigh, musikwight,kHigh/2);
         slot[5].setName("Musik: -");
         slot[6].setName("Musik: +");

@@ -240,17 +240,21 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
 
             case "Musik: +":
+                gp.settings.volumeL ++;
+                gp.sound.setLoopVolume(gp.settings.volumeL);
                 break;
             case "Musik: -":
+                gp.settings.volumeL --;
+                gp.sound.setLoopVolume(gp.settings.volumeL);
                 break;
 
             case "SE: -":
-               // gp.sound.volumeScale ++;
-                //gp.sound.volume();;
+                gp.settings.volumeS ++;
+                gp.sound.setVolume(gp.settings.volumeS);
                 break;
             case "SE: +":
-               // gp.sound.volumeScale --;
-               // gp.sound.volume();
+                gp.settings.volumeS --;
+                gp.sound.setVolume(gp.settings.volumeS);
                 break;
         }
     }
