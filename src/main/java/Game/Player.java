@@ -55,7 +55,8 @@ public class Player extends Entity{
     }
     public void getImage(){
         int slotnr;
-        if (gp.config.load(gp.save,"equip1") == -1) {
+        System.err.println("sdasd" + equip[1]);
+        if (equip[1] == -1) {
             slotnr = -1;
         }else {
              slotnr = item[equip[1]][1];
@@ -158,7 +159,10 @@ public class Player extends Entity{
         //GeschichteHaus
         if(worldy == 996 && worldx >= 940 && worldx <= 996){
             System.out.println("GeschichtenHaus");
-            popuPt = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+            popuPt = 
+            "Nachdem Du nach einem Deiner typischen Kneipengänge auf dem Weg nach Hause bist, fällt Dir plötzlich auf, dass du verfolgt wirst. 
+             Du zögerst nicht und beginnst durch strategischen Zick-Zack Lauf deinen Verfolger abzuschütteln... aber leider ohne Erfolg.
+            ";
             popUPB = true;
 
             worldx = 964; //Spawns
@@ -204,8 +208,8 @@ public class Player extends Entity{
                 gp.fight.loadFigh(2,1);
                 gp.gameState = gp.fightState;
             }
-            worldx = 1604; //Spawns nach dem fight
-            worldy = 2392; //Spawns nach dem fight
+            worldx = 1768; //Spawns nach dem fight
+            worldy = 2552; //Spawns nach dem fight
         }
 
         //Stein Fight
@@ -219,8 +223,8 @@ public class Player extends Entity{
                 gp.gameState = gp.fightState;
             }
 
-            worldx = 1768; //Spawns nach dem fight
-            worldy = 2552; //Spawns nach dem fight
+            worldx = 2484; //Spawns nach dem fight
+            worldy = 2380; //Spawns nach dem fight
         }
 
         //Baum Fight
@@ -318,7 +322,7 @@ public class Player extends Entity{
             }
         }
         if(popUPB) {
-            if(popWait < 250) {
+            if(popWait < 400) {
                 popWait ++;
                 drawPopupB(g2);
             }else {

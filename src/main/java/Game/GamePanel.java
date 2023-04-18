@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Inventory inventory = new Inventory(this,keyH);
 
     public Fight fight = new Fight(this);
+    public GameOver gameOver = new GameOver(this);
 
 
     Thread gameThread;
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int shopState = 4;
     final int inventoryState = 5;
     final int fightState = 6;
+    final int gameOverState = 7;
     final int settingsState = 10;
     final int testState = 11;
 
@@ -202,7 +204,9 @@ public class GamePanel extends JPanel implements Runnable {
         }else if (gameState == settingsState) {
             settings.draw(g2);
             g2.dispose();
-
+        } else if (gameState == gameOverState) {
+            gameOver.draw(g2);
+            g2.dispose();
         } else if (gameState == testState) {
             test.draw(g2);
             g2.dispose();

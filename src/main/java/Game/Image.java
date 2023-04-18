@@ -50,7 +50,7 @@ public class Image {
               "/player/iron/playerci1.png"
             , "/player/gold/playercg1.png"
             , "/player/leather/playercl1.png"
-            , "/player/dia/playercd1.png"
+            , "/player/diamond/playercd1.png"
             , "/player/jade/playercj1.png"
             , "/player/invisible/playercinv.png"
     };
@@ -108,14 +108,14 @@ public class Image {
     //dia
     public  BufferedImage[] wdiBild;
     public String[] wdiString = {
-            "/player/dia/playerbd1.png"
-            , "/player/dia/playerbd2.png"
-            , "/player/dia/playercd1.png"
-            , "/player/dia/playercd2.png"
-            , "/player/dia/playerld1.png"
-            , "/player/dia/playerld2.png"
-            , "/player/dia/playerrd1.png"
-            , "/player/dia/playerrd2.png"
+            "/player/diamond/playerbd1.png"
+            , "/player/diamond/playerbd2.png"
+            , "/player/diamond/playercd1.png"
+            , "/player/diamond/playercd2.png"
+            , "/player/diamond/playerld1.png"
+            , "/player/diamond/playerld2.png"
+            , "/player/diamond/playerrd1.png"
+            , "/player/diamond/playerrd2.png"
     };
     //jade
     public  BufferedImage[] wjBild;
@@ -261,7 +261,7 @@ public class Image {
     }
     public void loadBackground() {
 
-        hFBild = new BufferedImage[4];
+        hFBild = new BufferedImage[5];
         for (int i = 0; i <= hFBild.length -1; i++){
 
             hFBild[i] = loadImage(hFString[i],defaultImage);
