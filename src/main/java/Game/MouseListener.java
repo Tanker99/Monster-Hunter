@@ -218,11 +218,11 @@ public class MouseListener implements java.awt.event.MouseListener {
             case "Setting Screen: 0":
                 break;
             case "Setting Screen: 1":
-                if (gp.sound.volumeScale == 0) {
-                    gp.sound.volumeScale = 4;
-                } else {
-                    gp.sound.volumeScale = 0;
-                }
+               // if (gp.sound.volumeScale == 0) {
+                 //   gp.sound.volumeScale = 4;
+              //  } else {
+              //      gp.sound.volumeScale = 0;
+             //   }
                 break;
             case "Setting Screen: 2":
                 gp.ui.sellectValueY = 2;
@@ -245,12 +245,12 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
 
             case "SE: -":
-                gp.sound.volumeScale ++;
-                gp.sound.volume();;
+               // gp.sound.volumeScale ++;
+                //gp.sound.volume();;
                 break;
             case "SE: +":
-                gp.sound.volumeScale --;
-                gp.sound.volume();
+               // gp.sound.volumeScale --;
+               // gp.sound.volume();
                 break;
         }
     }

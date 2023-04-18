@@ -137,14 +137,14 @@ public class Player extends Entity{
     public void drawPopupB(Graphics2D g2){
 
         int x = (int) (gp.screenWidth/2 - gp.screenWidth*0.35);
-        int y = (int) (gp.screenHeight * 0.15);
+        int y = (int) (gp.screenHeight * 0.1);
         int wight = (int) (( gp.screenWidth*0.35)*2);
-        int high = (int) (gp.screenHeight * 0.23);
+        int high = (int) (gp.screenHeight * 0.36);
         g2.setColor(Color.black);
         g2.fillRect(x,y,wight,high);
         g2.drawRoundRect(x,y,wight,high,10,10);
         g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(20F));
+        g2.setFont(g2.getFont().deriveFont(18F));
         gp.text.drawTextBetweenBox(g2,popuPt, (int) (x + gp.screenWidth * 0.02), (int) (y + gp.screenHeight * 0.04), (int) (wight - gp.screenWidth * 0.02));
     }
     public void update (){
@@ -160,9 +160,7 @@ public class Player extends Entity{
         if(worldy == 996 && worldx >= 940 && worldx <= 996){
             System.out.println("GeschichtenHaus");
             popuPt = 
-            "Nachdem Du nach einem Deiner typischen Kneipengänge auf dem Weg nach Hause bist, fällt Dir plötzlich auf, dass du verfolgt wirst. 
-             Du zögerst nicht und beginnst durch strategischen Zick-Zack Lauf deinen Verfolger abzuschütteln... aber leider ohne Erfolg.
-            ";
+            "Nachdem Du nach einem Deiner typischen Kneipengänge auf dem Weg nach Hause bist, fällt Dir plötzlich auf, dass du verfolgt wirst. Du zögerst nicht und beginnst durch strategischen Zick-Zack Lauf deinen Verfolger abzuschütteln... aber leider ohne Erfolg. Ganz außer Puste holt dich dein Verfolger ein, welcher offensichtlich ebenfalls außer Puste ist. Du weißt zwar nicht warum und worum es geht, aber dein Verfolger stellt sich als ein Bote heraus, der, wie er behauptet, gesachickt wurde um einen Tollkühnen Helden zu finden, der es mit den Monstern aufnehmen kann, die seit geraumer Zeit dem Königreich und seinen Bürgern zusetzen. Er berichtet von wildgewordenen Schweinen, Ghoulen und Monstern von denen sogar Legenden handeln wie zum Beispiel dem Auge Saurons und Dämonen. Jedoch berichtete er zudem von einem recht angst bereitenden Monster. Seiner Erzählung nach handelt es sich bei besagtem Monster um einen benachbarten König, der eines Tages von einem neuartigen Virus befallen wurde und seitdem inkontrollierbar und gewalttätig ist. Nun liegt es an Dir, tollkühner Held, die Menschen dieser Welt vor diesen Monstern zu schützen, so dass diese nie wieder irgendjemandem Schaden können! ";
             popUPB = true;
 
             worldx = 964; //Spawns

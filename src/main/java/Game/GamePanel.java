@@ -179,6 +179,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         } else if (gameState == playerState) {
+            stopLoopSound();
             settingOldState = playerState;
             tileT.draw(g2);
             player.draw(g2);
@@ -216,13 +217,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void playLoopSound(int i) {
-       //// sound.selectSound(i);
-       // sound.play();
-       // sound.loop();
+        sound.playLoop(i);
     }
-    public void playSound(int i){
-       // sound.selectSound(i);
-       // sound.play();
+    public void playSound(int i) {
+        sound.playSound(i);
+    }
+    public void stopLoopSound(){
+        sound.stop();
     }
     public void updateScreen(int i){
             Dimension currentSize = this.getSize();
