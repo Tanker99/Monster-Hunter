@@ -37,8 +37,8 @@
 36 = Graßhöleneingang
 37 = Dreck
 38 = Wasser voll
-a = Strand
-40 =
+39 = Strand
+40 = Baum Eingang
 41 =
 42 =
 43 =

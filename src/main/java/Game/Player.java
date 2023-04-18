@@ -140,6 +140,12 @@ public class Player extends Entity{
             gp.shopEntry = true;
             gp.gameState = gp.shopState;
         }
+        //GeschichteHaus
+        if(worldy == 996 && worldx >= 940 && worldx <= 996){
+            System.out.println("GeschichtenHaus");
+            //worldx = 1108; //Spawns
+            //worldy = 1024; //Spawns
+        }
 
         //Haus Fight1
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
