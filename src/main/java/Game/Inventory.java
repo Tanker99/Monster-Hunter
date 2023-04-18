@@ -67,9 +67,11 @@ public class Inventory {
         this.keyH = keyH;
 
         this.inX = 10;
-        this.inY = gp.screenHeight/4 - 20;
+        //this.inY = gp.screenHeight/4 - 20;
+        this.inY = (int) (gp.screenHeight *0.25);
         this.inWight = gp.screenWidth -20;
-        this.inHigh = gp.screenHeight/2 - 20;
+        //this.inHigh = gp.screenHeight/2 - 20;
+        this.inHigh = (int) (gp.screenHeight * 0.5);
 
     }
     public void draw(Graphics2D g2){
@@ -102,7 +104,7 @@ public class Inventory {
 
         //draw Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
-        g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);
+        g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,260);
 
         //Draw Slots
         drawSlot();
@@ -241,14 +243,14 @@ public class Inventory {
             }
         }
 
-        gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
+        gp.text.drawTextcentered(g2,"Kraft: " + gp.player.attack,panX ,panY + 340,panWight/2);
         gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
 
         //Draw Picture
         int pcX = (int) (panX + gp.screenWidth * 0.06);
-        int pcY = (int) (panY + gp.screenHeight * 0.08);
+        int pcY = (int) (panY + gp.screenHeight * 0.09);
         int pcWight = (int) (gp.screenWidth * 0.09);
-        int pcHigh = (int) (inHigh /2.6);
+        int pcHigh = (int) (inHigh /2.9);
         g2.drawRoundRect(pcX,pcY,pcWight,pcHigh,10,10);
         if(gp.player.equip[1] != -1){
             g2.drawImage(gp.image.iRBild[gp.player.item[gp.player.equip[1]][1]],pcX,pcY,pcWight,pcHigh,null);
@@ -371,10 +373,12 @@ public class Inventory {
                 if(gp.player.equip[0] == selectSlot){
                     gp.player.equip[0] = -1;
                     i = 1;
-                    gp.player.kraft = 0;
+                    gp.player.Ikraft = 0;
+                    gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                 }else {
                     gp.player.equip[0] = selectSlot;
-                    gp.player.kraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
+                    gp.player.Ikraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
+                    gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                 }
             }
             if(gp.player.item[selectSlot][0] == 2){
@@ -423,7 +427,8 @@ public class Inventory {
                 if(gp.player.equip[i] == selectSlot){
                     gp.player.equip[i] = -1;
                     if(i == 0){
-                        gp.player.kraft = 0;
+                        gp.player.Ikraft = 0;
+                        gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                     }
                     if( i == 1){
                         gp.player.defense = 0;

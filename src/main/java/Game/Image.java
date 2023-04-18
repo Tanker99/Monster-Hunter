@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Image {
-    //default
+    //default0
     BufferedImage defaultImage;
     //Waffe
     public BufferedImage[] wBild;
@@ -81,6 +81,7 @@ public class Image {
             , "/player/iron/playerri1.png"
             , "/player/iron/playerri2.png"
     };
+    //Gold
     public  BufferedImage[] wgBild;
     public String[] wgString = {
             "/player/gold/playerbg1.png"
@@ -92,6 +93,7 @@ public class Image {
             , "/player/gold/playerrg1.png"
             , "/player/gold/playerrg2.png"
     };
+    //Leather
     public  BufferedImage[] wlBild;
     public String[] wlString = {
             "/player/leather/playerbl1.png"
@@ -103,30 +105,42 @@ public class Image {
             , "/player/leather/playerrl1.png"
             , "/player/leather/playerrl2.png"
     };
+    //dia
     public  BufferedImage[] wdiBild;
     public String[] wdiString = {
-            "/player/dia/playerbl1.png"
-            , "/player/dia/playerbl2.png"
-            , "/player/dia/playercl1.png"
-            , "/player/dia/playercl2.png"
-            , "/player/dia/playerll1.png"
-            , "/player/dia/playerll2.png"
-            , "/player/dia/playerrl1.png"
-            , "/player/dia/playerrl2.png"
+            "/player/dia/playerbd1.png"
+            , "/player/dia/playerbd2.png"
+            , "/player/dia/playercd1.png"
+            , "/player/dia/playercd2.png"
+            , "/player/dia/playerld1.png"
+            , "/player/dia/playerld2.png"
+            , "/player/dia/playerrd1.png"
+            , "/player/dia/playerrd2.png"
     };
+    //jade
     public  BufferedImage[] wjBild;
     public String[] wjString = {
-            "/player/jade/playerbl1.png"
-            , "/player/jade/playerbl2.png"
-            , "/player/jade/playercl1.png"
-            , "/player/jade/playercl2.png"
-            , "/player/jade/playerll1.png"
-            , "/player/jade/playerll2.png"
-            , "/player/jade/playerrl1.png"
-            , "/player/jade/playerrl2.png"
+            "/player/jade/playerbj1.png"
+            , "/player/jade/playerbj2.png"
+            , "/player/jade/playercj1.png"
+            , "/player/jade/playercj2.png"
+            , "/player/jade/playerlj1.png"
+            , "/player/jade/playerlj2.png"
+            , "/player/jade/playerrj1.png"
+            , "/player/jade/playerrj2.png"
     };
+    //invisible
     public  BufferedImage[] wuBild;
     public String[] wuString = {
+            "/player/invisible/playerbinv.png"
+            ,"/player/invisible/playerbinv.png"
+            ,"/player/invisible/playercinv.png"
+            ,"/player/invisible/playercinv.png"
+            ,"/player/invisible/playerlinv.png"
+            ,"/player/invisible/playerlinv.png"
+            ,"/player/invisible/playerrinv.png"
+            ,"/player/invisible/playerrinv.png"
+            /*
             "/player/invisible/playerbl1.png"
             , "/player/invisible/playerbl2.png"
             , "/player/invisible/playercl1.png"
@@ -135,6 +149,16 @@ public class Image {
             , "/player/invisible/playerll2.png"
             , "/player/invisible/playerrl1.png"
             , "/player/invisible/playerrl2.png"
+    */
+    };
+    //Hintergrund Fight
+    public  BufferedImage[] hFBild;
+    public String[] hFString = {
+            "/Background/fight/KampfHaus.png"
+            ,"/Background/fight/Kampfhoele.png"
+            ,"/Background/fight/Kampfgrass.png"
+            ,"/Background/fight/castleinnen.png"
+            ,"/Background/fight/Baum.png"
     };
 
     //Sonstige images
@@ -150,10 +174,16 @@ public class Image {
         //Load Inventory Image
         loadInvBilder();
 
+        //läd animation Bilder
+        loadWalkBilder();
+
+        //Läd Hintergrund
+        loadBackground();
+
 
         loadImageee();
 
-        loadWalkBilder();
+
 
     }
 
@@ -188,7 +218,6 @@ public class Image {
         }
         iRDefault = loadImage(iRDefaultString,defaultImage);
     }
-
     public void loadWalkBilder(){
 
         wdBild = new BufferedImage[8];
@@ -229,6 +258,14 @@ public class Image {
             wuBild[i] = loadImage(wuString[i],defaultImage);
         }
 
+    }
+    public void loadBackground() {
+
+        hFBild = new BufferedImage[4];
+        for (int i = 0; i <= hFBild.length -1; i++){
+
+            hFBild[i] = loadImage(hFString[i],defaultImage);
+        }
     }
 
     public BufferedImage loadImage(String filePath,BufferedImage defaultImage) {

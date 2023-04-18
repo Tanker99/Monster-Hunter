@@ -151,7 +151,7 @@ public class Shop {
             int db = item[selectItem][0];
             int itemnr = item[selectItem][1];
 
-            gp.text.drawTextcentered(g2, (gp.dba.getItem(db, itemnr).getGoldwert()) + " Muenzen", pX, (int) (gp.screenHeight * 0.58), pWight / 2);
+            gp.text.drawTextcentered(g2, (gp.dba.getItem(db, itemnr).getGoldwert()) + " Gold", pX, (int) (gp.screenHeight * 0.58), pWight / 2);
 
             if(db == 3){
                 gp.text.drawTextcentered(g2, "Heilt um: "+gp.dba.getItem(db, itemnr).getKraft() , pX + pWight/2, (int) (gp.screenHeight * 0.58),pWight/2);
@@ -217,7 +217,7 @@ public class Shop {
 
         int rHigh = (int) (gp.screenHeight * 0.08);
         g2.drawRoundRect(rX, rY, rWight, rHigh, 10, 10);
-        gp.text.drawTextInBox(g2, "Randome 100€", rX, rY, rWight, rHigh);
+        gp.text.drawTextInBox(g2, "Randomize: 20 Gold", rX, rY, rWight, rHigh);
 
         button[3] = new JPanel();
         button[3].setName("Button: 3");

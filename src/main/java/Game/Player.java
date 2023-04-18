@@ -22,6 +22,13 @@ public class Player extends Entity{
     // [] == slot
 
 
+    //console
+    boolean popUP = false;
+    boolean popUPB = false;
+    String popuPt ="";
+    int popWait = 0;
+
+
 
 
 
@@ -36,6 +43,7 @@ public class Player extends Entity{
         getImage();
 
 
+
     }
     public void Values(){
          worldx = gp.tileSize*18;
@@ -45,10 +53,9 @@ public class Player extends Entity{
         ImageDirection = "still";
 
     }
-
     public void getImage(){
         int slotnr;
-        if (equip[1] == -1) {
+        if (gp.config.load(gp.save,"equip1") == -1) {
             slotnr = -1;
         }else {
              slotnr = item[equip[1]][1];
@@ -57,6 +64,7 @@ public class Player extends Entity{
         BufferedImage[] walkImage = null;
         switch (slotnr){
             case -1:
+                System.out.println("dasdasdasdasd");
                 walkImage = gp.image.wdBild;
                 break;
             case 0:
@@ -113,6 +121,31 @@ public class Player extends Entity{
 
 
     }
+    public void drawPopup(Graphics2D g2){
+
+        int x = (int) (gp.screenWidth/2 - gp.screenWidth*0.15);
+        int y = (int) (gp.screenHeight * 0.25);
+        int wight = (int) (( gp.screenWidth*0.15)*2);
+        int high = (int) (gp.screenHeight * 0.08);
+            g2.setColor(Color.black);
+            g2.fillRect(x,y,wight,high);
+            g2.drawRoundRect(x,y,wight,high,10,10);
+            g2.setColor(Color.white);
+            gp.text.drawTextInBox(g2,popuPt,x,y,wight,high);
+    }
+    public void drawPopupB(Graphics2D g2){
+
+        int x = (int) (gp.screenWidth/2 - gp.screenWidth*0.35);
+        int y = (int) (gp.screenHeight * 0.15);
+        int wight = (int) (( gp.screenWidth*0.35)*2);
+        int high = (int) (gp.screenHeight * 0.23);
+        g2.setColor(Color.black);
+        g2.fillRect(x,y,wight,high);
+        g2.drawRoundRect(x,y,wight,high,10,10);
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(20F));
+        gp.text.drawTextBetweenBox(g2,popuPt, (int) (x + gp.screenWidth * 0.02), (int) (y + gp.screenHeight * 0.04), (int) (wight - gp.screenWidth * 0.02));
+    }
     public void update (){
         //SHOP
         if( worldy >= 1232 && worldy <= 1280 && worldx == 1016 ){
@@ -122,36 +155,104 @@ public class Player extends Entity{
             gp.shopEntry = true;
             gp.gameState = gp.shopState;
         }
+        //GeschichteHaus
+        if(worldy == 996 && worldx >= 940 && worldx <= 996){
+            System.out.println("GeschichtenHaus");
+            popuPt = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+            popUPB = true;
 
-        //Haus Fight
+            worldx = 964; //Spawns
+            worldy = 1036; //Spawns
+        }
+
+        //Haus Fight1
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
             System.out.println("Haus1");
+            if(gp.monsterDB.getTot(0) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+
+            }else {
+                gp.fight.loadFigh(0,0);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1280; //Spawns nach dem fight
+            worldy = 1260; //Spawns nach dem fight
+        }
+        //Haus Fight2
+        if(worldy == 1796 && worldx >= 2528 && worldx <= 2608){
+            System.out.println("Haus2");
+            if(gp.monsterDB.getTot(3) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+
+            }else {
+                gp.fight.loadFigh(0,3);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 2564; //Spawns nach dem fight
+            worldy = 1836; //Spawns nach dem fight
         }
 
         //Erde Fight
         if(worldy >= 2436 && worldy <= 2480&& worldx >= 1710 && worldx <= 1780){
             System.out.println("Erde Loch");
-            //worldx = 1604; //Spawns nach dem fight
-            //worldy = 2392; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(1) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(2,1);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1604; //Spawns nach dem fight
+            worldy = 2392; //Spawns nach dem fight
         }
 
         //Stein Fight
         if(worldy >= 2276 && worldy <= 2336&& worldx >= 2456 && worldx <= 2500){
             System.out.println("Stein Loch");
-            //worldx = 2400; //Spawns nach dem fight
-            //worldy = 2376; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(4) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(1,4);
+                gp.gameState = gp.fightState;
+            }
+
+            worldx = 1768; //Spawns nach dem fight
+            worldy = 2552; //Spawns nach dem fight
         }
 
         //Baum Fight
         if(worldy == 2356 && worldx >= 1012 && worldx <= 1080){
             System.out.println("Baum");
-            //worldx = 1196; //Spawns nach dem fight
-            //worldy = 2388; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(2) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(4,2);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1040; //Spawns nach dem fight
+            worldy = 2388; //Spawns nach dem fight
         }
 
         //END BOSS Fight
         if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ) {
             System.out.println("Schloss");
+            if(gp.monsterDB.getTot(5) == 1){
+
+            }else if(gp.monsterDB.getTot(0) == 1 && gp.monsterDB.getTot(1) == 1 && gp.monsterDB.getTot(2) == 1 && gp.monsterDB.getTot(3) == 1 && gp.monsterDB.getTot(4) == 1 && gp.monsterDB.getTot(5) == 1){
+                gp.fight.loadFigh(3,5);
+                gp.gameState = gp.fightState;
+            }else {
+                popuPt = "Du musst erst alle Monster besiegen";
+                popUP = true;
+
+            }
+            worldx = 2356;
+            worldy = 1280;
+
         }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
@@ -207,6 +308,24 @@ public class Player extends Entity{
 
 
     public void draw(Graphics2D g2){
+        if(popUP) {
+            if(popWait < 250) {
+                popWait ++;
+                drawPopup(g2);
+            }else {
+                popWait = 0;
+                popUP = false;
+            }
+        }
+        if(popUPB) {
+            if(popWait < 250) {
+                popWait ++;
+                drawPopupB(g2);
+            }else {
+                popWait = 0;
+                popUPB = false;
+            }
+        }
         BufferedImage image = null;
 
         switch (ImageDirection){

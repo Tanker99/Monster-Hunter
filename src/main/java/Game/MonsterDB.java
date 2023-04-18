@@ -20,7 +20,7 @@ public class MonsterDB {
     //Datenbank
     public static String[] mName={"tollwütiges Schwein","Saurons Auge","hungriger Ork","Ghoul","fliegender Dämon","Untoter Ritter"};
     public static Integer[] mtot = {0,0,0,0,0,0};
-    public static int[] mHealth={100,120,110,105,115,145};
+    public static int[] mHealth={60,80,100,105,115,145};
     public static int[] mDefense={7,12,9,16,25,40};
     public static int[] mAttack={6,12,9,12,15,20};
 

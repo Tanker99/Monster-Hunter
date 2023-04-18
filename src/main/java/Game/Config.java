@@ -156,7 +156,7 @@ public class Config {
         save(file,"gold",gp.player.gold);
         save(file,"leben",gp.player.leben);
         save(file,"defense",gp.player.defense);
-        save(file,"kraft",gp.player.kraft);
+        save(file,"attack",gp.player.attack);
         for (int i =0; i< 6; i++){
             save(file,"monster" + i,gp.monsterDB.mtot[i]);
         }
@@ -173,7 +173,7 @@ public class Config {
         gp.player.gold = load(file,"gold");
         gp.player.leben = load(file,"leben");
         gp.player.defense = load(file,"defense");
-        gp.player.kraft = load(file,"kraft");
+        gp.player.attack = load(file,"attack");
         for (int i =0; i< 6; i++){
             gp.monsterDB.mtot[i] = load(file,"monster" + i);
         }

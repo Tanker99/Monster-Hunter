@@ -108,7 +108,7 @@ public class MouseListener implements java.awt.event.MouseListener {
             if (gp.ui.sellectValueY == 0) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 0;
-                    if (gp.ui.newsave) {
+                    if (gp.ui.newsave || gp.config.load(gp.save, "used") ==0) {
                         gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
                     } else {
@@ -120,7 +120,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 1;
-                    if (gp.ui.newsave) {
+                    if (gp.ui.newsave || gp.config.load(gp.save, "used") ==0) {
                         gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
                     } else {
@@ -133,7 +133,7 @@ public class MouseListener implements java.awt.event.MouseListener {
             if (gp.ui.sellectValueY == 1) {
                 if (gp.ui.sellectValueX == 0) {
                     gp.save = 2;
-                    if (gp.ui.newsave) {
+                    if (gp.ui.newsave || gp.config.load(gp.save, "used") ==0) {
                         gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
                     } else {
@@ -144,7 +144,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 }
                 if (gp.ui.sellectValueX == 1) {
                     gp.save = 3;
-                    if (gp.ui.newsave) {
+                    if (gp.ui.newsave || gp.config.load(gp.save, "used") ==0) {
                         gp.config.copyFile(4, gp.save);
                         gp.config.loadAll(gp.save);
                     } else {
@@ -161,8 +161,6 @@ public class MouseListener implements java.awt.event.MouseListener {
 
         }
     }
-
-
     public void menueStateEntered(MouseEvent e) {
         System.out.println("Panel " + e.getComponent().getName() + " Entered");
         if (gp.ui.menuState == gp.ui.titleState) {
@@ -512,7 +510,9 @@ public class MouseListener implements java.awt.event.MouseListener {
                     gp.fight.fight = true;
                     break;
                 case "Fight Button: 1":
-                    gp.gameState = gp.playerState;
+                    if(!(gp.fight.first)) {
+                        gp.gameState = gp.playerState;
+                    }
                     break;
                 case "Item: 0":
                     gp.fight.useItem(2);
