@@ -24,6 +24,20 @@
 23 = Weg-Mitte nach oben rechts voll
 24 = Schlosstürlinks
 25 = Schlosstürrechts
-26 =
+26 = ShopTüre
+27 = Graßweg horizontal
+28 = Graßweg vertikal
+29 = Graßweg hoch von rechts
+30 = Graßweg hoch von links
+31 = Graßweg runter von rechts
+32 = Graßweg runter von links
+33 = Hausholz rechts
+34 = Hausholz links
+35 = Steinhöleneingang
+36 = Graßhöleneingang
+37 = Dreck
+38 = Wasser voll
+39
+40
 
 

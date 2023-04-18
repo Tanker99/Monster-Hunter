@@ -39,12 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
     public Config config = new Config(this);
 
     public Image image = new Image();
-    public Monster monster = new Monster();
+    public MonsterDB monsterDB = new MonsterDB();
     public Test test = new Test(this,keyH);
 
 
     //Classes
     public UI ui = new UI(this);
+    public Settings settings = new Settings(this);
     public Player player = new Player(this, keyH);
     public TickTackToe miniGame = new TickTackToe(this);
     public Shop shop = new Shop(this);
@@ -58,13 +59,15 @@ public class GamePanel extends JPanel implements Runnable {
     //STATES
     public int gameState;
     private  int oldGameState;
+    int settingOldState;
     final int uiState = 1;
     final int playerState = 2;
     final int miniGameState =3;
     final int shopState = 4;
     final int inventoryState = 5;
     final int fightState = 6;
-    final int testState = 10;
+    final int settingsState = 10;
+    final int testState = 11;
 
     //Variable
     public boolean shopEntry;
@@ -170,24 +173,36 @@ public class GamePanel extends JPanel implements Runnable {
             oldGameState = gameState;
         }
         if (gameState == uiState) {
+            settingOldState = uiState;
             ui.draw(g2);
             g2.dispose();
         } else if (gameState == playerState) {
+            settingOldState = playerState;
             tileT.draw(g2);
             player.draw(g2);
             g2.dispose();
         } else if(gameState == miniGameState){
+            settingOldState = miniGameState;
             miniGame.draw(g2);
             g2.dispose();
         }else if (gameState == inventoryState) {
+            settingOldState = inventoryState;
+            inventory.console = "";
             inventory.draw(g2);
             g2.dispose();
         } else if (gameState == shopState) {
+            settingOldState = shopState;
+            shop.console = "";
             shop.draw(g2);
             g2.dispose();
         } else if (gameState == fightState) {
+            settingOldState = fightState;
             fight.draw(g2);
             g2.dispose();
+        }else if (gameState == settingsState) {
+            settings.draw(g2);
+            g2.dispose();
+
         } else if (gameState == testState) {
             test.draw(g2);
             g2.dispose();
@@ -197,13 +212,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void playLoopSound(int i) {
-        sound.selectSound(i);
-        sound.play();
-        sound.loop();
+       //// sound.selectSound(i);
+       // sound.play();
+       // sound.loop();
     }
     public void playSound(int i){
-        sound.selectSound(i);
-        sound.play();
+       // sound.selectSound(i);
+       // sound.play();
     }
     public void updateScreen(int i){
             Dimension currentSize = this.getSize();

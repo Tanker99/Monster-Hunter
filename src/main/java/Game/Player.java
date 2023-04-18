@@ -26,6 +26,7 @@ public class Player extends Entity{
 
 
     public Player(GamePanel gp, KeyHandler keyH){
+        //equip[1]= -1;
         this.gp = gp;
         this.keyH = keyH;
         screenx = gp.screenWidth/2 - (gp.tileSize/2);
@@ -33,6 +34,7 @@ public class Player extends Entity{
         hitbox = new Rectangle(24,44,32,32);
         Values();
         getImage();
+
 
     }
     public void Values(){
@@ -45,44 +47,112 @@ public class Player extends Entity{
     }
 
     public void getImage(){
+        int slotnr;
+        if (equip[1] == -1) {
+            slotnr = -1;
+        }else {
+             slotnr = item[equip[1]][1];
+        }
+
+        BufferedImage[] walkImage = null;
+        switch (slotnr){
+            case -1:
+                walkImage = gp.image.wdBild;
+                break;
+            case 0:
+                walkImage = gp.image.wiBild;
+                break;
+            case 1:
+                walkImage = gp.image.wgBild;
+                break;
+            case 2:
+                walkImage = gp.image.wlBild;
+                break;
+            case 3:
+                walkImage = gp.image.wdiBild;
+                break;
+            case 4:
+                walkImage = gp.image.wjBild;
+                break;
+            case 5:
+                walkImage = gp.image.wuBild;
+                break;
+
+
+        }
+        System.err.println(slotnr);
+            up1 =  walkImage[0];
+            up2 =  walkImage[1];
+            down1 =  walkImage[2];
+            down2 =  walkImage[3];
+            left1 =  walkImage[4];
+            left2 =  walkImage[5];
+            right1 =  walkImage[6];
+            right2 =  walkImage[7];
+            System.out.println("test");
+
+
+
+        /*
 
         try{
-            down1 =  ImageIO.read(Player.class.getResource("/player/playerc1.png"));
-            down2 =  ImageIO.read(Player.class.getResource("/player/playerc2.png"));
-            up1 =  ImageIO.read(Player.class.getResource("/player/playerb1.png"));
-            up2 =  ImageIO.read(Player.class.getResource("/player/playerb2.png"));
-            left1 =  ImageIO.read(Player.class.getResource("/player/playerl1.png"));
-            left2 =  ImageIO.read(Player.class.getResource("/player/playerl2.png"));
-            right1 =  ImageIO.read(Player.class.getResource("/player/playerr1.png"));
-            right2 =  ImageIO.read(Player.class.getResource("/player/playerr2.png"));
+            down1 =  ImageIO.read(Player.class.getResource("/player/default/playerc1.png"));
+            down2 =  ImageIO.read(Player.class.getResource("/player/default/playerc2.png"));
+            up1 =  ImageIO.read(Player.class.getResource("/player/default/playerb1.png"));
+            up2 =  ImageIO.read(Player.class.getResource("/player/default/playerb2.png"));
+            left1 =  ImageIO.read(Player.class.getResource("/player/default/playerl1.png"));
+            left2 =  ImageIO.read(Player.class.getResource("/player/default/playerl2.png"));
+            right1 =  ImageIO.read(Player.class.getResource("/player/default/playerr1.png"));
+            right2 =  ImageIO.read(Player.class.getResource("/player/default/playerr2.png"));
             System.out.println("test");
         }catch (IOException e){
             e.printStackTrace();
             System.out.println("Game.Image Error");
         }
+        */
 
 
     }
     public void update (){
-       // if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*14 && worldx <= gp.tileSize*16){
-         //       System.out.println("Spieler erkennung");
-
-       // }
-        if(worldy >= gp.tileSize*14 && worldy <= gp.tileSize*15 && worldx >= gp.tileSize*15 ){
-            System.out.println("test");
-        }
         //SHOP
-        if(worldx <= gp.tileSize*13 && worldy >= gp.tileSize*15){
+        if( worldy >= 1232 && worldy <= 1280 && worldx == 1016 ){
             System.out.println("Shop enter");
+            worldy = 1260;
+            worldx = gp.tileSize * 14;
             gp.shopEntry = true;
             gp.gameState = gp.shopState;
         }
 
-        //BOSS
-        if(worldy == gp.tileSize*17 && worldx == gp.tileSize*20 ){
-            System.out.println("Boss enter");
+        //Haus Fight
+        if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
+            System.out.println("Haus1");
         }
 
+        //Erde Fight
+        if(worldy >= 2436 && worldy <= 2480&& worldx >= 1710 && worldx <= 1780){
+            System.out.println("Erde Loch");
+            //worldx = 1604; //Spawns nach dem fight
+            //worldy = 2392; //Spawns nach dem fight
+        }
+
+        //Stein Fight
+        if(worldy >= 2276 && worldy <= 2336&& worldx >= 2456 && worldx <= 2500){
+            System.out.println("Stein Loch");
+            //worldx = 2400; //Spawns nach dem fight
+            //worldy = 2376; //Spawns nach dem fight
+        }
+
+        //Baum Fight
+        if(worldy == 2356 && worldx >= 1012 && worldx <= 1080){
+            System.out.println("Baum");
+            //worldx = 1196; //Spawns nach dem fight
+            //worldy = 2388; //Spawns nach dem fight
+        }
+
+        //END BOSS Fight
+        if(worldy == 1236 && worldx >= 2312 && worldx <= 2404 ) {
+            System.out.println("Schloss");
+        }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
             if(keyH.up == true){
@@ -129,7 +199,7 @@ public class Player extends Entity{
                 }
                 timer = 0;
             }
-            System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize);
+            System.out.println("X-Achse: "+ worldx/ gp.tileSize + "    Y-Achse: " +worldy/gp.tileSize+ "    |      X-Achsereal: "+ worldx + "    Y-Achsereal: " +worldy);
             //System.out.println("Timer: "+ timer + "Animation: " +animation);
         }
     }

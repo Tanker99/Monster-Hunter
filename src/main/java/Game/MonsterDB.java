@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Monster{
+public class MonsterDB {
 
     //Get Variablen
     public String name;
@@ -15,18 +15,19 @@ public class Monster{
     //Define Variablen
     public static final int mAnzahl = 6;
     static BufferedImage mBild[] = new BufferedImage[6];
-    public static Monster monster[];
+    public static MonsterDB monsterDB[];
 
     //Datenbank
     public static String[] mName={"tollwütiges Schwein","Saurons Auge","hungriger Ork","Ghoul","fliegender Dämon","Untoter Ritter"};
-    public static int[] mHealth={80,120,87,105,99,125};
-    public static int[] mDefense={5,12,9,16,25,40};
-    public static int[] mAttack={4,9,7,12,15,20};
+    public static Integer[] mtot = {0,0,0,0,0,0};
+    public static int[] mHealth={100,120,110,105,115,145};
+    public static int[] mDefense={7,12,9,16,25,40};
+    public static int[] mAttack={6,12,9,12,15,20};
 
-    public Monster(String name,int health,int defense,int attack, BufferedImage bild){
+    public MonsterDB(String name, int health, int defense, int attack, BufferedImage bild, int tot){
 
     }
-    public Monster(){
+    public MonsterDB(){
         loadItem();
     }
 
@@ -48,11 +49,14 @@ public class Monster{
     public BufferedImage getBild(int n){
         return mBild[n];
     }
+    public Integer getTot(int n){
+        return mtot[n];
+    }
     public static void loadItem(){
         loadImage();
-        monster = new Monster[mAnzahl];
+        monsterDB = new MonsterDB[mAnzahl];
         for (int i = 0; i < mAnzahl; i++){
-            monster[i] = new Monster(mName[i],mHealth[i],mDefense[i],mAttack[i],mBild[i]);
+            monsterDB[i] = new MonsterDB(mName[i],mHealth[i],mDefense[i],mAttack[i],mBild[i],mtot[i]);
         }
     }
     //public static Monste getMonster(int i){
@@ -62,12 +66,12 @@ public class Monster{
     public static void loadImage(){
 
         try {
-            mBild[0] = ImageIO.read(Monster.class.getResource("/monster/pig.png"));
-            mBild[1] = ImageIO.read(Monster.class.getResource("/monster/eye.png"));
-            mBild[2] = ImageIO.read(Monster.class.getResource("/monster/ork.png"));
-            mBild[3] = ImageIO.read(Monster.class.getResource("/monster/ghoul.png"));
-            mBild[4] = ImageIO.read(Monster.class.getResource("/monster/spyker.png"));
-            mBild[5] = ImageIO.read(Monster.class.getResource("/monster/rittertot.png"));
+            mBild[0] = ImageIO.read(MonsterDB.class.getResource("/monster/pig.png"));
+            mBild[1] = ImageIO.read(MonsterDB.class.getResource("/monster/eye.png"));
+            mBild[2] = ImageIO.read(MonsterDB.class.getResource("/monster/ork.png"));
+            mBild[3] = ImageIO.read(MonsterDB.class.getResource("/monster/ghoul.png"));
+            mBild[4] = ImageIO.read(MonsterDB.class.getResource("/monster/spyker.png"));
+            mBild[5] = ImageIO.read(MonsterDB.class.getResource("/monster/rittertot.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

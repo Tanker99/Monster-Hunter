@@ -18,8 +18,8 @@ public class Waffe extends Items {
 
     //Datenbank
     public static String[] wName = {"Schwacher Bogen", "Starker Bogen", "Streitaxt (Eine KLinge)", "Streitaxt (Doppelte Klinge)", "Schwert", "Feuerschwert", "Morgenstern", "Armbrust"};
-    public static int[] wKraft = {2, 5, 4, 6, 3, 5, 6, 4};
-    public static int[] wGoldwert = {3, 7, 4, 8, 4, 9, 6, 5};
+    public static int[] wKraft = {12, 18, 14, 20, 16, 22, 18, 24};
+    public static int[] wGoldwert = {12, 20, 14, 22, 16, 24, 18, 26};
     public static String[] wText = {
             "Aus einem weichen Holz gefertig, doch trotzdem tödlich.",
             "Verstärkte Wurfarme machen den bereits guten Bogen noch BESSER. Höher, Weiter, Tödlicher!",
