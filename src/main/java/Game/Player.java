@@ -308,7 +308,7 @@ public class Player extends Entity{
                 drawPopupB(g2);
             }else {
                 popWait = 0;
-                popUP = false;
+                popUPB = false;
             }
         }
         BufferedImage image = null;
