@@ -120,14 +120,14 @@ public class Image {
     //jade
     public  BufferedImage[] wjBild;
     public String[] wjString = {
-            "/player/jade/playerbl1.png"
-            , "/player/jade/playerbl2.png"
-            , "/player/jade/playercl1.png"
-            , "/player/jade/playercl2.png"
-            , "/player/jade/playerll1.png"
-            , "/player/jade/playerll2.png"
-            , "/player/jade/playerrl1.png"
-            , "/player/jade/playerrl2.png"
+            "/player/jade/playerbj1.png"
+            , "/player/jade/playerbj2.png"
+            , "/player/jade/playercj1.png"
+            , "/player/jade/playercj2.png"
+            , "/player/jade/playerlj1.png"
+            , "/player/jade/playerlj2.png"
+            , "/player/jade/playerrj1.png"
+            , "/player/jade/playerrj2.png"
     };
     //invisible
     public  BufferedImage[] wuBild;
