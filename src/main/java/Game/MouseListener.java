@@ -235,6 +235,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
             case "Setting Screen: Save & Quit":
                 gp.config.saveAll(gp.save);
+                gp.config.save(gp.save,"used", 1);
                 gp.gameState = gp.uiState;
                 gp.ui.menuState = gp.ui.titleState;
                 break;
