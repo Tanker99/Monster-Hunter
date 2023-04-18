@@ -136,7 +136,7 @@ public class Fight {
 
     public void drawcharakter() {
         // int pX= (int) (gp.screenWidth*0.05);
-        int pY = (int) (gp.screenHeight * 0.55);
+        int pY = (int) (gp.screenHeight * 0.72);
         int pWidth = (int) (gp.screenWidth * 0.15);
         int pHight = (int) (gp.screenHeight * 0.22);
 
@@ -198,7 +198,7 @@ public class Fight {
     }
     public void drawmonster() {
         //int mX = (int) (gp.screenWidth * 0.8);
-        int mY = (int) (gp.screenHeight * 0.55);
+        int mY = (int) (gp.screenHeight * 0.72);
         int mWidth = (int) (gp.screenWidth * 0.15);
         int mHight = (int) (gp.screenHeight * 0.22);
 
