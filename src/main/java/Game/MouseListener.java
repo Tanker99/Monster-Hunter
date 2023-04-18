@@ -240,21 +240,29 @@ public class MouseListener implements java.awt.event.MouseListener {
                 break;
 
             case "Musik: +":
-                gp.settings.volumeL ++;
-                gp.sound.setLoopVolume(gp.settings.volumeL);
+                if(!(gp.settings.volumeL > 3)) {
+                    gp.settings.volumeL++;
+                    gp.sound.setLoopVolume(gp.settings.volumeL);
+                }
                 break;
             case "Musik: -":
-                gp.settings.volumeL --;
-                gp.sound.setLoopVolume(gp.settings.volumeL);
+                if(!(gp.settings.volumeL < 1)) {
+                    gp.settings.volumeL--;
+                    gp.sound.setLoopVolume(gp.settings.volumeL);
+                }
                 break;
 
             case "SE: -":
-                gp.settings.volumeS ++;
-                gp.sound.setVolume(gp.settings.volumeS);
+                if(!(gp.settings.volumeS < 1)) {
+                    gp.settings.volumeS--;
+                    gp.sound.setVolume(gp.settings.volumeS);
+                }
                 break;
             case "SE: +":
-                gp.settings.volumeS --;
-                gp.sound.setVolume(gp.settings.volumeS);
+                if(!(gp.settings.volumeS > 3)&& !(gp.settings.volumeS < 1)) {
+                    gp.settings.volumeS++;
+                    gp.sound.setVolume(gp.settings.volumeS);
+                }
                 break;
         }
     }
@@ -517,6 +525,8 @@ public class MouseListener implements java.awt.event.MouseListener {
                     break;
                 case "Fight Button: 1":
                     if(!(gp.fight.first)) {
+                        gp.stopLoopSound();
+                        gp.playLoopSound(0);
                         gp.gameState = gp.playerState;
                     }
                     break;

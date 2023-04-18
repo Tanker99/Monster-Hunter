@@ -21,6 +21,8 @@ public class Sound {
 
     public Sound() {
         loopURL[0] = Sound.class.getResource("/sound/Titel-melodie.wav");
+        loopURL[1] = Sound.class.getResource("/sound/Final-Fight.wav");
+        loopURL[2] = Sound.class.getResource("/sound/Optionale Melodie.wav");
         //Select Game.Sound
         soundURL[1] = Sound.class.getResource("/sound/switch.wav");
         //Not Select Allow Game.Sound
@@ -35,6 +37,7 @@ public class Sound {
             clip = AudioSystem.getClip();
             clip.open(ais);
             fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            fc.setValue(volume);
             clip.start();
         } catch (Exception e) {
             System.out.println("Error playing sound: " + e.getMessage());
@@ -54,9 +57,9 @@ public class Sound {
     }
 
     public void stop() {
-        if (clip != null) {
-            clip.stop();
-            clip.close();
+        if (loopClip != null) {
+            loopClip.stop();
+            loopClip.close();
         }
     }
 

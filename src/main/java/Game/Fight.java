@@ -119,6 +119,14 @@ public class Fight {
         }
         background = gp.image.hFBild[tbackground];
 
+        if(tmonster == 5){
+            gp.stopLoopSound();
+            gp.playLoopSound(1);
+        }else {
+            gp.stopLoopSound();
+            gp.playLoopSound(2);
+        }
+
 
 
         monsterlive = gp.monsterDB.getHealth(monster);

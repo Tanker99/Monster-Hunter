@@ -45,7 +45,8 @@ public class Settings {
         int kHigh = 100;
         int ab = (int) ( kHigh + (gp.screenHeight * 0.09));
 
-        String[] textt = {"Full Screen","Music" , "Se", "Controll", "Back" , "Save & Quit"};
+        String[] textt = {"","Music" , "Se", "", "Back" , "Save & Quit"};
+       // String[] textt = {"Full Screen","Music" , "Se", "Controll", "Back" , "Save & Quit"};
         String[] texth = {"+", "-"};
 
         for( int i = 0; i< 4; i++) {

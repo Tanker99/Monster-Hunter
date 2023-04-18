@@ -179,7 +179,6 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         } else if (gameState == playerState) {
-            stopLoopSound();
             settingOldState = playerState;
             tileT.draw(g2);
             player.draw(g2);
