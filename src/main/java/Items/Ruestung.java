@@ -20,7 +20,7 @@ public class Ruestung extends Items{
     //Datenbank
     public static String[] rName={"Eisenrüstung","Goldrüstung","Lederrüstung","Diamantrüstung","Jaderüstung","Die Unsichtbare"};
     public static int[] rKraft={20,12,7,28,22,40};
-    public static int[] rGoldwert={34,50,24,200,125,400};
+    public static int[] rGoldwert={28,50,24,70,75,80};
     public static String[] rText = {
     "Damals wie heute bietet eine R�stung aus hochwertigem Eisen einen guten Schutz, welcher dem Tr�ger im Kampf einen Vorteil verschafft.",
     "Auch wenn die Weichheit des Materials im Kampf von Nachteil ist, dr�ckt man durch diese R�stung Erfolg und Mut aus.",
