@@ -143,8 +143,8 @@ public class Player extends Entity{
         //GeschichteHaus
         if(worldy == 996 && worldx >= 940 && worldx <= 996){
             System.out.println("Erde Loch");
-            //worldx = 1604; //Spawns nach dem fight
-            //worldy = 2392; //Spawns nach dem fight
+            //worldx = 1108; //Spawns
+            //worldy = 1024; //Spawns
         }
 
         //Haus Fight1
