@@ -67,9 +67,11 @@ public class Inventory {
         this.keyH = keyH;
 
         this.inX = 10;
-        this.inY = gp.screenHeight/4 - 20;
+        //this.inY = gp.screenHeight/4 - 20;
+        this.inY = (int) (gp.screenHeight *0.25);
         this.inWight = gp.screenWidth -20;
-        this.inHigh = gp.screenHeight/2 - 20;
+        //this.inHigh = gp.screenHeight/2 - 20;
+        this.inHigh = (int) (gp.screenHeight * 0.5);
 
     }
     public void draw(Graphics2D g2){
@@ -102,7 +104,7 @@ public class Inventory {
 
         //draw Inventory rand
         g2.drawRoundRect(inX,inY,inWight,inHigh,10,10);
-        g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,250);
+        g2.drawString("Gold: " + gp.player.gold,(int) (inWight*0.9) + inX,260);
 
         //Draw Slots
         drawSlot();
@@ -246,9 +248,9 @@ public class Inventory {
 
         //Draw Picture
         int pcX = (int) (panX + gp.screenWidth * 0.06);
-        int pcY = (int) (panY + gp.screenHeight * 0.08);
+        int pcY = (int) (panY + gp.screenHeight * 0.09);
         int pcWight = (int) (gp.screenWidth * 0.09);
-        int pcHigh = (int) (inHigh /2.6);
+        int pcHigh = (int) (inHigh /2.9);
         g2.drawRoundRect(pcX,pcY,pcWight,pcHigh,10,10);
         if(gp.player.equip[1] != -1){
             g2.drawImage(gp.image.iRBild[gp.player.item[gp.player.equip[1]][1]],pcX,pcY,pcWight,pcHigh,null);
