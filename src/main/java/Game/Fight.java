@@ -33,6 +33,7 @@ public class Fight {
     int playerX;
     int monsterX;
     boolean fight = false;
+    boolean first = false;
     int playerWalk;
     int playerWalkBack;
     int monsterWalk;
@@ -60,6 +61,7 @@ public class Fight {
         loadPlayerImage();
 
         if(winner > 0){
+            first = false;
             if( winner == 1){
                 console = "Du hast Gewonnen der Shop wurde für dich erneuert";
                 gp.shop.newShop = true;
@@ -81,7 +83,9 @@ public class Fight {
             if (!(fight)) {
                 resetFightAnimation();
                 drawFightButton();
-                drawBackButton();
+                if (!first) {
+                    drawBackButton();
+                }
                 drawItems();
             }
         }
@@ -89,7 +93,7 @@ public class Fight {
 
         //Kampf
         if (fight) {
-
+            first = true;
             kampf();
         }
     }
@@ -173,7 +177,7 @@ public class Fight {
         // g2.drawRect(sX,sY,swight,shight);
 
         String leben = String.valueOf(gp.player.leben);
-        String attack = String.valueOf(gp.player.kraft);
+        String attack = String.valueOf(gp.player.attack);
         String defense = String.valueOf(gp.player.defense);
 
         gp.text.draw3StringsInBox(g2, "Leben :" + leben, "Angriff : " + attack, "Defense : " + defense, sX, sY, swight, shight);
@@ -202,6 +206,8 @@ public class Fight {
         gp.text.draw2StringsInBox(g2, "Leben :" + leben, "Angriff : " + attack, sX, sY, swight, shight);
     }
     public void drawFightButton() {
+        g2.setFont(g2.getFont().deriveFont(30F));
+
         int bX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.08);
         int bY = (int) (gp.screenHeight * 0.4);
         int bWight = (int) ((gp.screenWidth * 0.08) * 2);
@@ -214,7 +220,11 @@ public class Fight {
         slot[0].addMouseListener(gp.mous);
         gp.add(slot[0]);
         slot[0].setVisible(true);
+        g2.setColor(Color.white);
+        g2.fillRect(bX, bY + 0 * yab, bWight, bHigh);
+        g2.setColor(Color.black);
         gp.text.drawTextInBox(g2, "Fight", bX, bY + 0 * yab, bWight, bHigh);
+
         g2.drawRect(bX, bY + 0 * yab, bWight, bHigh);
 
     }
@@ -232,6 +242,9 @@ public class Fight {
         slot[1].addMouseListener(gp.mous);
         gp.add(slot[1]);
         slot[1].setVisible(true);
+        g2.setColor(Color.white);
+        g2.fillRect(bX, bY + 1 * yab, bWight, bHigh);
+        g2.setColor(Color.black);
         gp.text.drawTextInBox(g2, "Back", bX, bY + 1 * yab, bWight, bHigh);
         g2.drawRect(bX, bY + 1 * yab, bWight, bHigh);
 
@@ -285,8 +298,8 @@ public class Fight {
 
             }else if(playerWalk >= 90 && playerWalkBack >= 85){
                 if(mosnterAbzug) {
-                    monsterlive = monsterlive - gp.player.kraft;
-                    console = "Du hast dem Monster " + gp.player.kraft + " schaden angerichtet";
+                    monsterlive = monsterlive - gp.player.attack;
+                    console = "Du hast dem Monster " + gp.player.attack + " schaden angerichtet";
                     mosnterAbzug = false;
                     winnerCheck();
                 }

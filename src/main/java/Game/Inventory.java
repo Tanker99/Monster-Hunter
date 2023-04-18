@@ -243,7 +243,7 @@ public class Inventory {
             }
         }
 
-        gp.text.drawTextcentered(g2,"Kraft: " + gp.player.kraft,panX ,panY + 340,panWight/2);
+        gp.text.drawTextcentered(g2,"Kraft: " + gp.player.attack,panX ,panY + 340,panWight/2);
         gp.text.drawTextcentered(g2,"Defense: " + gp.player.defense, panX + panWight/2, panY + 340,panWight/2);
 
         //Draw Picture
@@ -373,10 +373,12 @@ public class Inventory {
                 if(gp.player.equip[0] == selectSlot){
                     gp.player.equip[0] = -1;
                     i = 1;
-                    gp.player.kraft = 0;
+                    gp.player.Ikraft = 0;
+                    gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                 }else {
                     gp.player.equip[0] = selectSlot;
-                    gp.player.kraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
+                    gp.player.Ikraft = gp.dba.getItem(1, gp.player.item[selectSlot][1]).getKraft();
+                    gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                 }
             }
             if(gp.player.item[selectSlot][0] == 2){
@@ -425,7 +427,8 @@ public class Inventory {
                 if(gp.player.equip[i] == selectSlot){
                     gp.player.equip[i] = -1;
                     if(i == 0){
-                        gp.player.kraft = 0;
+                        gp.player.Ikraft = 0;
+                        gp.player.attack = gp.player.Pkraft + gp.player.Ikraft;
                     }
                     if( i == 1){
                         gp.player.defense = 0;

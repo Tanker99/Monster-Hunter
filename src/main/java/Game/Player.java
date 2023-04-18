@@ -22,6 +22,12 @@ public class Player extends Entity{
     // [] == slot
 
 
+    //console
+    boolean popUP = false;
+    String popuPt ="";
+    int popWait = 0;
+
+
 
 
 
@@ -36,6 +42,7 @@ public class Player extends Entity{
         getImage();
 
 
+
     }
     public void Values(){
          worldx = gp.tileSize*18;
@@ -45,7 +52,6 @@ public class Player extends Entity{
         ImageDirection = "still";
 
     }
-
     public void getImage(){
         int slotnr;
         if (equip[1] == -1) {
@@ -113,6 +119,18 @@ public class Player extends Entity{
 
 
     }
+    public void drawPopup(Graphics2D g2){
+
+        int x = (int) (gp.screenWidth/2 - gp.screenWidth*0.15);
+        int y = (int) (gp.screenHeight * 0.25);
+        int wight = (int) (( gp.screenWidth*0.15)*2);
+        int high = (int) (gp.screenHeight * 0.08);
+            g2.setColor(Color.black);
+            g2.fillRect(x,y,wight,high);
+            g2.drawRoundRect(x,y,wight,high,10,10);
+            g2.setColor(Color.white);
+            gp.text.drawTextInBox(g2,popuPt,x,y,wight,high);
+    }
     public void update (){
         //SHOP
         if( worldy >= 1232 && worldy <= 1280 && worldx == 1016 ){
@@ -123,13 +141,29 @@ public class Player extends Entity{
             gp.gameState = gp.shopState;
         }
 
-        //Haus Fight
+        //Haus Fight1
         if(worldy == 1156 && worldx >= 1252 && worldx <= 1316){
             System.out.println("Haus1");
             if(gp.monsterDB.getTot(0) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
 
             }else {
                 gp.fight.loadFigh(0,0);
+                gp.gameState = gp.fightState;
+            }
+            worldx = 1280; //Spawns nach dem fight
+            worldy = 1260; //Spawns nach dem fight
+        }
+        //Haus Fight2
+        if(worldy == 1796 && worldx >= 2528 && worldx <= 2608){
+            System.out.println("Haus2");
+            if(gp.monsterDB.getTot(3) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+
+            }else {
+                gp.fight.loadFigh(0,3);
                 gp.gameState = gp.fightState;
             }
             worldx = 1280; //Spawns nach dem fight
@@ -146,8 +180,16 @@ public class Player extends Entity{
         //Stein Fight
         if(worldy >= 2276 && worldy <= 2336&& worldx >= 2456 && worldx <= 2500){
             System.out.println("Stein Loch");
-            //worldx = 2400; //Spawns nach dem fight
-            //worldy = 2376; //Spawns nach dem fight
+            if(gp.monsterDB.getTot(4) == 1){
+                popuPt = "Du hast das Monster schon besiegt";
+                popUP = true;
+            }else {
+                gp.fight.loadFigh(1,4);
+                gp.gameState = gp.fightState;
+            }
+
+            worldx = 2400; //Spawns nach dem fight
+            worldy = 2376; //Spawns nach dem fight
         }
 
         //Baum Fight
@@ -162,10 +204,17 @@ public class Player extends Entity{
             System.out.println("Schloss");
             if(gp.monsterDB.getTot(5) == 1){
 
-            }else {
+            }else if(gp.monsterDB.getTot(0) == 1 && gp.monsterDB.getTot(1) == 1 && gp.monsterDB.getTot(2) == 1 && gp.monsterDB.getTot(3) == 1 && gp.monsterDB.getTot(4) == 1 && gp.monsterDB.getTot(5) == 1){
                 gp.fight.loadFigh(3,5);
                 gp.gameState = gp.fightState;
+            }else {
+                popuPt = "Du musst erst alle Monster besiegen";
+                popUP = true;
+
             }
+            worldx = 2356;
+            worldy = 1280;
+
         }
 
         if((keyH.up | keyH.down | keyH.left | keyH.right )== true){
@@ -221,6 +270,15 @@ public class Player extends Entity{
 
 
     public void draw(Graphics2D g2){
+        if(popUP) {
+            if(popWait < 250) {
+                popWait ++;
+                drawPopup(g2);
+            }else {
+                popWait = 0;
+                popUP = false;
+            }
+        }
         BufferedImage image = null;
 
         switch (ImageDirection){

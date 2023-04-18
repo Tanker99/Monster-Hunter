@@ -161,8 +161,6 @@ public class MouseListener implements java.awt.event.MouseListener {
 
         }
     }
-
-
     public void menueStateEntered(MouseEvent e) {
         System.out.println("Panel " + e.getComponent().getName() + " Entered");
         if (gp.ui.menuState == gp.ui.titleState) {
@@ -512,7 +510,9 @@ public class MouseListener implements java.awt.event.MouseListener {
                     gp.fight.fight = true;
                     break;
                 case "Fight Button: 1":
-                    gp.gameState = gp.playerState;
+                    if(!(gp.fight.first)) {
+                        gp.gameState = gp.playerState;
+                    }
                     break;
                 case "Item: 0":
                     gp.fight.useItem(2);
