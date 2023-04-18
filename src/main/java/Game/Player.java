@@ -244,7 +244,7 @@ public class Player extends Entity{
             System.out.println("Schloss");
             if(gp.monsterDB.getTot(5) == 1){
 
-            }else if(gp.monsterDB.getTot(0) == 1 && gp.monsterDB.getTot(1) == 1 && gp.monsterDB.getTot(2) == 1 && gp.monsterDB.getTot(3) == 1 && gp.monsterDB.getTot(4) == 1 && gp.monsterDB.getTot(5) == 1){
+            }else if(gp.monsterDB.getTot(0) == 1 && gp.monsterDB.getTot(1) == 1 && gp.monsterDB.getTot(2) == 1 && gp.monsterDB.getTot(3) == 1 && gp.monsterDB.getTot(4) == 1){
                 gp.fight.loadFigh(3,5);
                 gp.gameState = gp.fightState;
             }else {
