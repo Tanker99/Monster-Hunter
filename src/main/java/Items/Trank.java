@@ -22,8 +22,8 @@ public class Trank extends Items{
 
     //Datenbank
     public static String[] tName = {"Einhorn-Pipi", "Rote Bete Saft", "Pep-sie Gemisch", "Ingwer-shot", "Met", "Wasser"};
-    public static int[] tKraft = {12, 16, 10, 24, -16, 14};
-    public static int[] tGoldwert = {22, 19, 14, 20, 25, 6};
+    public static int[] tKraft = {18, 16, 40, 24, -29, 14};
+    public static int[] tGoldwert = {22, 39, 14, 20, 25, 6};
     public static String[] tText = {
             "Tatsächlich kacken Einhörner nicht nur Muffins und Donuts. Sie pieseln sogar Regenbögen.",
             "Nicht jedem schmeckt es, aber in diesem Fall kann es Dein Leben retten.",

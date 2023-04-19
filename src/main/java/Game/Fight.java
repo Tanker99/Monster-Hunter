@@ -14,6 +14,7 @@ public class Fight {
 
     //setup
     boolean setup = true;
+    int givegold;
     BufferedImage background;
 
     //Level detail
@@ -68,7 +69,7 @@ public class Fight {
 
             }else
             if( winner == 1){
-                console = "Du hast Gewonnen der Shop wurde für dich erneuert";
+                console = "Gewonnen + " + givegold+ " Gold und der Shop wurde für dich erneuert";
                 gp.shop.newShop = true;
                 gp.monsterDB.mtot[monster] = 1;
                 drawBackButton();
@@ -91,9 +92,8 @@ public class Fight {
             if (!(fight)) {
                 resetFightAnimation();
                 drawFightButton();
-                if (!first) {
-                    drawBackButton();
-                }
+                drawBackButton();
+
                 drawItems();
             }
         }
@@ -294,9 +294,9 @@ public class Fight {
     }
     public void drawConsole(){
 
-        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.12);
+        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.15);
         int cY = (int) (gp.screenHeight * 0.76);
-        int cWight = (int) ((gp.screenWidth * 0.12) * 2);
+        int cWight = (int) ((gp.screenWidth * 0.15) * 2);
         int cHigh = (int) (gp.screenHeight * 0.05);
 
         g2.drawRect(cX, cY, cWight, cHigh);
@@ -367,7 +367,8 @@ public class Fight {
     public void winnerCheck(){
         if(monsterlive <= 0){
             winner = 1;
-            gp.player.gold += (int)Math.round(20*Math.random()+10);
+            givegold =  (int)Math.round(20*Math.random()+20);
+            gp.player.gold =+ givegold;
             gp.playSound(6);
         }
         if(gp.player.leben <= 0)
