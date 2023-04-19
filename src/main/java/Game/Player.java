@@ -55,7 +55,6 @@ public class Player extends Entity{
     }
     public void getImage(){
         int slotnr;
-        System.err.println("sdasd" + equip[1]);
         if (equip[1] == -1) {
             slotnr = -1;
         }else {
@@ -65,7 +64,6 @@ public class Player extends Entity{
         BufferedImage[] walkImage = null;
         switch (slotnr){
             case -1:
-                System.out.println("dasdasdasdasd");
                 walkImage = gp.image.wdBild;
                 break;
             case 0:
@@ -328,7 +326,7 @@ public class Player extends Entity{
             }
         }
         if(popUPB) {
-            if(popWait < 400) {
+            if(popWait < 600) {
                 popWait ++;
                 drawPopupB(g2);
             }else {

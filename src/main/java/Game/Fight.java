@@ -63,6 +63,10 @@ public class Fight {
 
         if(winner > 0){
             first = false;
+            if(winner == 1 && monster == 5){
+                gp.gameState = gp.winnerState;
+
+            }else
             if( winner == 1){
                 console = "Du hast Gewonnen der Shop wurde für dich erneuert";
                 gp.shop.newShop = true;

@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Fight fight = new Fight(this);
     public GameOver gameOver = new GameOver(this);
+    public Winner winner = new Winner(this);
 
 
     Thread gameThread;
@@ -67,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int inventoryState = 5;
     final int fightState = 6;
     final int gameOverState = 7;
+    final int winnerState = 8;
     final int settingsState = 10;
 
 
@@ -203,6 +205,9 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         } else if (gameState == gameOverState) {
             gameOver.draw(g2);
+            g2.dispose();
+        } else if (gameState == winnerState) {
+            winner.draw(g2);
             g2.dispose();
         }
         g2.dispose();

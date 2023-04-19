@@ -37,6 +37,10 @@ public class MouseListener implements java.awt.event.MouseListener {
         }if(gp.gameState == gp.gameOverState){
             gameOverStateClick(e);
         }
+        if(gp.gameState == gp.winnerState){
+         winnerStateClick(e);
+    }
+
 
 
     }
@@ -617,6 +621,13 @@ public class MouseListener implements java.awt.event.MouseListener {
     public void gameOverStateClick(MouseEvent e){
         String i = e.getComponent().getName();
         if(i == "BACK"){
+            gp.gameState = gp.uiState;
+            gp.ui.menuState = gp.ui.titleState;
+        }
+    }
+    public void winnerStateClick(MouseEvent e){
+        String i = e.getComponent().getName();
+        if(i == "Quit"){
             gp.gameState = gp.uiState;
             gp.ui.menuState = gp.ui.titleState;
         }
