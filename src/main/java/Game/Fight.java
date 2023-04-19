@@ -367,6 +367,7 @@ public class Fight {
         if(monsterlive <= 0){
             winner = 1;
             gp.player.gold += (int)Math.round(20*Math.random()+10);
+            gp.playSound(6);
         }
         if(gp.player.leben <= 0)
             winner = 2;
