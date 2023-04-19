@@ -45,7 +45,7 @@
 44 = Leuchtendes Graß
 45 = Shop Schild
 46 = Hallo Wasser ;-)
-47 =
+47 = offene Haustür
 48 =
 
 
