@@ -293,9 +293,10 @@ public class Fight {
         }
     }
     public void drawConsole(){
-        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.1);
+
+        int cX = (int) (gp.screenWidth / 2 - gp.screenWidth * 0.12);
         int cY = (int) (gp.screenHeight * 0.76);
-        int cWight = (int) ((gp.screenWidth * 0.1) * 2);
+        int cWight = (int) ((gp.screenWidth * 0.12) * 2);
         int cHigh = (int) (gp.screenHeight * 0.05);
 
         g2.drawRect(cX, cY, cWight, cHigh);

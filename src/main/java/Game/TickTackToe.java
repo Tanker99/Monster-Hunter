@@ -13,6 +13,8 @@ public class TickTackToe {
 
 
     //variable
+    boolean givegoldb = true;
+    int givegold = 0;
     int difficult = 0;
     boolean start = false;
     public int slotState[] = new int[9];
@@ -54,6 +56,13 @@ public class TickTackToe {
         if(end){
             drawEnd();
             drawButton();
+
+            if(givegoldb){
+                givegold =  5 + difficult * 5;
+                gp.player.gold = gp.player.gold + givegold;
+                gp.playSound(6);
+                givegoldb = false;
+            }
         }
 
         drawname();
@@ -229,16 +238,10 @@ public class TickTackToe {
         if(!(slotState[0] == 0) && !(slotState[1] == 0) && !(slotState[2] == 0) && !(slotState[3] == 0) && !(slotState[4] == 0) && !(slotState[5] == 0) && !(slotState[6] == 0) && !(slotState[7] == 0) && !(slotState[8] == 0)){
             end = true;
         }
-        if(gewinner == 1){
-            int givegold;
-            givegold =  5 + difficult * 5;
-            gp.player.gold = gp.player.gold + givegold;
-            gp.playSound(6);
-        }
+
     }
     public void drawEnd(){
         String text = null;
-        int givegold = 0;
         if(gewinner == 1){
             text = "X";
         }else if(gewinner == 2){
@@ -251,7 +254,7 @@ public class TickTackToe {
         g2.setFont(g2.getFont().deriveFont(18F));
         //gp.text.drawTextBetweenBox(text + " hat Gewonnen",x,y);
         g2.drawString(text + " hat Gewonnen", x,  y);
-        g2.drawString("+ " + givegold +" Muenzen", x,  y + 50);
+        g2.drawString("+ " + givegold +" Gold", x,  y + 50);
     }
     public void kiEasy(){
         int randomNumber = (int) (Math.random() * 9);
@@ -393,6 +396,7 @@ public class TickTackToe {
 
 
     public void reset(){
+        givegoldb = true;
         end = false;
         gewinner = 0;
 
