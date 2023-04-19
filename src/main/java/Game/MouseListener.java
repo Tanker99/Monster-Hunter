@@ -590,6 +590,7 @@ public class MouseListener implements java.awt.event.MouseListener {
             switch (i) {
                 case "Fight Button: 0":
                     gp.fight.fight = true;
+                    gp.fight.angriff = true;
                     break;
                 case "Fight Button: 1":
                     if(!(gp.fight.first)) {

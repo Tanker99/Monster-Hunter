@@ -57,7 +57,7 @@ public class TickTackToe {
             drawEnd();
             drawButton();
 
-            if(givegoldb){
+            if(givegoldb && gewinner == 1){
                 givegold =  5 + difficult * 5;
                 gp.player.gold = gp.player.gold + givegold;
                 gp.playSound(6);

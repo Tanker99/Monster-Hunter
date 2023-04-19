@@ -13,6 +13,8 @@ public class Fight {
     Graphics2D g2;
 
     //setup
+
+    boolean angriff = false;
     boolean setup = true;
     int givegold;
     BufferedImage background;
@@ -63,6 +65,7 @@ public class Fight {
         loadPlayerImage();
 
         if(winner > 0){
+            angriff = false;
             first = false;
             if(winner == 1 && monster == 5){
                 gp.gameState = gp.winnerState;
@@ -92,7 +95,7 @@ public class Fight {
             if (!(fight)) {
                 resetFightAnimation();
                 drawFightButton();
-                drawBackButton();
+                if (!(angriff)) {drawBackButton();}
 
                 drawItems();
             }
