@@ -8,7 +8,7 @@ public class Entity {
     public int leben;
     public int defense;
     public int Ikraft;
-    public int Pkraft = 5;
+    public int Pkraft = 1;
     public int attack;
 
     public int gold;
