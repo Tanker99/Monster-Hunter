@@ -422,7 +422,7 @@ public class Fight {
         }
         pWalkBild = null;
         switch (slotnr) {
-            case -1:
+            case -1, -2:
                 pWalkBild = gp.image.wdBild;
                 break;
             case 0:
